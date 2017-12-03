@@ -6,11 +6,19 @@ class UserTest extends TestCase
 {
     protected function setUp()
     {
+        $this->helloWorldEntity = new UserEntity();
     }
 
     public function testInitialize()
     {
-        $helloWorldEntity = new UserEntity();
-        $this->assertInstanceOf(UserEntity::class, $helloWorldEntity);
+        $this->assertInstanceOf(UserEntity::class, $this->helloWorldEntity);
+    }
+
+    public function testAttributes()
+    {
+        $this->assertObjectHasAttribute('userId', $this->helloWorldEntity);
+        $this->assertObjectHasAttribute('username', $this->helloWorldEntity);
+        $this->assertObjectHasAttribute('firstName', $this->helloWorldEntity);
+        $this->assertObjectHasAttribute('lastName', $this->helloWorldEntity);
     }
 }
