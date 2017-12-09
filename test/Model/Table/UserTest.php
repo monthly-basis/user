@@ -44,4 +44,32 @@ class UserTest extends TestCase
     {
         $this->assertInstanceOf(UserTable::class, $this->userTable);
     }
+
+    public function testInsert()
+    {
+        $this->userTable->insert(
+            'username',
+            'password hash',
+            'full name'
+        );
+
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+
+        $this->assertSame(
+            2,
+            $this->userTable->selectCount()
+        );
+    }
+
+    public function testSelectCount()
+    {
+        $this->assertSame(
+            0,
+            $this->userTable->selectCount()
+        );
+    }
 }
