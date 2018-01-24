@@ -1,8 +1,16 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use LeoGalleguillos\Flash\Model\Service as FlashService;
+
 class Register
 {
+    public function __construct(
+        FlashService\Flash $flashService
+    ) {
+        $this->flashService = $flashService;
+    }
+
     /**
      * Get form errors.
      *
@@ -30,5 +38,17 @@ class Register
         }
 
         return $errors;
+    }
+
+    public function isFormValidIfNotSetFlashErrors()
+    {
+        $errors = $this->getErrors();
+        $isFormValid = empty($errors);
+
+        if (!$isFormValid) {
+            $this->flashService->set('errors', $errors);
+        }
+
+        return $isFormValid;
     }
 }
