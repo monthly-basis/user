@@ -29,12 +29,13 @@ class UserTest extends TestCase
         );
     }
 
-    public function buildFromArrayObject()
+    public function testBuildFromArrayObject()
     {
         $arrayObject = new ArrayObject([
             'user_id'  => 1,
             'username' => 'Testing123',
         ]);
+
         $userEntity           = new UserEntity\User();
         $userEntity->userId   = 1;
         $userEntity->username = 'Testing123';
@@ -42,6 +43,27 @@ class UserTest extends TestCase
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArrayObject($arrayObject)
+        );
+    }
+
+    public function testBuildFromUsername()
+    {
+        $arrayObject = new ArrayObject([
+            'user_id'  => 1,
+            'username' => 'Testing123',
+        ]);
+
+        $userEntity           = new UserEntity\User();
+        $userEntity->userId   = 1;
+        $userEntity->username = 'Testing123';
+
+        $this->userTableMock->method('selectWhereUsername')->willReturn(
+            $arrayObject
+        );
+
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromUsername('Testing123')
         );
     }
 }
