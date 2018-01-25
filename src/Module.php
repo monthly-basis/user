@@ -3,7 +3,7 @@ namespace LeoGalleguillos\User;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table\User as UserTable;
+use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Module
 {
@@ -24,8 +24,13 @@ class Module
                 UserService\User::class => function ($serviceManager) {
                     return new UserService\User();
                 },
-                UserTable::class => function ($serviceManager) {
-                    return new UserTable(
+                UserTable\Register::class => function ($serviceManager) {
+                    return new UserTable\Register(
+                        $serviceManager->get('main')
+                    );
+                },
+                UserTable\User::class => function ($serviceManager) {
+                    return new UserTable\User(
                         $serviceManager->get('main')
                     );
                 },
