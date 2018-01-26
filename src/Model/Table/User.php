@@ -129,4 +129,19 @@ class User
 
         return $row ? $row : false;
     }
+
+    public function updateWhereUserId(ArrayObject $arrayObject, int $userId)
+    {
+        $sql = '
+            UPDATE `user`
+               SET `user`.`welcome_message` = ?
+             WHERE `user`.`user_id` = ?
+                 ;
+        ';
+        $parameters = [
+            $arrayObject['welcome_message'],
+            $userId
+        ];
+        return (bool) $this->adapter->query($sql, $parameters)->getAffectedRows();
+    }
 }
