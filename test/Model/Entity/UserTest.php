@@ -8,19 +8,29 @@ class UserTest extends TestCase
 {
     protected function setUp()
     {
-        $this->helloWorldEntity = new UserEntity();
+        $this->userEntity = new UserEntity();
     }
 
     public function testInitialize()
     {
-        $this->assertInstanceOf(UserEntity::class, $this->helloWorldEntity);
+        $this->assertInstanceOf(UserEntity::class, $this->userEntity);
     }
 
     public function testAttributes()
     {
-        $this->assertObjectHasAttribute('userId', $this->helloWorldEntity);
-        $this->assertObjectHasAttribute('username', $this->helloWorldEntity);
-        $this->assertObjectHasAttribute('firstName', $this->helloWorldEntity);
-        $this->assertObjectHasAttribute('lastName', $this->helloWorldEntity);
+        $this->assertObjectHasAttribute('userId', $this->userEntity);
+        $this->assertObjectHasAttribute('username', $this->userEntity);
+        $this->assertObjectHasAttribute('firstName', $this->userEntity);
+        $this->assertObjectHasAttribute('lastName', $this->userEntity);
+    }
+
+    public function testGettersAndSetters()
+    {
+        $welcomeMessage = 'Welcome to my page.';
+        $this->userEntity->setWelcomeMessage($welcomeMessage);
+        $this->assertSame(
+            $welcomeMessage,
+            $this->userEntity->getWelcomeMessage()
+        );
     }
 }
