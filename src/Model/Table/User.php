@@ -106,6 +106,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `welcome_message`
               FROM `user`
              WHERE `user_id` = ?
                  ;
@@ -121,6 +122,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `welcome_message`
               FROM `user`
              WHERE `username` = ?
                  ;
