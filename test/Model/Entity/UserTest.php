@@ -26,6 +26,13 @@ class UserTest extends TestCase
 
     public function testGettersAndSetters()
     {
+        $userId = 123;
+        $this->userEntity->setUserId($userId);
+        $this->assertSame(
+            $userId,
+            $this->userEntity->getUserId()
+        );
+
         $welcomeMessage = 'Welcome to my page.';
         $this->userEntity->setWelcomeMessage($welcomeMessage);
         $this->assertSame(

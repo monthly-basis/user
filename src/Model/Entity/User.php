@@ -13,9 +13,20 @@ class User
 
     protected $welcomeMessage = '';
 
+    public function getUserId() : int
+    {
+        return $this->userId;
+    }
+
     public function getWelcomeMessage() : string
     {
         return $this->welcomeMessage;
+    }
+
+    public function setUserId(int $userId) : UserEntity\User
+    {
+        $this->userId = $userId;
+        return $this;
     }
 
     public function setWelcomeMessage(string $welcomeMessage) : UserEntity\User
