@@ -3,6 +3,7 @@ namespace LeoGalleguillos\User\Model\Table;
 
 use ArrayObject;
 use Zend\Db\Adapter\Adapter;
+use Zend\Db\Adapter\Exception\InvalidQueryException;
 
 class Post
 {
@@ -19,6 +20,7 @@ class Post
     /**
      * Insert.
      *
+     * @throws InvalidQueryException If foreign key contraint fails
      * @return int
      */
     public function insert(
@@ -37,9 +39,9 @@ class Post
             $toUserId,
             $message,
         ];
-        return $this->adapter
-                    ->query($sql, $parameters)
-                    ->getGeneratedValue();
+        return (int) $this->adapter
+                          ->query($sql, $parameters)
+                          ->getGeneratedValue();
     }
 
     public function selectCount()
@@ -61,16 +63,33 @@ class Post
     public function selectWhereToUserId($toUserId)
     {
         $sql = '
-            SELECT `post_id`
-                 , `from_user_id`
-                 , `to_user_id`
-                 , `message`
+            SELECT `post`.`post_id`
+
+                 , `from_user`.`user_id` AS `from_user_user_id`
+                 , `from_user`.`username` AS `from_user_username`
+
+                 , `to_user`.`user_id` AS `to_user_user_id`
+                 , `to_user`.`username` AS `to_user_username`
+
+                 , `post`.`message`
+
               FROM `post`
+
+              JOIN `user` AS `from_user`
+                ON `from_user`.`user_id` = `post`.`from_user_id`
+
+              JOIN `user` AS `to_user`
+                ON `to_user`.`user_id` = `post`.`to_user_id`
+
              WHERE `to_user_id` = ?
                  ;
         ';
-        $row = $this->adapter->query($sql, [$toUserId])->current();
+        $resultSet = $this->adapter->query($sql, [$toUserId]);
 
-        return $row;
+        $arrayObjects = new ArrayObject();
+        foreach ($resultSet as $arrayObject) {
+            $arrayObjects[] = $arrayObject;
+        }
+        return $arrayObjects;
     }
 }

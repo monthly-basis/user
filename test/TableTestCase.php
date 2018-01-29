@@ -9,12 +9,12 @@ class TableTestCase extends TestCase
     /**
      * @var string
      */
-    protected $sqlDirectory = __DIR__ . '/../sql/';
+    protected $sqlDirectory = __DIR__ . '/../sql';
 
     protected function setForeignKeyChecks0()
     {
         $sql = file_get_contents(
-            $this->sqlDirectory . 'SetForeignKeyChecks0.sql'
+            $this->sqlDirectory . '/SetForeignKeyChecks0.sql'
         );
 
         $result = $this->adapter->query($sql)->execute();
@@ -23,7 +23,7 @@ class TableTestCase extends TestCase
     protected function setForeignKeyChecks1()
     {
         $sql = file_get_contents(
-            $this->sqlDirectory . 'SetForeignKeyChecks1.sql'
+            $this->sqlDirectory . '/SetForeignKeyChecks1.sql'
         );
 
         $result = $this->adapter->query($sql)->execute();
