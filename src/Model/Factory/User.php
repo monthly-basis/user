@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Factory;
 
 use ArrayObject;
+use DateTime;
 use LeoGalleguillos\User\Model\Entity\User as UserEntity;
 use LeoGalleguillos\User\Model\Table\User as UserTable;
 
@@ -34,6 +35,15 @@ class User
         $userEntity->userId   = $arrayObject['user_id'];
         $userEntity->username = $arrayObject['username'];
 
+        if (isset($arrayObject['created'])) {
+            $userEntity->setCreated(
+                new DateTime($arrayObject['created'])
+            );
+        }
+
+        $userEntity->setViews(
+            (int) ($arrayObject['views'] ?? 0)
+        );
         $userEntity->setWelcomeMessage(
             (string) ($arrayObject['welcome_message'] ?? '')
         );
