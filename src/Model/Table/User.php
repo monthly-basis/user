@@ -135,7 +135,21 @@ class User
         return $arrayObject;
     }
 
-    public function updateWhereUserId(ArrayObject $arrayObject, int $userId)
+    public function updateViewsWhereUserId(int $userId) : bool
+    {
+        $sql = '
+            UPDATE `user`
+               SET `user`.`views` = `user`.`views` + 1
+             WHERE `user`.`user_id` = ?
+                 ;
+        ';
+        $parameters = [
+            $userId
+        ];
+        return (bool) $this->adapter->query($sql, $parameters)->getAffectedRows();
+    }
+
+    public function updateWhereUserId(ArrayObject $arrayObject, int $userId) : bool
     {
         $sql = '
             UPDATE `user`

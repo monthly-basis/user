@@ -103,6 +103,27 @@ class UserTest extends TableTestCase
         );
     }
 
+    public function testUpdateViewsWhereUserId()
+    {
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+        $this->assertTrue(
+            $this->userTable->updateViewsWhereUserId(1),
+            $this->userTable->updateViewsWhereUserId(1),
+            $this->userTable->updateViewsWhereUserId(1)
+        );
+
+        $arrayObject = $this->userTable->selectWhereUserId(1);
+
+        $this->assertSame(
+            $arrayObject['views'],
+            '3'
+        );
+    }
+
     public function testUpdateWhereUserId()
     {
         $this->userTable->insert(
