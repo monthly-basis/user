@@ -30,8 +30,8 @@ class Post
     ) {
         $sql = '
             INSERT
-              INTO `post` (`from_user_id`, `to_user_id`, `message`)
-            VALUES (?, ?, ?)
+              INTO `post` (`from_user_id`, `to_user_id`, `message`, `created`)
+            VALUES (?, ?, ?, NOW())
                  ;
         ';
         $parameters = [
@@ -72,6 +72,7 @@ class Post
                  , `to_user`.`username` AS `to_user_username`
 
                  , `post`.`message`
+                 , `post`.`created`
 
               FROM `post`
 

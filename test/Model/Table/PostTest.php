@@ -136,8 +136,13 @@ class PostTest extends TableTestCase
         ]);
 
         $this->assertEquals(
-            $arrayObjects,
-            $this->postTable->selectWhereToUserId(2)
+            $arrayObjects[0]['to_user_user_id'],
+            $this->postTable->selectWhereToUserId(2)[0]['to_user_user_id']
+        );
+
+        $this->assertEquals(
+            $arrayObjects[1]['message'],
+            $this->postTable->selectWhereToUserId(2)[1]['message']
         );
 
         $this->assertEmpty(
