@@ -118,20 +118,20 @@ class PostTest extends TableTestCase
 
         $arrayObjects = new ArrayObject([
             new ArrayObject([
-                'post_id' => '1',
-                'from_user_user_id' => '1',
-                'from_user_username' => 'username',
-                'to_user_user_id' => '2',
-                'to_user_username' => 'username2',
-                'message' => 'message',
-            ]),
-            new ArrayObject([
                 'post_id' => '2',
                 'from_user_user_id' => '3',
                 'from_user_username' => 'username3',
                 'to_user_user_id' => '2',
                 'to_user_username' => 'username2',
                 'message' => 'another message',
+            ]),
+            new ArrayObject([
+                'post_id' => '1',
+                'from_user_user_id' => '1',
+                'from_user_username' => 'username',
+                'to_user_user_id' => '2',
+                'to_user_username' => 'username2',
+                'message' => 'message',
             ]),
         ]);
 

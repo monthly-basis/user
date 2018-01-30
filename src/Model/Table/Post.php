@@ -83,6 +83,10 @@ class Post
                 ON `to_user`.`user_id` = `post`.`to_user_id`
 
              WHERE `to_user_id` = ?
+
+             ORDER
+                BY `created` DESC,
+                   `post_id` DESC
                  ;
         ';
         $resultSet = $this->adapter->query($sql, [$toUserId]);
