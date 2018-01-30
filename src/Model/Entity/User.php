@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Entity;
 
+use DateTime;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 
 class User
@@ -11,9 +12,16 @@ class User
     public $firstName;
     public $lastName;
 
+    protected $created;
+
     protected $views = 0;
 
     protected $welcomeMessage = '';
+
+    public function getCreated() : DateTime
+    {
+        return $this->created;
+    }
 
     public function getUserId() : int
     {
@@ -33,6 +41,12 @@ class User
     public function getWelcomeMessage() : string
     {
         return $this->welcomeMessage;
+    }
+
+    public function setCreated(DateTime $created) : UserEntity\User
+    {
+        $this->created = $created;
+        return $this;
     }
 
     public function setUserId(int $userId) : UserEntity\User
