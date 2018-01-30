@@ -1,31 +1,28 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service;
 
-use LeoGalleguillos\User\Model\Entity\User as UserEntity;
-use LeoGalleguillos\User\Model\Service\User as UserService;
+use LeoGalleguillos\User\Model\Entity as UserEntity;
+use LeoGalleguillos\User\Model\Service as UserService;
+use LeoGalleguillos\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
     protected function setUp()
     {
-        $this->userEntity            = new UserEntity();
-        $this->userEntity->firstName = 'Leo';
-        $this->userEntity->lastName  = 'Galleguillos';
-
-        $this->userService = new UserService();
+        $this->userTableMock = $this->createMock(
+            UserTable\User::class
+        );
+        $this->userService = new UserService\User(
+            $this->userTableMock
+        );
     }
 
     public function testInitialize()
     {
-        $this->assertInstanceOf(UserService::class, $this->userService);
-    }
-
-    public function testGetFullName()
-    {
-        $this->assertSame(
-            'Leo Galleguillos',
-            $this->userService->getFullName($this->userEntity)
+        $this->assertInstanceOf(
+            UserService\User::class,
+            $this->userService
         );
     }
 }
