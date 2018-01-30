@@ -25,4 +25,16 @@ class UserTest extends TestCase
             $this->userService
         );
     }
+
+    public function testIncrementViews()
+    {
+        $userEntity = new UserEntity\User();
+        $userEntity->setUserId(123);
+
+        $this->userTableMock->method('updateViewsWhereUserId')->willReturn(true);
+
+        $this->assertTrue(
+            $this->userService->incrementViews($userEntity)
+        );
+    }
 }
