@@ -33,6 +33,13 @@ class UserTest extends TestCase
             $this->userEntity->getUserId()
         );
 
+        $username = 'myusername';
+        $this->userEntity->setUsername($username);
+        $this->assertSame(
+            $username,
+            $this->userEntity->getUsername()
+        );
+
         $welcomeMessage = 'Welcome to my page.';
         $this->userEntity->setWelcomeMessage($welcomeMessage);
         $this->assertSame(

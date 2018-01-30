@@ -18,6 +18,11 @@ class User
         return $this->userId;
     }
 
+    public function getUsername() : string
+    {
+        return $this->username;
+    }
+
     public function getWelcomeMessage() : string
     {
         return $this->welcomeMessage;
@@ -26,6 +31,12 @@ class User
     public function setUserId(int $userId) : UserEntity\User
     {
         $this->userId = $userId;
+        return $this;
+    }
+
+    public function setUsername(string $username) : UserEntity\User
+    {
+        $this->username = $username;
         return $this;
     }
 
