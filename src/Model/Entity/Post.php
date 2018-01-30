@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Entity;
 
+use DateTime;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 
 class Post
@@ -9,6 +10,12 @@ class Post
     protected $fromUser;
     protected $message;
     protected $toUser;
+    protected $dateTime;
+
+    public function getCreated() : DateTime
+    {
+        return $this->created;
+    }
 
     public function getMessage()
     {
@@ -18,6 +25,12 @@ class Post
     public function getFromUser()
     {
         return $this->fromUser;
+    }
+
+    public function setCreated(DateTime $created) : UserEntity\Post
+    {
+        $this->created = $created;
+        return $this;
     }
 
     public function setMessage(string $message) : UserEntity\Post
