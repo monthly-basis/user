@@ -8,7 +8,7 @@ class LoggedIn
      *
      * @return bool
      */
-    public function isLoggedIn()
+    public function isLoggedIn() : bool
     {
         return !empty($_SESSION['username']);
     }
