@@ -30,6 +30,9 @@ class Module
                         $serviceManager->get(FlashService\Flash::class)
                     );
                 },
+                UserService\LoggedIn::class => function ($serviceManager) {
+                    return new UserService\LoggedIn();
+                },
                 UserService\Post::class => function ($serviceManager) {
                     return new UserService\Post(
                         $serviceManager->get(UserTable\Post::class)

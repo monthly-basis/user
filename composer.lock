@@ -98,12 +98,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/Flash.git",
-                "reference": "8930947b6c33544bbd1aa93fc2b919ce0db88902"
+                "reference": "b326f261caa5def2df78c17be436f116881d20e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/Flash/zipball/8930947b6c33544bbd1aa93fc2b919ce0db88902",
-                "reference": "8930947b6c33544bbd1aa93fc2b919ce0db88902",
+                "url": "https://api.github.com/repos/LeoGalleguillos/Flash/zipball/b326f261caa5def2df78c17be436f116881d20e9",
+                "reference": "b326f261caa5def2df78c17be436f116881d20e9",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-01-24 21:33:30"
+            "time": "2018-02-05 17:33:48"
         },
         {
             "name": "myclabs/deep-copy",
