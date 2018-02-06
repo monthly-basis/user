@@ -37,7 +37,10 @@ class Upload
             $fileExtension
         );
 
-        mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
+        mkdir(
+            $_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId",
+            '0775'
+        );
 
         $uploadPath = $_SERVER['DOCUMENT_ROOT']
                     . "/uploads/photos/$photoId/original.$fileExtension";
