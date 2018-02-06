@@ -21,17 +21,21 @@ class Photo
      */
     public function insert(
         $userId,
-        $extension
+        $extension,
+        $title,
+        $description
     ) {
         $sql = '
             INSERT
-              INTO `photo` (`user_id`, `extension`, `views`, `created`)
-            VALUES (?, ?, 0, UTC_TIMESTAMP())
+              INTO `photo` (`user_id`, `extension`, `title`, `description`, `views`, `created`)
+            VALUES (?, ?, ?, ?, 0, UTC_TIMESTAMP())
                  ;
         ';
         $parameters = [
             $userId,
-            $extension
+            $extension,
+            $title,
+            $description,
         ];
         return (int) $this->adapter
                           ->query($sql, $parameters)
