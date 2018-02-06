@@ -76,9 +76,35 @@ class PhotoTest extends TableTestCase
 
     public function testSelectOrderByCreatedDesc()
     {
+        $this->photoTable->insert(123, 'jpg', 'title', 'description');
+        $this->photoTable->insert(123, 'jpg', 't', 'd');
+
+        $generator = $this->photoTable->selectOrderByCreatedDesc();
+
         $this->assertInstanceOf(
             Generator::class,
-            $this->photoTable->selectOrderByCreatedDesc()
+            $generator
+        );
+
+        $generator->next();
+
+        $arrayObject = new ArrayObject([
+            'photo_id'    => '2',
+            'extension'   => 'jpg',
+            'title'       => 't',
+            'description' => 'd',
+            'views'       => '0',
+            'created'     => '0000-00-00 00:00:00',
+        ]);
+
+        $this->assertSame(
+            $arrayObject['photo_id'],
+            $generator->current()['photo_id']
+        );
+
+        $this->assertSame(
+            $arrayObject['extension'],
+            $generator->current()['extension']
         );
     }
 }
