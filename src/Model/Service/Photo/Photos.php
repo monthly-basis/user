@@ -2,6 +2,8 @@
 namespace LeoGalleguillos\User\Model\Service\Photo;
 
 use ArrayObject;
+use Generator;
+use LeoGalleguillos\Photo\Model\Entity as PhotoEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
@@ -21,10 +23,21 @@ class Photos
     /**
      * Get newest photos.
      *
-     * @return ArrayObject
+     * @return Generator
      */
-    public function getNewestPhotos()
+    public function getNewestPhotos() : Generator
     {
-        $photos = new ArrayObject();
+        foreach ($this->photoTable->selectOrderByCreatedDesc() as $arrayObject) {
+            $photo    = new UserEntity\Photo();
+            $original = new ImageEntity\Image();
+            $original->setRootRelativeUrl(
+                '/uploads/photos/'
+                . $arrayObject['photo_id']
+                . '/original.'
+                . $arrayObject['extension']
+            );
+            $photo->setOriginal($original);
+            yield $photo;
+        }
     }
 }

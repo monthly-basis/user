@@ -8,13 +8,9 @@ use LeoGalleguillos\User\Model\Entity as UserEntity;
 class Photo
 {
     protected $photoId;
-
     protected $original;
-
     protected $views;
-
     protected $created;
-
     protected $extension;
     protected $title;
     protected $description;
@@ -37,6 +33,12 @@ class Photo
     public function setCreated(DateTime $created) : UserEntity\Photo
     {
         $this->created = $created;
+        return $this;
+    }
+
+    public function setOriginal(ImageEntity\Image $original) : UserEntity\Photo
+    {
+        $this->original = $original;
         return $this;
     }
 
