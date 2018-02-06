@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Table;
 
 use ArrayObject;
+use Generator;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\UserTest\TableTestCase;
 use Zend\Db\Adapter\Adapter;
@@ -70,6 +71,14 @@ class PhotoTest extends TableTestCase
         $this->assertSame(
             0,
             $this->photoTable->selectCount()
+        );
+    }
+
+    public function testSelectOrderByCreatedDesc()
+    {
+        $this->assertInstanceOf(
+            Generator::class,
+            $this->photoTable->selectOrderByCreatedDesc()
         );
     }
 }

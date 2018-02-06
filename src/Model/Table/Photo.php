@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Table;
 
 use ArrayObject;
+use Generator;
 use Zend\Db\Adapter\Adapter;
 
 class Photo
@@ -51,5 +52,30 @@ class Photo
         ';
         $row = $this->adapter->query($sql)->execute()->current();
         return (int) $row['count'];
+    }
+
+    /**
+     * @return Generator
+     */
+    public function selectOrderByCreatedDesc()
+    {
+        $sql = '
+            SELECT `photo`.`photo_id`
+                 , `photo`.`extension`
+                 , `photo`.`title`
+                 , `photo`.`description`
+                 , `photo`.`views`
+                 , `photo`.`created`
+              FROM `photo`
+             ORDER
+                BY `photo`.`created` DESC
+             LIMIT 10
+                 ;
+        ';
+        $resultSet = $this->adapter->query($sql)->execute();
+
+        foreach ($resultSet as $arrayObject) {
+            yield $arrayObject;
+        }
     }
 }
