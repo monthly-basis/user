@@ -30,6 +30,7 @@ class Photos
     {
         foreach ($this->photoTable->selectOrderByCreatedDesc() as $arrayObject) {
             $photo    = new UserEntity\Photo();
+
             $original = new ImageEntity\Image();
             $original->setRootRelativeUrl(
                 '/uploads/photos/'
@@ -37,6 +38,9 @@ class Photos
                 . '/original.'
                 . $arrayObject['extension']
             );
+            $imagick = new \Imagick($_SERVER['DOCUMENT_ROOT'] . $original->getRootRelativeUrl());
+            $original->setOrientation($imagick->getImageOrientation());
+
             $photo->setOriginal($original);
             yield $photo;
         }
