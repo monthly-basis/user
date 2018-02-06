@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Service;
 
 use Exception;
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 
 class LoggedInUser
