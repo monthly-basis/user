@@ -20,9 +20,10 @@ class Upload
      */
     public function upload(
         UserEntity\User $userEntity,
-        string $tmpName
+        string $fileName,
+        string $fileTmpName
     ) {
-        $fileExtension = strtolower(pathinfo($tmpName, PATHINFO_EXTENSION));
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
         $fileExtension = preg_replace('/\W/', '', $fileExtension);
 
         $photoId = $this->photoTable->insert(
@@ -32,8 +33,8 @@ class Upload
 
         mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
 
-        $rootRelativePath = $_SERVER['DOCUMENT_ROOT']
-                          . "/uploads/photos/$photoId/original.$fileExtension";
-        move_uploaded_file($tmpName, $filePath);
+        $uploadPath = $_SERVER['DOCUMENT_ROOT']
+                    . "/uploads/photos/$photoId/original.$fileExtension";
+        move_uploaded_file($fileTmpName, $uploadPath);
     }
 }
