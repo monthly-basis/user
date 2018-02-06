@@ -23,18 +23,24 @@ class Upload
      * @param UserEntity\User $userEntity
      * @param string $fileName
      * @param string $fileTmpName
+     * @param string $title
+     * @param string $description
      */
     public function upload(
         UserEntity\User $userEntity,
         string $fileName,
-        string $fileTmpName
+        string $fileTmpName,
+        string $title,
+        string $description
     ) {
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
         $fileExtension = preg_replace('/\W/', '', $fileExtension);
 
         $photoId = $this->photoTable->insert(
             $userEntity->getUserId(),
-            $fileExtension
+            $fileExtension,
+            $title,
+            $description
         );
 
         mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
@@ -42,6 +48,6 @@ class Upload
         $uploadPath = $_SERVER['DOCUMENT_ROOT']
                     . "/uploads/photos/$photoId/original.$fileExtension";
         move_uploaded_file($fileTmpName, $uploadPath);
-        chmod($uploadPath, 0775);
+        chmod($uploadPath, 0777);
     }
 }
