@@ -21,6 +21,11 @@ class Photo
         return $this->created;
     }
 
+    public function getDescription() : string
+    {
+        return $this->description;
+    }
+
     public function getOriginal() : ImageEntity\Image
     {
         return $this->original;
@@ -39,6 +44,12 @@ class Photo
     public function setCreated(DateTime $created) : UserEntity\Photo
     {
         $this->created = $created;
+        return $this;
+    }
+
+    public function setDescription(string $description) : UserEntity\Photo
+    {
+        $this->description = $description;
         return $this;
     }
 
