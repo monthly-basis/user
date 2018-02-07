@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service\Photo;
 
+use Imagick;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
@@ -43,21 +44,21 @@ class Upload
             $description
         );
 
-        $imagick = new \Imagick($fileTmpName);
+        $imagick     = new Imagick($fileTmpName);
         $orientation = $imagick->getImageOrientation();
-		switch ($orientation) {
-			case \Imagick::ORIENTATION_BOTTOMRIGHT:
-				$imagick->rotateimage("#000", 180); // rotate 180 degrees
-			break;
+        switch ($orientation) {
+            case Imagick::ORIENTATION_BOTTOMRIGHT:
+                $imagick->rotateimage('#000', 180);
+            break;
 
-			case \Imagick::ORIENTATION_RIGHTTOP:
-				$imagick->rotateimage("#000", 90); // rotate 90 degrees CW
-			break;
+            case Imagick::ORIENTATION_RIGHTTOP:
+                $imagick->rotateimage('#000', 90);
+            break;
 
-			case \Imagick::ORIENTATION_LEFTBOTTOM:
-				$imagick->rotateimage("#000", -90); // rotate 90 degrees CCW
-			break;
-		}
+            case Imagick::ORIENTATION_LEFTBOTTOM:
+                $imagick->rotateimage('#000', -90);
+            break;
+        }
         $imagick->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
 
         mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
