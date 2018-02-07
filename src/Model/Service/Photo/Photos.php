@@ -32,17 +32,7 @@ class Photos
     public function getNewestPhotos() : Generator
     {
         foreach ($this->photoTable->selectOrderByCreatedDesc() as $arrayObject) {
-            $photo    = new UserEntity\Photo();
-
-            $original = new ImageEntity\Image();
-            $original->setRootRelativeUrl(
-                '/uploads/photos/'
-                . $arrayObject['photo_id']
-                . '/original.'
-                . $arrayObject['extension']
-            );
-            $photo->setOriginal($original);
-            yield $photo;
+            yield $this->photoFactory->buildFromArrayObject($arrayObject);
         }
     }
 }
