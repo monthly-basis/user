@@ -14,6 +14,7 @@ class Photos
     /**
      * Construct.
      *
+     * @param UserFactory\Photo $photoFactory
      * @param UserTable\Photo $photoTable
      */
     public function __construct(

@@ -51,6 +51,7 @@ class Photo
                  ;
         ';
         $row = $this->adapter->query($sql)->execute()->current();
+
         return (int) $row['count'];
     }
 

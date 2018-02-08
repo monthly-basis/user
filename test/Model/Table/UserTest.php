@@ -84,8 +84,8 @@ class UserTest extends TableTestCase
             'abcdefg1234567890',
             'Leo Galleguillos'
         );
-        $this->assertInstanceOf(
-            ArrayObject::class,
+        $this->assertInternalType(
+            'array',
             $this->userTable->selectWhereUserId(1)
         );
     }

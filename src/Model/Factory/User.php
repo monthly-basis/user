@@ -28,7 +28,7 @@ class User
      * @param ArrayObject $arrayObject
      * @return UserEntity\User
      */
-    public function buildFromArrayObject(ArrayObject $arrayObject)
+    public function buildFromArrayObject($arrayObject)
     {
         $userEntity = new UserEntity();
 
