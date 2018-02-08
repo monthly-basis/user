@@ -30,4 +30,25 @@ class PhotosTest extends TestCase
             $this->photosService
         );
     }
+
+    public function testGetNewestPhotos()
+    {
+        $array = [
+            $array = [
+                'photo_id'    => '2',
+                'extension'   => 'jpg',
+                'title'       => 'title',
+                'description' => 'description',
+                'views'       => '0',
+                'created'     => '0000-00-00 00:00:00',
+            ]
+        ];
+        $this->photoTableMock->method('selectOrderByCreatedDesc')->willReturn(
+            $array
+        );
+        $this->assertInstanceOf(
+            UserEntity\Photo::class,
+            $this->photosService->getNewestPhotos()->current()
+        );
+    }
 }
