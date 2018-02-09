@@ -31,6 +31,11 @@ class Photo
         return $this->original;
     }
 
+    public function getPhotoId() : int
+    {
+        return $this->photoId;
+    }
+
     public function getTitle() : string
     {
         return $this->title;
@@ -56,6 +61,12 @@ class Photo
     public function setOriginal(ImageEntity\Image $original) : UserEntity\Photo
     {
         $this->original = $original;
+        return $this;
+    }
+
+    public function setPhotoId(int $photoId) : UserEntity\Photo
+    {
+        $this->photoId = $photoId;
         return $this;
     }
 
