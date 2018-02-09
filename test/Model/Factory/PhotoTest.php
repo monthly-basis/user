@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Factory;
 
 use ArrayObject;
+use DateTime;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
@@ -39,7 +40,8 @@ class PhotoTest extends TestCase
 
         $photoEntity->setPhotoId($array['photo_id'])
                     ->setTitle($array['title'])
-                    ->setDescription($array['description']);
+                    ->setDescription($array['description'])
+                    ->setCreated(new DateTime($array['created']));
 
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
