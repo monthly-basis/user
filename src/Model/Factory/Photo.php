@@ -19,7 +19,8 @@ class Photo
     ) : UserEntity\Photo {
         $photo = new UserEntity\Photo();
 
-        $photo->setTitle($array['title'])
+        $photo->setPhotoId($array['photo_id'])
+              ->setTitle($array['title'])
               ->setDescription($array['description']);
 
         $original = new ImageEntity\Image();
