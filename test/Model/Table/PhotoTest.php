@@ -106,4 +106,18 @@ class PhotoTest extends TableTestCase
             $generator->current()['title']
         );
     }
+
+    public function testSelectWherePhotoId()
+    {
+        $this->photoTable->insert(123, 'jpg', 'title', 'description');
+        $array = $this->photoTable->selectWherePhotoId(1);
+        $this->assertSame(
+            'jpg',
+            $array['extension']
+        );
+        $this->assertSame(
+            'title',
+            $array['title']
+        );
+    }
 }

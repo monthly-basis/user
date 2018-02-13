@@ -5,9 +5,16 @@ use DateTime;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
+use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Photo
 {
+    public function __construct(
+        UserTable\Photo $photoTable
+    ) {
+        $this->photoTable = $photoTable;
+    }
+
     /**
      * Build from array object.
      *

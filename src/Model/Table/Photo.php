@@ -79,4 +79,20 @@ class Photo
             yield $arrayObject;
         }
     }
+
+    public function selectWherePhotoId(int $photoId) : array
+    {
+        $sql = '
+            SELECT `photo_id`
+                 , `extension`
+                 , `title`
+                 , `description`
+                 , `views`
+                 , `created`
+              FROM `photo`
+             WHERE `photo_id` = ?
+                 ;
+        ';
+        return $this->adapter->query($sql)->execute([$photoId])->current();
+    }
 }
