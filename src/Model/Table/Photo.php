@@ -95,4 +95,18 @@ class Photo
         ';
         return $this->adapter->query($sql)->execute([$photoId])->current();
     }
+
+    public function updateViewsWherePhotoId(int $photoId) : bool
+    {
+        $sql = '
+            UPDATE `photo`
+               SET `photo`.`views` = `photo`.`views` + 1
+             WHERE `photo`.`photo_id` = ?
+                 ;
+        ';
+        $parameters = [
+            $photoId
+        ];
+        return (bool) $this->adapter->query($sql, $parameters)->getAffectedRows();
+    }
 }
