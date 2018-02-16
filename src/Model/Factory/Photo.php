@@ -29,7 +29,8 @@ class Photo
         $photo->setPhotoId($array['photo_id'])
               ->setTitle($array['title'])
               ->setDescription($array['description'])
-              ->setCreated(new DateTime($array['created']));
+              ->setCreated(new DateTime($array['created']))
+              ->setViews((int) $array['views']);
 
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl(
