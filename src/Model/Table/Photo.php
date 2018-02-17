@@ -62,6 +62,7 @@ class Photo
     {
         $sql = '
             SELECT `photo`.`photo_id`
+                 , `photo`.`user_id`
                  , `photo`.`extension`
                  , `photo`.`title`
                  , `photo`.`description`
@@ -84,6 +85,7 @@ class Photo
     {
         $sql = '
             SELECT `photo_id`
+                 , `user_id`
                  , `extension`
                  , `title`
                  , `description`
