@@ -15,6 +15,7 @@ class Photo
     protected $extension;
     protected $title;
     protected $description;
+    protected $userId;
 
     public function getCreated() : DateTime
     {
@@ -39,6 +40,11 @@ class Photo
     public function getTitle() : string
     {
         return $this->title;
+    }
+
+    public function getUserId() : int
+    {
+        return $this->userId;
     }
 
     public function getViews() : int
@@ -73,6 +79,12 @@ class Photo
     public function setTitle(string $title) : UserEntity\Photo
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function setUserId(int $userId) : UserEntity\Photo
+    {
+        $this->userId = $userId;
         return $this;
     }
 
