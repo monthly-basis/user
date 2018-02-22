@@ -23,10 +23,40 @@ class User
     }
 
     /**
+     * Build from array.
+     *
+     * @param array $array
+     * @return UserEntity\User
+     */
+    public function buildFromArray(array $array)
+    {
+        $userEntity = new UserEntity();
+
+        $userEntity->userId   = $array['user_id'];
+        $userEntity->username = $array['username'];
+
+        if (isset($array['created'])) {
+            $userEntity->setCreated(
+                new DateTime($array['created'])
+            );
+        }
+
+        $userEntity->setViews(
+            (int) ($array['views'] ?? 0)
+        );
+        $userEntity->setWelcomeMessage(
+            (string) ($array['welcome_message'] ?? '')
+        );
+
+        return $userEntity;
+    }
+
+    /**
      * Build from array object.
      *
      * @param ArrayObject $arrayObject
      * @return UserEntity\User
+     * @deprecated Start using $this->buildFromArray(...) method instead
      */
     public function buildFromArrayObject($arrayObject)
     {
