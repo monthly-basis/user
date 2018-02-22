@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Table;
 
 use ArrayObject;
+use Generator;
 use Zend\Db\Adapter\Adapter;
 
 class User
@@ -71,6 +72,26 @@ class User
         ';
         $row = $this->adapter->query($sql)->execute()->current();
         return (int) $row['count'];
+    }
+
+    public function selectOrderByCreatedDesc() : Generator
+    {
+        $sql = '
+            SELECT `user_id`
+                 , `username`
+                 , `password_hash`
+                 , `welcome_message`
+                 , `views`
+                 , `created`
+              FROM `user`
+             ORDER
+                BY `created` DESC
+             LIMIT 100
+                 ;
+        ';
+        foreach ($this->adapter->query($sql)->execute() as $row) {
+            yield($row);
+        }
     }
 
     public function selectRow($usernameOrEmail)

@@ -77,6 +77,26 @@ class UserTest extends TableTestCase
         );
     }
 
+    public function testSelectOrderByCreatedDesc()
+    {
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+        $this->userTable->insert(
+            'Username',
+            'passwordhash12345'
+        );
+        $generator = $this->userTable->selectOrderByCreatedDesc();
+        foreach ($generator as $array) {
+            $this->assertInternalType(
+                'array',
+                $array
+            );
+        }
+    }
+
     public function testSelectWhereUserId()
     {
         $this->userTable->insert(
