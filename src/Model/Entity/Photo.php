@@ -8,14 +8,14 @@ use LeoGalleguillos\User\Model\Entity as UserEntity;
 
 class Photo
 {
-    protected $photoId;
-    protected $original;
-    protected $views;
     protected $created;
-    protected $extension;
-    protected $title;
     protected $description;
+    protected $extension;
+    protected $original;
+    protected $photoId;
+    protected $title;
     protected $userId;
+    protected $views;
 
     public function getCreated() : DateTime
     {
