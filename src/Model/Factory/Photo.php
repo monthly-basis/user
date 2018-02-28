@@ -34,6 +34,7 @@ class Photo
               ->setTitle($array['title'])
               ->setUserId($array['user_id'])
               ->setDescription($array['description'])
+              ->setExtension($array['extension'])
               ->setCreated(new DateTime($array['created']))
               ->setViews((int) $array['views']);
 
@@ -47,6 +48,10 @@ class Photo
         $photo->setOriginal($original);
 
         $thumbnails = [];
+        $thumbnail300RootPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension();
+        if (!file_exists($thumbnail300RootPath)) {
+
+        }
         $photo->setThumbnails($thumbnails);
 
         return $photo;
