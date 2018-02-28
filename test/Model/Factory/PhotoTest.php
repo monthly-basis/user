@@ -56,6 +56,8 @@ class PhotoTest extends TestCase
 
         $photoEntity->setOriginal($original);
 
+        $photoEntity->setThumbnails([]);
+
         $this->assertEquals(
             $photoEntity,
             $this->photoFactory->buildFromArray($array)
