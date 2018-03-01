@@ -15,6 +15,7 @@ class Module
         return [
             'view_helpers' => [
                 'aliases' => [
+                    'getLoggedInUser'      => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'       => UserHelper\LoggedIn::class,
                     'photoRootRelativeUrl' => UserHelper\Photo\RootRelativeUrl::class,
                 ],
@@ -22,6 +23,11 @@ class Module
                     UserHelper\LoggedIn::class => function ($serviceManager) {
                         return new UserHelper\LoggedIn(
                             $serviceManager->get(UserService\LoggedIn::class)
+                        );
+                    },
+                    UserHelper\LoggedInUser::class => function ($serviceManager) {
+                        return new UserHelper\LoggedInUser(
+                            $serviceManager->get(UserService\LoggedInUser::class)
                         );
                     },
                     UserHelper\Photo\RootRelativeUrl::class => function ($serviceManager) {
