@@ -16,10 +16,6 @@ class Module
             'view_helpers' => [
                 'aliases' => [
                     'isUserLoggedIn'       => UserHelper\LoggedIn::class,
-
-                    // deprecated
-                    'loggedIn'             => UserHelper\LoggedIn::class,
-
                     'photoRootRelativeUrl' => UserHelper\Photo\RootRelativeUrl::class,
                 ],
                 'factories' => [
