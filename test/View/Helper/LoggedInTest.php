@@ -5,7 +5,7 @@ use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\View\Helper as UserHelper;
 use PHPUnit\Framework\TestCase;
 
-class EscapeTest extends TestCase
+class LoggedInTest extends TestCase
 {
     protected function setUp()
     {
