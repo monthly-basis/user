@@ -49,17 +49,17 @@ class PhotoTest extends TestCase
             'user_id'     => '123',
         ];
         $original = new ImageEntity\Image();
-        $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
-        $original->setRootUrl($_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/2/original.jpg');
+        $original->setRootRelativeUrl('/uploads/photos/2/original.jpg')
+                 ->setRootUrl($_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/2/original.jpg');
 
         $photoEntity = new UserEntity\Photo();
-        $photoEntity->setPhotoId(2)
-                    ->setTitle('title')
-                    ->setUserId(123)
+        $photoEntity->setCreated(new DateTime('0000-00-00 00:00:00'))
                     ->setDescription('description')
                     ->setExtension('jpg')
-                    ->setCreated(new DateTime('0000-00-00 00:00:00'))
                     ->setOriginal($original)
+                    ->setPhotoId(2)
+                    ->setTitle('title')
+                    ->setUserId(123)
                     ->setViews(5);
 
         $imageEntity = new ImageEntity\Image();
