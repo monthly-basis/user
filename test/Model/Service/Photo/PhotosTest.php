@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service\Photo;
 
+use Generator;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -50,5 +51,39 @@ class PhotosTest extends TestCase
             UserEntity\Photo::class,
             $this->photosService->getNewestPhotos()->current()
         );
+    }
+
+    public function testGetPhotosForUser()
+    {
+        $userEntity = new UserEntity\User();
+        $userEntity->setUserId(123);
+
+        $this->photoTableMock->method('selectWhereUserId')->willReturn(
+            $this->yieldArrays()
+        );
+
+        $generator = $this->photosService->getPhotosForUser($userEntity);
+        $this->assertInstanceOf(
+            Generator::class,
+            $generator
+        );
+
+        $this->assertInstanceOf(
+            UserEntity\Photo::class,
+            $generator->current()
+        );
+        $generator->next();
+        $this->assertInstanceOf(
+            UserEntity\Photo::class,
+            $generator->current()
+        );
+        $generator->next();
+        $this->assertNull($generator->current());
+    }
+
+    protected function yieldArrays()
+    {
+        yield [];
+        yield [];
     }
 }
