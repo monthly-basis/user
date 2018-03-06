@@ -3,6 +3,7 @@ namespace LeoGalleguillos\User\Model\Factory;
 
 use DateTime;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
+use LeoGalleguillos\Image\Model\Service as ImageService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
@@ -14,9 +15,11 @@ class Photo
      * @param UserTable\Photo $photoTable
      */
     public function __construct(
+        ImageService\Thumbnail\Create $createThumbnailService,
         UserTable\Photo $photoTable
     ) {
-        $this->photoTable = $photoTable;
+        $this->createThumbnailService = $createThumbnailService;
+        $this->photoTable             = $photoTable;
     }
 
     /**
@@ -51,13 +54,12 @@ class Photo
         $thumbnail300RootPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension();
 
         if (!file_exists($thumbnail300RootPath)) {
-            /*
-            $imageEntity = $this->createThumbnailService->create(
-                $imageEntity,
-                $width,
-                $destination
+            $thumbnail = $this->createThumbnailService->create(
+                $original,
+                300,
+                $thumbnail300RootPath
             );
-             */
+            $thumbnails['300'] = $thumbnail;
         }
         $photo->setThumbnails($thumbnails);
 

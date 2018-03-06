@@ -9,7 +9,7 @@ class RootRelativeUrl
     /**
      * Construct.
      *
-     * @param UserTable\Photo $photoTable
+     * @param UserService\Photo\Slug $slugService
      */
     public function __construct(
         UserService\Photo\Slug $slugService

@@ -5,6 +5,7 @@ use ArrayObject;
 use DateTime;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
+use LeoGalleguillos\Image\Model\Service as ImageService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -15,10 +16,14 @@ class PhotoTest extends TestCase
 {
     protected function setUp()
     {
+        $this->createThumbnailServiceMock = $this->createMock(
+            ImageService\Thumbnail\Create::class
+        );
         $this->photoTableMock = $this->createMock(
             UserTable\Photo::class
         );
         $this->photoFactory = new UserFactory\Photo(
+            $this->createThumbnailServiceMock,
             $this->photoTableMock
         );
     }
@@ -58,7 +63,12 @@ class PhotoTest extends TestCase
 
         $photoEntity->setOriginal($original);
 
-        $photoEntity->setThumbnails([]);
+        $imageEntity = new ImageEntity\Image();
+        $this->createThumbnailServiceMock->method('create')->willReturn($imageEntity);
+        $thumbnails = [
+            '300' => $imageEntity,
+        ];
+        $photoEntity->setThumbnails($thumbnails);
 
         $this->assertEquals(
             $photoEntity,
