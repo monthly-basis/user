@@ -66,8 +66,13 @@ class Photo
                 300,
                 $thumbnail300RootPath
             );
-            $thumbnails['300'] = $thumbnail;
+        } else {
+            $thumbnail = new ImageEntity\Image();
         }
+        $thumbnail->setRootRelativeUrl(
+            '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension()
+        );
+        $thumbnails['300'] = $thumbnail;
         $photo->setThumbnails($thumbnails);
 
         return $photo;
