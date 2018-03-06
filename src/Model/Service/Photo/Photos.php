@@ -36,4 +36,11 @@ class Photos
             yield $this->photoFactory->buildFromArray($array);
         }
     }
+
+    public function getPhotosForUser(UserEntity\User $userEntity)
+    {
+        foreach ($this->photoTable->selectWhereUserId($userEntity->getUserId()) as $array) {
+            yield $this->photoFactory->buildFromArray($array);
+        }
+    }
 }
