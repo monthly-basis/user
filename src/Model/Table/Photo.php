@@ -55,6 +55,22 @@ class Photo
         return (int) $row['count'];
     }
 
+    public function selectCountWhereUserId(int $userId)
+    {
+        $sql = '
+            SELECT COUNT(*) AS `count`
+              FROM `photo`
+             WHERE `photo`.`user_id` = :userId
+                 ;
+        ';
+        $parameters = [
+            'userId' => $userId,
+        ];
+        $row = $this->adapter->query($sql)->execute($parameters)->current();
+
+        return (int) $row['count'];
+    }
+
     /**
      * @return Generator
      */
