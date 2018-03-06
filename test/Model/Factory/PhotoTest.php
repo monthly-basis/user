@@ -48,20 +48,18 @@ class PhotoTest extends TestCase
             'created'     => '0000-00-00 00:00:00',
             'user_id'     => '123',
         ];
-        $photoEntity = new UserEntity\Photo();
+        $original = new ImageEntity\Image();
+        $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
 
+        $photoEntity = new UserEntity\Photo();
         $photoEntity->setPhotoId(2)
                     ->setTitle('title')
                     ->setUserId(123)
                     ->setDescription('description')
                     ->setExtension('jpg')
                     ->setCreated(new DateTime('0000-00-00 00:00:00'))
+                    ->setOriginal($original)
                     ->setViews(5);
-
-        $original = new ImageEntity\Image();
-        $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
-
-        $photoEntity->setOriginal($original);
 
         $imageEntity = new ImageEntity\Image();
         $this->createThumbnailServiceMock->method('create')->willReturn($imageEntity);
