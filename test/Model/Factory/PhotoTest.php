@@ -65,7 +65,7 @@ class PhotoTest extends TestCase
         $imageEntity = new ImageEntity\Image();
         $this->createThumbnailServiceMock->method('create')->willReturn($imageEntity);
         $thumbnails = [
-            '300' => $imageEntity,
+            '400' => $imageEntity,
         ];
         $photoEntity->setThumbnails($thumbnails);
 
