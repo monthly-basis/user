@@ -53,4 +53,20 @@ class LoginHashTest extends TableTestCase
             $this->loginHashTable
         );
     }
+
+    public function testUpdateWhereUserId()
+    {
+        $this->assertFalse(
+            $this->loginHashTable->updateWhereUserId('the-login-hash', 1)
+        );
+
+        $this->userTable->insert(
+            'username',
+            'password hash',
+            'full name'
+        );
+        $this->assertTrue(
+            $this->loginHashTable->updateWhereUserId('the-login-hash', 1)
+        );
+    }
 }
