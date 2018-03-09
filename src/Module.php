@@ -69,7 +69,8 @@ class Module
                 },
                 UserService\Login::class => function ($serviceManager) {
                     return new UserService\Login(
-                        $serviceManager->get(UserTable\User::class)
+                        $serviceManager->get(UserTable\User::class),
+                        $serviceManager->get(UserTable\User\LoginHash::class)
                     );
                 },
                 UserService\Photo\IncrementViews::class => function ($serviceManager) {
@@ -142,6 +143,11 @@ class Module
                 },
                 UserTable\User::class => function ($serviceManager) {
                     return new UserTable\User(
+                        $serviceManager->get('main')
+                    );
+                },
+                UserTable\User\LoginHash::class => function ($serviceManager) {
+                    return new UserTable\User\LoginHash(
                         $serviceManager->get('main')
                     );
                 },
