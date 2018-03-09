@@ -54,10 +54,10 @@ class LoginHashTest extends TableTestCase
         );
     }
 
-    public function testUpdateWhereUserId()
+    public function testUpdateWhereUsername()
     {
         $this->assertFalse(
-            $this->loginHashTable->updateWhereUserId('the-login-hash', 1)
+            $this->loginHashTable->updateWhereUsername('the-login-hash', 'username')
         );
 
         $this->userTable->insert(
@@ -66,7 +66,7 @@ class LoginHashTest extends TableTestCase
             'full name'
         );
         $this->assertTrue(
-            $this->loginHashTable->updateWhereUserId('the-login-hash', 1)
+            $this->loginHashTable->updateWhereUsername('the-login-hash', 'username')
         );
     }
 }
