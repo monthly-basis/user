@@ -48,13 +48,13 @@ class Login
             $loginHash,
             $_POST['username']
         );
-        $this->setCookies();
+        $this->setCookies($loginHash);
 
         $_SESSION['username'] = $username;
         return true;
     }
 
-    protected function setCookies()
+    protected function setCookies(string $loginHash)
     {
         $name   = 'username';
         $value  = $_POST['username'];
@@ -62,10 +62,20 @@ class Login
         $path   = '/';
         $domain = $_SERVER['HTTP_HOST'];
         $secure = true;
-
         @setcookie(
-            'username',
-            $_POST['username'],
+            $name,
+            $value,
+            $expire,
+            $path,
+            $domain,
+            $secure
+        );
+
+        $name   = 'loginHash';
+        $value  = $loginHash;
+        @setcookie(
+            $name,
+            $value,
             $expire,
             $path,
             $domain,
