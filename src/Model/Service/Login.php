@@ -23,7 +23,7 @@ class Login
             return false;
         }
 
-        $userArray = $this->userTable->selectRow($_POST['username']);
+        $userArray = $this->userTable->selectWhereUsername($_POST['username']);
         if (empty($userArray)) {
             return false;
         }

@@ -43,7 +43,7 @@ class LoginTest extends TestCase
             'username'      => 'username',
             'password_hash' => '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2',
         ];
-        $this->userTableMock->method('selectRow')->willReturn(
+        $this->userTableMock->method('selectWhereUsername')->willReturn(
             $array
         );
         $this->assertFalse(
