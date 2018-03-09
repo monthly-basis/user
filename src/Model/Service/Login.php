@@ -5,6 +5,12 @@ use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Login
 {
+    /**
+     * Construct.
+     *
+     * @param UserTable\User $userTable
+     * @param UserTable\User\LoginHash $loginHashTable
+     */
     public function __construct(
         UserTable\User $userTable,
         UserTable\User\LoginHash $loginHashTable
