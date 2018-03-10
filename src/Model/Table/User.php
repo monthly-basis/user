@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Table;
 
 use ArrayObject;
+use Exception;
 use Generator;
 use Zend\Db\Adapter\Adapter;
 
@@ -138,6 +139,39 @@ class User
                  ;
         ';
         return $this->adapter->query($sql)->execute([$userId])->current();
+    }
+
+    public function selectWhereUserIdLoginHashLoginIp(
+        int $userId,
+        string $loginHash,
+        string $loginIp
+    ) : array {
+        $sql = '
+            SELECT `user_id`
+                 , `username`
+                 , `password_hash`
+                 , `welcome_message`
+                 , `views`
+                 , `created`
+              FROM `user`
+             WHERE `user_id` = :userId
+               AND `login_hash` = :loginHash
+               AND `login_ip` = :loginIp
+                 ;
+        ';
+        $parameters = [
+            'userId'    => $userId,
+            'loginHash' => $loginHash,
+            'loginIp'   => $loginIp,
+        ];
+        $result = $this->adapter
+                       ->query($sql)
+                       ->execute($parameters)
+                       ->current();
+        if (empty($result)) {
+            throw new Exception('Row with user ID, login hash, and login IP not found.');
+        }
+        return $result;
     }
 
     public function selectWhereUsername(string $username)
