@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service;
 
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
@@ -10,6 +11,9 @@ class LoginTest extends TestCase
 {
     protected function setUp()
     {
+        $_SERVER['HTTP_HOST']   = 'www.example.com';
+        $_SERVER['REMOTE_ADDR'] = '123.123.123.123';
+
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
         );
@@ -19,10 +23,14 @@ class LoginTest extends TestCase
         $this->loginHashTableMock = $this->createMock(
             UserTable\User\LoginHash::class
         );
+        $this->loginIpTableMock = $this->createMock(
+            UserTable\User\LoginIp::class
+        );
         $this->loginService = new UserService\Login(
             $this->userFactoryMock,
             $this->userTableMock,
-            $this->loginHashTableMock
+            $this->loginHashTableMock,
+            $this->loginIpTableMock
         );
     }
 
@@ -59,8 +67,13 @@ class LoginTest extends TestCase
             $this->loginService->login()
         );
 
+        $userEntity = new UserEntity\User();
+        $userEntity->setUserId(123)
+                   ->setUsername('username');
+        $this->userFactoryMock->method('buildFromUsername')->willReturn(
+            $userEntity
+        );
         $_POST['password']    = 'correct password';
-        $_SERVER['HTTP_HOST'] = 'www.example.com';
         $this->assertTrue(
             $this->loginService->login()
         );
