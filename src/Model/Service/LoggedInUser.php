@@ -8,6 +8,12 @@ use LeoGalleguillos\User\Model\Table as UserTable;
 
 class LoggedInUser
 {
+    /**
+     * Construct
+     *
+     * @param UserFactory\User $userFactory
+     * @param UserTable\User $userTable
+     */
     public function __construct(
         UserFactory\User $userFactory,
         UserTable\User $userTable
