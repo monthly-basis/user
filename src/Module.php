@@ -60,7 +60,9 @@ class Module
                     );
                 },
                 UserService\LoggedIn::class => function ($serviceManager) {
-                    return new UserService\LoggedIn();
+                    return new UserService\LoggedIn(
+                        $serviceManager->get(UserTable\User::class)
+                    );
                 },
                 UserService\LoggedInUser::class => function ($serviceManager) {
                     return new UserService\LoggedInUser(

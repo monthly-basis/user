@@ -10,6 +10,7 @@ class LoggedInUserTest extends TestCase
 {
     protected function setUp()
     {
+        $_SESSION['username'] = 'username';
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
         );
