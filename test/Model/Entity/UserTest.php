@@ -48,6 +48,13 @@ class UserTest extends TestCase
             $this->userEntity->getUsername()
         );
 
+        $views = 123;
+        $this->userEntity->setViews($views);
+        $this->assertSame(
+            $views,
+            $this->userEntity->getViews()
+        );
+
         $welcomeMessage = 'Welcome to my page.';
         $this->userEntity->setWelcomeMessage($welcomeMessage);
         $this->assertSame(
