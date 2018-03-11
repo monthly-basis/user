@@ -28,6 +28,10 @@ class LoggedInTest extends TestCase
 
     public function testIsLoggedIn()
     {
+        unset($_COOKIE['userId']);
+        unset($_COOKIE['loginHash']);
+        unset($_COOKIE['loginIp']);
+
         $this->assertFalse(
             $this->loggedInService->isLoggedIn()
         );
