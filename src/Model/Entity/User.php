@@ -7,15 +7,13 @@ use LeoGalleguillos\User\Model\Entity as UserEntity;
 class User
 {
     public $emailAddresses = [];
-    public $userId;
     public $username;
     public $firstName;
     public $lastName;
 
     protected $created;
-
+    protected $userId;
     protected $views = 0;
-
     protected $welcomeMessage = '';
 
     public function getCreated() : DateTime
