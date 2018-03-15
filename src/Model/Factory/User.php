@@ -62,8 +62,8 @@ class User
     {
         $userEntity = new UserEntity\User();
 
-        $userEntity->userId   = $arrayObject['user_id'];
-        $userEntity->username = $arrayObject['username'];
+        $userEntity->setUserId($arrayObject['user_id'])
+                   ->setUsername($arrayObject['username']);
 
         if (isset($arrayObject['created'])) {
             $userEntity->setCreated(

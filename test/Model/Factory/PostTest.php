@@ -35,11 +35,11 @@ class PostTest extends TestCase
         ]);
 
         $fromUserEntity = new UserEntity\User();
-        $fromUserEntity->userId = $arrayObject['from_user_user_id'];
+        $fromUserEntity->setUserId($arrayObject['from_user_user_id']);
         $fromUserEntity->username = $arrayObject['from_user_username'];
 
         $toUserEntity = new UserEntity\User();
-        $toUserEntity->userId = $arrayObject['to_user_user_id'];
+        $toUserEntity->setUserId($arrayObject['to_user_user_id']);
         $toUserEntity->username = $arrayObject['to_user_username'];
 
         $created = new DateTime($arrayObject['created']);
