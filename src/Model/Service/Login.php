@@ -10,8 +10,11 @@ class Login
     /**
      * Construct.
      *
-     * @param UserTable\User $userTable
-     * @param UserTable\User\LoginHash $loginHashTable
+     * @param UserFactory\User $userFactory,
+     * @param UserTable\User $userTable,
+     * @param UserTable\User\LoginDateTime $loginDateTimeTable,
+     * @param UserTable\User\LoginHash $loginHashTable,
+     * @param UserTable\User\LoginIp $loginIpTable
      */
     public function __construct(
         UserFactory\User $userFactory,
@@ -75,6 +78,12 @@ class Login
         return true;
     }
 
+    /**
+     * Set cookies.
+     *
+     * @param UserEntity\User $userEntity
+     * @param string $loginHash
+     */
     protected function setCookies(
         UserEntity\User $userEntity,
         string $loginHash
