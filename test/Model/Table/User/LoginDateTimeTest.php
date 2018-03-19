@@ -54,10 +54,10 @@ class LoginDateTimeTest extends TableTestCase
         );
     }
 
-    public function testUpdateWhereUsername()
+    public function testUpdateSetToNowWhereUsername()
     {
         $this->assertFalse(
-            $this->loginDateTimeTable->updateWhereUsername('2018-03-19 00:00:01', 'username')
+            $this->loginDateTimeTable->updateSetToNowWhereUserId(1)
         );
 
         $this->userTable->insert(
@@ -66,7 +66,7 @@ class LoginDateTimeTest extends TableTestCase
             'full name'
         );
         $this->assertTrue(
-            $this->loginDateTimeTable->updateWhereUsername('2018-03-19 00:00:01', 'username')
+            $this->loginDateTimeTable->updateSetToNowWhereUserId(1)
         );
     }
 }
