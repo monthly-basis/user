@@ -20,6 +20,9 @@ class LoginTest extends TestCase
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
+        $this->loginDateTimeTableMock = $this->createMock(
+            UserTable\User\LoginDateTime::class
+        );
         $this->loginHashTableMock = $this->createMock(
             UserTable\User\LoginHash::class
         );
@@ -29,6 +32,7 @@ class LoginTest extends TestCase
         $this->loginService = new UserService\Login(
             $this->userFactoryMock,
             $this->userTableMock,
+            $this->loginDateTimeTableMock,
             $this->loginHashTableMock,
             $this->loginIpTableMock
         );

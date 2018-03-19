@@ -74,6 +74,7 @@ class Module
                     return new UserService\Login(
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserTable\User::class),
+                        $serviceManager->get(UserTable\User\LoginDateTime::class),
                         $serviceManager->get(UserTable\User\LoginHash::class),
                         $serviceManager->get(UserTable\User\LoginIp::class)
                     );
