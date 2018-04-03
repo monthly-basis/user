@@ -4,6 +4,7 @@ return [
     'modules' => [
         'LeoGalleguillos\Flash',
         'LeoGalleguillos\Image',
+        'LeoGalleguillos\ReCaptcha',
         'LeoGalleguillos\String',
         'LeoGalleguillos\User',
         'Zend\Db',

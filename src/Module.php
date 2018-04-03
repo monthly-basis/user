@@ -8,6 +8,7 @@ use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\User\View\Helper as UserHelper;
+use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 
 class Module
 {
@@ -121,7 +122,8 @@ class Module
                 },
                 UserService\Register::class => function ($serviceManager) {
                     return new UserService\Register(
-                        $serviceManager->get(FlashService\Flash::class)
+                        $serviceManager->get(FlashService\Flash::class),
+                        $serviceManager->get(ReCaptchaService\Valid::class)
                     );
                 },
                 UserService\User::class => function ($serviceManager) {

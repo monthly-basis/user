@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Service;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
+use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 
@@ -12,14 +13,21 @@ class RegisterTest extends TestCase
         $flashServiceMock = $this->createMock(
             FlashService\Flash::class
         );
+        $validServiceMock = $this->createMock(
+            ReCaptchaService\Valid::class
+        );
         $this->registerService = new UserService\Register(
-            $flashServiceMock
+            $flashServiceMock,
+            $validServiceMock
         );
     }
 
     public function testInitialize()
     {
-        $this->assertInstanceOf(UserService\Register::class, $this->registerService);
+        $this->assertInstanceOf(
+            UserService\Register::class,
+            $this->registerService
+        );
     }
 
     public function testGetErrors()
