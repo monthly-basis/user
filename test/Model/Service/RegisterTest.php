@@ -10,15 +10,15 @@ class RegisterTest extends TestCase
 {
     protected function setUp()
     {
-        $flashServiceMock = $this->createMock(
+        $this->flashServiceMock = $this->createMock(
             FlashService\Flash::class
         );
-        $validServiceMock = $this->createMock(
+        $this->validServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
         );
         $this->registerService = new UserService\Register(
-            $flashServiceMock,
-            $validServiceMock
+            $this->flashServiceMock,
+            $this->validServiceMock
         );
     }
 
@@ -36,6 +36,8 @@ class RegisterTest extends TestCase
         $_POST['username']         = 'username';
         $_POST['password']         = 'password';
         $_POST['confirm_password'] = 'password';
+
+        $this->validServiceMock->method('isValid')->willReturn(true);
 
         $this->assertSame(
             [],
