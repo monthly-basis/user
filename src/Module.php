@@ -80,6 +80,11 @@ class Module
                         $serviceManager->get(UserTable\User\LoginIp::class)
                     );
                 },
+                UserService\Login\ReCaptchaRequired::class => function ($serviceManager) {
+                    return new UserService\Login\ReCaptchaRequired(
+                        $serviceManager->get(UserTable\LoginLog::class)
+                    );
+                },
                 UserService\Logout::class => function ($serviceManager) {
                     return new UserService\Logout();
                 },
@@ -135,6 +140,11 @@ class Module
                     return new UserService\User\NewestUsers(
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserTable\User::class)
+                    );
+                },
+                UserTable\LoginLog::class => function ($serviceManager) {
+                    return new UserTable\LoginLog(
+                        $serviceManager->get('main')
                     );
                 },
                 UserTable\Photo::class => function ($serviceManager) {
