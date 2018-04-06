@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/ReCaptcha.git",
-                "reference": "ec18eaa26954cf0a83a9b20dbb981e1ecb691ce0"
+                "reference": "77a18c2a3638bf6745acad7ba2450d05af465fc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/ec18eaa26954cf0a83a9b20dbb981e1ecb691ce0",
-                "reference": "ec18eaa26954cf0a83a9b20dbb981e1ecb691ce0",
+                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/77a18c2a3638bf6745acad7ba2450d05af465fc6",
+                "reference": "77a18c2a3638bf6745acad7ba2450d05af465fc6",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-04-03 21:22:52"
+            "time": "2018-04-04 01:17:07"
         },
         {
             "name": "leo-galleguillos/string",
