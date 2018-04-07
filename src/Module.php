@@ -17,9 +17,10 @@ class Module
         return [
             'view_helpers' => [
                 'aliases' => [
-                    'getLoggedInUser'      => UserHelper\LoggedInUser::class,
-                    'isUserLoggedIn'       => UserHelper\LoggedIn::class,
-                    'photoRootRelativeUrl' => UserHelper\Photo\RootRelativeUrl::class,
+                    'getLoggedInUser'          => UserHelper\LoggedInUser::class,
+                    'isUserLoggedIn'           => UserHelper\LoggedIn::class,
+                    'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
+                    'photoRootRelativeUrl'     => UserHelper\Photo\RootRelativeUrl::class,
                 ],
                 'factories' => [
                     UserHelper\LoggedIn::class => function ($serviceManager) {
