@@ -32,6 +32,11 @@ class Module
                             $serviceManager->get(UserService\LoggedInUser::class)
                         );
                     },
+                    UserHelper\Login\ReCaptchaRequired::class => function ($serviceManager) {
+                        return new UserHelper\Login\ReCaptchaRequired(
+                            $serviceManager->get(UserService\Login\ReCaptchaRequired::class)
+                        );
+                    },
                     UserHelper\Photo\RootRelativeUrl::class => function ($serviceManager) {
                         return new UserHelper\Photo\RootRelativeUrl(
                             $serviceManager->get(UserService\Photo\RootRelativeUrl::class)
