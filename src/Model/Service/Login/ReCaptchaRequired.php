@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Service\Login;
 
 use LeoGalleguillos\User\Model\Table as UserTable;
+use LeoGalleguillos\User\Model\Service as UserService;
 
 class ReCaptchaRequired
 {

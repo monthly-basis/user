@@ -17,6 +17,9 @@ class LoginTest extends TestCase
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
         );
+        $this->reCaptchaRequiredServiceMock = $this->createMock(
+            UserService\Login\ReCaptchaRequired::class
+        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -31,6 +34,7 @@ class LoginTest extends TestCase
         );
         $this->loginService = new UserService\Login(
             $this->userFactoryMock,
+            $this->reCaptchaRequiredServiceMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
             $this->loginHashTableMock,

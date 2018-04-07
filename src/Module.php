@@ -74,6 +74,7 @@ class Module
                 UserService\Login::class => function ($serviceManager) {
                     return new UserService\Login(
                         $serviceManager->get(UserFactory\User::class),
+                        $serviceManager->get(UserService\Login\ReCaptchaRequired::class),
                         $serviceManager->get(UserTable\User::class),
                         $serviceManager->get(UserTable\User\LoginDateTime::class),
                         $serviceManager->get(UserTable\User\LoginHash::class),
