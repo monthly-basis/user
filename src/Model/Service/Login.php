@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
@@ -12,6 +13,7 @@ class Login
     /**
      * Construct.
      *
+     * @param FlashService\Flash $flashService
      * @param ReCaptchaService\Valid $validReCaptchaService
      * @param UserFactory\User $userFactory
      * @param UserService\Login\ReCaptchaRequired $reCaptchaRequiredService
@@ -21,6 +23,7 @@ class Login
      * @param UserTable\User\LoginIp $loginIpTable
      */
     public function __construct(
+        FlashService\Flash $flashService,
         ReCaptchaService\Valid $validReCaptchaService,
         UserFactory\User $userFactory,
         UserService\Login\ReCaptchaRequired $reCaptchaRequiredService,
@@ -29,6 +32,7 @@ class Login
         UserTable\User\LoginHash $loginHashTable,
         UserTable\User\LoginIp $loginIpTable
     ) {
+        $this->flashService             = $flashService;
         $this->validReCaptchaService    = $validReCaptchaService;
         $this->userFactory              = $userFactory;
         $this->reCaptchaRequiredService = $reCaptchaRequiredService;
