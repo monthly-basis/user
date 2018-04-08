@@ -94,6 +94,9 @@ class Module
                         $serviceManager->get(UserTable\LoginLog::class)
                     );
                 },
+                UserService\Login\ShouldRedirectToReferer::class => function ($serviceManager) {
+                    return new UserService\Login\ShouldRedirectToReferer();
+                },
                 UserService\Logout::class => function ($serviceManager) {
                     return new UserService\Logout();
                 },
