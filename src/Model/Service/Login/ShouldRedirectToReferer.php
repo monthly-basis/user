@@ -1,10 +1,16 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service\Login;
 
-use LeoGalleguillos\User\Model\Table as UserTable;
+use LeoGalleguillos\String\Model\Service as StringService;
 
 class ShouldRedirectToReferer
 {
+    public function __construct(
+        StringService\StartsWith $startsWithService
+    ) {
+        $this->startsWithService = $startsWithService;
+    }
+
     /**
      * Should redirect to referer
      *
@@ -18,5 +24,9 @@ class ShouldRedirectToReferer
             || empty($_POST['referer'])) {
             return false;
         }
+
+        $haystack = 'https://' . $_SERVER['HTTP_HOST'];
+
+        return $this->startsWithService->startsWith($_POST['referer'], $haystack);
     }
 }
