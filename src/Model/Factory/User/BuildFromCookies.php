@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Factory\User;
 
 use DateTime;
+use Exception;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
