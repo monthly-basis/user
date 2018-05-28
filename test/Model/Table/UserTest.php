@@ -13,17 +13,15 @@ class UserTest extends TableTestCase
     /**
      * @var string
      */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/leogalle_test/user/';
+    protected $sqlPath;
 
     protected function setUp()
     {
-        $configArray     = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray     = $configArray['db']['adapters']['leogalle_test'];
-        $this->adapter   = new Adapter($configArray);
+        $this->sqlPath = $_SERVER['PWD'] . '/sql/leogalle_test/user/';
 
-        $this->userTable      = new UserTable\User($this->adapter);
-        $this->loginHashTable = new UserTable\User\LoginHash($this->adapter);
-        $this->loginIpTable   = new UserTable\User\LoginIp($this->adapter);
+        $this->userTable      = new UserTable\User($this->getAdapter());
+        $this->loginHashTable = new UserTable\User\LoginHash($this->getAdapter());
+        $this->loginIpTable   = new UserTable\User\LoginIp($this->getAdapter());
 
         $this->setForeignKeyChecks0();
         $this->dropTable();
