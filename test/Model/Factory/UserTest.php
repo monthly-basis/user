@@ -29,6 +29,23 @@ class UserTest extends TestCase
         );
     }
 
+    public function testBuildFromArray()
+    {
+        $array = [
+            'user_id'         => 1,
+            'username'        => 'Testing123',
+            'welcome_message' => 'Welcome to my page.',
+        ];
+        $userEntity = new UserEntity\User();
+        $userEntity->setUserId($array['user_id'])
+                   ->setUsername($array['username'])
+                   ->setWelcomeMessage($array['welcome_message']);
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromArray($array)
+        );
+    }
+
     public function testBuildFromArrayObject()
     {
         /*
