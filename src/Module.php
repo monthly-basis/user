@@ -189,6 +189,11 @@ class Module
                         $serviceManager->get('main')
                     );
                 },
+                UserTable\User\DisplayName::class => function ($serviceManager) {
+                    return new UserTable\User\DisplayName(
+                        $serviceManager->get('main')
+                    );
+                },
                 UserTable\User\LoginDateTime::class => function ($serviceManager) {
                     return new UserTable\User\LoginDateTime(
                         $serviceManager->get('main')
