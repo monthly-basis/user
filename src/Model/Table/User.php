@@ -18,16 +18,6 @@ class User
         $this->adapter = $adapter;
     }
 
-    public function beginTransaction()
-    {
-        $this->adapter->getDriver()->getConnection()->beginTransaction();
-    }
-
-    public function commit()
-    {
-        $this->adapter->getDriver()->getConnection()->commit();
-    }
-
     /**
      * @return int
      */
