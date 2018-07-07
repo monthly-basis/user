@@ -137,11 +137,6 @@ class Module
                         $serviceManager->get('main')
                     );
                 },
-                UserTable\Photo::class => function ($serviceManager) {
-                    return new UserTable\Photo(
-                        $serviceManager->get('main')
-                    );
-                },
                 UserTable\Post::class => function ($serviceManager) {
                     return new UserTable\Post(
                         $serviceManager->get('main')
