@@ -20,7 +20,6 @@ class Module
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
-                    'photoRootRelativeUrl'     => UserHelper\Photo\RootRelativeUrl::class,
                 ],
                 'factories' => [
                     UserHelper\LoggedIn::class => function ($serviceManager) {
@@ -36,11 +35,6 @@ class Module
                     UserHelper\Login\ReCaptchaRequired::class => function ($serviceManager) {
                         return new UserHelper\Login\ReCaptchaRequired(
                             $serviceManager->get(UserService\Login\ReCaptchaRequired::class)
-                        );
-                    },
-                    UserHelper\Photo\RootRelativeUrl::class => function ($serviceManager) {
-                        return new UserHelper\Photo\RootRelativeUrl(
-                            $serviceManager->get(UserService\Photo\RootRelativeUrl::class)
                         );
                     },
                 ],
@@ -114,11 +108,6 @@ class Module
                     return new UserService\Photo\Photos(
                         $serviceManager->get(UserFactory\Photo::class),
                         $serviceManager->get(UserTable\Photo::class)
-                    );
-                },
-                UserService\Photo\RootRelativeUrl::class => function ($serviceManager) {
-                    return new UserService\Photo\RootRelativeUrl(
-                        $serviceManager->get(UserService\Photo\Slug::class)
                     );
                 },
                 UserService\Photo\Slug::class => function ($serviceManager) {
