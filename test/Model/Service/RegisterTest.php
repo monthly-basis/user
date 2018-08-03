@@ -40,6 +40,9 @@ class RegisterTest extends TestCase
         $_POST['username']         = 'username';
         $_POST['password']         = 'password';
         $_POST['confirm-password'] = 'password';
+        $_POST['birthday-month']   = '10';
+        $_POST['birthday-day']     = '22';
+        $_POST['birthday-year']    = '1983';
 
         $this->validServiceMock->method('isValid')->willReturn(true);
 
