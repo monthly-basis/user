@@ -61,4 +61,14 @@ class Register
 
         return $isFormValid;
     }
+
+    public function register()
+    {
+        $this->flashValuesService->setFlashValues();
+
+        $errors = $this->getErrors();
+        if (!empty($errors)) {
+            $this->flashService->set('errors', $errors);
+        }
+    }
 }
