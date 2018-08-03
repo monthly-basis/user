@@ -3,15 +3,18 @@ namespace LeoGalleguillos\User\Model\Service;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use LeoGalleguillos\User\Model\Service as UserService;
 
 class Register
 {
     public function __construct(
         FlashService\Flash $flashService,
-        ReCaptchaService\Valid $validService
+        ReCaptchaService\Valid $validService,
+        UserService\Register\FlashValues $flashValuesService
     ) {
-        $this->flashService = $flashService;
-        $this->validService = $validService;
+        $this->flashService       = $flashService;
+        $this->validService       = $validService;
+        $this->flashValuesService = $flashValuesService;
     }
 
     /**
