@@ -39,7 +39,7 @@ class Register
             $errors[] = 'Invalid password.';
         }
 
-        if ($_POST['password'] != $_POST['confirm_password']) {
+        if ($_POST['password'] != $_POST['confirm-password']) {
             $errors[] = 'Password and confirm password do not match.';
         }
 
