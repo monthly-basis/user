@@ -133,47 +133,47 @@ class Module
                 },
                 UserTable\LoginLog::class => function ($serviceManager) {
                     return new UserTable\LoginLog(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\Post::class => function ($serviceManager) {
                     return new UserTable\Post(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\Register::class => function ($serviceManager) {
                     return new UserTable\Register(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\User::class => function ($serviceManager) {
                     return new UserTable\User(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\User\DisplayName::class => function ($serviceManager) {
                     return new UserTable\User\DisplayName(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\User\LoginDateTime::class => function ($serviceManager) {
                     return new UserTable\User\LoginDateTime(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\User\LoginHash::class => function ($serviceManager) {
                     return new UserTable\User\LoginHash(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\User\LoginIp::class => function ($serviceManager) {
                     return new UserTable\User\LoginIp(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
                 UserTable\UserEmail::class => function ($serviceManager) {
                     return new UserTable\UserEmail(
-                        $serviceManager->get('main')
+                        $serviceManager->get('user')
                     );
                 },
             ],
