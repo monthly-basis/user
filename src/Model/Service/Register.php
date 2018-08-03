@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use DateTime;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -42,14 +43,23 @@ class Register
             $errors[] = 'Password and confirm password do not match.';
         }
 
-        if (empty($_POST['birthday-month'])) {
-            $errors[] = 'Invalid birthday month.';
-        }
-        if (empty($_POST['birthday-day'])) {
-            $errors[] = 'Invalid birthday day.';
-        }
-        if (empty($_POST['birthday-year'])) {
-            $errors[] = 'Invalid birthday year.';
+        if (empty($_POST['birthday-month'])
+            || empty($_POST['birthday-day'])
+            || empty($_POST['birthday-year'])) {
+            $errors[] = 'Invalid birthday.';
+        } else {
+            $dateTime = DateTime::createFromFormat(
+                'Y-m-d',
+                $_POST['birthday-year'] . '-' . $_POST['birthday-month'] . '-' . $_POST['birthday-day']
+            );
+            if (!$dateTime) {
+                $errors[] = 'Invalid birthday.';
+            } else {
+                $dateInterval = $dateTime->diff(new DateTime());
+                if ($dateInterval->format('%Y') < 13) {
+                    $errors[] = 'Must be at least 13 years old to sign up.';
+                }
+            }
         }
 
         if (!$this->validService->isValid()) {
