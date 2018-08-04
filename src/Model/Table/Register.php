@@ -59,6 +59,7 @@ class Register
             SELECT `username`
                  , `email`
                  , `password_hash`
+                 , `birthday`
               FROM `register`
              WHERE `register_id` = ?
                AND `activation_code` = ?
