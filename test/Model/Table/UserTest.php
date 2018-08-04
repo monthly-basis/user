@@ -54,13 +54,13 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            'full name'
+            '1983-10-22'
         );
 
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
 
         $this->assertSame(
@@ -82,11 +82,12 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
         $this->userTable->insert(
             'Username',
-            'passwordhash12345'
+            'passwordhash12345',
+            '1983-10-22'
         );
         $generator = $this->userTable->selectOrderByCreatedDesc();
         foreach ($generator as $array) {
@@ -102,7 +103,7 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
         $this->assertInternalType(
             'array',
@@ -128,7 +129,8 @@ class UserTest extends TableTestCase
 
         $this->userTable->insert(
             'username',
-            'password-hash'
+            'password-hash',
+            '1983-10-22'
         );
         $this->loginHashTable->updateWhereUserId(
             'login-hash',
@@ -158,7 +160,7 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
         $this->assertInstanceOf(
             ArrayObject::class,
@@ -171,7 +173,7 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
         $this->assertTrue(
             $this->userTable->updateViewsWhereUserId(1),
@@ -192,7 +194,7 @@ class UserTest extends TableTestCase
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
-            'Leo Galleguillos'
+            '1983-10-22'
         );
 
         $arrayObject = new ArrayObject([

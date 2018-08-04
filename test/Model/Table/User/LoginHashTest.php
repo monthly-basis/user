@@ -63,7 +63,7 @@ class LoginHashTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            'full name'
+            '1983-10-22'
         );
         $this->assertTrue(
             $this->loginHashTable->updateWhereUsername('the-login-hash', 'username')
