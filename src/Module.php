@@ -19,6 +19,7 @@ class Module
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
+                    'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                 ],
                 'factories' => [
                     UserHelper\LoggedIn::class => function ($serviceManager) {
@@ -34,6 +35,11 @@ class Module
                     UserHelper\Login\ReCaptchaRequired::class => function ($serviceManager) {
                         return new UserHelper\Login\ReCaptchaRequired(
                             $serviceManager->get(UserService\Login\ReCaptchaRequired::class)
+                        );
+                    },
+                    UserHelper\RootRelativeUrl::class => function ($serviceManager) {
+                        return new UserHelper\RootRelativeUrl(
+                            $serviceManager->get(UserService\RootRelativeUrl::class)
                         );
                     },
                 ],
