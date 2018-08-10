@@ -53,7 +53,7 @@ class LoggedInUserTest extends TestCase
         $_COOKIE['loginHash'] = 'login-hash';
         $_COOKIE['loginIp']   = 'login-ip';
 
-        $this->userTableMock->method('selectWhereUserIdLoginHashLoginIp')->will(
+        $this->userTableMock->method('selectWhereUserIdLoginHash')->will(
             $this->onConsecutiveCalls(
                 $this->throwException(new Exception()),
                 []

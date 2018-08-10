@@ -114,16 +114,15 @@ class UserTest extends TableTestCase
     public function testSelectWhereUserIdLoginHashLoginIp()
     {
         try {
-            $this->userTable->selectWhereUserIdLoginHashLoginIp(
+            $this->userTable->selectWhereUserIdLoginHash(
                 1,
-                'login-hash',
-                'login-ip'
+                'login-hash'
             );
             $this->fail();
         } catch (Exception $exception) {
             $this->assertSame(
                 $exception->getMessage(),
-                'Row with user ID, login hash, and login IP not found.'
+                'Row with user ID and login hash not found.'
             );
         }
 
@@ -140,10 +139,9 @@ class UserTest extends TableTestCase
             'login-ip',
             1
         );
-        $array = $this->userTable->selectWhereUserIdLoginHashLoginIp(
+        $array = $this->userTable->selectWhereUserIdLoginHash(
             1,
-            'login-hash',
-            'login-ip'
+            'login-hash'
         );
         $this->assertSame(
             'username',

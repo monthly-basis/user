@@ -38,10 +38,9 @@ class LoggedInUser
         }
 
         try {
-            $array = $this->userTable->selectWhereUserIdLoginHashLoginIp(
+            $array = $this->userTable->selectWhereUserIdLoginHash(
                 $_COOKIE['userId'],
-                $_COOKIE['loginHash'],
-                $_COOKIE['loginIp']
+                $_COOKIE['loginHash']
             );
         } catch (Exception $expcetion) {
             throw new Exception('User is not logged in (could not find row).');
