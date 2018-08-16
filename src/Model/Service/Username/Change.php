@@ -22,7 +22,7 @@ class Change
             throw new Exception('Invalid username.');
         }
 
-        return $this->usernameTable->setWhereUserId(
+        return $this->usernameTable->updateWhereUserId(
             $newUsername,
             $userEntity->getUserId()
         );
