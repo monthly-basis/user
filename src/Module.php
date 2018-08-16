@@ -140,6 +140,11 @@ class Module
                         $serviceManager->get(UserTable\User::class)
                     );
                 },
+                UserService\Username\Change::class => function ($serviceManager) {
+                    return new UserService\Username\Change(
+                        $serviceManager->get(UserTable\User\Username::class)
+                    );
+                },
                 UserTable\LoginLog::class => function ($serviceManager) {
                     return new UserTable\LoginLog(
                         $serviceManager->get('user')
@@ -177,6 +182,11 @@ class Module
                 },
                 UserTable\User\LoginIp::class => function ($serviceManager) {
                     return new UserTable\User\LoginIp(
+                        $serviceManager->get('user')
+                    );
+                },
+                UserTable\User\Username::class => function ($serviceManager) {
+                    return new UserTable\User\Username(
                         $serviceManager->get('user')
                     );
                 },
