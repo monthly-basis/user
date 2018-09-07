@@ -103,6 +103,12 @@ class Module
                 UserService\Logout::class => function ($serviceManager) {
                     return new UserService\Logout();
                 },
+                UserService\Password\Reset::class => function ($serviceManager) {
+                    return new UserService\Password\Reset(
+                        $serviceManager->get(FlashService\Flash::class),
+                        $serviceManager->get(ReCaptchaService\Valid::class)
+                    );
+                },
                 UserService\Post::class => function ($serviceManager) {
                     return new UserService\Post(
                         $serviceManager->get(UserTable\Post::class)
