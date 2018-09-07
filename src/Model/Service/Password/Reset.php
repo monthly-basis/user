@@ -40,7 +40,7 @@ class Reset
     {
         $errors = [];
 
-        if (empty($_POST['email']
+        if (empty($_POST['email'])
             || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
         ) {
             $errors[] = 'Invalid email address.';
