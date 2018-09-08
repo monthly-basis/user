@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Table;
 
-use Generator;
+use Exception;
 use Zend\Db\Adapter\Adapter;
 
 class ResetPassword
@@ -71,9 +71,15 @@ class ResetPassword
         $parameters = [
             $code,
         ];
-        return (int) $this->adapter
-                          ->query($sql)
-                          ->execute($parameters)
-                          ->current()['user_id'];
+        $userId = (int) $this->adapter
+                            ->query($sql)
+                            ->execute($parameters)
+                            ->current()['user_id'];
+
+        if (empty($userId)) {
+            throw new Exception('User ID where code not found.');
+        }
+
+        return $userId;
     }
 }
