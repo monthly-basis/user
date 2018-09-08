@@ -75,4 +75,20 @@ class UserEmail
         $row = $this->adapter->query($sql)->execute()->current();
         return (int) $row['count'];
     }
+
+    public function selectUserIdWhereAddress(
+        string $address
+    ): int {
+        $sql = '
+            SELECT `user_email`.`user_id`
+              FROM `user_email`
+             WHERE `user_email`.`address` = ?
+                 ;
+        ';
+        $parameters = [
+            $address,
+        ];
+        $row = $this->adapter->query($sql)->execute($parameters)->current();
+        return (int) $row['user_id'];
+    }
 }
