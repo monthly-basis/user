@@ -14,12 +14,14 @@ class Reset
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         UserFactory\User $userFactory,
+        UserTable\ResetPassword $resetPasswordTable,
         UserTable\UserEmail $userEmailTable
     ) {
-        $this->flashService   = $flashService;
-        $this->validService   = $validService;
-        $this->userFactory    = $userFactory;
-        $this->userEmailTable = $userEmailTable;
+        $this->flashService       = $flashService;
+        $this->validService       = $validService;
+        $this->userFactory        = $userFactory;
+        $this->resetPasswordTable = $resetPasswordTable;
+        $this->userEmailTable     = $userEmailTable;
     }
 
     /**
