@@ -7,7 +7,6 @@ use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
-use TypeError;
 
 class Reset
 {
@@ -48,7 +47,7 @@ class Reset
             $userId = $this->userEmailTable->selectUserIdWhereAddress(
                 $_POST['email']
             );
-        } catch (TypeError $typeError) {
+        } catch (Exception $exception) {
             return;
         }
 
