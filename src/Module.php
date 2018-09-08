@@ -106,7 +106,8 @@ class Module
                 UserService\Password\Reset::class => function ($serviceManager) {
                     return new UserService\Password\Reset(
                         $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(ReCaptchaService\Valid::class)
+                        $serviceManager->get(ReCaptchaService\Valid::class),
+                        $serviceManager->get(UserFactory\User::class)
                     );
                 },
                 UserService\Post::class => function ($serviceManager) {
