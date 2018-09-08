@@ -5,17 +5,20 @@ use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
+use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Reset
 {
     public function __construct(
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
-        UserFactory\User $userFactory
+        UserFactory\User $userFactory,
+        UserTable\UserEmail $userEmail
     ) {
         $this->flashService = $flashService;
         $this->validService = $validService;
         $this->userFactory  = $userFactory;
+        $this->userEmail    = $userEmail;
     }
 
     /**
@@ -33,7 +36,8 @@ class Reset
             throw new Exception('Errors with form.');
         }
 
-        // Build user from email
+        // Get user id from email (in try catch)
+        // Build user from user id
         // If reset password email should be sent
             // Generate and store code
             // Email link
