@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Table;
 
+use Exception;
 use Zend\Db\Adapter\Adapter;
 
 class UserEmail
@@ -88,7 +89,12 @@ class UserEmail
         $parameters = [
             $address,
         ];
-        $row = $this->adapter->query($sql)->execute($parameters)->current();
-        return (int) $row['user_id'];
+        $userId = $this->adapter->query($sql)->execute($parameters)->current()['user_id'];
+
+        if (empty($userId)) {
+            throw new Exception('User ID where address not found.');
+        }
+
+        return $userId;
     }
 }
