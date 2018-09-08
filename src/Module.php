@@ -168,6 +168,11 @@ class Module
                         $serviceManager->get('user')
                     );
                 },
+                UserTable\ResetPassword::class => function ($serviceManager) {
+                    return new UserTable\ResetPassword(
+                        $serviceManager->get('user')
+                    );
+                },
                 UserTable\User::class => function ($serviceManager) {
                     return new UserTable\User(
                         $serviceManager->get('user')
