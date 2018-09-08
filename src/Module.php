@@ -182,6 +182,11 @@ class Module
                         $serviceManager->get('user')
                     );
                 },
+                UserTable\ResetPasswordAccessLog::class => function ($serviceManager) {
+                    return new UserTable\ResetPasswordAccessLog(
+                        $serviceManager->get('user')
+                    );
+                },
                 UserTable\User::class => function ($serviceManager) {
                     return new UserTable\User(
                         $serviceManager->get('user')
