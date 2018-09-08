@@ -6,6 +6,7 @@ use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
+use TypeError;
 
 class Reset
 {
@@ -13,12 +14,12 @@ class Reset
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         UserFactory\User $userFactory,
-        UserTable\UserEmail $userEmail
+        UserTable\UserEmail $userEmailTable
     ) {
-        $this->flashService = $flashService;
-        $this->validService = $validService;
-        $this->userFactory  = $userFactory;
-        $this->userEmail    = $userEmail;
+        $this->flashService   = $flashService;
+        $this->validService   = $validService;
+        $this->userFactory    = $userFactory;
+        $this->userEmailTable = $userEmailTable;
     }
 
     /**
@@ -36,7 +37,14 @@ class Reset
             throw new Exception('Errors with form.');
         }
 
-        // Get user id from email (in try catch)
+        try {
+            $userId = $this->userEmailTable->selectUserIdWhereAddress(
+                $_POST['email']
+            );
+        } catch (TypeError $typeError) {
+            return;
+        }
+
         // Build user from user id
         // If reset password email should be sent
             // Generate and store code
