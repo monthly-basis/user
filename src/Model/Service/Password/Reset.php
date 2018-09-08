@@ -104,6 +104,7 @@ class Reset
     {
         return "To reset your password, please go to:\n\n"
              . $url
+             . "\n\n"
              . "If you did not request this email, you may ignore it.";
     }
 }
