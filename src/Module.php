@@ -212,6 +212,11 @@ class Module
                         $serviceManager->get('user')
                     );
                 },
+                UserTable\User\PasswordHash::class => function ($serviceManager) {
+                    return new UserTable\User\PasswordHash(
+                        $serviceManager->get('user')
+                    );
+                },
                 UserTable\User\Username::class => function ($serviceManager) {
                     return new UserTable\User\Username(
                         $serviceManager->get('user')
