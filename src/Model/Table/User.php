@@ -71,7 +71,13 @@ class User
         return (int) $row['count'];
     }
 
-    public function selectOrderByCreatedDesc() : Generator
+    /**
+     * Select order by created desc.
+     *
+     * @return Generator
+     * @yield array
+     */
+    public function selectOrderByCreatedDesc(): Generator
     {
         $sql = '
             SELECT `user_id`
@@ -87,8 +93,8 @@ class User
              LIMIT 100
                  ;
         ';
-        foreach ($this->adapter->query($sql)->execute() as $row) {
-            yield($row);
+        foreach ($this->adapter->query($sql)->execute() as $array) {
+            yield($array);
         }
     }
 
