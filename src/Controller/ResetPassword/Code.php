@@ -3,6 +3,7 @@ namespace LeoGalleguillos\User\Controller\ResetPassword;
 
 use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
+use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -21,11 +22,13 @@ class Code extends AbstractActionController
 
     public function __construct(
         FlashService\Flash $flashService,
+        UserService\Logout $logoutService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\ResetPasswordAccessLog $resetPasswordAccessLogTable,
         UserTable\User\PasswordHash $passwordHashTable
     ) {
         $this->flashService                = $flashService;
+        $this->logoutService               = $logoutService;
         $this->resetPasswordTable          = $resetPasswordTable;
         $this->resetPasswordAccessLogTable = $resetPasswordAccessLogTable;
         $this->passwordHashTable           = $passwordHashTable;
@@ -87,6 +90,8 @@ class Code extends AbstractActionController
             ];
             return $this->redirect()->toRoute('reset-password/code', $parameters)->setStatusCode(303);
         }
+
+        $this->logoutService->logout();
 
         $this->passwordHashTable->updateWhereUserId(
             password_hash($_POST['new_password'], PASSWORD_DEFAULT),
