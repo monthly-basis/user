@@ -4,9 +4,9 @@ namespace LeoGalleguillos\UserTest\Controller;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Controller as UserController;
 use LeoGalleguillos\User\Model\Service as UserService;
-use PHPUnit\Framework\TestCase;
+use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-class ResetPasswordTest extends TestCase
+class ResetPasswordTest extends AbstractHttpControllerTestCase
 {
     protected function setUp()
     {
