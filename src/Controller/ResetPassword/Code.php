@@ -6,6 +6,7 @@ use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 
 class Code extends AbstractActionController
@@ -34,7 +35,7 @@ class Code extends AbstractActionController
         $this->passwordHashTable           = $passwordHashTable;
     }
 
-    public function indexAction()
+    public function onDispatch(MvcEvent $mvcEvent)
     {
         $count = $this->resetPasswordAccessLogTable
                       ->selectCountWhereIpAndValidAndCreatedGreaterThan(
@@ -46,6 +47,11 @@ class Code extends AbstractActionController
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
 
+        return parent::onDispatch($mvcEvent);
+    }
+
+    public function indexAction()
+    {
         $this->code = $this->params()->fromRoute('code');
         try {
             $this->userId = $this->resetPasswordTable->selectUserIdWhereCode(
