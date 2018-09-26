@@ -5,6 +5,7 @@ use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\MvcEvent;
 
 class ResetPassword extends AbstractActionController
 {
@@ -14,6 +15,15 @@ class ResetPassword extends AbstractActionController
     ) {
         $this->flashService = $flashService;
         $this->resetService = $resetService;
+    }
+
+    public function onDispatch(MvcEvent $mvcEvent)
+    {
+        $this->layout()->setVariables([
+            'showAds' => false,
+        ]);
+
+        return parent::onDispatch($mvcEvent);
     }
 
     public function indexAction()
