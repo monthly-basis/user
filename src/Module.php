@@ -20,6 +20,7 @@ class Module
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
+                    'getUserFactory'           => UserHelper\Factory\User::class,
                 ],
                 'factories' => [
                     UserHelper\LoggedIn::class => function ($serviceManager) {
@@ -40,6 +41,11 @@ class Module
                     UserHelper\RootRelativeUrl::class => function ($serviceManager) {
                         return new UserHelper\RootRelativeUrl(
                             $serviceManager->get(UserService\RootRelativeUrl::class)
+                        );
+                    },
+                    UserHelper\Factory\User::class => function ($serviceManager) {
+                        return new UserHelper\Factory\User(
+                            $serviceManager->get(UserFactory\User::class)
                         );
                     },
                 ],
