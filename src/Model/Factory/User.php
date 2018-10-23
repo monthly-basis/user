@@ -8,6 +8,8 @@ use LeoGalleguillos\User\Model\Table\User as UserTable;
 
 class User
 {
+    protected $cache = [];
+
     public function __construct(UserTable $userTable)
     {
         $this->userTable = $userTable;
@@ -15,11 +17,18 @@ class User
 
     public function buildFromUserId(int $userId)
     {
+        if (isset($this->cache[$userId])) {
+            return $this->cache[$userId];
+        }
+
         $array = $this->userTable->selectWhereUserId(
             $userId
         );
+        $userEntity = $this->buildFromArray($array);
 
-        return $this->buildFromArray($array);
+        $this->cache[$userId] = $userEntity;
+
+        return $userEntity;
     }
 
     /**
