@@ -54,12 +54,12 @@ class User
                 new DateTime($array['created'])
             );
         }
+        if (isset($array['welcome_message'])) {
+            $userEntity->setWelcomeMessage($array['welcome_message']);
+        }
 
         $userEntity->setViews(
             (int) ($array['views'] ?? 0)
-        );
-        $userEntity->setWelcomeMessage(
-            (string) ($array['welcome_message'] ?? '')
         );
 
         return $userEntity;
