@@ -46,6 +46,20 @@ class UserTest extends TestCase
             $userEntity,
             $this->userFactory->buildFromArray($array)
         );
+
+        $array = [
+            'display_name'    => 'Hello World',
+            'user_id'         => 5,
+            'username'        => 'Testing123',
+        ];
+        $userEntity = new UserEntity\User();
+        $userEntity->setDisplayName($array['display_name'])
+                   ->setUserId($array['user_id'])
+                   ->setUsername($array['username']);
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromArray($array)
+        );
     }
 
     public function testBuildFromArrayObject()
