@@ -12,4 +12,4 @@ CREATE TABLE `user` (
     `created` datetime not null,
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `username` (`username`)
-) charset=utf8;
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
