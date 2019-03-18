@@ -19,11 +19,17 @@ class Module
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
+                    'getDisplayNameOrUsername' => UserHelper\DisplayNameOrUsername::class,
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                     'getUserFactory'           => UserHelper\Factory\User::class,
                     'getUserHtml'              => UserHelper\UserHtml::class,
                 ],
                 'factories' => [
+                    UserHelper\DisplayNameOrUsername::class => function ($sm) {
+                        return new UserHelper\DisplayNameOrUsername(
+                            $sm->get(UserService\DisplayNameOrUsername::class)
+                        );
+                    },
                     UserHelper\LoggedIn::class => function ($serviceManager) {
                         return new UserHelper\LoggedIn(
                             $serviceManager->get(UserService\LoggedIn::class)
