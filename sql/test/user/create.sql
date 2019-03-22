@@ -3,6 +3,7 @@ CREATE TABLE `user` (
     `username` varchar(255) default null,
     `password_hash` varchar(255) default null,
     `birthday` DATETIME default null,
+    `gender` CHAR(1) DEFAULT NULL,
     `display_name` varchar(255) default null,
     `welcome_message` text default null,
     `login_datetime` datetime default null,
