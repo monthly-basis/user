@@ -18,6 +18,20 @@ class User
         $this->adapter = $adapter;
     }
 
+    protected function getSelect(): string
+    {
+        return '
+            SELECT `user_id`
+                 , `username`
+                 , `password_hash`
+                 , `gender`
+                 , `display_name`
+                 , `welcome_message`
+                 , `views`
+                 , `created`
+        ';
+    }
+
     /**
      * @return int
      */
@@ -129,16 +143,10 @@ class User
         return (array) $row;
     }
 
-    public function selectWhereUserId(int $userId) : array
+    public function selectWhereUserId(int $userId): array
     {
-        $sql = '
-            SELECT `user_id`
-                 , `username`
-                 , `password_hash`
-                 , `display_name`
-                 , `welcome_message`
-                 , `views`
-                 , `created`
+        $sql = $this->getSelect()
+             . '
               FROM `user`
              WHERE `user_id` = ?
                  ;
