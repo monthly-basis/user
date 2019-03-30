@@ -49,6 +49,9 @@ class User
         if (isset($array['display_name'])) {
             $userEntity->setDisplayName($array['display_name']);
         }
+        if (isset($array['gender'])) {
+            $userEntity->setGender($array['gender']);
+        }
         if (isset($array['created'])) {
             $userEntity->setCreated(
                 new DateTime($array['created'])
