@@ -52,7 +52,8 @@ class RegisterTest extends TestCase
             'username',
             'test@example.com',
             password_hash('123', PASSWORD_DEFAULT),
-            '2018-10-22'
+            '2018-10-22',
+            'M'
         );
 
         $this->registerTable->insert(
@@ -60,7 +61,8 @@ class RegisterTest extends TestCase
             'username2',
             'test2@example.com',
             password_hash('123', PASSWORD_DEFAULT),
-            '2018-10-22'
+            '2018-10-22',
+            'F'
         );
 
         $this->assertSame(

@@ -36,6 +36,8 @@ class RegisterTest extends TestCase
 
     public function testGetErrors()
     {
+        $_POST = [];
+
         $_POST['email']            = 'test@example.com';
         $_POST['username']         = 'username';
         $_POST['password']         = 'password';
@@ -43,6 +45,7 @@ class RegisterTest extends TestCase
         $_POST['birthday-month']   = '08';
         $_POST['birthday-day']     = '03';
         $_POST['birthday-year']    = '2005';
+        $_POST['gender']           = 'F';
 
         $this->validServiceMock->method('isValid')->willReturn(true);
 

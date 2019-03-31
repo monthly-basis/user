@@ -21,6 +21,7 @@ class FlashValues
             'birthday-month',
             'birthday-day',
             'birthday-year',
+            'gender',
         ];
         foreach ($keys as $key) {
             $this->flashService->set(
