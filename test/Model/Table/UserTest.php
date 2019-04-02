@@ -4,49 +4,22 @@ namespace LeoGalleguillos\UserTest\Model\Table;
 use ArrayObject;
 use Exception;
 use LeoGalleguillos\User\Model\Table as UserTable;
-use LeoGalleguillos\UserTest\TableTestCase;
+use LeoGalleguillos\Test\TableTestCase;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TableTestCase
 {
-    /**
-     * @var string
-     */
-    protected $sqlPath;
-
     protected function setUp()
     {
-        $this->sqlPath = $_SERVER['PWD'] . '/sql/leogalle_test/user/';
-
         $this->userTable      = new UserTable\User($this->getAdapter());
         $this->loginHashTable = new UserTable\User\LoginHash($this->getAdapter());
         $this->loginIpTable   = new UserTable\User\LoginIp($this->getAdapter());
 
         $this->setForeignKeyChecks0();
-        $this->dropTable();
-        $this->createTable();
+        $this->dropTable('user');
+        $this->createTable('user');
         $this->setForeignKeyChecks1();
-    }
-
-    protected function dropTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'drop.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    protected function createTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'create.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserTable\User::class,
-            $this->userTable
-        );
     }
 
     public function testInsert()
