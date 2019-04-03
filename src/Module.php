@@ -86,6 +86,13 @@ class Module
                         $serviceManager->get(UserTable\User\LoginIp::class)
                     );
                 },
+                UserService\Create::class => function ($sm) {
+                    return new UserService\Create(
+                        $sm->get('user'),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\UserEmail::class)
+                    );
+                },
                 UserService\DisplayNameOrUsername::class => function ($sm) {
                     return new UserService\DisplayNameOrUsername();
                 },
