@@ -157,7 +157,9 @@ class Module
                     );
                 },
                 UserService\Register::class => function ($serviceManager) {
+                    $config = $serviceManager->get('Config')['user']['register'];
                     return new UserService\Register(
+                        $config,
                         $serviceManager->get(FlashService\Flash::class),
                         $serviceManager->get(ReCaptchaService\Valid::class),
                         $serviceManager->get(UserService\Register\FlashValues::class)

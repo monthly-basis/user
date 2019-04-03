@@ -20,17 +20,10 @@ class RegisterTest extends TestCase
             UserService\Register\FlashValues::class
         );
         $this->registerService = new UserService\Register(
+            [],
             $this->flashServiceMock,
             $this->validServiceMock,
             $this->flashValuesServiceMock
-        );
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserService\Register::class,
-            $this->registerService
         );
     }
 
