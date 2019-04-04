@@ -31,7 +31,7 @@ class Create extends AbstractActionController
             $userId = $this->userTable->insert(
                 $username,
                 $passwordHash,
-                $birthday->format('Y-m-d h:i:s'),
+                $birthday->format('Y-m-d H:i:s'),
                 $gender
             );
             $this->userEmailTable->insert(
