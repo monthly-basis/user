@@ -16,7 +16,9 @@ class Errors
     {
         $errors = [];
 
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        if (empty($_POST['email'])
+            || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+        ) {
             $errors[] = 'Invalid email address.';
         }
 
@@ -27,8 +29,14 @@ class Errors
         if (empty($_POST['password'])) {
             $errors[] = 'Invalid password.';
         }
+        if (empty($_POST['confirm-password'])) {
+            $errors[] = 'Invalid confirm password.';
+        }
 
-        if ($_POST['password'] != $_POST['confirm-password']) {
+        if (!empty($_POST['password'])
+            && !empty($_POST['confirm-password'])
+            && ($_POST['password'] != $_POST['confirm-password'])
+        ) {
             $errors[] = 'Password and confirm password do not match.';
         }
 
