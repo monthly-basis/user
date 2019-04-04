@@ -172,6 +172,11 @@ class Module
                         $serviceManager->get(UserService\Register\FlashValues::class)
                     );
                 },
+                UserService\Register\Errors::class => function ($sm) {
+                    return new UserService\Register\Errors(
+                        $sm->get(ReCaptchaService\Valid::class)
+                    );
+                },
                 UserService\Register\FlashValues::class => function ($serviceManager) {
                     return new UserService\Register\FlashValues(
                         $serviceManager->get(FlashService\Flash::class)
