@@ -7,8 +7,10 @@ use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 class Errors
 {
     public function __construct(
+        array $config,
         ReCaptchaService\Valid $validService
     ) {
+        $this->config       = $config;
         $this->validService = $validService;
     }
 
@@ -16,10 +18,14 @@ class Errors
     {
         $errors = [];
 
-        if (empty($_POST['email'])
-            || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+        if (!isset($this->config['required']['email'])
+            || ($this->config['required']['email'])
         ) {
-            $errors[] = 'Invalid email address.';
+            if (empty($_POST['email'])
+                || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+            ) {
+                $errors[] = 'Invalid email address.';
+            }
         }
 
         if (empty($_POST['username'])
