@@ -65,10 +65,14 @@ class Errors
             }
         }
 
-        if (empty($_POST['gender'])
-            || (!in_array($_POST['gender'], ['M', 'F']))
+        if (!isset($this->config['required']['gender'])
+            || ($this->config['required']['gender'])
         ) {
-            $errors[] = 'Invalid gender.';
+            if (empty($_POST['gender'])
+                || (!in_array($_POST['gender'], ['M', 'F']))
+            ) {
+                $errors[] = 'Invalid gender.';
+            }
         }
 
         if (!$this->validService->isValid()) {
