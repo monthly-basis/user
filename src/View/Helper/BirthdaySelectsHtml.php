@@ -9,8 +9,8 @@ class BirthdaySelectsHtml extends AbstractHelper
 {
     public function __invoke(): string
     {
-        return $this->getDaySelectHtml()
-            . $this->getMonthSelectHtml()
+        return $this->getMonthSelectHtml()
+            . $this->getDaySelectHtml()
             . $this->getYearSelectHtml();
     }
 
