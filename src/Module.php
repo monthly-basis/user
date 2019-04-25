@@ -25,6 +25,9 @@ class Module
                     'getUserHtml'              => UserHelper\UserHtml::class,
                 ],
                 'factories' => [
+                    UserHelper\BirthdaySelectsHtml::class => function ($sm) {
+                        return new UserHelper\BirthdaySelectsHtml();
+                    },
                     UserHelper\DisplayNameOrUsername::class => function ($sm) {
                         return new UserHelper\DisplayNameOrUsername(
                             $sm->get(UserService\DisplayNameOrUsername::class)
