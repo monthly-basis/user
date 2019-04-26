@@ -15,6 +15,21 @@ class Username
         $this->adapter = $adapter;
     }
 
+    public function selectCountWhereUsernameEquals(string $username): int
+    {
+        $sql = '
+            SELECT COUNT(*) AS `count`
+              FROM `user`
+             WHERE `user`.`username` = ?
+                 ;
+        ';
+        $parameters = [
+            $username,
+        ];
+        $array = $this->adapter->query($sql)->execute($parameters)->current();
+        return (int) $array['count'];
+    }
+
     public function updateWhereUserId(string $username, int $userId)
     {
         $sql = '
