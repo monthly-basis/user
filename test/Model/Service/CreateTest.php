@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Service;
 
 use DateTime;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,9 @@ class CreateTest extends TestCase
         $this->adapterMock = $this->createMock(
             Adapter::class
         );
+        $this->userFactoryMock = $this->createMock(
+            UserFactory\User::class
+        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -23,6 +27,7 @@ class CreateTest extends TestCase
 
         $this->createService = new UserService\Create(
             $this->adapterMock,
+            $this->userFactoryMock,
             $this->userTableMock,
             $this->userEmailTableMock
         );

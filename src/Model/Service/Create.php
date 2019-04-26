@@ -3,6 +3,7 @@ namespace LeoGalleguillos\User\Model\Service;
 
 use DateTime;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\Exception\InvalidQueryException;
@@ -12,10 +13,12 @@ class Create extends AbstractActionController
 {
     public function __construct(
         Adapter $adapter,
+        UserFactory\User $userFactory,
         UserTable\User $userTable,
         UserTable\UserEmail $userEmailTable
     ) {
         $this->adapter        = $adapter;
+        $this->userFactory    = $userFactory;
         $this->userTable      = $userTable;
         $this->userEmailTable = $userEmailTable;
     }

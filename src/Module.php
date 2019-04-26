@@ -93,6 +93,7 @@ class Module
                 UserService\Create::class => function ($sm) {
                     return new UserService\Create(
                         $sm->get('user'),
+                        $sm->get(UserFactory\User::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\UserEmail::class)
                     );
