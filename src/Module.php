@@ -181,7 +181,8 @@ class Module
                     $registerConfig = $sm->get('Config')['user']['register'];
                     return new UserService\Register\Errors(
                         $registerConfig,
-                        $sm->get(ReCaptchaService\Valid::class)
+                        $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(UserTable\User\Username::class)
                     );
                 },
                 UserService\Register\FlashValues::class => function ($serviceManager) {
@@ -268,9 +269,9 @@ class Module
                         $serviceManager->get('user')
                     );
                 },
-                UserTable\User\Username::class => function ($serviceManager) {
+                UserTable\User\Username::class => function ($sm) {
                     return new UserTable\User\Username(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
                 UserTable\UserEmail::class => function ($serviceManager) {

@@ -3,15 +3,18 @@ namespace LeoGalleguillos\User\Model\Service\Register;
 
 use DateTime;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Errors
 {
     public function __construct(
         array $config,
-        ReCaptchaService\Valid $validService
+        ReCaptchaService\Valid $validService,
+        UserTable\User\Username $usernameTable
     ) {
-        $this->config       = $config;
-        $this->validService = $validService;
+        $this->config        = $config;
+        $this->validService  = $validService;
+        $this->usernameTable = $usernameTable;
     }
 
     public function getErrors(): array
@@ -31,6 +34,13 @@ class Errors
         if (empty($_POST['username'])
             || preg_match('/\W/', $_POST['username'])) {
             $errors[] = 'Invalid username.';
+        } else {
+            $count = $this->usernameTable->selectCountWhereUsernameEquals(
+                $_POST['username']
+            );
+            if ($count > 0) {
+                $errors[] = 'Username already exists.';
+            }
         }
         if (empty($_POST['password'])) {
             $errors[] = 'Invalid password.';
