@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Service;
 
 use DateTime;
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\Exception\InvalidQueryException;
@@ -25,8 +26,9 @@ class Create extends AbstractActionController
         string $gender = null,
         string $passwordHash,
         string $username
-    ) {
+    ): UserEntity\User {
         $this->adapter->getDriver()->getConnection()->beginTransaction();
+
         try {
             $userId = $this->userTable->insert(
                 $username,
@@ -44,6 +46,9 @@ class Create extends AbstractActionController
             $this->adapter->getDriver()->getConnection()->rollback();
             return;
         }
+
         $this->adapter->getDriver()->getConnection()->commit();
+
+        return $this->userFactory->buildFromUserId($userId);
     }
 }
