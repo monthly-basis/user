@@ -68,52 +68,10 @@ class User
         return $userEntity;
     }
 
-    /**
-     * Build from array object.
-     *
-     * @param ArrayObject $arrayObject
-     * @return UserEntity\User
-     * @deprecated Start using $this->buildFromArray(...) method instead
-     */
-    public function buildFromArrayObject($arrayObject)
+    public function buildFromUsername(string $username): UserEntity\User
     {
-        $userEntity = new UserEntity\User();
-
-        $userEntity->setUserId($arrayObject['user_id'])
-                   ->setUsername($arrayObject['username']);
-
-        if (isset($arrayObject['created'])) {
-            $userEntity->setCreated(
-                new DateTime($arrayObject['created'])
-            );
-        }
-
-        $userEntity->setViews(
-            (int) ($arrayObject['views'] ?? 0)
+        return $this->buildFromArray(
+            $this->userTable->selectWhereUsername($username)
         );
-        $userEntity->setWelcomeMessage(
-            (string) ($arrayObject['welcome_message'] ?? '')
-        );
-
-        return $userEntity;
-    }
-
-    /**
-     * Build from username.
-     *
-     * @param string $username
-     * @return UserEntity\User
-     */
-    public function buildFromUsername(string $username)
-    {
-        $arrayObject = $this->userTable->selectWhereUsername(
-            $username
-        );
-
-        if (empty($arrayObject)) {
-            return false;
-        }
-
-        return $this->buildFromArrayObject($arrayObject);
     }
 }

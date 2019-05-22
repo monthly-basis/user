@@ -56,63 +56,22 @@ class UserTest extends TestCase
         );
     }
 
-    public function testBuildFromArrayObject()
-    {
-        /*
-         * Test with welcome message.
-         */
-
-        $arrayObject = new ArrayObject([
-            'user_id'         => 1,
-            'username'        => 'Testing123',
-            'welcome_message' => 'Welcome to my page.',
-        ]);
-
-        $userEntity           = new UserEntity\User();
-        $userEntity->setUserId(1)
-                   ->setUsername('Testing123');
-        $userEntity->setWelcomeMessage('Welcome to my page.');
-
-        $this->assertEquals(
-            $userEntity,
-            $this->userFactory->buildFromArrayObject($arrayObject)
-        );
-
-        /*
-         * Test without welcome message.
-         */
-
-        $arrayObject = new ArrayObject([
-            'user_id'         => 1,
-            'username'        => 'Testing123',
-        ]);
-
-        $userEntity           = new UserEntity\User();
-        $userEntity->setUserId(1);
-        $userEntity->username = 'Testing123';
-
-        $this->assertEquals(
-            $userEntity,
-            $this->userFactory->buildFromArrayObject($arrayObject)
-        );
-    }
-
     public function testBuildFromUsername()
     {
-        $arrayObject = new ArrayObject([
+        $array = [
             'user_id'         => 1,
             'username'        => 'Testing123',
             'welcome_message' => 'Welcome to my page.',
-        ]);
+        ];
 
-        $userEntity           = new UserEntity\User();
+        $userEntity = new UserEntity\User();
         $userEntity->setUserId(1);
         $userEntity->username = 'Testing123';
         $userEntity->setViews(0);
         $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->userTableMock->method('selectWhereUsername')->willReturn(
-            $arrayObject
+            $array
         );
 
         $this->assertEquals(

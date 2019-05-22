@@ -4,6 +4,7 @@ namespace LeoGalleguillos\User\Model\Table;
 use ArrayObject;
 use Exception;
 use Generator;
+use TypeError;
 use Zend\Db\Adapter\Adapter;
 
 class User
@@ -18,7 +19,7 @@ class User
         $this->adapter = $adapter;
     }
 
-    protected function getSelect(): string
+    public function getSelect(): string
     {
         return '
             SELECT `user_id`
@@ -188,22 +189,21 @@ class User
         return $result;
     }
 
-    public function selectWhereUsername(string $username)
+    /**
+     * @throws TypeError
+     */
+    public function selectWhereUsername(string $username): array
     {
-        $sql = '
-            SELECT `user_id`
-                 , `username`
-                 , `password_hash`
-                 , `display_name`
-                 , `welcome_message`
-                 , `views`
-                 , `created`
+        $sql = $this->getSelect()
+             . '
               FROM `user`
              WHERE `username` = ?
                  ;
         ';
-        $arrayObject = $this->adapter->query($sql, [$username])->current();
-        return $arrayObject;
+        $parameters = [
+            $username,
+        ];
+        return $this->adapter->query($sql)->execute($parameters)->current();
     }
 
     public function updateViewsWhereUserId(int $userId) : bool
