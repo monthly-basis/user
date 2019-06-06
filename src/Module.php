@@ -4,6 +4,7 @@ namespace LeoGalleguillos\User;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\String\Model\Service as StringService;
+use LeoGalleguillos\User\Controller as UserController;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
@@ -66,6 +67,29 @@ class Module
                         );
                     },
                 ],
+            ],
+        ];
+    }
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                UserController\ResetPassword::class => function ($serviceManager) {
+                    return new UserController\ResetPassword(
+                        $serviceManager->get(FlashService\Flash::class),
+                        $serviceManager->get(UserService\Password\Reset::class)
+                    );
+                },
+                UserController\ResetPassword\Code::class => function ($serviceManager) {
+                    return new UserController\ResetPassword\Code(
+                        $serviceManager->get(FlashService\Flash::class),
+                        $serviceManager->get(UserService\Logout::class),
+                        $serviceManager->get(UserTable\ResetPassword::class),
+                        $serviceManager->get(UserTable\ResetPasswordAccessLog::class),
+                        $serviceManager->get(UserTable\User\PasswordHash::class)
+                    );
+                },
             ],
         ];
     }
