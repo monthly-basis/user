@@ -68,6 +68,11 @@ class Module
                     },
                 ],
             ],
+            'view_manager' => [
+                'template_path_stack' => [
+                    'leo-galleguillos/user' => '/../view',
+                ],
+            ],
         ];
     }
 
