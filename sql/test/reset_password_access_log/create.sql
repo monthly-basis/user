@@ -4,4 +4,4 @@ CREATE TABLE `reset_password_access_log` (
     `valid` tinyint(1) not null,
     `created` datetime not null,
     PRIMARY KEY (`reset_password_access_log_id`)
-) charset=utf8;
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

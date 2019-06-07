@@ -7,4 +7,4 @@ CREATE TABLE `photo` (
     `views` int unsigned not null default 0,
     `created` datetime NOT NULL,
     PRIMARY KEY (`photo_id`)
-) charset=utf8;
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

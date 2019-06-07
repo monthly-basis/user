@@ -5,4 +5,4 @@ CREATE TABLE `reset_password` (
     `created` datetime not null,
     PRIMARY KEY (`reset_password_id`),
     KEY (`code`)
-) charset=utf8;
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
