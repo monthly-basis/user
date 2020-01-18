@@ -5,7 +5,7 @@
         "laminas/laminas-db": "^2.9",
         "laminas/laminas-test": "^3.1",
         "leo-galleguillos/flash": "dev-master",
-        "leo-galleguillos/re-captcha": "dev-master",
+        "leo-galleguillos/re-captcha": "~2.0.0",
         "leo-galleguillos/string": "dev-master",
         "leo-galleguillos/test": "dev-master"
     },
