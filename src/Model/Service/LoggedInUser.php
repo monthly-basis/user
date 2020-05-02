@@ -10,12 +10,6 @@ class LoggedInUser
 {
     protected $cache = [];
 
-    /**
-     * Construct
-     *
-     * @param UserFactory\User $userFactory
-     * @param UserTable\User $userTable
-     */
     public function __construct(
         UserFactory\User $userFactory,
         UserTable\User $userTable
@@ -25,12 +19,9 @@ class LoggedInUser
     }
 
     /**
-     * Get logged in user.
-     *
      * @throws Exception
-     * @return UserEntity\User
      */
-    public function getLoggedInUser() : UserEntity\User
+    public function getLoggedInUser(): UserEntity\User
     {
         if (isset($this->cache['userEntity'])) {
             return $this->cache['userEntity'];
