@@ -47,7 +47,6 @@ class Create extends AbstractActionController
             }
         } catch (InvalidQueryException $exception) {
             $this->adapter->getDriver()->getConnection()->rollback();
-            return;
         }
 
         $this->adapter->getDriver()->getConnection()->commit();
