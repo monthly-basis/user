@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class DisplayNameOrUsernameTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->displayNameOrUsernameService = new UserService\DisplayNameOrUsername();
     }

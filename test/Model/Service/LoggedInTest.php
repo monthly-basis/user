@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class LoggedInTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->userTableMock = $this->createMock(
             UserTable\User::class

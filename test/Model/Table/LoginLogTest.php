@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class LoginLogTest extends TableTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->loginLogTable = new UserTable\LoginLog($this->getAdapter());
 

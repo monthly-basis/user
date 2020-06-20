@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class PostsTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->postFactoryMock = $this->createMock(
             UserFactory\Post::class

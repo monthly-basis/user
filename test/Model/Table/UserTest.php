@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TableTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->userTable      = new UserTable\User($this->getAdapter());
         $this->loginHashTable = new UserTable\User\LoginHash($this->getAdapter());
@@ -68,8 +68,7 @@ class UserTest extends TableTestCase
         );
         $generator = $this->userTable->selectOrderByCreatedDesc();
         foreach ($generator as $array) {
-            $this->assertInternalType(
-                'array',
+            $this->assertIsArray(
                 $array
             );
         }
@@ -83,8 +82,7 @@ class UserTest extends TableTestCase
             '1983-10-22',
             'M'
         );
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->userTable->selectWhereUserId(1)
         );
     }
@@ -140,8 +138,7 @@ class UserTest extends TableTestCase
             '1983-10-22',
             'M'
         );
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->userTable->selectWhereUsername('LeoGalleguillos')
         );
     }

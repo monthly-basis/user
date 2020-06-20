@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->postFactory = new UserFactory\Post();
     }

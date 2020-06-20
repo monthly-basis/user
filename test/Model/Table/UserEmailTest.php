@@ -10,17 +10,17 @@ class UserEmailTest extends TestCase
     /**
      * @var string
      */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/leogalle_test/user_email/';
+    protected $sqlPath = __DIR__ . '/../../..' . '/sql/test/user_email/';
 
     /**
      * @var UserTable\UserEmail
      */
     protected $userEmailTable;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $configArray          = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray          = $configArray['db']['adapters']['leogalle_test'];
+        $configArray          = $configArray['db']['adapters']['test'];
         $this->adapter        = new Adapter($configArray);
         $this->userEmailTable = new UserTable\UserEmail($this->adapter);
 

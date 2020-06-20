@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class LoggedInUserTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $_SESSION['username'] = 'username';
         $this->userFactoryMock = $this->createMock(

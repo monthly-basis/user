@@ -10,17 +10,17 @@ class RegisterTest extends TestCase
     /**
      * @var string
      */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/leogalle_test/register/';
+    protected $sqlPath = __DIR__ . '/../../..' . '/sql/test/register/';
 
     /**
      * @var RegisterTable
      */
     protected $registerTable;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $configArray         = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray         = $configArray['db']['adapters']['leogalle_test'];
+        $configArray         = $configArray['db']['adapters']['test'];
         $this->adapter       = new Adapter($configArray);
         $this->registerTable = new UserTable\Register($this->adapter);
 
