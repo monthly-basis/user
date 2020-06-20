@@ -11,6 +11,9 @@ CREATE TABLE `user` (
     `login_ip` varchar(45) default null,
     `views` int unsigned not null default 0,
     `created` datetime not null,
+    `deleted_datetime` datetime DEFAULT NULL,
+    `deleted_user_id` int(10) DEFAULT NULL,
+    `deleted_reason` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `username` (`username`),
     KEY `created` (`created`)
