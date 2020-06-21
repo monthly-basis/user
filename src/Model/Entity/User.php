@@ -24,6 +24,21 @@ class User
         return $this->created;
     }
 
+    public function getDeletedDateTime(): DateTime
+    {
+        return $this->deletedDateTime;
+    }
+
+    public function getDeletedReason(): string
+    {
+        return $this->deletedReason;
+    }
+
+    public function getDeletedUserId(): int
+    {
+        return $this->deletedUserId;
+    }
+
     public function getDisplayName() : string
     {
         return $this->displayName;
@@ -62,6 +77,24 @@ class User
     public function setCreated(DateTime $created) : UserEntity\User
     {
         $this->created = $created;
+        return $this;
+    }
+
+    public function setDeletedDateTime(DateTime $deletedDateTime): UserEntity\User
+    {
+        $this->deletedDateTime = $deletedDateTime;
+        return $this;
+    }
+
+    public function setDeletedReason(string $deletedReason): UserEntity\User
+    {
+        $this->deletedReason = $deletedReason;
+        return $this;
+    }
+
+    public function setDeletedUserId(int $deletedUserId): UserEntity\User
+    {
+        $this->deletedUserId = $deletedUserId;
         return $this;
     }
 
