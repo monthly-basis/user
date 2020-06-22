@@ -52,6 +52,15 @@ class User
         if (isset($array['gender'])) {
             $userEntity->setGender($array['gender']);
         }
+        if (isset($array['deleted_datetime'])) {
+            $userEntity->setDeletedDateTime(new DateTime($array['deleted_datetime']));
+        }
+        if (isset($array['deleted_reason'])) {
+            $userEntity->setDeletedReason($array['deleted_reason']);
+        }
+        if (isset($array['deleted_user_id'])) {
+            $userEntity->setDeletedUserId($array['deleted_user_id']);
+        }
         if (isset($array['created'])) {
             $userEntity->setCreated(
                 new DateTime($array['created'])
