@@ -31,12 +31,6 @@ class User
         return $userEntity;
     }
 
-    /**
-     * Build from array.
-     *
-     * @param array $array
-     * @return UserEntity\User
-     */
     public function buildFromArray(array $array) : UserEntity\User
     {
         $userEntity = new UserEntity\User();
