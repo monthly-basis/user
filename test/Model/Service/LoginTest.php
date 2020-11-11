@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service;
 
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;

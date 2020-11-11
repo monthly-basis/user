@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\User\Controller;
 
 use Exception;
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
