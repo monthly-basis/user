@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest;
 
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
 class TableTestCase extends TestCase

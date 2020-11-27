@@ -4,8 +4,8 @@ namespace LeoGalleguillos\User\Controller;
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
 
 class ResetPassword extends AbstractActionController
 {

@@ -3,7 +3,7 @@ namespace LeoGalleguillos\User\View\Helper;
 
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Service as UserService;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class BirthdaySelectsHtml extends AbstractHelper
 {

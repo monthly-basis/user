@@ -4,7 +4,7 @@ namespace LeoGalleguillos\UserTest\Model\Table\User;
 use ArrayObject;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\UserTest\TableTestCase;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
 class LoginHashTest extends TableTestCase

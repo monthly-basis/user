@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\User\View\Helper\Factory;
 
 use LeoGalleguillos\User\Model\Factory as UserFactory;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class User extends AbstractHelper
 {

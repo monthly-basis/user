@@ -4,7 +4,7 @@ namespace LeoGalleguillos\UserTest\Model\Table;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\UserTest\TableTestCase;
 use PHPUnit\Framework\TestCase;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class ResetPasswordTest extends TableTestCase
 {

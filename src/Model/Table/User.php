@@ -5,7 +5,7 @@ use ArrayObject;
 use Exception;
 use Generator;
 use TypeError;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class User
 {

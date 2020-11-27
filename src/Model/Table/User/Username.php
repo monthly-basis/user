@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Table\User;
 
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class Username
 {

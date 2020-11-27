@@ -3,7 +3,7 @@ namespace LeoGalleguillos\UserTest\Model\Table\User;
 
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\UserTest\TableTestCase;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class LoginIpTest extends TableTestCase
 {

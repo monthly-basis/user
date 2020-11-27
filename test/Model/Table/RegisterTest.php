@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Table;
 
 use LeoGalleguillos\User\Model\Table as UserTable;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
 class RegisterTest extends TestCase

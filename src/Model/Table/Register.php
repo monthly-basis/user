@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Table;
 
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class Register
 {

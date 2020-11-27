@@ -2,8 +2,8 @@
 namespace LeoGalleguillos\User\Model\Table;
 
 use ArrayObject;
-use Zend\Db\Adapter\Adapter;
-use Zend\Db\Adapter\Exception\InvalidQueryException;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Exception\InvalidQueryException;
 
 class Post
 {
