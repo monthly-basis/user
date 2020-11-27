@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Service;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 

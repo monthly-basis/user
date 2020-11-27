@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\User\Model\Service\Register;
 
 use DateTime;
-use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Errors
