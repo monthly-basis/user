@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Login;
+namespace MonthlyBasis\User\Model\Service\Login;
 
-use LeoGalleguillos\User\Model\Table as UserTable;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Service as UserService;
 
 class ReCaptchaRequired
 {

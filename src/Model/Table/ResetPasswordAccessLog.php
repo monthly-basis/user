@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Table;
+namespace MonthlyBasis\User\Model\Table;
 
 use Exception;
 use Laminas\Db\Adapter\Adapter;

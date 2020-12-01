@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\UserTest\View\Helper;
+namespace MonthlyBasis\UserTest\View\Helper;
 
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\View\Helper as UserHelper;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\View\Helper as UserHelper;
 use PHPUnit\Framework\TestCase;
 
 class LoggedInTest extends TestCase

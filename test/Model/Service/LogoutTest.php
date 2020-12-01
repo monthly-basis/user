@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Service;
+namespace MonthlyBasis\UserTest\Model\Service;
 
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 
 class LogoutTest extends TestCase

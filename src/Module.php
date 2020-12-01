@@ -1,14 +1,14 @@
 <?php
-namespace LeoGalleguillos\User;
+namespace MonthlyBasis\User;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\String\Model\Service as StringService;
-use LeoGalleguillos\User\Controller as UserController;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table as UserTable;
-use LeoGalleguillos\User\View\Helper as UserHelper;
+use MonthlyBasis\User\Controller as UserController;
+use MonthlyBasis\User\Model\Factory as UserFactory;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\User\View\Helper as UserHelper;
 
 class Module
 {

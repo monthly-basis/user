@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\User\Controller\ResetPassword;
+namespace MonthlyBasis\User\Controller\ResetPassword;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
 use Laminas\View\Model\ViewModel;

@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Factory;
+namespace MonthlyBasis\UserTest\Model\Factory;
 
 use ArrayObject;
 use DateTime;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Factory as UserFactory;
 use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service;
 
 use Exception;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class LoggedIn
 {

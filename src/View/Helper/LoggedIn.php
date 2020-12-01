@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\User\View\Helper;
+namespace MonthlyBasis\User\View\Helper;
 
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\View\Helper\AbstractHelper;
 
 class LoggedIn extends AbstractHelper

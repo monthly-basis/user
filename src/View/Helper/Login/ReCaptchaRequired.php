@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\User\View\Helper\Login;
+namespace MonthlyBasis\User\View\Helper\Login;
 
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\View\Helper\AbstractHelper;
 
 class ReCaptchaRequired extends AbstractHelper

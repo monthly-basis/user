@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service;
 
 class Logout
 {

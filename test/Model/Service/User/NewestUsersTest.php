@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Service\User;
+namespace MonthlyBasis\UserTest\Model\Service\User;
 
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Factory as UserFactory;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class NewestUsersTest extends TestCase

@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\UserTest;
+namespace MonthlyBasis\UserTest;
 
-use LeoGalleguillos\User\Module;
+use MonthlyBasis\User\Module;
 use PHPUnit\Framework\TestCase;
 use Laminas\Mvc\Application;
 

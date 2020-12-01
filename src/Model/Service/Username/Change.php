@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Username;
+namespace MonthlyBasis\User\Model\Service\Username;
 
 use Exception;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Change
 {

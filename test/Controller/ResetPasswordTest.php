@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\UserTest\Controller;
+namespace MonthlyBasis\UserTest\Controller;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\User\Controller as UserController;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Controller as UserController;
+use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class ResetPasswordTest extends AbstractHttpControllerTestCase

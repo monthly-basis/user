@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Table\User;
+namespace MonthlyBasis\User\Model\Table\User;
 
 use Laminas\Db\Adapter\Adapter;
 

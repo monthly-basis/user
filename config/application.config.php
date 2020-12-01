@@ -2,10 +2,10 @@
 
 return [
     'modules' => [
-        'LeoGalleguillos\User',
         'MonthlyBasis\Flash',
         'MonthlyBasis\ReCaptcha',
         'MonthlyBasis\String',
+        'MonthlyBasis\User',
         'Zend\Db',
         'Zend\Router',
     ],

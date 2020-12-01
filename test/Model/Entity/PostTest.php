@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Entity;
+namespace MonthlyBasis\UserTest\Model\Entity;
 
-use LeoGalleguillos\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
