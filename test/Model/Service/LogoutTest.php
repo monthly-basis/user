@@ -16,6 +16,8 @@ class LogoutTest extends TestCase
       */
     public function testLogout()
     {
+        $_SERVER['HTTP_HOST'] = 'example.com';
+
         $this->assertNull(
             $this->logoutService->logout()
         );
