@@ -11,14 +11,9 @@ class LogoutTest extends TestCase
         $this->logoutService = new UserService\Logout();
     }
 
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserService\Logout::class,
-            $this->logoutService
-        );
-    }
-
+    /**
+      * @runInSeparateProcess
+      */
     public function testLogout()
     {
         $this->assertNull(
