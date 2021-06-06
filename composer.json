@@ -7,7 +7,8 @@
         "monthly-basis/flash": "^2.0",
         "monthly-basis/laminas-test": "^2.0",
         "monthly-basis/re-captcha": "^3.0",
-        "monthly-basis/string": "^3.0"
+        "monthly-basis/string": "^3.0",
+        "php": "^7.4"
     },
     "autoload": {
         "psr-4": {
