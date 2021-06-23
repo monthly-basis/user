@@ -6,6 +6,7 @@ return [
         'Laminas\Router',
         'MonthlyBasis\Flash',
         'MonthlyBasis\ReCaptcha',
+        'MonthlyBasis\SimpleEmailService',
         'MonthlyBasis\String',
         'MonthlyBasis\User',
     ],

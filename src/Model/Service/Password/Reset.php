@@ -4,6 +4,7 @@ namespace MonthlyBasis\User\Model\Service\Password;
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -13,6 +14,7 @@ class Reset
     public function __construct(
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
+        SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
         string $emailAddress,
         string $websiteName,
         UserFactory\User $userFactory,
@@ -21,15 +23,16 @@ class Reset
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\UserEmail $userEmailTable
     ) {
-        $this->flashService        = $flashService;
-        $this->validService        = $validService;
-        $this->emailAddress        = $emailAddress;
-        $this->websiteName         = $websiteName;
-        $this->userFactory         = $userFactory;
-        $this->generateCodeService = $generateCodeService;
-        $this->urlService          = $urlService;
-        $this->resetPasswordTable  = $resetPasswordTable;
-        $this->userEmailTable      = $userEmailTable;
+        $this->flashService             = $flashService;
+        $this->validService             = $validService;
+        $this->conditionallySendService = $conditionallySendService;
+        $this->emailAddress             = $emailAddress;
+        $this->websiteName              = $websiteName;
+        $this->userFactory              = $userFactory;
+        $this->generateCodeService      = $generateCodeService;
+        $this->urlService               = $urlService;
+        $this->resetPasswordTable       = $resetPasswordTable;
+        $this->userEmailTable           = $userEmailTable;
     }
 
     /**
