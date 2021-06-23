@@ -74,12 +74,11 @@ class Reset
 
         $url = $this->urlService->getUrl($code);
 
-        $headers ="From: {$this->websiteName} <{$this->emailAddress}>\r\n";
-        mail(
+        $this->conditionallySendService->conditionallySend(
             $_POST['email'],
+            "{$this->websiteName} <{$this->emailAddress}>",
             "{$this->websiteName} - Reset Password",
             $this->getEmailBodyText($url),
-            $headers
         );
     }
 
