@@ -36,35 +36,35 @@ class Module
                             $sm->get(UserService\DisplayNameOrUsername::class)
                         );
                     },
-                    UserHelper\LoggedIn::class => function ($serviceManager) {
+                    UserHelper\LoggedIn::class => function ($sm) {
                         return new UserHelper\LoggedIn(
-                            $serviceManager->get(UserService\LoggedIn::class)
+                            $sm->get(UserService\LoggedIn::class)
                         );
                     },
-                    UserHelper\LoggedInUser::class => function ($serviceManager) {
+                    UserHelper\LoggedInUser::class => function ($sm) {
                         return new UserHelper\LoggedInUser(
-                            $serviceManager->get(UserService\LoggedInUser::class)
+                            $sm->get(UserService\LoggedInUser::class)
                         );
                     },
-                    UserHelper\Login\ReCaptchaRequired::class => function ($serviceManager) {
+                    UserHelper\Login\ReCaptchaRequired::class => function ($sm) {
                         return new UserHelper\Login\ReCaptchaRequired(
-                            $serviceManager->get(UserService\Login\ReCaptchaRequired::class)
+                            $sm->get(UserService\Login\ReCaptchaRequired::class)
                         );
                     },
-                    UserHelper\RootRelativeUrl::class => function ($serviceManager) {
+                    UserHelper\RootRelativeUrl::class => function ($sm) {
                         return new UserHelper\RootRelativeUrl(
-                            $serviceManager->get(UserService\RootRelativeUrl::class)
+                            $sm->get(UserService\RootRelativeUrl::class)
                         );
                     },
-                    UserHelper\Factory\User::class => function ($serviceManager) {
+                    UserHelper\Factory\User::class => function ($sm) {
                         return new UserHelper\Factory\User(
-                            $serviceManager->get(UserFactory\User::class)
+                            $sm->get(UserFactory\User::class)
                         );
                     },
-                    UserHelper\UserHtml::class => function ($serviceManager) {
+                    UserHelper\UserHtml::class => function ($sm) {
                         return new UserHelper\UserHtml(
-                            $serviceManager->get(StringService\Escape::class),
-                            $serviceManager->get(UserService\RootRelativeUrl::class)
+                            $sm->get(StringService\Escape::class),
+                            $sm->get(UserService\RootRelativeUrl::class)
                         );
                     },
                 ],
@@ -81,19 +81,19 @@ class Module
     {
         return [
             'factories' => [
-                UserController\ResetPassword::class => function ($serviceManager) {
+                UserController\ResetPassword::class => function ($sm) {
                     return new UserController\ResetPassword(
-                        $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(UserService\Password\Reset::class)
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\Password\Reset::class)
                     );
                 },
-                UserController\ResetPassword\Code::class => function ($serviceManager) {
+                UserController\ResetPassword\Code::class => function ($sm) {
                     return new UserController\ResetPassword\Code(
-                        $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(UserService\Logout::class),
-                        $serviceManager->get(UserTable\ResetPassword::class),
-                        $serviceManager->get(UserTable\ResetPasswordAccessLog::class),
-                        $serviceManager->get(UserTable\User\PasswordHash::class)
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\Logout::class),
+                        $sm->get(UserTable\ResetPassword::class),
+                        $sm->get(UserTable\ResetPasswordAccessLog::class),
+                        $sm->get(UserTable\User\PasswordHash::class)
                     );
                 },
             ],
@@ -104,20 +104,20 @@ class Module
     {
         return [
             'factories' => [
-                UserFactory\Post::class => function ($serviceManager) {
+                UserFactory\Post::class => function ($sm) {
                     return new UserFactory\Post();
                 },
-                UserFactory\User::class => function ($serviceManager) {
+                UserFactory\User::class => function ($sm) {
                     return new UserFactory\User(
-                        $serviceManager->get(UserTable\User::class)
+                        $sm->get(UserTable\User::class)
                     );
                 },
-                UserFactory\User\BuildFromCookies::class => function ($serviceManager) {
+                UserFactory\User\BuildFromCookies::class => function ($sm) {
                     return new UserFactory\User\BuildFromCookies(
-                        $serviceManager->get(UserService\LoggedInUser::class),
-                        $serviceManager->get(UserTable\User::class),
-                        $serviceManager->get(UserTable\User\LoginHash::class),
-                        $serviceManager->get(UserTable\User\LoginIp::class)
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\User\LoginHash::class),
+                        $sm->get(UserTable\User\LoginIp::class)
                     );
                 },
                 UserService\Create::class => function ($sm) {
@@ -131,81 +131,81 @@ class Module
                 UserService\DisplayNameOrUsername::class => function ($sm) {
                     return new UserService\DisplayNameOrUsername();
                 },
-                UserService\LoggedIn::class => function ($serviceManager) {
+                UserService\LoggedIn::class => function ($sm) {
                     return new UserService\LoggedIn(
-                        $serviceManager->get(UserTable\User::class)
+                        $sm->get(UserTable\User::class)
                     );
                 },
-                UserService\LoggedInUser::class => function ($serviceManager) {
+                UserService\LoggedInUser::class => function ($sm) {
                     return new UserService\LoggedInUser(
-                        $serviceManager->get(UserFactory\User::class),
-                        $serviceManager->get(UserTable\User::class)
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserTable\User::class)
                     );
                 },
-                UserService\Login::class => function ($serviceManager) {
+                UserService\Login::class => function ($sm) {
                     return new UserService\Login(
-                        $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(ReCaptchaService\Valid::class),
-                        $serviceManager->get(UserFactory\User::class),
-                        $serviceManager->get(UserService\Login\ReCaptchaRequired::class),
-                        $serviceManager->get(UserTable\User::class),
-                        $serviceManager->get(UserTable\User\LoginDateTime::class),
-                        $serviceManager->get(UserTable\User\LoginHash::class),
-                        $serviceManager->get(UserTable\User\LoginIp::class)
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\Login\ReCaptchaRequired::class),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\User\LoginDateTime::class),
+                        $sm->get(UserTable\User\LoginHash::class),
+                        $sm->get(UserTable\User\LoginIp::class)
                     );
                 },
-                UserService\Login\ReCaptchaRequired::class => function ($serviceManager) {
+                UserService\Login\ReCaptchaRequired::class => function ($sm) {
                     return new UserService\Login\ReCaptchaRequired(
-                        $serviceManager->get(UserTable\LoginLog::class)
+                        $sm->get(UserTable\LoginLog::class)
                     );
                 },
-                UserService\Login\ShouldRedirectToReferer::class => function ($serviceManager) {
+                UserService\Login\ShouldRedirectToReferer::class => function ($sm) {
                     return new UserService\Login\ShouldRedirectToReferer(
-                        $serviceManager->get(StringService\StartsWith::class)
+                        $sm->get(StringService\StartsWith::class)
                     );
                 },
-                UserService\Logout::class => function ($serviceManager) {
+                UserService\Logout::class => function ($sm) {
                     return new UserService\Logout();
                 },
-                UserService\Password\Reset::class => function ($serviceManager) {
-                    $userConfig = $serviceManager->get('Config')['user'];
+                UserService\Password\Reset::class => function ($sm) {
+                    $userConfig = $sm->get('Config')['user'];
                     return new UserService\Password\Reset(
-                        $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(ReCaptchaService\Valid::class),
-                        $serviceManager->get(SimpleEmailServiceService\Send\Conditionally::class),
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(SimpleEmailServiceService\Send\Conditionally::class),
                         $userConfig['email-address'],
                         $userConfig['website-name'],
-                        $serviceManager->get(UserFactory\User::class),
-                        $serviceManager->get(UserService\Password\Reset\GenerateCode::class),
-                        $serviceManager->get(UserService\Password\Reset\Url::class),
-                        $serviceManager->get(UserTable\ResetPassword::class),
-                        $serviceManager->get(UserTable\UserEmail::class)
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\Password\Reset\GenerateCode::class),
+                        $sm->get(UserService\Password\Reset\Url::class),
+                        $sm->get(UserTable\ResetPassword::class),
+                        $sm->get(UserTable\UserEmail::class)
                     );
                 },
-                UserService\Password\Reset\GenerateCode::class => function ($serviceManager) {
+                UserService\Password\Reset\GenerateCode::class => function ($sm) {
                     return new UserService\Password\Reset\GenerateCode();
                 },
-                UserService\Password\Reset\Url::class => function ($serviceManager) {
+                UserService\Password\Reset\Url::class => function ($sm) {
                     return new UserService\Password\Reset\Url();
                 },
-                UserService\Post::class => function ($serviceManager) {
+                UserService\Post::class => function ($sm) {
                     return new UserService\Post(
-                        $serviceManager->get(UserTable\Post::class)
+                        $sm->get(UserTable\Post::class)
                     );
                 },
-                UserService\Posts::class => function ($serviceManager) {
+                UserService\Posts::class => function ($sm) {
                     return new UserService\Posts(
-                        $serviceManager->get(UserFactory\Post::class),
-                        $serviceManager->get(UserTable\Post::class)
+                        $sm->get(UserFactory\Post::class),
+                        $sm->get(UserTable\Post::class)
                     );
                 },
-                UserService\Register::class => function ($serviceManager) {
-                    $config = $serviceManager->get('Config')['user']['register'];
+                UserService\Register::class => function ($sm) {
+                    $config = $sm->get('Config')['user']['register'];
                     return new UserService\Register(
                         $config,
-                        $serviceManager->get(FlashService\Flash::class),
-                        $serviceManager->get(ReCaptchaService\Valid::class),
-                        $serviceManager->get(UserService\Register\FlashValues::class)
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(UserService\Register\FlashValues::class)
                     );
                 },
                 UserService\Register\Errors::class => function ($sm) {
@@ -216,12 +216,12 @@ class Module
                         $sm->get(UserTable\User\Username::class)
                     );
                 },
-                UserService\Register\FlashValues::class => function ($serviceManager) {
+                UserService\Register\FlashValues::class => function ($sm) {
                     return new UserService\Register\FlashValues(
-                        $serviceManager->get(FlashService\Flash::class)
+                        $sm->get(FlashService\Flash::class)
                     );
                 },
-                UserService\RootRelativeUrl::class => function ($serviceManager) {
+                UserService\RootRelativeUrl::class => function ($sm) {
                     return new UserService\RootRelativeUrl();
                 },
                 UserService\Url::class => function ($sm) {
@@ -229,75 +229,75 @@ class Module
                         $sm->get(UserService\RootRelativeUrl::class)
                     );
                 },
-                UserService\User::class => function ($serviceManager) {
+                UserService\User::class => function ($sm) {
                     return new UserService\User(
-                        $serviceManager->get(UserTable\User::class)
+                        $sm->get(UserTable\User::class)
                     );
                 },
-                UserService\User\NewestUsers::class => function ($serviceManager) {
+                UserService\User\NewestUsers::class => function ($sm) {
                     return new UserService\User\NewestUsers(
-                        $serviceManager->get(UserFactory\User::class),
-                        $serviceManager->get(UserTable\User::class)
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserTable\User::class)
                     );
                 },
-                UserService\Username\Change::class => function ($serviceManager) {
+                UserService\Username\Change::class => function ($sm) {
                     return new UserService\Username\Change(
-                        $serviceManager->get(UserTable\User\Username::class)
+                        $sm->get(UserTable\User\Username::class)
                     );
                 },
-                UserTable\LoginLog::class => function ($serviceManager) {
+                UserTable\LoginLog::class => function ($sm) {
                     return new UserTable\LoginLog(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\Post::class => function ($serviceManager) {
+                UserTable\Post::class => function ($sm) {
                     return new UserTable\Post(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\Register::class => function ($serviceManager) {
+                UserTable\Register::class => function ($sm) {
                     return new UserTable\Register(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\ResetPassword::class => function ($serviceManager) {
+                UserTable\ResetPassword::class => function ($sm) {
                     return new UserTable\ResetPassword(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\ResetPasswordAccessLog::class => function ($serviceManager) {
+                UserTable\ResetPasswordAccessLog::class => function ($sm) {
                     return new UserTable\ResetPasswordAccessLog(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User::class => function ($serviceManager) {
+                UserTable\User::class => function ($sm) {
                     return new UserTable\User(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User\DisplayName::class => function ($serviceManager) {
+                UserTable\User\DisplayName::class => function ($sm) {
                     return new UserTable\User\DisplayName(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User\LoginDateTime::class => function ($serviceManager) {
+                UserTable\User\LoginDateTime::class => function ($sm) {
                     return new UserTable\User\LoginDateTime(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User\LoginHash::class => function ($serviceManager) {
+                UserTable\User\LoginHash::class => function ($sm) {
                     return new UserTable\User\LoginHash(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User\LoginIp::class => function ($serviceManager) {
+                UserTable\User\LoginIp::class => function ($sm) {
                     return new UserTable\User\LoginIp(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
-                UserTable\User\PasswordHash::class => function ($serviceManager) {
+                UserTable\User\PasswordHash::class => function ($sm) {
                     return new UserTable\User\PasswordHash(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
                 UserTable\User\Username::class => function ($sm) {
@@ -305,9 +305,9 @@ class Module
                         $sm->get('user')
                     );
                 },
-                UserTable\UserEmail::class => function ($serviceManager) {
+                UserTable\UserEmail::class => function ($sm) {
                     return new UserTable\UserEmail(
-                        $serviceManager->get('user')
+                        $sm->get('user')
                     );
                 },
             ],
