@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Model\Table;
 
 use Exception;
 use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 
 class ResetPassword
 {
@@ -85,5 +86,28 @@ class ResetPassword
         }
 
         return $userId;
+    }
+
+    public function selectWhereUserIdAndCode(
+        int $userId,
+        string $code
+    ): Result {
+        $sql = '
+            SELECT `reset_password`.`reset_password_id`
+                 , `reset_password`.`user_id`
+                 , `reset_password`.`code`
+                 , `reset_password`.`created`
+                 , `reset_password`.`accessed`
+                 , `reset_password`.`used`
+              FROM `reset_password`
+             WHERE `reset_password`.`user_id` = ?
+               AND `reset_password`.`code` = ?
+                 ;
+        ';
+        $parameters = [
+            $userId,
+            $code,
+        ];
+        return $this->adapter->query($sql)->execute($parameters);
     }
 }
