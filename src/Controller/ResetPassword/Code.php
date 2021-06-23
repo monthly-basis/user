@@ -11,15 +11,8 @@ use Laminas\View\Model\ViewModel;
 
 class Code extends AbstractActionController
 {
-    /**
-     * @var string
-     */
-    protected $code;
-
-    /**
-     * @var int
-     */
-    protected $userId;
+    protected string $code;
+    protected int $userId;
 
     public function __construct(
         FlashService\Flash $flashService,
@@ -38,11 +31,11 @@ class Code extends AbstractActionController
     public function onDispatch(MvcEvent $mvcEvent)
     {
         $count = $this->resetPasswordAccessLogTable
-                      ->selectCountWhereIpAndValidAndCreatedGreaterThan(
-                          $_SERVER['REMOTE_ADDR'],
-                          0,
-                          date('Y-m-d H:i:s', strtotime('-1 day'))
-                      );
+            ->selectCountWhereIpAndValidAndCreatedGreaterThan(
+                $_SERVER['REMOTE_ADDR'],
+                0,
+                date('Y-m-d H:i:s', strtotime('-1 day'))
+            );
         if ($count >= 3) {
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
@@ -57,6 +50,7 @@ class Code extends AbstractActionController
     public function indexAction()
     {
         $this->code = $this->params()->fromRoute('code');
+
         try {
             $this->userId = $this->resetPasswordTable->selectUserIdWhereCodeAndCreatedGreaterThan(
                 $this->code,
