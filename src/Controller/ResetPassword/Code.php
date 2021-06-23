@@ -112,7 +112,7 @@ class Code extends AbstractActionController
         );
 
         $viewModel = new ViewModel();
-        $viewModel->setTemplate('leo-galleguillos/user/reset-password/code/success');
+        $viewModel->setTemplate('monthly-basis/user/reset-password/code/success');
         return $viewModel;
     }
 }
