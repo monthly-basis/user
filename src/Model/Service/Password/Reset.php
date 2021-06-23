@@ -72,7 +72,7 @@ class Reset
             $code
         );
 
-        $url = $this->urlService->getUrl($code);
+        $url = $this->urlService->getUrl($userId, $code);
 
         $this->conditionallySendService->conditionallySend(
             $_POST['email'],
