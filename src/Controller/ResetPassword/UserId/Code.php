@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\User\Controller\ResetPassword;
+namespace MonthlyBasis\User\Controller\ResetPassword\UserId;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
@@ -93,9 +93,12 @@ class Code extends AbstractActionController
         if ($errors) {
             $this->flashService->set('errors', $errors);
             $parameters = [
-                'code' => $this->code,
+                'userId' => $this->userId,
+                'code'   => $this->code,
             ];
-            return $this->redirect()->toRoute('reset-password/code', $parameters)->setStatusCode(303);
+            return $this->redirect()
+                ->toRoute('reset-password/code', $parameters)
+                ->setStatusCode(303);
         }
 
         $this->logoutService->logout();

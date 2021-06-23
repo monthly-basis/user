@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\UserTest\Controller\ResetPassword;
+namespace MonthlyBasis\UserTest\Controller\ResetPassword\UserId;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\User\Controller as UserController;
@@ -27,7 +27,7 @@ class CodeTest extends TestCase
             UserTable\User\PasswordHash::class
         );
 
-        $this->codeController = new UserController\ResetPassword\Code(
+        $this->codeController = new UserController\ResetPassword\UserId\Code(
             $this->flashServiceMock,
             $this->logoutServiceMock,
             $this->resetPasswordTableMock,
@@ -39,7 +39,7 @@ class CodeTest extends TestCase
     public function testInitialize()
     {
         $this->assertInstanceOf(
-            UserController\ResetPassword\Code::class,
+            UserController\ResetPassword\UserId\Code::class,
             $this->codeController
         );
     }

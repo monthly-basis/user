@@ -87,8 +87,8 @@ class Module
                         $sm->get(UserService\Password\Reset::class)
                     );
                 },
-                UserController\ResetPassword\Code::class => function ($sm) {
-                    return new UserController\ResetPassword\Code(
+                UserController\ResetPassword\UserId\Code::class => function ($sm) {
+                    return new UserController\ResetPassword\UserId\Code(
                         $sm->get(FlashService\Flash::class),
                         $sm->get(UserService\Logout::class),
                         $sm->get(UserTable\ResetPassword::class),
