@@ -34,7 +34,7 @@ class Code extends AbstractActionController
             ->selectCountWhereIpAndValidAndCreatedGreaterThan(
                 $_SERVER['REMOTE_ADDR'],
                 0,
-                date('Y-m-d H:i:s', strtotime('-1 day'))
+                date('Y-m-d H:i:s', strtotime('-7 days'))
             );
         if ($count >= 3) {
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
