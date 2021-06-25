@@ -191,6 +191,9 @@ class Module
                         $sm->get(UserTable\UserEmail::class)
                     );
                 },
+                UserService\Password\Reset\Expired::class => function ($sm) {
+                    return new UserService\Password\Reset\Expired();
+                },
                 UserService\Password\Reset\GenerateCode::class => function ($sm) {
                     return new UserService\Password\Reset\GenerateCode();
                 },
