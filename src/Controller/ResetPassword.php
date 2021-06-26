@@ -49,6 +49,11 @@ class ResetPassword extends AbstractActionController
         ];
     }
 
+    public function successAction()
+    {
+
+    }
+
     protected function postAction()
     {
         try {
