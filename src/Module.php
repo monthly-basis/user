@@ -90,10 +90,12 @@ class Module
                 UserController\ResetPassword\UserId\Code::class => function ($sm) {
                     return new UserController\ResetPassword\UserId\Code(
                         $sm->get(FlashService\Flash::class),
+                        $sm->get(UserFactory\Password\Reset\FromUserIdAndCode::class),
                         $sm->get(UserService\Logout::class),
+                        $sm->get(UserService\Password\Reset\Expired::class),
                         $sm->get(UserTable\ResetPassword::class),
                         $sm->get(UserTable\ResetPasswordAccessLog::class),
-                        $sm->get(UserTable\User\PasswordHash::class)
+                        $sm->get(UserTable\User\PasswordHash::class),
                     );
                 },
             ],
