@@ -129,8 +129,8 @@ class Code extends AbstractActionController
             $this->userId
         );
 
-        $viewModel = new ViewModel();
-        $viewModel->setTemplate('monthly-basis/user/reset-password/success');
-        return $viewModel;
+        return $this->redirect()
+            ->toRoute('reset-password/sucess', $parameters)
+            ->setStatusCode(303);
     }
 }
