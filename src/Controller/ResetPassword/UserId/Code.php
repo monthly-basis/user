@@ -113,6 +113,11 @@ class Code extends AbstractActionController
 
         $this->logoutService->logout();
 
+        $this->resetPasswordTable->updateSetUsedToUtcTimestampWhereUserIdAndCode(
+            $this->userId,
+            $this->code,
+        );
+
         $this->passwordHashTable->updateWhereUserId(
             password_hash($_POST['new_password'], PASSWORD_DEFAULT),
             $this->userId
