@@ -61,33 +61,6 @@ class ResetPassword
                           ->current()['count'];
     }
 
-    public function selectUserIdWhereCodeAndCreatedGreaterThan(
-        string $code,
-        string $created
-    ): int {
-        $sql = '
-            SELECT `reset_password`.`user_id`
-              FROM `reset_password`
-             WHERE `reset_password`.`code` = ?
-               AND `reset_password`.`created` > ?
-                 ;
-        ';
-        $parameters = [
-            $code,
-            $created,
-        ];
-        $userId = (int) $this->adapter
-                             ->query($sql)
-                             ->execute($parameters)
-                             ->current()['user_id'];
-
-        if (empty($userId)) {
-            throw new Exception('User ID where code not found.');
-        }
-
-        return $userId;
-    }
-
     public function selectWhereUserIdAndCode(
         int $userId,
         string $code
