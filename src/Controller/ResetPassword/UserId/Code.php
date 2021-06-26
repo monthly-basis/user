@@ -80,7 +80,7 @@ class Code extends AbstractActionController
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
 
-        // At this point, code is valid.
+        // At this point, code is valid and not expired.
 
         if (!empty($_POST)) {
             return $this->postAction();
