@@ -42,7 +42,7 @@ class Reset
             $_POST['email'] ?? null
         );
 
-        if (!empty($errors = $this->getErrors())) {
+        if (false != ($errors = $this->getErrors())) {
             $this->flashService->set('errors', $errors);
             throw new Exception('Errors with form.');
         }
