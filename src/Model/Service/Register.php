@@ -78,18 +78,6 @@ class Register
         return $errors;
     }
 
-    public function isFormValidIfNotSetFlashErrors()
-    {
-        $errors = $this->getErrors();
-        $isFormValid = empty($errors);
-
-        if (!$isFormValid) {
-            $this->flashService->set('errors', $errors);
-        }
-
-        return $isFormValid;
-    }
-
     /**
      * @throws Exception
      */
