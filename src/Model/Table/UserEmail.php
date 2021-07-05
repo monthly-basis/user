@@ -89,12 +89,14 @@ class UserEmail
         $parameters = [
             $address,
         ];
-        $userId = $this->adapter->query($sql)->execute($parameters)->current()['user_id'];
+        $array = $this->adapter->query($sql)->execute($parameters)->current();
 
-        if (empty($userId)) {
-            throw new Exception('User ID where address not found.');
+        if (empty($array)) {
+            throw new Exception('Address not found.');
         }
 
-        return $userId;
+        $userId = $this->adapter->query($sql)->execute($parameters)->current()['user_id'];
+
+        return $array['user_id'];
     }
 }
