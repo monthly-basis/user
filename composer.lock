@@ -2081,16 +2081,16 @@
         },
         {
             "name": "monthly-basis/laminas-test",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monthly-basis/laminas-test.git",
-                "reference": "18e0b9282ecaaee132daff42248c598f12508274"
+                "reference": "ed841efab5f25df4c00d0778e5a30e9fcdc9cf8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monthly-basis/laminas-test/zipball/18e0b9282ecaaee132daff42248c598f12508274",
-                "reference": "18e0b9282ecaaee132daff42248c598f12508274",
+                "url": "https://api.github.com/repos/monthly-basis/laminas-test/zipball/ed841efab5f25df4c00d0778e5a30e9fcdc9cf8f",
+                "reference": "ed841efab5f25df4c00d0778e5a30e9fcdc9cf8f",
                 "shasum": ""
             },
             "require": {
@@ -2110,9 +2110,9 @@
             ],
             "support": {
                 "issues": "https://github.com/monthly-basis/laminas-test/issues",
-                "source": "https://github.com/monthly-basis/laminas-test/tree/v2.1.1"
+                "source": "https://github.com/monthly-basis/laminas-test/tree/v2.1.2"
             },
-            "time": "2021-06-19T00:31:02+00:00"
+            "time": "2021-07-05T08:03:42+00:00"
         },
         {
             "name": "monthly-basis/re-captcha",
