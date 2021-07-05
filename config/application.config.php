@@ -9,6 +9,7 @@ return [
         'MonthlyBasis\SimpleEmailService',
         'MonthlyBasis\String',
         'MonthlyBasis\User',
+        'MonthlyBasis\Website',
     ],
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(

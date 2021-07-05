@@ -14,6 +14,9 @@ class ModuleTest extends ModuleTestCase
         $_SERVER['HTTP_HOST'] = 'example.com';
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testGetControllerConfig()
     {
         $applicationConfig = include(__DIR__ . '/../config/application.config.php');
