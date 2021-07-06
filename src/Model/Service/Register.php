@@ -66,12 +66,6 @@ class Register
             }
         }
 
-        if (empty($_POST['gender'])
-            || (!in_array($_POST['gender'], ['M', 'F']))
-        ) {
-            $errors[] = 'Invalid gender.';
-        }
-
         if (!$this->validService->isValid()) {
             $errors[] = 'Invalid reCAPTCHA.';
         }
@@ -105,7 +99,6 @@ class Register
             $_POST['email'],
             $passwordHash,
             $dateTime->format('Y-m-d 00:00:00'),
-            $_POST['gender']
         );
 
         $this->conditionallySendService->conditionallySend(

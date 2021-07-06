@@ -21,7 +21,7 @@ class Register
         $email,
         $passwordHash,
         string $birthday,
-        string $gender
+        string $gender = null
     ) {
         $sql = '
             INSERT
