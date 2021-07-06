@@ -111,7 +111,7 @@ class Register
         $this->conditionallySendService->conditionallySend(
             $_POST['email'],
             "{$this->config['website-name']} <{$this->config['email-address']}>",
-            "{$this->config['website-name']} - Reset Password",
+            "{$this->config['website-name']} - Activate Your Account",
             $this->getEmailBodyText($registerId, $activationCode),
         );
     }
