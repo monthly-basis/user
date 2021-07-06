@@ -298,7 +298,7 @@ class Module
                     );
                 },
                 UserService\Register::class => function ($sm) {
-                    $config = $sm->get('Config')['user']['register'];
+                    $config = $sm->get('Config')['user'];
                     return new UserService\Register(
                         $config,
                         $sm->get(FlashService\Flash::class),
@@ -309,7 +309,7 @@ class Module
                     );
                 },
                 UserService\Register\Errors::class => function ($sm) {
-                    $registerConfig = $sm->get('Config')['user']['register'];
+                    $registerConfig = $sm->get('Config')['user'];
                     return new UserService\Register\Errors(
                         $registerConfig,
                         $sm->get(ReCaptchaService\Valid::class),
