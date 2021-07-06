@@ -110,15 +110,15 @@ class Register
 
         $this->conditionallySendService->conditionallySend(
             $_POST['email'],
-            "{$config['website-name']} <{$config['email-address']}>",
-            "{$config['website-name']} - Reset Password",
+            "{$this->config['website-name']} <{$this->config['email-address']}>",
+            "{$this->config['website-name']} - Reset Password",
             $this->getEmailBodyText($registerId, $activationCode),
         );
     }
 
     protected function getEmailBodyText($registerId, $activationCode): string
     {
-        $text = "Thank you for signing up with {$config['website-name']}.\n\n";
+        $text = "Thank you for signing up with {$this->config['website-name']}.\n\n";
         $text .= "To activate your account, please click on the following link:\n\n";
         $text .= 'https://' . $_SERVER['HTTP_HOST'] . '/activate/'
                . urlencode($registerId)
