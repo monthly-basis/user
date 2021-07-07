@@ -4,6 +4,7 @@ namespace MonthlyBasis\User\Model\Factory;
 use ArrayObject;
 use DateTime;
 use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Table\User as UserTable;
 
 class User
@@ -71,10 +72,18 @@ class User
         return $userEntity;
     }
 
+    /**
+     * @throws UserException
+     */
     public function buildFromUsername(string $username): UserEntity\User
     {
+        $result = $this->userTable->selectWhereUsername($username);
+        if (null === ($array = $result->current())) {
+            throw new UserException('Invalid username');
+        }
+
         return $this->buildFromArray(
-            $this->userTable->selectWhereUsername($username)
+            $array
         );
     }
 }
