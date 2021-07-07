@@ -43,9 +43,8 @@ class Login
             return false;
         }
 
-        try {
-            $userArray = $this->userTable->selectWhereUsername($_POST['username']);
-        } catch (TypeError $typeError) {
+        $result = $this->userTable->selectWhereUsername($_POST['username']);
+        if (false == ($userArray = $result->current())) {
             return false;
         }
 
