@@ -71,18 +71,6 @@ class User
                     ->getGeneratedValue();
     }
 
-    public function isUsernameInTable($username)
-    {
-        $sql = '
-            SELECT COUNT(*) AS `count`
-              FROM `user`
-             WHERE `username` = ?
-                 ;
-        ';
-        $row = $this->adapter->query($sql, [$username])->current();
-        return (bool) $row['count'];
-    }
-
     public function rollback()
     {
         $this->adapter->getDriver()->getConnection()->rollback();
