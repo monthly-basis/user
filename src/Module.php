@@ -345,6 +345,11 @@ class Module
                         $sm->get(UserTable\User\Username::class)
                     );
                 },
+                UserService\Username\Exists::class => function ($sm) {
+                    return new UserService\Username\Exists(
+                        $sm->get(UserTable\User::class)
+                    );
+                },
                 UserTable\LoginLog::class => function ($sm) {
                     return new UserTable\LoginLog(
                         $sm->get('user')
