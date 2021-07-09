@@ -40,7 +40,10 @@ class Register
         if (empty($_POST['username'])
             || preg_match('/\W/', $_POST['username'])) {
             $errors[] = 'Invalid username.';
+        } elseif ($this->usernameExistsService->doesUsernameExist($_POST['username'])) {
+            $errors[] = 'Username already exists.';
         }
+
         if (empty($_POST['password'])) {
             $errors[] = 'Invalid password.';
         }
