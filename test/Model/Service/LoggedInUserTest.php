@@ -3,6 +3,7 @@ namespace MonthlyBasis\UserTest\Model\Service;
 
 use Exception;
 use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -22,14 +23,6 @@ class LoggedInUserTest extends TestCase
         $this->loggedInUserService = new UserService\LoggedInUser(
             $this->userFactoryMock,
             $this->userTableMock
-        );
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserService\LoggedInUser::class,
-            $this->loggedInUserService
         );
     }
 
@@ -63,7 +56,7 @@ class LoggedInUserTest extends TestCase
         try {
             $this->loggedInUserService->getLoggedInUser();
             $this->assertFail();
-        } catch (Exception $exception) {
+        } catch (UserException $exception) {
             $this->assertSame(
                 'User is not logged in (could not find row).',
                 $exception->getMessage()
