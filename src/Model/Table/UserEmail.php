@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Model\Table;
 
 use Exception;
 use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 
 class UserEmail
 {
@@ -85,9 +86,9 @@ class UserEmail
         return (int) $row['count'];
     }
 
-    public function selectUserIdWhereAddress(
+    public function selectWhereAddress(
         string $address
-    ): int {
+    ): Result {
         $sql = '
             SELECT `user_email`.`user_id`
               FROM `user_email`
@@ -97,14 +98,6 @@ class UserEmail
         $parameters = [
             $address,
         ];
-        $array = $this->adapter->query($sql)->execute($parameters)->current();
-
-        if (empty($array)) {
-            throw new Exception('Address not found.');
-        }
-
-        $userId = $this->adapter->query($sql)->execute($parameters)->current()['user_id'];
-
-        return $array['user_id'];
+        return $this->adapter->query($sql)->execute($parameters);
     }
 }
