@@ -16,6 +16,14 @@ class UserEmail
         $this->adapter = $adapter;
     }
 
+    public function getSelect(): string
+    {
+        return '
+            SELECT `user_email`.`user_id`
+                 , `user_email`.`address`
+        ';
+    }
+
     public function insert(
         $userId,
         $address
