@@ -16,6 +16,7 @@ class Register
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
+        UserService\Username\Exists $usernameExistsService,
         UserService\Register\FlashValues $flashValuesService,
         UserTable\Register $registerTable
     ) {
@@ -23,6 +24,7 @@ class Register
         $this->flashService             = $flashService;
         $this->validService             = $validService;
         $this->conditionallySendService = $conditionallySendService;
+        $this->usernameExistsService    = $usernameExistsService;
         $this->flashValuesService       = $flashValuesService;
         $this->registerTable            = $registerTable;
     }
