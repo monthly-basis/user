@@ -164,7 +164,9 @@ class Module
                 UserController\ResetPassword::class => function ($sm) {
                     return new UserController\ResetPassword(
                         $sm->get(FlashService\Flash::class),
-                        $sm->get(UserService\Password\Reset::class)
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Reset::class),
+                        $sm->get(UserService\Url::class),
                     );
                 },
                 UserController\ResetPassword\UserId\Code::class => function ($sm) {
