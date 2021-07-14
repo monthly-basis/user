@@ -11,18 +11,31 @@ class UserEmailTest extends TableTestCase
 {
     protected function setUp(): void
     {
-        $this->dropAndCreateTable('user_email');
+        $this->setForeignKeyChecks(0);
+        $this->dropAndCreateTables(['user', 'user_email']);
+        $this->setForeignKeyChecks(1);
 
+        $this->userTable      = new UserTable\User($this->getAdapter());
         $this->userEmailTable = new UserTable\UserEmail($this->getAdapter());
     }
 
     public function testInsert()
     {
+        $this->userTable->insert(
+            'username1',
+            'password-hash',
+            '2021-07-14 17:51:23',
+        );
         $this->userEmailTable->insert(
             '1',
             'test@example.com'
         );
 
+        $this->userTable->insert(
+            'username2',
+            'password-hash',
+            '2021-07-14 17:51:23',
+        );
         $this->userEmailTable->insert(
             '2',
             'test2@example.com'
@@ -47,12 +60,17 @@ class UserEmailTest extends TableTestCase
         $result = $this->userEmailTable->selectWhereAddress('user@example.com');
         $this->assertEmpty($result);
 
+        $this->userTable->insert(
+            'username',
+            'password-hash',
+            '2021-07-14 17:51:23',
+        );
         $this->userEmailTable->insert(
-            '12345',
+            '1',
             'user@example.com'
         );
         $this->assertSame(
-            '12345',
+            '1',
             $this->userEmailTable->selectWhereAddress('user@example.com')->current()['user_id']
         );
     }
