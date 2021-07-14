@@ -7,6 +7,7 @@ return [
         'MonthlyBasis\Flash',
         'MonthlyBasis\ReCaptcha',
         'MonthlyBasis\SimpleEmailService',
+        'MonthlyBasis\StopForumSpam',
         'MonthlyBasis\String',
         'MonthlyBasis\User',
         'MonthlyBasis\Website',
