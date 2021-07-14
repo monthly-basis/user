@@ -3,56 +3,42 @@ namespace MonthlyBasis\User\Model\Service\Register;
 
 use DateTime;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
-use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Service as UserService;
 
 class Errors
 {
     public function __construct(
-        array $config,
         ReCaptchaService\Valid $validService,
-        UserTable\User\Username $usernameTable
+        UserService\Email\Exists $emailExistsService,
+        UserService\Username\Exists $usernameExistsService
     ) {
-        $this->config        = $config;
-        $this->validService  = $validService;
-        $this->usernameTable = $usernameTable;
+        $this->validService          = $validService;
+        $this->emailExistsService    = $emailExistsService;
+        $this->usernameExistsService = $usernameExistsService;
     }
 
     public function getErrors(): array
     {
         $errors = [];
 
-        if (!isset($this->config['register']['required']['email'])
-            || ($this->config['register']['required']['email'])
-        ) {
-            if (empty($_POST['email'])
-                || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
-            ) {
-                $errors[] = 'Invalid email address.';
-            }
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Invalid email address.';
+        } elseif ($this->emailExistsService->doesEmailExist($_POST['email'])) {
+            $errors[] = 'Email already exists.';
         }
 
         if (empty($_POST['username'])
             || preg_match('/\W/', $_POST['username'])) {
             $errors[] = 'Invalid username.';
-        } else {
-            $count = $this->usernameTable->selectCountWhereUsernameEquals(
-                $_POST['username']
-            );
-            if ($count > 0) {
-                $errors[] = 'Username already exists.';
-            }
+        } elseif ($this->usernameExistsService->doesUsernameExist($_POST['username'])) {
+            $errors[] = 'Username already exists.';
         }
+
         if (empty($_POST['password'])) {
             $errors[] = 'Invalid password.';
         }
-        if (empty($_POST['confirm-password'])) {
-            $errors[] = 'Invalid confirm password.';
-        }
 
-        if (!empty($_POST['password'])
-            && !empty($_POST['confirm-password'])
-            && ($_POST['password'] != $_POST['confirm-password'])
-        ) {
+        if ($_POST['password'] != $_POST['confirm-password']) {
             $errors[] = 'Password and confirm password do not match.';
         }
 
@@ -75,22 +61,8 @@ class Errors
             }
         }
 
-        if (!isset($this->config['register']['required']['gender'])
-            || ($this->config['register']['required']['gender'])
-        ) {
-            if (empty($_POST['gender'])
-                || (!in_array($_POST['gender'], ['M', 'F']))
-            ) {
-                $errors[] = 'Invalid gender.';
-            }
-        }
-
-        if (!isset($this->config['register']['required']['re-captcha'])
-            || ($this->config['register']['required']['re-captcha'])
-        ) {
-            if (!$this->validService->isValid()) {
-                $errors[] = 'Invalid reCAPTCHA.';
-            }
+        if (!$this->validService->isValid()) {
+            $errors[] = 'Invalid reCAPTCHA.';
         }
 
         return $errors;
