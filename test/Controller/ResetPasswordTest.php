@@ -13,13 +13,21 @@ class ResetPasswordTest extends AbstractHttpControllerTestCase
         $this->flashServiceMock = $this->createMock(
             FlashService\Flash::class
         );
+        $this->loggedInUserServiceMock = $this->createMock(
+            UserService\LoggedInUser::class
+        );
         $this->resetServiceMock = $this->createMock(
             UserService\Password\Reset::class
+        );
+        $this->urlServiceMock = $this->createMock(
+            UserService\Url::class
         );
 
         $this->resetPasswordController = new UserController\ResetPassword(
             $this->flashServiceMock,
-            $this->resetServiceMock
+            $this->loggedInUserServiceMock,
+            $this->resetServiceMock,
+            $this->urlServiceMock
         );
     }
 
