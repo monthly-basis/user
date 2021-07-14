@@ -14,72 +14,17 @@ class Register
     public function __construct(
         array $config,
         FlashService\Flash $flashService,
-        ReCaptchaService\Valid $validService,
         SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
-        UserService\Email\Exists $emailExistsService,
-        UserService\Username\Exists $usernameExistsService,
+        UserService\Register\Errors $errorsService,
         UserService\Register\FlashValues $flashValuesService,
         UserTable\Register $registerTable
     ) {
         $this->config                   = $config;
         $this->flashService             = $flashService;
-        $this->validService             = $validService;
+        $this->errorsService            = $errorsService;
         $this->conditionallySendService = $conditionallySendService;
-        $this->emailExistsService       = $emailExistsService;
-        $this->usernameExistsService    = $usernameExistsService;
         $this->flashValuesService       = $flashValuesService;
         $this->registerTable            = $registerTable;
-    }
-
-    public function getErrors(): array
-    {
-        $errors = [];
-
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Invalid email address.';
-        } elseif ($this->emailExistsService->doesEmailExist($_POST['email'])) {
-            $errors[] = 'Email already exists.';
-        }
-
-        if (empty($_POST['username'])
-            || preg_match('/\W/', $_POST['username'])) {
-            $errors[] = 'Invalid username.';
-        } elseif ($this->usernameExistsService->doesUsernameExist($_POST['username'])) {
-            $errors[] = 'Username already exists.';
-        }
-
-        if (empty($_POST['password'])) {
-            $errors[] = 'Invalid password.';
-        }
-
-        if ($_POST['password'] != $_POST['confirm-password']) {
-            $errors[] = 'Password and confirm password do not match.';
-        }
-
-        if (empty($_POST['birthday-month'])
-            || empty($_POST['birthday-day'])
-            || empty($_POST['birthday-year'])) {
-            $errors[] = 'Invalid birthday.';
-        } else {
-            $dateTime = DateTime::createFromFormat(
-                'Y-m-d',
-                $_POST['birthday-year'] . '-' . $_POST['birthday-month'] . '-' . $_POST['birthday-day']
-            );
-            if (!$dateTime) {
-                $errors[] = 'Invalid birthday.';
-            } else {
-                $dateInterval = $dateTime->diff(new DateTime());
-                if ($dateInterval->format('%Y') < 13) {
-                    $errors[] = 'Must be at least 13 years old to sign up.';
-                }
-            }
-        }
-
-        if (!$this->validService->isValid()) {
-            $errors[] = 'Invalid reCAPTCHA.';
-        }
-
-        return $errors;
     }
 
     /**
@@ -88,7 +33,7 @@ class Register
     public function register()
     {
         $this->flashValuesService->setFlashValues();
-        $errors = $this->getErrors();
+        $errors = $this->errorsService->getErrors();
 
         if (!empty($errors)) {
             $this->flashService->set('errors', $errors);
