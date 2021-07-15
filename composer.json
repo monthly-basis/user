@@ -9,6 +9,7 @@
         "monthly-basis/laminas-test": "^2.0",
         "monthly-basis/re-captcha": "^3.0",
         "monthly-basis/simple-email-service": "^0.1",
+        "monthly-basis/stop-forum-spam": "^1.0",
         "monthly-basis/string": "^3.2",
         "monthly-basis/website": "^2.0",
         "php": "^7.4"
