@@ -1,57 +1,19 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Table\User;
 
-use ArrayObject;
+use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
-use MonthlyBasis\UserTest\TableTestCase;
-use Laminas\Db\Adapter\Adapter;
-use PHPUnit\Framework\TestCase;
 
 class LoginDateTimeTest extends TableTestCase
 {
-    /**
-     * @var string
-     */
-    protected $sqlPath = __DIR__ . '/../../../..' . '/sql/test/user/';
-
-    /**
-     * @var UserTable
-     */
-    protected $userTable;
-
     protected function setUp(): void
     {
-        $configArray     = require(__DIR__ . '/../../../../config/autoload/local.php');
-        $configArray     = $configArray['db']['adapters']['test'];
-        $this->adapter   = new Adapter($configArray);
-
-        $this->userTable = new UserTable\User($this->adapter);
-        $this->loginDateTimeTable = new UserTable\User\LoginDateTime($this->adapter);
+        $this->userTable = new UserTable\User($this->getAdapter());
+        $this->loginDateTimeTable = new UserTable\User\LoginDateTime($this->getAdapter());
 
         $this->setForeignKeyChecks0();
-        $this->dropTable();
-        $this->createTable();
+        $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
-    }
-
-    protected function dropTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'drop.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    protected function createTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'create.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserTable\User\LoginDateTime::class,
-            $this->loginDateTimeTable
-        );
     }
 
     public function testUpdateSetToNowWhereUsername()
