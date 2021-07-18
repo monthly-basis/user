@@ -19,6 +19,9 @@ class ErrorsTest extends TestCase
         $this->emailExistsServiceMock = $this->createMock(
             UserService\Email\Exists::class
         );
+        $this->birthdayErrorsServiceMock = $this->createMock(
+            UserService\Register\Errors\Birthday::class
+        );
         $this->usernameExistsServiceMock = $this->createMock(
             UserService\Username\Exists::class
         );
@@ -27,6 +30,7 @@ class ErrorsTest extends TestCase
             $this->validServiceMock,
             $this->toxicServiceMock,
             $this->emailExistsServiceMock,
+            $this->birthdayErrorsServiceMock,
             $this->usernameExistsServiceMock,
         );
     }
@@ -67,6 +71,33 @@ class ErrorsTest extends TestCase
             [
                  'Registration is currently unavailable.'
             ],
+            $this->errorsService->getErrors()
+        );
+    }
+
+    public function test_getErrors_birthdayError_nonEmptyArray()
+    {
+        $this->toxicServiceMock
+             ->expects($this->once())
+             ->method('isIpAddressToxic')
+             ->with('1.2.3.4')
+             ->willReturn(false)
+             ;
+
+        $this->birthdayErrorsServiceMock
+             ->expects($this->once())
+             ->method('getBirthdayErrors')
+             ->willReturn(['A birthday error.'])
+             ;
+
+        $this->validServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
+
+        $this->assertSame(
+            ['A birthday error.'],
             $this->errorsService->getErrors()
         );
     }
