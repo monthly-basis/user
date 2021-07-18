@@ -326,6 +326,9 @@ class Module
                         $sm->get(UserService\Username\Exists::class),
                     );
                 },
+                UserService\Register\Errors\Birthday::class => function ($sm) {
+                    return new UserService\Register\Errors\Birthday();
+                },
                 UserService\Register\FlashValues::class => function ($sm) {
                     return new UserService\Register\FlashValues(
                         $sm->get(FlashService\Flash::class)
