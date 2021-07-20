@@ -7,6 +7,8 @@ use MonthlyBasis\User\Model\Table as UserTable;
 
 class Birthday
 {
+    public const ERROR_NOT_OLD_ENOUGH = 'Registration is currently unavailable.';
+
     public function __construct(
         UserTable\RegisterNotOldEnoughLog $registerNotOldEnoughLogTable
     ) {
@@ -22,7 +24,7 @@ class Birthday
             (new DateTime())->modify('-30 days')
         );
         if (!empty($result->current())) {
-            $errors[] = 'Must be at least 13 years old to sign up.';
+            $errors[] = self::ERROR_NOT_OLD_ENOUGH;
             return $errors;
         }
 
@@ -55,7 +57,7 @@ class Birthday
             $this->registerNotOldEnoughLogTable->insert(
                 $_SERVER['REMOTE_ADDR']
             );
-            $errors[] = 'Must be at least 13 years old to sign up.';
+            $errors[] = self::ERROR_NOT_OLD_ENOUGH;
         }
         return $errors;
     }

@@ -53,7 +53,7 @@ class BirthdayTest extends TestCase
              ;
 
         $this->assertSame(
-            ['Must be at least 13 years old to sign up.'],
+            [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH],
             $this->birthdayService->getBirthdayErrors()
         );
     }
@@ -138,7 +138,7 @@ class BirthdayTest extends TestCase
         $_POST['birthday-year']  = $dateTime7YearsAgo->format('Y');
 
         $this->assertSame(
-            ['Must be at least 13 years old to sign up.'],
+            [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH],
             $this->birthdayService->getBirthdayErrors()
         );
 
@@ -149,7 +149,7 @@ class BirthdayTest extends TestCase
         $_POST['birthday-year']  = $dateTime12YearsAgo->format('Y');
 
         $this->assertSame(
-            ['Must be at least 13 years old to sign up.'],
+            [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH],
             $this->birthdayService->getBirthdayErrors()
         );
 
@@ -160,7 +160,7 @@ class BirthdayTest extends TestCase
         $_POST['birthday-year']  = $dateTime13YearsAgo->format('Y');
 
         $this->assertSame(
-            ['Must be at least 13 years old to sign up.'],
+            [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH],
             $this->birthdayService->getBirthdayErrors()
         );
     }
