@@ -43,6 +43,9 @@ class Birthday
         $dateTime13YearsAnd2DaysAgo = (new DateTime())
             ->sub(new DateInterval('P13Y2D'));
         if ($dateTime13YearsAnd2DaysAgo < $dateTime) {
+            $this->registerNotOldEnoughLogTable->insert(
+                $_SERVER['REMOTE_ADDR']
+            );
             $errors[] = 'Must be at least 13 years old to sign up.';
         }
         return $errors;

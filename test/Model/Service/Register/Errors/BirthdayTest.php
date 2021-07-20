@@ -24,6 +24,11 @@ class BirthdayTest extends TestCase
     {
         unset($_POST);
 
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+
         $this->assertSame(
             ['Invalid birthday.'],
             $this->birthdayService->getBirthdayErrors()
@@ -37,6 +42,11 @@ class BirthdayTest extends TestCase
         $_POST['birthday-day']   = 'invalid value';
         $_POST['birthday-year']  = 'invalid value';
 
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+
         $this->assertSame(
             ['Invalid birthday.'],
             $this->birthdayService->getBirthdayErrors()
@@ -45,6 +55,14 @@ class BirthdayTest extends TestCase
 
     public function test_getErrors_birthdayNotOldEnough_nonEmptyErrors()
     {
+        $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(3))
+             ->method('insert')
+             ->with('255.255.255.255')
+             ;
+
         $dateTime7YearsAgo = (new DateTime())->sub(new DateInterval('P7Y'));
         $_POST = [];
         $_POST['birthday-month'] = $dateTime7YearsAgo->format('m');
