@@ -82,7 +82,7 @@ class BirthdayTest extends TestCase
              ;
 
         $this->assertSame(
-            ['Invalid birthday.'],
+            [UserService\Register\Errors\Birthday::ERROR_INVALID_BIRTHDAY],
             $this->birthdayService->getBirthdayErrors()
         );
     }
@@ -108,7 +108,7 @@ class BirthdayTest extends TestCase
              ;
 
         $this->assertSame(
-            ['Invalid birthday.'],
+            [UserService\Register\Errors\Birthday::ERROR_INVALID_BIRTHDAY],
             $this->birthdayService->getBirthdayErrors()
         );
     }
