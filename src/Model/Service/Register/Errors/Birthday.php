@@ -3,9 +3,16 @@ namespace MonthlyBasis\User\Model\Service\Register\Errors;
 
 use DateInterval;
 use DateTime;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Birthday
 {
+    public function __construct(
+        UserTable\RegisterNotOldEnoughLog $registerNotOldEnoughLogTable
+    ) {
+        $this->registerNotOldEnoughLogTable = $registerNotOldEnoughLogTable;
+    }
+
     public function getBirthdayErrors(): array
     {
         $errors = [];

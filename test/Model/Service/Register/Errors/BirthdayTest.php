@@ -4,13 +4,20 @@ namespace MonthlyBasis\UserTest\Model\Service\Register\Errors;
 use DateInterval;
 use DateTime;
 use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class BirthdayTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->birthdayService = new UserService\Register\Errors\Birthday();
+        $this->registerNotOldEnoughLogTableMock = $this->createMock(
+            UserTable\RegisterNotOldEnoughLog::class
+        );
+
+        $this->birthdayService = new UserService\Register\Errors\Birthday(
+            $this->registerNotOldEnoughLogTableMock
+        );
     }
 
     public function test_getErrors_emptyPost_nonEmptyErrors()
