@@ -133,6 +133,7 @@ class BirthdayTest extends TestCase
      */
     public function test_getErrors_birthdayNotOldEnough_nonEmptyErrors()
     {
+        $_SERVER['HTTP_HOST']   = 'www.example.com';
         $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
 
         $emptyResultMock = $this->createMock(
