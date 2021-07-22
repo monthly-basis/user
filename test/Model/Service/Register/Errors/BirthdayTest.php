@@ -28,6 +28,8 @@ class BirthdayTest extends TestCase
     {
         unset($_POST);
 
+        $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
+
         $nonEmptyResultMock = $this->createMock(
             Result::class
         );
@@ -62,6 +64,8 @@ class BirthdayTest extends TestCase
     {
         unset($_POST);
 
+        $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
+
         $emptyResultMock = $this->createMock(
             Result::class
         );
@@ -93,6 +97,8 @@ class BirthdayTest extends TestCase
         $_POST['birthday-month'] = 'invalid value';
         $_POST['birthday-day']   = 'invalid value';
         $_POST['birthday-year']  = 'invalid value';
+
+        $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
 
         $emptyResultMock = $this->createMock(
             Result::class
