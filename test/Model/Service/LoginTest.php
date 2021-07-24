@@ -5,6 +5,7 @@ use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -24,6 +25,9 @@ class LoginTest extends TestCase
         );
         $this->validReCaptchaServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
+        );
+        $this->randomServiceMock = $this->createMock(
+            StringService\Random::class
         );
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
@@ -46,6 +50,7 @@ class LoginTest extends TestCase
         $this->loginService = new UserService\Login(
             $this->flashServiceMock,
             $this->validReCaptchaServiceMock,
+            $this->randomServiceMock,
             $this->userFactoryMock,
             $this->reCaptchaRequiredServiceMock,
             $this->userTableMock,
@@ -125,6 +130,12 @@ class LoginTest extends TestCase
         $this->userFactoryMock->method('buildFromUsername')->willReturn(
             $userEntity
         );
+        $this->randomServiceMock
+             ->expects($this->once())
+             ->method('getRandomString')
+             ->with(64)
+             ->willReturn('5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84')
+             ;
         $_POST['password'] = 'correct password';
         $this->assertTrue(
             $this->loginService->login()
