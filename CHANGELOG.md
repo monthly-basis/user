@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.4] - 2021-07-25
+
 ### Security 
 
 - For now, reCAPTCHA is always required when logging in.
@@ -17,5 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Cookies now use httponly and samesite='Strict'.
 
-[unreleased]: https://github.com/monthly-basis/user/compare/v2.7.3...HEAD
+[unreleased]: https://github.com/monthly-basis/user/compare/v2.7.4...HEAD
+[v2.7.4]: https://github.com/monthly-basis/user/compare/v2.7.3...v2.7.4
 [v2.7.3]: https://github.com/monthly-basis/user/compare/v2.7.2...v2.7.3
