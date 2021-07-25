@@ -110,13 +110,5 @@ class Login
             $value,
             $options,
         );
-
-        $name  = 'loginIp';
-        $value = $_SERVER['REMOTE_ADDR'];
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
     }
 }

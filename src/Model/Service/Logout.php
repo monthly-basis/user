@@ -32,13 +32,5 @@ class Logout
             $value,
             $options,
         );
-
-        $name  = 'loginIp';
-        $value = 'login-ip';
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
     }
 }

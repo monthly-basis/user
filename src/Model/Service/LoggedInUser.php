@@ -30,7 +30,6 @@ class LoggedInUser
 
         if (empty($_COOKIE['userId'])
             || empty($_COOKIE['loginHash'])
-            || empty($_COOKIE['loginIp'])
         ) {
             throw new UserException('User is not logged in (cookies are not set).');
         }

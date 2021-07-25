@@ -32,7 +32,6 @@ class LoggedIn
 
         if (empty($_COOKIE['userId'])
             || empty($_COOKIE['loginHash'])
-            || empty($_COOKIE['loginIp'])
         ) {
             $this->isLoggedIn = false;
             return $this->isLoggedIn;
