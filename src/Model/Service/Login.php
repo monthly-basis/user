@@ -16,7 +16,6 @@ class Login
         ReCaptchaService\Valid $validReCaptchaService,
         StringService\Random $randomService,
         UserFactory\User $userFactory,
-        UserService\Login\ReCaptchaRequired $reCaptchaRequiredService,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
         UserTable\User\LoginHash $loginHashTable,
@@ -26,7 +25,6 @@ class Login
         $this->validReCaptchaService    = $validReCaptchaService;
         $this->randomService            = $randomService;
         $this->userFactory              = $userFactory;
-        $this->reCaptchaRequiredService = $reCaptchaRequiredService;
         $this->userTable                = $userTable;
         $this->loginDateTimeTable       = $loginDateTimeTable;
         $this->loginHashTable           = $loginHashTable;
@@ -40,8 +38,7 @@ class Login
             return false;
         }
 
-        if ($this->reCaptchaRequiredService->isReCaptchaRequired()
-            && !$this->validReCaptchaService->isValid()) {
+        if (!$this->validReCaptchaService->isValid()) {
             return false;
         }
 
