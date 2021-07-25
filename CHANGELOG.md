@@ -9,13 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security 
 
-- For now reCAPTCHA is always required when logging in
+- For now, reCAPTCHA is always required when logging in.
 
 ## [v2.7.3] - 2021-07-25
 
 ### Security 
 
-- Cookies now use httponly and samesite='Strict'
+- Cookies now use httponly and samesite='Strict'.
 
 [unreleased]: https://github.com/monthly-basis/user/compare/v2.7.3...HEAD
 [v2.7.3]: https://github.com/monthly-basis/user/compare/v2.7.2...v2.7.3
