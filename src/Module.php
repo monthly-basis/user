@@ -94,7 +94,6 @@ class Module
                 'aliases' => [
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
-                    'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
                     'getBirthdaySelectsHtml'   => UserHelper\BirthdaySelectsHtml::class,
                     'getDisplayNameOrUsername' => UserHelper\DisplayNameOrUsername::class,
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
@@ -118,11 +117,6 @@ class Module
                     UserHelper\LoggedInUser::class => function ($sm) {
                         return new UserHelper\LoggedInUser(
                             $sm->get(UserService\LoggedInUser::class)
-                        );
-                    },
-                    UserHelper\Login\ReCaptchaRequired::class => function ($sm) {
-                        return new UserHelper\Login\ReCaptchaRequired(
-                            $sm->get(UserService\Login\ReCaptchaRequired::class)
                         );
                     },
                     UserHelper\RootRelativeUrl::class => function ($sm) {
@@ -250,11 +244,6 @@ class Module
                         $sm->get(UserTable\User\LoginDateTime::class),
                         $sm->get(UserTable\User\LoginHash::class),
                         $sm->get(UserTable\User\LoginIp::class)
-                    );
-                },
-                UserService\Login\ReCaptchaRequired::class => function ($sm) {
-                    return new UserService\Login\ReCaptchaRequired(
-                        $sm->get(UserTable\LoginLog::class)
                     );
                 },
                 UserService\Login\ShouldRedirectToReferer::class => function ($sm) {
