@@ -372,6 +372,11 @@ class Module
                         $sm->get(UserTable\User::class)
                     );
                 },
+                UserTable\ActivateLog::class => function ($sm) {
+                    return new UserTable\ActivateLog(
+                        $sm->get(UserDb\Sql::class)
+                    );
+                },
                 UserTable\LoginLog::class => function ($sm) {
                     return new UserTable\LoginLog(
                         $sm->get('user')
