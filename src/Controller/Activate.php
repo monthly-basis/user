@@ -1,11 +1,10 @@
 <?php
 namespace MonthlyBasis\User\Controller;
 
-use MonthlyBasis\User\Model\Service as UserService;
-use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Exception\InvalidQueryException;
 use Laminas\Mvc\Controller\AbstractActionController;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Activate extends AbstractActionController
 {
