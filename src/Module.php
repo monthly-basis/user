@@ -161,10 +161,7 @@ class Module
             'factories' => [
                 UserController\Activate::class => function ($sm) {
                     return new UserController\Activate(
-                        $sm->get('user'),
-                        $sm->get(UserTable\Register::class),
-                        $sm->get(UserTable\User::class),
-                        $sm->get(UserTable\UserEmail::class)
+                        $sm->get(UserService\Activate::class)
                     );
                 },
                 UserController\SignUp::class => function ($sm) {
