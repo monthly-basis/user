@@ -46,4 +46,36 @@ class RegisterTest extends TableTestCase
             $this->registerTable->selectCount()
         );
     }
+
+    public function test_selectWhereRegisterIdAndActivationCode()
+    {
+        $result = $this->registerTable->selectWhereRegisterIdAndActivationCode(
+            1,
+            'the-activation-code',
+        );
+        $this->assertEmpty($result);
+
+        $this->registerTable->insert(
+            'the-activation-code',
+            'username',
+            'test@example.com',
+            'the-password-hash',
+            '1920-07-29',
+        );
+
+        $result = $this->registerTable->selectWhereRegisterIdAndActivationCode(
+            1,
+            'the-activation-code',
+        );
+        $this->assertSame(
+            [
+                'username'      => 'username',
+                'email'         => 'test@example.com',
+                'password_hash' => 'the-password-hash',
+                'birthday'      => '1920-07-29 00:00:00',
+                'gender'        => null,
+            ],
+            $result->current(),
+        );
+    }
 }
