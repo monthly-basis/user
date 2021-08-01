@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.7.8
 
 - Create `activate_log` table using `sql/test/activate_log/create.sql` file.
 
