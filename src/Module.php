@@ -225,6 +225,7 @@ class Module
                 UserService\Activate::class => function ($sm) {
                     return new UserService\Activate(
                         $sm->get('user')->getDriver()->getConnection(),
+                        $sm->get(UserTable\ActivateLog::class),
                         $sm->get(UserTable\Register::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\UserEmail::class),

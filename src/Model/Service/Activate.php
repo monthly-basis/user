@@ -9,14 +9,16 @@ class Activate
 {
     public function __construct(
         Connection $connection,
+        UserTable\ActivateLog $activateLogTable,
         UserTable\Register $registerTable,
         UserTable\User $userTable,
         UserTable\UserEmail $userEmailTable
     ) {
-        $this->connection     = $connection;
-        $this->registerTable  = $registerTable;
-        $this->userTable      = $userTable;
-        $this->userEmailTable = $userEmailTable;
+        $this->connection       = $connection;
+        $this->activateLogTable = $activateLogTable;
+        $this->registerTable    = $registerTable;
+        $this->userTable        = $userTable;
+        $this->userEmailTable   = $userEmailTable;
     }
 
     public function activate(int $registerId, string $activationCode): bool
@@ -27,6 +29,10 @@ class Activate
         );
 
         if (false == ($registerArray = $result->current())) {
+            $this->activateLogTable->insert(
+                $_SERVER['REMOTE_ADDR'],
+                false,
+            );
             return false;
         }
 
@@ -53,6 +59,11 @@ class Activate
             return false;
         }
         $this->connection->commit();
+
+        $this->activateLogTable->insert(
+            $_SERVER['REMOTE_ADDR'],
+            true,
+        );
 
         return true;
     }

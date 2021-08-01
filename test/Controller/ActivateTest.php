@@ -24,7 +24,8 @@ class ActivateTest extends AbstractHttpControllerTestCase
      */
     public function test_indexAction_invalidActivation()
     {
-        $_SERVER['HTTP_HOST'] = 'www.example.com';
+        $_SERVER['HTTP_HOST']   = 'www.example.com';
+        $_SERVER['REMOTE_ADDR'] = '1.2.4.8';
 
         $this->dispatch('/activate/12345/invalid-activation-code', 'GET');
         $this->assertControllerName(UserController\Activate::class);
