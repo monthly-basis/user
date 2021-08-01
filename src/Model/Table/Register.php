@@ -3,17 +3,17 @@ namespace MonthlyBasis\User\Model\Table;
 
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\User\Model\Db as UserDb;
 
 class Register
 {
-    /**
-     * @var Adapter
-     */
-    protected $adapter;
+    protected Adapter $adapter;
+    protected UserDb\Sql $sql;
 
-    public function __construct(Adapter $adapter)
+    public function __construct(UserDb\Sql $sql)
     {
-        $this->adapter = $adapter;
+        $this->sql     = $sql;
+        $this->adapter = $sql->getAdapter();
     }
 
     public function insert(

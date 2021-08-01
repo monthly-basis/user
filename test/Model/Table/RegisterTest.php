@@ -2,6 +2,7 @@
 namespace MonthlyBasis\UserTest\Model\Table;
 
 use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Table as UserTable;
 
 class RegisterTest extends TableTestCase
@@ -10,7 +11,11 @@ class RegisterTest extends TableTestCase
     {
         $this->dropAndCreateTable('register');
 
-        $this->registerTable = new UserTable\Register($this->getAdapter());
+        $this->sql = new UserDb\Sql(
+            $this->getAdapter()
+        );
+
+        $this->registerTable = new UserTable\Register($this->sql);
     }
 
     public function testInsert()

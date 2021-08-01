@@ -395,7 +395,7 @@ class Module
                 },
                 UserTable\Register::class => function ($sm) {
                     return new UserTable\Register(
-                        $sm->get('user')
+                        $sm->get(UserDb\Sql::class)
                     );
                 },
                 UserTable\RegisterNotOldEnoughLog::class => function ($sm) {
