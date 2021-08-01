@@ -62,6 +62,10 @@ class Activate
                 $userId,
                 $email
             );
+            $this->registerTable->updateSetActivatedWhereRegisterId(
+                true,
+                $registerId,
+            );
         } catch (InvalidQueryException $exception) {
             $this->connection->rollback();
             return false;
