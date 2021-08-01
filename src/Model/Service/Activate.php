@@ -23,6 +23,14 @@ class Activate
 
     public function activate(int $registerId, string $activationCode): bool
     {
+        $result = $this->activateLogTable->selectCountWhereIpAddressAndSuccess(
+            $_SERVER['REMOTE_ADDR'],
+            false,
+        );
+        if ($result->current()['COUNT(*)'] >= 3) {
+            return false;
+        }
+
         $result = $this->registerTable->selectWhereRegisterIdAndActivationCode(
             $registerId,
             $activationCode
