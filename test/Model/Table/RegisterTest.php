@@ -83,4 +83,40 @@ class RegisterTest extends TableTestCase
             $result->current(),
         );
     }
+
+    public function test_updateSetActivatedWhereRegisterId()
+    {
+        $result = $this->registerTable->updateSetActivatedWhereRegisterId(
+            1,
+            true,
+        );
+        $this->assertSame(
+            0,
+            $result->getAffectedRows(),
+        );
+
+        $this->registerTable->insert(
+            'the-activation-code',
+            'username',
+            'test@example.com',
+            'the-password-hash',
+            '1920-07-29',
+        );
+        $result = $this->registerTable->updateSetActivatedWhereRegisterId(
+            1,
+            false,
+        );
+        $this->assertSame(
+            0,
+            $result->getAffectedRows(),
+        );
+        $result = $this->registerTable->updateSetActivatedWhereRegisterId(
+            1,
+            true,
+        );
+        $this->assertSame(
+            1,
+            $result->getAffectedRows(),
+        );
+    }
 }
