@@ -50,13 +50,14 @@ class Register
             $_POST['birthday-year'] . '-' . $_POST['birthday-month'] . '-' . $_POST['birthday-day']
         );
 
-        $registerId = $this->registerTable->insert(
+        $result = $this->registerTable->insert(
             $activationCode,
             $_POST['username'],
             $_POST['email'],
             $passwordHash,
             $dateTime->format('Y-m-d 00:00:00'),
         );
+        $registerId = (int) $result->getGeneratedValue();
 
         $this->conditionallySendService->conditionallySend(
             $_POST['email'],
