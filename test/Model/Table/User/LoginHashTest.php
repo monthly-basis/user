@@ -16,4 +16,33 @@ class LoginHashTest extends TableTestCase
         $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
     }
+
+    public function test_updateWhereUserId()
+    {
+        $this->assertFalse(
+            $this->loginHashTable->updateWhereUserId(
+                'the-login-hash',
+                1,
+            )
+        );
+
+        $this->userTable->insert(
+            'username',
+            'password-hash',
+            '1983-01-01 00:00:00',
+        );
+
+        $this->assertTrue(
+            $this->loginHashTable->updateWhereUserId(
+                'the-login-hash',
+                1,
+            )
+        );
+
+        $array = $this->userTable->selectWhereUserId(1);
+        $this->assertSame(
+            'the-login-hash',
+            $array['login_hash'],
+        );
+    }
 }
