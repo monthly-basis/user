@@ -32,22 +32,4 @@ class LoginHash
                            ->execute($parameters)
                            ->getAffectedRows();
     }
-
-    public function updateWhereUsername(string $loginHash, string $username)
-    {
-        $sql = '
-            UPDATE `user`
-               SET `user`.`login_hash` = :loginHash
-             WHERE `user`.`username` = :username
-                 ;
-        ';
-        $parameters = [
-            'loginHash' => $loginHash,
-            'username'  => $username,
-        ];
-        return (bool) $this->adapter
-                           ->query($sql)
-                           ->execute($parameters)
-                           ->getAffectedRows();
-    }
 }

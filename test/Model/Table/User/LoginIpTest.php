@@ -15,21 +15,4 @@ class LoginIpTest extends TableTestCase
         $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
     }
-
-    public function testUpdateWhereUsername()
-    {
-        $this->assertFalse(
-            $this->loginIpTable->updateWhereUsername('123.456.789.012', 'username')
-        );
-
-        $this->userTable->insert(
-            'username',
-            'password hash',
-            '1983-10-22',
-            'M'
-        );
-        $this->assertTrue(
-            $this->loginIpTable->updateWhereUsername('123.456.789.012', 'username')
-        );
-    }
 }
