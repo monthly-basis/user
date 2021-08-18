@@ -22,20 +22,28 @@ class UserTest extends TableTestCase
         $this->setForeignKeyChecks1();
     }
 
-    public function testInsert()
+    public function test_insert()
     {
-        $this->userTable->insert(
+        $userId = $this->userTable->insert(
             'username',
             'password hash',
             '1983-10-22',
             'M'
         );
+        $this->assertSame(
+            1,
+            $userId,
+        );
 
-        $this->userTable->insert(
+        $userId = $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
             'M'
+        );
+        $this->assertSame(
+            2,
+            $userId,
         );
 
         $this->assertSame(

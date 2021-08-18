@@ -34,15 +34,12 @@ class User
         ';
     }
 
-    /**
-     * @return int
-     */
     public function insert(
         string $username,
         string $passwordHash,
         string $birthday,
         string $gender = null
-    ) {
+    ): int {
         $sql = '
             INSERT
               INTO `user`
