@@ -10,10 +10,7 @@ use Laminas\Db\Adapter\Driver\Pdo\Result;
 
 class User
 {
-    /**
-     * @var Adapter
-     */
-    protected $adapter;
+    protected Adapter $adapter;
 
     public function __construct(Adapter $adapter)
     {
