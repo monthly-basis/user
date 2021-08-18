@@ -67,11 +67,6 @@ class User
                     ->getGeneratedValue();
     }
 
-    public function rollback()
-    {
-        $this->adapter->getDriver()->getConnection()->rollback();
-    }
-
     public function selectCount()
     {
         $sql = '
