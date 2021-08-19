@@ -3,22 +3,26 @@ namespace MonthlyBasis\UserTest\Model\Table;
 
 use ArrayObject;
 use Exception;
-use MonthlyBasis\User\Model\Table as UserTable;
-use MonthlyBasis\LaminasTest\TableTestCase;
 use Laminas\Db\Adapter\Adapter;
+use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Db as UserDb;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TableTestCase
 {
     protected function setUp(): void
     {
-        $this->userTable      = new UserTable\User($this->getAdapter());
-        $this->loginHashTable = new UserTable\User\LoginHash($this->getAdapter());
-        $this->loginIpTable   = new UserTable\User\LoginIp($this->getAdapter());
+        $this->sql = new UserDb\Sql(
+            $this->getAdapter()
+        );
+
+        $this->userTable    = new UserTable\User($this->getAdapter());
+        $this->loginIpTable = new UserTable\User\LoginIp($this->getAdapter());
+        $this->userIdTable  = new UserTable\User\UserId($this->sql);
 
         $this->setForeignKeyChecks0();
-        $this->dropTable('user');
-        $this->createTable('user');
+        $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
     }
 
@@ -95,7 +99,7 @@ class UserTest extends TableTestCase
         );
     }
 
-    public function testSelectWhereUserIdLoginHashLoginIp()
+    public function test_selectWhereUserIdLoginHashLoginIp()
     {
         try {
             $this->userTable->selectWhereUserIdLoginHash(
@@ -116,7 +120,7 @@ class UserTest extends TableTestCase
             '1983-10-22',
             'M'
         );
-        $this->loginHashTable->updateWhereUserId(
+        $this->userIdTable->updateSetLoginHashWhereUserId(
             'login-hash',
             1
         );
