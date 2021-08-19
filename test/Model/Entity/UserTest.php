@@ -12,15 +12,7 @@ class UserTest extends TestCase
         $this->userEntity = new UserEntity\User();
     }
 
-    public function testAttributes()
-    {
-        $this->assertObjectHasAttribute('userId', $this->userEntity);
-        $this->assertObjectHasAttribute('username', $this->userEntity);
-        $this->assertObjectHasAttribute('firstName', $this->userEntity);
-        $this->assertObjectHasAttribute('lastName', $this->userEntity);
-    }
-
-    public function testGettersAndSetters()
+    public function test_settersAndGetters()
     {
         $userId = 123;
         $this->userEntity->setUserId($userId);
