@@ -21,16 +21,16 @@ class LoggedInTest extends TestCase
     public function testIsLoggedInFalse()
     {
         unset($_COOKIE['user-id']);
-        unset($_COOKIE['loginHash']);
+        unset($_COOKIE['login-hash']);
         unset($_COOKIE['loginIp']);
 
         $this->assertFalse(
             $this->loggedInService->isLoggedIn()
         );
 
-        $_COOKIE['user-id']   = 123;
-        $_COOKIE['loginHash'] = 'login-hash';
-        $_COOKIE['loginIp']   = 'login-ip';
+        $_COOKIE['user-id']    = '123';
+        $_COOKIE['login-hash'] = 'login-hash';
+        $_COOKIE['loginIp']    = 'login-ip';
 
         $this->userTableMock->method('selectWhereUserIdLoginHash')->will(
             $this->onConsecutiveCalls(
@@ -58,9 +58,9 @@ class LoggedInTest extends TestCase
 
     public function testIsLoggedInTrue()
     {
-        $_COOKIE['user-id']   = 123;
-        $_COOKIE['loginHash'] = 'login-hash';
-        $_COOKIE['loginIp']   = 'login-ip';
+        $_COOKIE['user-id']    = '123';
+        $_COOKIE['login-hash'] = 'login-hash';
+        $_COOKIE['loginIp']    = 'login-ip';
 
         $this->userTableMock->method('selectWhereUserIdLoginHash')->willReturn(
             []

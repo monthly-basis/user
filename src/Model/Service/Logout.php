@@ -15,15 +15,15 @@ class Logout
         ];
 
         $name   = 'user-id';
-        $value  = 0;
+        $value  = '';
         setcookie(
             $name,
             $value,
             $options,
         );
 
-        $name   = 'loginHash';
-        $value  = 'login-hash';
+        $name   = 'login-hash';
+        $value  = '';
         setcookie(
             $name,
             $value,

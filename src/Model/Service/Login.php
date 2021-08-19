@@ -101,7 +101,7 @@ class Login
             $options,
         );
 
-        $name   = 'loginHash';
+        $name   = 'login-hash';
         $value  = $loginHash;
         setcookie(
             $name,
