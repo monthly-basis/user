@@ -18,7 +18,6 @@ class UserTest extends TableTestCase
         );
 
         $this->userTable    = new UserTable\User($this->getAdapter());
-        $this->loginIpTable = new UserTable\User\LoginIp($this->getAdapter());
         $this->userIdTable  = new UserTable\User\UserId($this->sql);
 
         $this->setForeignKeyChecks0();
@@ -124,7 +123,7 @@ class UserTest extends TableTestCase
             'login-hash',
             1
         );
-        $this->loginIpTable->updateWhereUserId(
+        $this->userIdTable->updateSetLoginIpWhereUserId(
             'login-ip',
             1
         );

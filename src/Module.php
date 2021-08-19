@@ -434,11 +434,6 @@ class Module
                         $sm->get('user')
                     );
                 },
-                UserTable\User\LoginIp::class => function ($sm) {
-                    return new UserTable\User\LoginIp(
-                        $sm->get('user')
-                    );
-                },
                 UserTable\User\PasswordHash::class => function ($sm) {
                     return new UserTable\User\PasswordHash(
                         $sm->get('user')
