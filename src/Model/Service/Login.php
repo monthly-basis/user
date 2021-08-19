@@ -18,7 +18,6 @@ class Login
         UserFactory\User $userFactory,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
-        UserTable\User\LoginIp $loginIpTable,
         UserTable\User\UserId $userIdTable
     ) {
         $this->flashService          = $flashService;
@@ -27,7 +26,6 @@ class Login
         $this->userFactory           = $userFactory;
         $this->userTable             = $userTable;
         $this->loginDateTimeTable    = $loginDateTimeTable;
-        $this->loginIpTable          = $loginIpTable;
         $this->userIdTable           = $userIdTable;
     }
 
@@ -69,7 +67,7 @@ class Login
             $loginHash,
             $userEntity->getUserId()
         );
-        $this->loginIpTable->updateWhereUserId(
+        $this->userIdTable->updateSetLoginIpWhereUserId(
             $loginIp,
             $userEntity->getUserId()
         );
