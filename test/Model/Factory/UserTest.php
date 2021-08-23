@@ -142,18 +142,19 @@ class UserTest extends TestCase
             $resultMock,
             [
                 [
-                    'user_id'         => 1,
+                    'user_id'         => '1',
                     'username'        => 'Testing123',
                     'welcome_message' => 'Welcome to my page.',
                 ]
             ],
         );
 
-        $userEntity = new UserEntity\User();
-        $userEntity->setUserId(1);
-        $userEntity->username = 'Testing123';
-        $userEntity->setViews(0);
-        $userEntity->setWelcomeMessage('Welcome to my page.');
+        $userEntity = (new UserEntity\User())
+            ->setUserId(1)
+            ->setUsername('Testing123')
+            ->setViews(0)
+            ->setWelcomeMessage('Welcome to my page.')
+            ;
 
         $this->userTableMock->method('selectWhereUsername')->willReturn(
             $resultMock
