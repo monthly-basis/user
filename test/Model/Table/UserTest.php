@@ -85,16 +85,30 @@ class UserTest extends TableTestCase
         }
     }
 
-    public function testSelectWhereUserId()
+    public function test_selectWhereUserId()
     {
+        $this->assertEmpty(
+            $this->userTable->selectWhereUserId(1)
+        );
+
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
             'M'
         );
-        $this->assertIsArray(
-            $this->userTable->selectWhereUserId(1)
+        $array = $this->userTable->selectWhereUserId(1)->current();
+        $this->assertSame(
+            [
+                'user_id'       => '1',
+                'username'      => 'LeoGalleguillos',
+                'password_hash' => 'abcdefg1234567890',
+            ],
+            [
+                'user_id'       => $array['user_id'],
+                'username'      => $array['username'],
+                'password_hash' => $array['password_hash'],
+            ]
         );
     }
 
@@ -180,10 +194,10 @@ class UserTest extends TableTestCase
             $this->userTable->updateViewsWhereUserId(1)
         );
 
-        $arrayObject = $this->userTable->selectWhereUserId(1);
+        $array = $this->userTable->selectWhereUserId(1)->current();
 
         $this->assertSame(
-            $arrayObject['views'],
+            $array['views'],
             '3'
         );
     }

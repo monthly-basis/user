@@ -47,7 +47,7 @@ class UserIdTest extends TableTestCase
             $result->getAffectedRows()
         );
 
-        $array = $this->userTable->selectWhereUserId(1);
+        $array = $this->userTable->selectWhereUserId(1)->current();
         $this->assertSame(
             'the-login-hash',
             $array['login_hash'],
@@ -80,7 +80,7 @@ class UserIdTest extends TableTestCase
             $result->getAffectedRows()
         );
 
-        $array = $this->userTable->selectWhereUserId(1);
+        $array = $this->userTable->selectWhereUserId(1)->current();
         $this->assertSame(
             '1.2.3.4',
             $array['login_ip'],

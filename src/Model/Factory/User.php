@@ -61,9 +61,10 @@ class User
             return $this->cache[$userId];
         }
 
-        $array = $this->userTable->selectWhereUserId(
-            $userId
-        );
+        $result = $this->userTable->selectWhereUserId($userId);
+        if (false == ($array = $result->current())) {
+            throw new UserException('Invalid User ID.');
+        }
         $userEntity = $this->buildFromArray($array);
 
         $this->cache[$userId] = $userEntity;
