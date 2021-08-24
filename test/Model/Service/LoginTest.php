@@ -141,6 +141,7 @@ class LoginTest extends TestCase
             $wrongPasswordResultMock,
             [
                 [
+                    'user_id'       => '2718',
                     'username'      => 'username',
                     'password_hash' => 'password-hash-which-does-not-match-incorrect-password',
                 ],
@@ -177,6 +178,7 @@ class LoginTest extends TestCase
             $correctUsernameAndPasswordResultMock,
             [
                 [
+                    'user_id'       => '2718',
                     'username'      => 'username',
                     'password_hash' => '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2',
                 ],
@@ -193,7 +195,8 @@ class LoginTest extends TestCase
             ;
         $this->userFactoryMock
              ->expects($this->once())
-             ->method('buildFromUsername')
+             ->method('buildFromUserId')
+             ->with(2718)
              ->willReturn($userEntity)
              ;
         $this->randomServiceMock

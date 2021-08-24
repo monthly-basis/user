@@ -45,7 +45,7 @@ class Login
             return false;
         }
 
-        $username     = $userArray['username'];
+        $userId       = $userArray['user_id'];
         $passwordHash = $userArray['password_hash'];
 
         if (!password_verify($_POST['password'], $passwordHash)) {
@@ -56,7 +56,7 @@ class Login
          * Credentials are valid. Update tables and set cookies.
          */
 
-        $userEntity = $this->userFactory->buildFromUsername($username);
+        $userEntity = $this->userFactory->buildFromUserId($userId);
         $loginHash  = $this->randomService->getRandomString(64);
         $loginIp    = $_SERVER['REMOTE_ADDR'];
 
