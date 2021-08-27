@@ -200,15 +200,24 @@ class LoginTest extends TestCase
              ->willReturn($userEntity)
              ;
         $this->randomServiceMock
-             ->expects($this->once())
+             ->expects($this->exactly(2))
              ->method('getRandomString')
              ->with(64)
-             ->willReturn('5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84')
+             ->will(
+                 $this->onConsecutiveCalls(
+                     '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84',
+                     'i8x33h0tbe0x7scgmh17vqlij0xwgpjbelq7g15a7u5jyxlxo2de7guflhxdvfl4',
+                 )
+             )
              ;
         $this->userIdTableMock
              ->expects($this->once())
-             ->method('updateSetLoginHashWhereUserId')
-             ->with('5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84', 123)
+             ->method('updateSetLoginHashHttpsTokenWhereUserId')
+             ->with(
+                 '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84',
+                 'i8x33h0tbe0x7scgmh17vqlij0xwgpjbelq7g15a7u5jyxlxo2de7guflhxdvfl4',
+                 123
+             )
              ;
         $this->userIdTableMock
              ->expects($this->once())

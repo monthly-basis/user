@@ -13,14 +13,16 @@ class UserId
         $this->sql = $sql;
     }
 
-    public function updateSetLoginHashWhereUserId(
+    public function updateSetLoginHashHttpsTokenWhereUserId(
         string $loginHash,
+        string $httpsToken,
         int $userId
     ): Result {
         $update = $this->sql
             ->update('user')
             ->set([
-               'login_hash' => $loginHash,
+               'login_hash'  => $loginHash,
+               'https_token' => $httpsToken,
             ])
             ->where([
                'user_id' => $userId,
