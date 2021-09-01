@@ -56,6 +56,13 @@ class UserTest extends TestCase
             $this->userEntity->getGender()
         );
 
+        $httpsToken = 'the-https-token';
+        $this->userEntity->setHttpsToken($httpsToken);
+        $this->assertSame(
+            $httpsToken,
+            $this->userEntity->getHttpsToken()
+        );
+
         $username = 'myusername';
         $this->userEntity->setUsername($username);
         $this->assertSame(
