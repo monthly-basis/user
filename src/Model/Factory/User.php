@@ -41,6 +41,9 @@ class User
         if (isset($array['gender'])) {
             $userEntity->setGender($array['gender']);
         }
+        if (isset($array['https_token'])) {
+            $userEntity->setHttpsToken($array['https_token']);
+        }
         if (isset($array['username'])) {
             $userEntity->setUsername($array['username']);
         }
