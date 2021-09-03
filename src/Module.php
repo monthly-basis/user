@@ -271,6 +271,7 @@ class Module
                         $sm->get(ReCaptchaService\Valid::class),
                         $sm->get(StringService\Random::class),
                         $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\Password\Valid::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\User\LoginDateTime::class),
                         $sm->get(UserTable\User\UserId::class),

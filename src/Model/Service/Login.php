@@ -16,6 +16,7 @@ class Login
         ReCaptchaService\Valid $validReCaptchaService,
         StringService\Random $randomService,
         UserFactory\User $userFactory,
+        UserService\Password\Valid $validService,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
         UserTable\User\UserId $userIdTable
@@ -24,6 +25,7 @@ class Login
         $this->validReCaptchaService = $validReCaptchaService;
         $this->randomService         = $randomService;
         $this->userFactory           = $userFactory;
+        $this->validService          = $validService;
         $this->userTable             = $userTable;
         $this->loginDateTimeTable    = $loginDateTimeTable;
         $this->userIdTable           = $userIdTable;
@@ -48,7 +50,7 @@ class Login
         $userId       = $userArray['user_id'];
         $passwordHash = $userArray['password_hash'];
 
-        if (!password_verify($_POST['password'], $passwordHash)) {
+        if (!$this->validService->isValid($_POST['password'], $passwordHash)) {
             return false;
         }
 
