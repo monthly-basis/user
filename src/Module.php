@@ -22,6 +22,26 @@ class Module
         return [
             'router' => [
                 'routes' => [
+                    'account' => [
+                        'type'    => Literal::class,
+                        'options' => [
+                            'route'    => '/account',
+                        ],
+                        'may_terminate' => false,
+                        'child_routes' => [
+                            'change-password' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/change-password',
+                                    'defaults' => [
+                                        'controller' => UserController\Account\ChangePassword::class,
+                                        'action'     => 'change-password',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                            ],
+                        ],
+                    ],
                     'activate' => [
                         'type'    => Segment::class,
                         'options' => [
@@ -166,6 +186,9 @@ class Module
     {
         return [
             'factories' => [
+                UserController\Account\ChangePassword::class => function ($sm) {
+                    return new UserController\Account\ChangePassword();
+                },
                 UserController\Activate::class => function ($sm) {
                     return new UserController\Activate(
                         $sm->get(UserService\Activate::class)
