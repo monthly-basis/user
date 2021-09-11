@@ -199,6 +199,7 @@ class Module
                 UserController\Account\ChangePassword::class => function ($sm) {
                     return new UserController\Account\ChangePassword(
                         $sm->get(UserService\LoggedIn::class),
+                        $sm->get(UserService\LoggedInUser::class),
                     );
                 },
                 UserController\Activate::class => function ($sm) {
