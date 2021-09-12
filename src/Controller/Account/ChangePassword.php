@@ -26,8 +26,17 @@ class ChangePassword extends AbstractActionController
 
     public function changePasswordAction()
     {
+        if (!empty($_POST)) {
+            return $this->postAction();
+        }
+
         return [
             'user' => $this->loggedInUserService->getLoggedInUser(),
         ];
+    }
+
+    protected function postAction()
+    {
+        exit('post detected');
     }
 }
