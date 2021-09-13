@@ -24,6 +24,7 @@ class Errors
             empty($_POST['current-password'])
             || empty($_POST['new-password'])
             || empty($_POST['confirm-new-password'])
+            || empty($_POST['https-token'])
         ) {
             $errors[] = 'Missing fields.';
             return $errors;
@@ -34,9 +35,13 @@ class Errors
             return $errors;
         }
 
+        $userEntity = $this->loggedInUserService->getLoggedInUser();
+
+        $userEntity->getHttpsToken();
+
         $isPasswordValid = $this->passwordValidService->isValid(
             $_POST['current-password'],
-            $this->loggedInUserService->getLoggedInUser()->getPasswordHash()
+            $userEntity->getPasswordHash()
         );
         if (!$isPasswordValid) {
             $errors[] = 'Current password is invalid.';
