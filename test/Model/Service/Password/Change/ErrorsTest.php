@@ -2,6 +2,7 @@
 namespace MonthlyBasis\UserTest\Model\Service\Password\Change;
 
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 
@@ -9,12 +10,20 @@ class ErrorsTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->validServiceMock = $this->createMock(
+        $this->reCaptchaValidServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
+        );
+        $this->loggedInUserServiceMock = $this->createMock(
+            UserService\LoggedInUser::class
+        );
+        $this->passwordValidServiceMock = $this->createMock(
+            UserService\Password\Valid::class
         );
 
         $this->errorsService = new UserService\Password\Change\Errors(
-            $this->validServiceMock,
+            $this->reCaptchaValidServiceMock,
+            $this->loggedInUserServiceMock,
+            $this->passwordValidServiceMock
         );
     }
 
@@ -26,7 +35,15 @@ class ErrorsTest extends TestCase
     {
         $_POST = [];
 
-        $this->validServiceMock
+        $this->loggedInUserServiceMock
+             ->expects($this->exactly(0))
+             ->method('getLoggedInUser')
+             ;
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(0))
+             ->method('isValid')
+             ;
+        $this->reCaptchaValidServiceMock
              ->expects($this->exactly(0))
              ->method('isValid')
              ;
@@ -43,15 +60,67 @@ class ErrorsTest extends TestCase
      * @preserveGlobalState disabled
      * @runInSeparateProcess
      */
+    public function test_getErrors_invalidPassword_errors()
+    {
+        $_POST['current-password']     = 'invalid current password';
+        $_POST['new-password']         = 'the new password';
+        $_POST['confirm-new-password'] = 'the new password';
+
+        $this->loggedInUserServiceMock
+             ->expects($this->exactly(1))
+             ->method('getLoggedInUser')
+             ->willReturn(
+                (new UserEntity\User())->setPasswordHash('the password hash')
+             )
+             ;
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(1))
+             ->method('isValid')
+             ->with(
+                 'invalid current password',
+                 'the password hash'
+             )
+             ->willReturn(false)
+             ;
+
+        $this->assertSame(
+            [
+                'Current password is invalid.',
+            ],
+            $this->errorsService->getErrors(),
+        );
+
+        $this->reCaptchaValidServiceMock
+             ->expects($this->exactly(0))
+             ->method('isValid')
+             ;
+    }
+
+    /**
+     * @preserveGlobalState disabled
+     * @runInSeparateProcess
+     */
     public function test_getErrors_newPasswordAndConfirmNewPasswordDoNotMatch_errors()
     {
-        $_POST['current-password']     = 'current password';
+        $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'a different new password';
 
-        $this->validServiceMock
-             ->expects($this->exactly(0))
+        $this->loggedInUserServiceMock
+             ->expects($this->exactly(1))
+             ->method('getLoggedInUser')
+             ->willReturn(
+                (new UserEntity\User())->setPasswordHash('the password hash')
+             )
+             ;
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(1))
              ->method('isValid')
+             ->with(
+                 'correct current password',
+                 'the password hash'
+             )
+             ->willReturn(true)
              ;
 
         $this->assertSame(
@@ -60,6 +129,11 @@ class ErrorsTest extends TestCase
             ],
             $this->errorsService->getErrors(),
         );
+
+        $this->reCaptchaValidServiceMock
+             ->expects($this->exactly(0))
+             ->method('isValid')
+             ;
     }
 
     /**
@@ -68,11 +142,27 @@ class ErrorsTest extends TestCase
      */
     public function test_getErrors_invalidReCaptcha_errors()
     {
-        $_POST['current-password']     = 'current password';
+        $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'the new password';
 
-        $this->validServiceMock
+        $this->loggedInUserServiceMock
+             ->expects($this->exactly(1))
+             ->method('getLoggedInUser')
+             ->willReturn(
+                (new UserEntity\User())->setPasswordHash('the password hash')
+             )
+             ;
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(1))
+             ->method('isValid')
+             ->with(
+                 'correct current password',
+                 'the password hash'
+             )
+             ->willReturn(true)
+             ;
+        $this->reCaptchaValidServiceMock
              ->expects($this->once())
              ->method('isValid')
              ->willReturn(false)
@@ -86,13 +176,33 @@ class ErrorsTest extends TestCase
         );
     }
 
+    /**
+     * @preserveGlobalState disabled
+     * @runInSeparateProcess
+     */
     public function test_getErrors_everythingValid_emptyArray()
     {
-        $_POST['current-password']     = 'current password';
+        $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'the new password';
 
-        $this->validServiceMock
+        $this->loggedInUserServiceMock
+             ->expects($this->exactly(1))
+             ->method('getLoggedInUser')
+             ->willReturn(
+                (new UserEntity\User())->setPasswordHash('the password hash')
+             )
+             ;
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(1))
+             ->method('isValid')
+             ->with(
+                 'correct current password',
+                 'the password hash'
+             )
+             ->willReturn(true)
+             ;
+        $this->reCaptchaValidServiceMock
              ->expects($this->once())
              ->method('isValid')
              ->willReturn(true)

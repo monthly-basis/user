@@ -7,9 +7,13 @@ use MonthlyBasis\User\Model\Service as UserService;
 class Errors
 {
     public function __construct(
-        ReCaptchaService\Valid $validService
+        ReCaptchaService\Valid $reCaptchaValid,
+        UserService\LoggedInUser $loggedInUserService,
+        UserService\Password\Valid $passwordValidService
     ) {
-        $this->validService = $validService;
+        $this->reCaptchaValid       = $reCaptchaValid;
+        $this->loggedInUserService  = $loggedInUserService;
+        $this->passwordValidService = $passwordValidService;
     }
 
     public function getErrors(): array
@@ -25,12 +29,21 @@ class Errors
             return $errors;
         }
 
+        $isPasswordValid = $this->passwordValidService->isValid(
+            $_POST['current-password'],
+            $this->loggedInUserService->getLoggedInUser()->getPasswordHash()
+        );
+        if (!$isPasswordValid) {
+            $errors[] = 'Current password is invalid.';
+            return $errors;
+        }
+
         if ($_POST['new-password'] != $_POST['confirm-new-password']) {
             $errors[] = 'New password and confirm new password do not match.';
             return $errors;
         }
 
-        if (!$this->validService->isValid()) {
+        if (!$this->reCaptchaValid->isValid()) {
             $errors[] = 'Invalid reCAPTCHA.';
         }
 
