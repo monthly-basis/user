@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Controller\Account;
 
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
+use Laminas\View\Model\ViewModel;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\User\Model\Service as UserService;
 
@@ -50,8 +51,8 @@ class ChangePassword extends AbstractActionController
             return $this->redirect()->toRoute('account/change-password')->setStatusCode(303);
         }
 
-        // return success view model
-
-        exit;
+        return (new ViewModel())
+            ->setTemplate('monthly-basis/user/account/change-password/success')
+            ;
     }
 }
