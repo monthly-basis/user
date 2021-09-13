@@ -19,7 +19,10 @@ class User
     {
         $userEntity = new UserEntity\User();
 
-        $userEntity->setUserId($array['user_id']);
+        $userEntity
+            ->setPasswordHash($array['password_hash'])
+            ->setUserId($array['user_id'])
+            ;
 
         if (isset($array['created'])) {
             $userEntity->setCreated(

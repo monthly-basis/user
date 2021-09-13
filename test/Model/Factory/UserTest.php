@@ -28,6 +28,7 @@ class UserTest extends TestCase
         $array = [
             'display_name'    => 'Display Name',
             'https_token'     => 'the-https-token',
+            'password_hash'   => 'the password hash',
             'user_id'         => 1,
             'username'        => 'Testing123',
             'welcome_message' => 'Welcome to my page.',
@@ -35,6 +36,7 @@ class UserTest extends TestCase
         $userEntity = (new UserEntity\User())
             ->setDisplayName($array['display_name'])
             ->setHttpsToken($array['https_token'])
+            ->setPasswordHash($array['password_hash'])
             ->setUserId($array['user_id'])
             ->setUsername($array['username'])
             ->setWelcomeMessage($array['welcome_message'])
@@ -47,14 +49,17 @@ class UserTest extends TestCase
         $array = [
             'display_name'    => 'Hello World',
             'gender'          => 'M',
+            'password_hash'   => 'the password hash',
             'user_id'         => 5,
             'username'        => 'Testing123',
         ];
-        $userEntity = new UserEntity\User();
-        $userEntity->setDisplayName($array['display_name'])
-                   ->setGender($array['gender'])
-                   ->setUserId($array['user_id'])
-                   ->setUsername($array['username']);
+        $userEntity = (new UserEntity\User())
+            ->setDisplayName($array['display_name'])
+            ->setGender($array['gender'])
+            ->setPasswordHash($array['password_hash'])
+            ->setUserId($array['user_id'])
+            ->setUsername($array['username'])
+        ;
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArray($array)
@@ -91,6 +96,7 @@ class UserTest extends TestCase
             $resultMock,
             [
                 [
+                    'password_hash'   => 'the password hash',
                     'user_id'         => '1',
                     'username'        => 'Testing123',
                     'welcome_message' => 'Welcome to my page.',
@@ -99,6 +105,7 @@ class UserTest extends TestCase
         );
 
         $userEntity = (new UserEntity\User())
+            ->setPasswordHash('the password hash')
             ->setUserId(1)
             ->setUsername('Testing123')
             ->setViews(0)
@@ -147,12 +154,14 @@ class UserTest extends TestCase
                 [
                     'user_id'         => '1',
                     'username'        => 'Testing123',
+                    'password_hash'   => 'the password hash',
                     'welcome_message' => 'Welcome to my page.',
                 ]
             ],
         );
 
         $userEntity = (new UserEntity\User())
+            ->setPasswordHash('the password hash')
             ->setUserId(1)
             ->setUsername('Testing123')
             ->setViews(0)
