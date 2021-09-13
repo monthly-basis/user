@@ -8,7 +8,6 @@ use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
-use Laminas\View\Model\ViewModel;
 
 class Code extends AbstractActionController
 {
