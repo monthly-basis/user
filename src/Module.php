@@ -198,8 +198,10 @@ class Module
             'factories' => [
                 UserController\Account\ChangePassword::class => function ($sm) {
                     return new UserController\Account\ChangePassword(
+                        $sm->get(FlashService\Flash::class),
                         $sm->get(UserService\LoggedIn::class),
                         $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Change\Errors::class),
                     );
                 },
                 UserController\Activate::class => function ($sm) {
