@@ -207,7 +207,7 @@ class UserTest extends TableTestCase
     {
         $this->userTable->insert(
             'LeoGalleguillos',
-            'abcdefg1234567890',
+            '$2y$10$O924SwQ3ywmO60CPLN/Co.WM4snlusFP7ppRVQflwxBlfGSrZypSK',
             '1983-10-22',
             'M'
         );
