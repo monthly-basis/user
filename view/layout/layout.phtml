@@ -1,9 +1,14 @@
+<?php
+if (empty($htmlHeadTitle)) {
+    $htmlHeadTitle = 'monthly-basis/user';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
 
-        <title>monthly-basis/user</title>
+        <title><?= $this->escape($htmlHeadTitle); ?></title>
 
         <?php if (isset($htmlHeadAppend)): ?>
             <?= $htmlHeadAppend ?>
