@@ -37,7 +37,10 @@ class Errors
 
         $userEntity = $this->loggedInUserService->getLoggedInUser();
 
-        $userEntity->getHttpsToken();
+        if ($_POST['https-token'] != $userEntity->getHttpsToken()) {
+            $errors[] = 'Invalid credentials.';
+            return $errors;
+        }
 
         $isPasswordValid = $this->passwordValidService->isValid(
             $_POST['current-password'],
