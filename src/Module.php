@@ -333,6 +333,11 @@ class Module
                 UserService\Logout::class => function ($sm) {
                     return new UserService\Logout();
                 },
+                UserService\Password\Change::class => function ($sm) {
+                    return new UserService\Password\Change(
+                        $sm->get(UserTable\User\UserId::class)
+                    );
+                },
                 UserService\Password\Change\Errors::class => function ($sm) {
                     return new UserService\Password\Change\Errors(
                         $sm->get(ReCaptchaService\Valid::class),
