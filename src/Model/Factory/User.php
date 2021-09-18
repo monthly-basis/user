@@ -19,10 +19,7 @@ class User
     {
         $userEntity = new UserEntity\User();
 
-        $userEntity
-            ->setPasswordHash($array['password_hash'])
-            ->setUserId($array['user_id'])
-            ;
+        $userEntity->setUserId($array['user_id']);
 
         if (isset($array['created'])) {
             $userEntity->setCreated(
@@ -46,6 +43,9 @@ class User
         }
         if (isset($array['https_token'])) {
             $userEntity->setHttpsToken($array['https_token']);
+        }
+        if (isset($array['password_hash'])) {
+            $userEntity->setPasswordHash($array['password_hash']);
         }
         if (isset($array['username'])) {
             $userEntity->setUsername($array['username']);
