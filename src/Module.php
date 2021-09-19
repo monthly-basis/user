@@ -62,6 +62,16 @@ class Module
                             ],
                         ],
                     ],
+                    'logout' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/logout',
+                            'defaults' => [
+                                'controller' => UserController\Logout::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
                     'sign-up' => [
                         'type'    => Segment::class,
                         'options' => [
@@ -218,6 +228,11 @@ class Module
                         $sm->get(UserService\LoggedInUser::class),
                         $sm->get(UserService\Login::class),
                         $sm->get(UserTable\LoginLog::class),
+                    );
+                },
+                UserController\Logout::class => function ($sm) {
+                    return new UserController\Logout(
+                        $sm->get(UserService\Logout::class),
                     );
                 },
                 UserController\SignUp::class => function ($sm) {
