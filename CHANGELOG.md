@@ -2,7 +2,7 @@
 
 ## v2.8.5
 
-- Add `https_token` column to `user` table
+- ALTER TABLE `user` ADD COLUMN `https_token` varchar(64) DEFAULT NULL AFTER `login_ip`;
 
 ## v2.8.0
 
