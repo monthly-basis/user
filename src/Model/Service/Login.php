@@ -62,6 +62,7 @@ class Login
         $loginHash  = $this->randomService->getRandomString(64);
         $loginIp    = $_SERVER['REMOTE_ADDR'];
         $httpsToken = $this->randomService->getRandomString(64);
+        $expires    = empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60;
 
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
             $userEntity->getUserId()
@@ -80,6 +81,7 @@ class Login
             $userEntity,
             $loginHash,
             $httpsToken,
+            $expires,
         );
 
         return true;
@@ -88,10 +90,11 @@ class Login
     protected function setCookies(
         UserEntity\User $userEntity,
         string $loginHash,
-        string $httpsToken
+        string $httpsToken,
+        int $expires
     ) {
         $options = [
-            'expires'  => empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60,
+            'expires'  => $expires,
             'path'     => '/',
             'domain'   => $_SERVER['HTTP_HOST'],
             'secure'   => true,
