@@ -17,20 +17,20 @@ class Login
         StringService\Random $randomService,
         UserFactory\User $userFactory,
         UserService\Password\Valid $validService,
-        UserTable\LoginToken $loginTokenTable,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
-        UserTable\User\UserId $userIdTable
+        UserTable\User\UserId $userIdTable,
+        UserTable\UserToken $userTokenTable
     ) {
         $this->flashService          = $flashService;
         $this->validReCaptchaService = $validReCaptchaService;
         $this->randomService         = $randomService;
         $this->userFactory           = $userFactory;
         $this->validService          = $validService;
-        $this->loginTokenTable       = $loginTokenTable;
         $this->userTable             = $userTable;
         $this->loginDateTimeTable    = $loginDateTimeTable;
         $this->userIdTable           = $userIdTable;
+        $this->userTokenTable        = $userTokenTable;
     }
 
     public function login(): bool
@@ -77,7 +77,7 @@ class Login
             $loginIp,
             $userEntity->getUserId()
         );
-        $this->loginTokenTable->insert([
+        $this->userTokenTable->insert([
             'login_token' => $loginHash,
             'login_ip'    => $_SERVER['REMOTE_ADDR'],
             'user_id'     => $userId,

@@ -336,10 +336,10 @@ class Module
                         $sm->get(StringService\Random::class),
                         $sm->get(UserFactory\User::class),
                         $sm->get(UserService\Password\Valid::class),
-                        $sm->get(UserTable\LoginToken::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\User\LoginDateTime::class),
                         $sm->get(UserTable\User\UserId::class),
+                        $sm->get(UserTable\UserToken::class),
                     );
                 },
                 UserService\Login\ShouldRedirectToReferer::class => function ($sm) {
@@ -475,8 +475,8 @@ class Module
                         $sm->get('user')
                     );
                 },
-                UserTable\LoginToken::class => function ($sm) {
-                    return new UserTable\LoginToken(
+                UserTable\UserToken::class => function ($sm) {
+                    return new UserTable\UserToken(
                         $sm->get(UserDb\Sql::class)
                     );
                 },
