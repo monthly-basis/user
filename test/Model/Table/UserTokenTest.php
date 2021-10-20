@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Table;
 
+use DateTime;
 use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
 use MonthlyBasis\User\Model\Db as UserDb;
@@ -20,13 +21,12 @@ class UserTokenTest extends TableTestCase
 
     public function test_insert()
     {
-        $result = $this->userTokenTable->insert([
-            'user_id'     => 12345,
-            'login_token' => 'the-login-token',
-            'https_token' => 'the-https-token',
-            'created'     => '2021-10-19 07:30:13',
-            'expires'     => '2021-01-19 07:30:13',
-        ]);
+        $result = $this->userTokenTable->insert(
+            12345,
+            'the-login-token',
+            'the-https-token',
+            new DateTime('2021-01-19 07:30:13'),
+        );
 
         $this->assertSame(
             '1',
@@ -37,12 +37,12 @@ class UserTokenTest extends TableTestCase
             $result->getAffectedRows()
         );
 
-        $result = $this->userTokenTable->insert([
-            'user_id'     => 12345,
-            'login_token' => 'the-login-token',
-            'https_token' => 'the-https-token',
-            'expires'     => '2021-01-19 07:30:13',
-        ]);
+        $result = $this->userTokenTable->insert(
+            12345,
+            'another-login-token',
+            'another-https-token',
+            new DateTime('2021-01-19 07:30:13'),
+        );
 
         $this->assertSame(
             '2',

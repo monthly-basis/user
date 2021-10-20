@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\User\Model\Table;
 
+use DateTime;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\User\Model\Db as UserDb;
 
@@ -14,12 +15,20 @@ class UserToken
     }
 
     public function insert(
-        array $array
+        int $userId,
+        string $loginToken,
+        string $httpsToken,
+        DateTime $expires
     ): Result {
         $insert = $this->sql
              ->insert()
              ->into('user_token')
-             ->values($array)
+             ->values([
+                'user_id'     => $userId,
+                'login_token' => $loginToken,
+                'https_token' => $httpsToken,
+                'expires'     => $expires->format('Y-m-d H:i:s'),
+             ])
              ;
         return $this->sql->prepareStatementForSqlObject($insert)->execute();
     }
