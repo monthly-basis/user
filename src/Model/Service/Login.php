@@ -79,7 +79,6 @@ class Login
         );
         $this->userTokenTable->insert([
             'login_token' => $loginHash,
-            'login_ip'    => $_SERVER['REMOTE_ADDR'],
             'user_id'     => $userId,
             'expires'     => (new \DateTime())->modify('+30 days')->format('Y-m-d H:i:s'),
         ]);
