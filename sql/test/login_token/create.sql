@@ -3,7 +3,7 @@ CREATE TABLE `login_token` (
     `login_token` varchar(256) DEFAULT NULL,
     `login_ip` varchar(45) NOT NULL,
     `user_id` int unsigned NOT NULL,
-    `created` datetime NOT NULL,
+    `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `expires` datetime NOT NULL,
     `deleted` datetime DEFAULT NULL,
     PRIMARY KEY (`login_token_id`),
