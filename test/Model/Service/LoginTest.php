@@ -38,6 +38,9 @@ class LoginTest extends TestCase
         $this->validServiceMock = $this->createMock(
             UserService\Password\Valid::class
         );
+        $this->loginTokenTableMock = $this->createMock(
+            UserTable\LoginToken::class
+        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -53,6 +56,7 @@ class LoginTest extends TestCase
             $this->randomServiceMock,
             $this->userFactoryMock,
             $this->validServiceMock,
+            $this->loginTokenTableMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
             $this->userIdTableMock,
@@ -245,6 +249,20 @@ class LoginTest extends TestCase
              ->expects($this->once())
              ->method('updateSetLoginIpWhereUserId')
              ->with('123.123.123.123', 123)
+             ;
+        $this->loginTokenTableMock
+             ->expects($this->once())
+             ->method('insert')
+             ->with(
+                $this->callback(function ($array) {
+                    return (
+                        $array['login_token'] == '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84'
+                        && $array['login_ip'] == '123.123.123.123'
+                        && $array['user_id']  == '2718'
+                        && is_string($array['expires'])
+                    );
+                })
+             )
              ;
 
         $this->assertTrue(
