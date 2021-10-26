@@ -5,6 +5,11 @@ class Logout
 {
     public function logout(): void
     {
+        $names = [
+            'https-token',
+            'login-hash',
+            'user-id',
+        ];
         $options = [
             'expires'  => time() - 3600,
             'path'     => '/',
@@ -13,21 +18,14 @@ class Logout
             'httponly' => true,
             'samesite' => 'Strict',
         ];
-
-        $name   = 'user-id';
         $value  = '';
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
 
-        $name   = 'login-hash';
-        $value  = '';
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
+        foreach ($names as $name) {
+            setcookie(
+                $name,
+                $value,
+                $options,
+            );
+        }
     }
 }
