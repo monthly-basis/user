@@ -13,7 +13,7 @@ class UserIdTest extends TableTestCase
             $this->getAdapter()
         );
 
-        $this->userTable   = new UserTable\User($this->getAdapter());
+        $this->userTable   = new UserTable\User($this->sql);
         $this->userIdTable = new UserTable\User\UserId($this->sql);
 
         $this->setForeignKeyChecks0();

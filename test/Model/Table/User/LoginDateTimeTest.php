@@ -2,13 +2,17 @@
 namespace MonthlyBasis\UserTest\Model\Table\User;
 
 use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Table as UserTable;
 
 class LoginDateTimeTest extends TableTestCase
 {
     protected function setUp(): void
     {
-        $this->userTable = new UserTable\User($this->getAdapter());
+        $this->sql = new UserDb\Sql(
+            $this->getAdapter()
+        );
+        $this->userTable = new UserTable\User($this->sql);
         $this->loginDateTimeTable = new UserTable\User\LoginDateTime($this->getAdapter());
 
         $this->setForeignKeyChecks0();
