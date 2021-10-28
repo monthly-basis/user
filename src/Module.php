@@ -232,6 +232,7 @@ class Module
                 },
                 UserController\Logout::class => function ($sm) {
                     return new UserController\Logout(
+                        $sm->get(UserService\LoggedInUser::class),
                         $sm->get(UserService\Logout::class),
                     );
                 },

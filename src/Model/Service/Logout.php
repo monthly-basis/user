@@ -1,9 +1,11 @@
 <?php
 namespace MonthlyBasis\User\Model\Service;
 
+use MonthlyBasis\User\Model\Entity as UserEntity;
+
 class Logout
 {
-    public function logout(): void
+    public function logout(UserEntity\User $userEntity): void
     {
         $names = [
             'https-token',
