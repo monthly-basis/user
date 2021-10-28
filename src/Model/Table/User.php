@@ -4,7 +4,6 @@ namespace MonthlyBasis\User\Model\Table;
 use ArrayObject;
 use Exception;
 use Generator;
-use TypeError;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\User\Model\Db as UserDb;
