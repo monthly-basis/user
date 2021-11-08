@@ -138,10 +138,6 @@ class UserTest extends TableTestCase
             'https-token',
             1
         );
-        $this->userIdTable->updateSetLoginIpWhereUserId(
-            'login-ip',
-            1
-        );
         $array = $this->userTable->selectWhereUserIdLoginHash(
             1,
             'login-hash'

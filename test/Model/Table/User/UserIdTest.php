@@ -98,37 +98,4 @@ class UserIdTest extends TableTestCase
             ]
         );
     }
-
-    public function test_updateSetLoginIpWhereUserId()
-    {
-        $result = $this->userIdTable->updateSetLoginIpWhereUserId(
-            '1.2.3.4',
-            1,
-        );
-        $this->assertSame(
-            0,
-            $result->getAffectedRows()
-        );
-
-        $this->userTable->insert(
-            'username',
-            'password-hash',
-            '1983-01-01 00:00:00',
-        );
-
-        $result = $this->userIdTable->updateSetLoginIpWhereUserId(
-            '1.2.3.4',
-            1,
-        );
-        $this->assertSame(
-            1,
-            $result->getAffectedRows()
-        );
-
-        $array = $this->userTable->selectWhereUserId(1)->current();
-        $this->assertSame(
-            '1.2.3.4',
-            $array['login_ip'],
-        );
-    }
 }

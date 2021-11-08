@@ -8,7 +8,6 @@ CREATE TABLE `user` (
     `welcome_message` text default null,
     `login_datetime` datetime default null,
     `login_hash` varchar(255) default null,
-    `login_ip` varchar(45) default null,
     `https_token` varchar(64) DEFAULT NULL,
     `views` int unsigned not null default 0,
     `created` datetime not null,

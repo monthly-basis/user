@@ -46,20 +46,4 @@ class UserId
             ;
         return $this->sql->prepareStatementForSqlObject($update)->execute();
     }
-
-    public function updateSetLoginIpWhereUserId(
-        string $loginIp,
-        int $userId
-    ): Result {
-        $update = $this->sql
-            ->update('user')
-            ->set([
-               'login_ip' => $loginIp,
-            ])
-            ->where([
-               'user_id' => $userId,
-            ])
-            ;
-        return $this->sql->prepareStatementForSqlObject($update)->execute();
-    }
 }
