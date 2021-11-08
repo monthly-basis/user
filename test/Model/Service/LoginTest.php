@@ -32,9 +32,6 @@ class LoginTest extends TestCase
         $this->randomServiceMock = $this->createMock(
             StringService\Random::class
         );
-        $this->userFactoryMock = $this->createMock(
-            UserFactory\User::class
-        );
         $this->validServiceMock = $this->createMock(
             UserService\Password\Valid::class
         );
@@ -55,7 +52,6 @@ class LoginTest extends TestCase
             $this->flashServiceMock,
             $this->validReCaptchaServiceMock,
             $this->randomServiceMock,
-            $this->userFactoryMock,
             $this->validServiceMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
@@ -216,16 +212,6 @@ class LoginTest extends TestCase
              )
              ->willReturn(true)
              ;
-        $userEntity = (new UserEntity\User())
-            ->setUserId(123)
-            ->setUsername('username')
-            ;
-        $this->userFactoryMock
-             ->expects($this->once())
-             ->method('buildFromUserId')
-             ->with(2718)
-             ->willReturn($userEntity)
-             ;
         $this->randomServiceMock
              ->expects($this->exactly(2))
              ->method('getRandomString')
@@ -243,7 +229,7 @@ class LoginTest extends TestCase
              ->with(
                  '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84',
                  'i8x33h0tbe0x7scgmh17vqlij0xwgpjbelq7g15a7u5jyxlxo2de7guflhxdvfl4',
-                 123
+                 2718
              )
              ;
         $this->userTokenTableMock

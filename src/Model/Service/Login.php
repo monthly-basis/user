@@ -15,7 +15,6 @@ class Login
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validReCaptchaService,
         StringService\Random $randomService,
-        UserFactory\User $userFactory,
         UserService\Password\Valid $validService,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
@@ -25,7 +24,6 @@ class Login
         $this->flashService          = $flashService;
         $this->validReCaptchaService = $validReCaptchaService;
         $this->randomService         = $randomService;
-        $this->userFactory           = $userFactory;
         $this->validService          = $validService;
         $this->userTable             = $userTable;
         $this->loginDateTimeTable    = $loginDateTimeTable;
@@ -60,18 +58,17 @@ class Login
          * Credentials are valid. Update tables and set cookies.
          */
 
-        $userEntity = $this->userFactory->buildFromUserId($userId);
         $loginHash  = $this->randomService->getRandomString(64);
         $loginIp    = $_SERVER['REMOTE_ADDR'];
         $httpsToken = $this->randomService->getRandomString(64);
 
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
-            $userEntity->getUserId()
+            $userId
         );
         $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
             $loginHash,
             $httpsToken,
-            $userEntity->getUserId()
+            $userId
         );
         $this->userTokenTable->insert(
             $userId,
@@ -81,7 +78,7 @@ class Login
         );
 
         $this->setCookies(
-            $userEntity,
+            $userId,
             $loginHash,
             $httpsToken,
         );
@@ -90,12 +87,12 @@ class Login
     }
 
     protected function setCookies(
-        UserEntity\User $userEntity,
+        int $userId,
         string $loginHash,
         string $httpsToken
     ) {
         $namesAndValues = [
-            'user-id'     => $userEntity->getUserId(),
+            'user-id'     => $userId,
             'login-hash'  => $loginHash,
             'login-token' => $loginHash,
             'https-token' => $httpsToken,
