@@ -94,6 +94,12 @@ class Login
         string $loginHash,
         string $httpsToken
     ) {
+        $namesAndValues = [
+            'user-id'     => $userEntity->getUserId(),
+            'login-hash'  => $loginHash,
+            'https-token' => $httpsToken,
+        ];
+
         $options = [
             'expires'  => empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60,
             'path'     => '/',
@@ -103,28 +109,12 @@ class Login
             'samesite' => 'Strict',
         ];
 
-        $name   = 'user-id';
-        $value  = $userEntity->getUserId();
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
-
-        $name   = 'login-hash';
-        $value  = $loginHash;
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
-
-        $name  = 'https-token';
-        $value = $httpsToken;
-        setcookie(
-            $name,
-            $value,
-            $options,
-        );
+        foreach ($namesAndValues as $name => $value) {
+            setcookie(
+                $name,
+                $value,
+                $options,
+            );
+        }
     }
 }
