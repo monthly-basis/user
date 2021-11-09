@@ -1,7 +1,6 @@
 <?php
 namespace MonthlyBasis\User\Model\Service;
 
-use Exception;
 use MonthlyBasis\User\Model\Table as UserTable;
 
 class LoggedIn
@@ -9,30 +8,31 @@ class LoggedIn
     protected $isLoggedIn;
 
     public function __construct(
-        UserTable\User $userTable
+        UserTable\UserUserToken $userUserTokenTable
     ) {
-        $this->userTable = $userTable;
+        $this->userUserTokenTable = $userUserTokenTable;
     }
 
-    public function isLoggedIn() : bool
+    public function isLoggedIn(): bool
     {
         if (isset($this->isLoggedIn)) {
             return $this->isLoggedIn;
         }
 
-        if (empty($_COOKIE['user-id'])
-            || empty($_COOKIE['login-hash'])
+        if (
+            empty($_COOKIE['user-id'])
+            || empty($_COOKIE['login-token'])
         ) {
             $this->isLoggedIn = false;
             return $this->isLoggedIn;
         }
 
-        try {
-            $this->userTable->selectWhereUserIdLoginHash(
-                $_COOKIE['user-id'],
-                $_COOKIE['login-hash']
-            );
-        } catch (Exception $exception) {
+        $result = $this->userUserTokenTable->selectWhereUserIdLoginTokenExpiresDeleted(
+            $_COOKIE['user-id'],
+            $_COOKIE['login-token']
+        );
+
+        if (empty($result->current())) {
             $this->isLoggedIn = false;
             return $this->isLoggedIn;
         }

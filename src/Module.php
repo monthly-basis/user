@@ -320,7 +320,7 @@ class Module
                 },
                 UserService\LoggedIn::class => function ($sm) {
                     return new UserService\LoggedIn(
-                        $sm->get(UserTable\User::class)
+                        $sm->get(UserTable\UserUserToken::class)
                     );
                 },
                 UserService\LoggedInUser::class => function ($sm) {

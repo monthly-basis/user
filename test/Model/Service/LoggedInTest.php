@@ -1,7 +1,8 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Service;
 
-use Exception;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
@@ -10,58 +11,78 @@ class LoggedInTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->userTableMock = $this->createMock(
-            UserTable\User::class
+        $this->userUserTokenTableMock = $this->createMock(
+            UserTable\UserUserToken::class
         );
         $this->loggedInService = new UserService\LoggedIn(
-            $this->userTableMock
+            $this->userUserTokenTableMock
         );
     }
 
-    public function testIsLoggedInFalse()
+    public function test_isLoggedIn_missingCookies_false()
     {
         unset($_COOKIE['user-id']);
-        unset($_COOKIE['login-hash']);
+        unset($_COOKIE['login-token']);
 
-        $this->assertFalse(
-            $this->loggedInService->isLoggedIn()
-        );
-
-        $_COOKIE['user-id']    = '123';
-        $_COOKIE['login-hash'] = 'login-hash';
-
-        $this->userTableMock->method('selectWhereUserIdLoginHash')->will(
-            $this->onConsecutiveCalls(
-                $this->throwException(new Exception()),
-                [],
-                $this->throwException(new Exception())
-            )
-        );
-
-        $this->assertFalse(
-            $this->loggedInService->isLoggedIn()
-        );
-
-        /*
-         * Should be false even though table mock returns array
-         * since result is cached as false in service.
-         */
-        $this->assertFalse(
-            $this->loggedInService->isLoggedIn()
-        );
         $this->assertFalse(
             $this->loggedInService->isLoggedIn()
         );
     }
 
-    public function testIsLoggedInTrue()
+    public function test_isLoggedIn_emptyResult_false()
     {
-        $_COOKIE['user-id']    = '123';
-        $_COOKIE['login-hash'] = 'login-hash';
+        $_COOKIE['user-id']     = '123';
+        $_COOKIE['login-token'] = 'the-login-token';
 
-        $this->userTableMock->method('selectWhereUserIdLoginHash')->willReturn(
-            []
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
         );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [],
+        );
+
+        $this->userUserTokenTableMock
+            ->expects($this->once())
+            ->method('selectWhereUserIdLoginTokenExpiresDeleted')
+            ->with(123, 'the-login-token')
+            ->willReturn($resultMock)
+             ;
+
+        $this->assertFalse(
+            $this->loggedInService->isLoggedIn()
+        );
+    }
+
+    public function test_isLoggedIn_validCookiesNonEmptyResult_true()
+    {
+        $_COOKIE['user-id']     = '123';
+        $_COOKIE['login-token'] = 'the-login-token';
+
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [
+                [
+                    'user_id'       => '1',
+                    'username'      => 'username',
+                    'password_hash' => 'the-password-hash',
+                    'login_token'   => 'the-login-token',
+                    'https_token'   => 'the-https-token',
+                ],
+            ],
+        );
+
+        $this->userUserTokenTableMock
+            ->expects($this->once())
+            ->method('selectWhereUserIdLoginTokenExpiresDeleted')
+            ->with(123, 'the-login-token')
+            ->willReturn($resultMock)
+             ;
 
         $this->assertTrue(
             $this->loggedInService->isLoggedIn()
