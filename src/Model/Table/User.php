@@ -19,6 +19,25 @@ class User
         $this->adapter = $this->sql->getAdapter();
     }
 
+    public function getColumns(): array
+    {
+        return [
+            'user_id',
+            'username',
+            'password_hash',
+            'gender',
+            'display_name',
+            'welcome_message',
+            'login_hash',
+            'https_token',
+            'views',
+            'created',
+            'deleted_datetime',
+            'deleted_user_id',
+            'deleted_reason',
+        ];
+    }
+
     public function getSelect(): string
     {
         return '

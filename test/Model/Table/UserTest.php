@@ -4,6 +4,7 @@ namespace MonthlyBasis\UserTest\Model\Table;
 use ArrayObject;
 use Exception;
 use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
 use MonthlyBasis\User\Model\Db as UserDb;
@@ -23,6 +24,20 @@ class UserTest extends TableTestCase
         $this->setForeignKeyChecks0();
         $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
+    }
+
+    public function test_getColumns_result()
+    {
+        $select = $this->sql
+             ->select()
+             ->columns($this->userTable->getColumns())
+             ->from('user');
+        $result = $this->sql->prepareStatementForSqlObject($select)->execute();
+
+        $this->assertInstanceOf(
+            Result::class,
+            $result
+        );
     }
 
     public function test_insert()
