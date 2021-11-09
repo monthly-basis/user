@@ -14,6 +14,19 @@ class UserToken
         $this->sql = $sql;
     }
 
+    public function getColumns(): array
+    {
+        return [
+            'user_token_id',
+            'user_id',
+            'login_token',
+            'https_token',
+            'created',
+            'expires',
+            'deleted',
+        ];
+    }
+
     public function insert(
         int $userId,
         string $loginToken,
