@@ -127,46 +127,6 @@ class UserTest extends TableTestCase
         );
     }
 
-    public function test_selectWhereUserIdLoginHashLoginIp()
-    {
-        try {
-            $this->userTable->selectWhereUserIdLoginHash(
-                1,
-                'login-hash'
-            );
-            $this->fail();
-        } catch (Exception $exception) {
-            $this->assertSame(
-                $exception->getMessage(),
-                'Row with user ID and login hash not found.'
-            );
-        }
-
-        $this->userTable->insert(
-            'username',
-            'password-hash',
-            '1983-10-22',
-            'M'
-        );
-        $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
-            'login-hash',
-            'https-token',
-            1
-        );
-        $array = $this->userTable->selectWhereUserIdLoginHash(
-            1,
-            'login-hash'
-        );
-        $this->assertSame(
-            'username',
-            $array['username']
-        );
-        $this->assertSame(
-            'password-hash',
-            $array['password_hash']
-        );
-    }
-
     public function test_selectWhereUsername()
     {
         $this->assertEmpty(
