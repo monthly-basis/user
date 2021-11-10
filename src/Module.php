@@ -349,6 +349,7 @@ class Module
                 UserService\Logout::class => function ($sm) {
                     return new UserService\Logout(
                         $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserTable\UserToken::class),
                     );
                 },
                 UserService\Password\Change::class => function ($sm) {
