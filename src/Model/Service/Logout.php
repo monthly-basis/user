@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Model\Service;
 
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
+use Throwable;
 
 class Logout
 {
@@ -37,6 +38,16 @@ class Logout
                 $value,
                 $options,
             );
+        }
+
+        try {
+            $userEntity = $this->loggedInUserService->getLoggedInUser();
+            $this->userTokenTable->updateSetDeletedWhereUserIdLoginToken(
+                $userEntity->getUserId(),
+                $userEntity->getLoginToken(),
+            );
+        } catch (Throwable $throwable) {
+            // Do nothing.
         }
     }
 }
