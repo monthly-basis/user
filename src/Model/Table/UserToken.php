@@ -45,4 +45,22 @@ class UserToken
              ;
         return $this->sql->prepareStatementForSqlObject($insert)->execute();
     }
+
+    public function updateSetDeletedWhereUserIdLoginToken(
+        int $userId,
+        string $loginToken
+    ): Result {
+        $update = $this->sql
+             ->update()
+             ->table('user_token')
+             ->set([
+                'deleted' => new \Laminas\Db\Sql\Expression('UTC_TIMESTAMP()'),
+             ])
+             ->where([
+                'user_id'     => $userId,
+                'login_token' => $loginToken,
+             ])
+             ;
+        return $this->sql->prepareStatementForSqlObject($update)->execute();
+    }
 }
