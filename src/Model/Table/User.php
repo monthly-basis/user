@@ -28,7 +28,6 @@ class User
             'gender',
             'display_name',
             'welcome_message',
-            'login_hash',
             'https_token',
             'views',
             'created',
@@ -47,7 +46,6 @@ class User
                  , `gender`
                  , `display_name`
                  , `welcome_message`
-                 , `login_hash`
                  , `https_token`
                  , `views`
                  , `created`
