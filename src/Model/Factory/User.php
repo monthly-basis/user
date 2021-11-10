@@ -44,6 +44,9 @@ class User
         if (isset($array['https_token'])) {
             $userEntity->setHttpsToken($array['https_token']);
         }
+        if (isset($array['login_token'])) {
+            $userEntity->setLoginToken($array['login_token']);
+        }
         if (isset($array['password_hash'])) {
             $userEntity->setPasswordHash($array['password_hash']);
         }

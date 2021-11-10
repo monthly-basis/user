@@ -28,6 +28,7 @@ class UserTest extends TestCase
         $array = [
             'display_name'    => 'Display Name',
             'https_token'     => 'the-https-token',
+            'login_token'     => 'the-login-token',
             'password_hash'   => 'the password hash',
             'user_id'         => 1,
             'username'        => 'Testing123',
@@ -36,6 +37,7 @@ class UserTest extends TestCase
         $userEntity = (new UserEntity\User())
             ->setDisplayName($array['display_name'])
             ->setHttpsToken($array['https_token'])
+            ->setLoginToken($array['login_token'])
             ->setPasswordHash($array['password_hash'])
             ->setUserId($array['user_id'])
             ->setUsername($array['username'])
