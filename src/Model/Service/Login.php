@@ -59,7 +59,6 @@ class Login
          */
 
         $loginHash  = $this->randomService->getRandomString(64);
-        $loginIp    = $_SERVER['REMOTE_ADDR'];
         $httpsToken = $this->randomService->getRandomString(64);
 
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
