@@ -15,6 +15,7 @@ class Logout
     {
         $names = [
             'https-token',
+            'login-token',
             'user-id',
         ];
         $options = [
