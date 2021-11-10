@@ -28,22 +28,4 @@ class UserId
             ;
         return $this->sql->prepareStatementForSqlObject($update)->execute();
     }
-
-    public function updateSetLoginHashHttpsTokenWhereUserId(
-        string $loginHash,
-        string $httpsToken,
-        int $userId
-    ): Result {
-        $update = $this->sql
-            ->update('user')
-            ->set([
-               'login_hash'  => $loginHash,
-               'https_token' => $httpsToken,
-            ])
-            ->where([
-               'user_id' => $userId,
-            ])
-            ;
-        return $this->sql->prepareStatementForSqlObject($update)->execute();
-    }
 }

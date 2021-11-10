@@ -65,11 +65,6 @@ class Login
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
             $userId
         );
-        $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
-            $loginHash,
-            $httpsToken,
-            $userId
-        );
         $this->userTokenTable->insert(
             $userId,
             $loginHash,

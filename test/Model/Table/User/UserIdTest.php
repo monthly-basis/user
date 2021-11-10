@@ -57,45 +57,4 @@ class UserIdTest extends TableTestCase
             ]
         );
     }
-
-    public function test_updateSetLoginHashHttpsTokenWhereUserId()
-    {
-        $result = $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
-            'the-login-hash',
-            'the-https-token',
-            1,
-        );
-        $this->assertSame(
-            0,
-            $result->getAffectedRows()
-        );
-
-        $this->userTable->insert(
-            'username',
-            'password-hash',
-            '1983-01-01 00:00:00',
-        );
-
-        $result = $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
-            'the-login-hash',
-            'the-https-token',
-            1,
-        );
-        $this->assertSame(
-            1,
-            $result->getAffectedRows()
-        );
-
-        $array = $this->userTable->selectWhereUserId(1)->current();
-        $this->assertSame(
-            [
-                'login_hash' => 'the-login-hash',
-                'https_token' => 'the-https-token',
-            ],
-            [
-                'login_hash'  => $array['login_hash'],
-                'https_token' => $array['https_token'],
-            ]
-        );
-    }
 }
