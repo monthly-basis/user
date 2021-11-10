@@ -28,7 +28,6 @@ class User
             'gender',
             'display_name',
             'welcome_message',
-            'https_token',
             'views',
             'created',
             'deleted_datetime',
@@ -46,7 +45,6 @@ class User
                  , `gender`
                  , `display_name`
                  , `welcome_message`
-                 , `https_token`
                  , `views`
                  , `created`
                  , `deleted_datetime`
