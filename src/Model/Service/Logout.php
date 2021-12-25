@@ -28,7 +28,7 @@ class Logout
             'domain'   => $_SERVER['HTTP_HOST'],
             'secure'   => true,
             'httponly' => true,
-            'samesite' => 'Strict',
+            'samesite' => 'Lax',
         ];
         $value  = '';
 

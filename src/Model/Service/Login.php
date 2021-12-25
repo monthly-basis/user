@@ -97,7 +97,7 @@ class Login
             'domain'   => $_SERVER['HTTP_HOST'],
             'secure'   => true,
             'httponly' => true,
-            'samesite' => 'Strict',
+            'samesite' => 'Lax',
         ];
 
         foreach ($namesAndValues as $name => $value) {
