@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.12.0
+
+- Deprecate Controller classes
+- Deprecate `isUserLoggedIn()` view helper
+- Deprecate Post classes
+- Deprecate routes
+
 ## v2.11.5
 
 ```
