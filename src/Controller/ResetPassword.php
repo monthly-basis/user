@@ -8,6 +8,9 @@ use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\User\Model\Service as UserService;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class ResetPassword extends AbstractActionController
 {
     public function __construct(

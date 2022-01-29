@@ -8,6 +8,9 @@ use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class SignUp extends AbstractActionController
 {
     public function __construct(

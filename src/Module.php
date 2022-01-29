@@ -202,6 +202,9 @@ class Module
         ];
     }
 
+    /**
+     * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+     */
     public function getControllerConfig()
     {
         return [

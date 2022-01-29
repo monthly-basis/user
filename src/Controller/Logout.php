@@ -4,6 +4,9 @@ namespace MonthlyBasis\User\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use MonthlyBasis\User\Model\Service as UserService;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class Logout extends AbstractActionController
 {
     public function __construct(

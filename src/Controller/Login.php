@@ -7,6 +7,9 @@ use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class Login extends AbstractActionController
 {
     public function __construct(
