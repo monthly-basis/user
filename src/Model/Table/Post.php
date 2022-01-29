@@ -5,6 +5,9 @@ use ArrayObject;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Exception\InvalidQueryException;
 
+/**
+ * @deprecated Use MonthlyBasis\Post module instead
+ */
 class Post
 {
     /**

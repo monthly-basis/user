@@ -276,6 +276,9 @@ class Module
                         $sm->get('user')
                     );
                 },
+                /**
+                 * @deprecated Use MonthlyBasis\Post module instead
+                 */
                 UserFactory\Post::class => function ($sm) {
                     return new UserFactory\Post();
                 },
@@ -396,11 +399,17 @@ class Module
                 UserService\Password\Valid::class => function ($sm) {
                     return new UserService\Password\Valid();
                 },
+                /**
+                 * @deprecated Use MonthlyBasis\Post module instead
+                 */
                 UserService\Post::class => function ($sm) {
                     return new UserService\Post(
                         $sm->get(UserTable\Post::class)
                     );
                 },
+                /**
+                 * @deprecated Use MonthlyBasis\Post module instead
+                 */
                 UserService\Posts::class => function ($sm) {
                     return new UserService\Posts(
                         $sm->get(UserFactory\Post::class),
@@ -477,6 +486,9 @@ class Module
                         $sm->get('user')
                     );
                 },
+                /**
+                 * @deprecated Use MonthlyBasis\Post module instead
+                 */
                 UserTable\Post::class => function ($sm) {
                     return new UserTable\Post(
                         $sm->get('user')
