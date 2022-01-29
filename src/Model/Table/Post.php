@@ -60,8 +60,6 @@ class Post
 
     /**
      * @return ArrayObject|bool
-     *
-     * @TODO Throw exception if no posts found.
      */
     public function selectWhereToUserId($toUserId)
     {
