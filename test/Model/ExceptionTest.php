@@ -11,10 +11,8 @@ class ExceptionTest extends TestCase
         $this->exception = new UserException();
     }
 
-    public function test_123()
+    public function test_instance_expectedBehavior()
     {
-        $this->assertTrue(true);
-
         $this->assertInstanceOf(
             \Exception::class,
             $this->exception
