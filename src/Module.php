@@ -8,7 +8,6 @@ use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\String\Model\Service as StringService;
-use MonthlyBasis\User\Controller as UserController;
 use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
