@@ -4,15 +4,14 @@
     "require": {
         "laminas/laminas-db": "^2.9",
         "laminas/laminas-mvc": "^3.0",
-        "laminas/laminas-test": "^3.1",
+        "laminas/laminas-test": "^4.0",
         "monthly-basis/flash": "^2.0",
         "monthly-basis/laminas-test": "^2.0",
         "monthly-basis/re-captcha": "^3.0",
         "monthly-basis/simple-email-service": "^0.2",
         "monthly-basis/stop-forum-spam": "^1.0",
         "monthly-basis/string": "^3.3",
-        "monthly-basis/website": "^2.0",
-        "php": "^7.4"
+        "monthly-basis/website": "^2.0"
     },
     "autoload": {
         "psr-4": {
