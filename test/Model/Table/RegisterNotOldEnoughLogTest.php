@@ -40,7 +40,7 @@ class RegisterNotOldEnoughLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'register_not_old_enough_log_id' => '1',
+                'register_not_old_enough_log_id' => 1,
                 'ip_address'                     => '1.2.3.4',
             ],
             [
@@ -67,7 +67,7 @@ class RegisterNotOldEnoughLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'register_not_old_enough_log_id' => '1',
+                'register_not_old_enough_log_id' => 1,
                 'ip_address'                     => '5.6.7.8',
             ],
             [

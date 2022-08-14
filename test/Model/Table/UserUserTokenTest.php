@@ -81,7 +81,7 @@ class UserUserTokenTest extends TableTestCase
 
         $this->assertSame(
             [
-                'user_id'       => '1',
+                'user_id'       => 1,
                 'username'      => 'LeoGalleguillos',
                 'password_hash' => '$2y$10$DpCNnOVP6.wXA0ufpKt4S.uWi.u1Lm8zVvw1EuhyiiomFcLOb2p9i',
                 'login_token'   => 'the-login-token',

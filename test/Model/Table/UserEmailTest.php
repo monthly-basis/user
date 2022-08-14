@@ -75,7 +75,7 @@ class UserEmailTest extends TableTestCase
             'user@example.com'
         );
         $this->assertSame(
-            '1',
+            1,
             $this->userEmailTable->selectWhereAddress('user@example.com')->current()['user_id']
         );
     }

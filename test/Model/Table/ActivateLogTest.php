@@ -39,7 +39,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '1',
+                'COUNT(*)' => 1,
             ],
             $array,
         );
@@ -54,7 +54,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '0',
+                'COUNT(*)' => 0,
             ],
             $array,
         );
@@ -68,7 +68,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '0',
+                'COUNT(*)' => 0,
             ],
             $array,
         );
@@ -80,7 +80,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '1',
+                'COUNT(*)' => 1,
             ],
             $array,
         );
@@ -100,7 +100,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '5',
+                'COUNT(*)' => 5,
             ],
             $array,
         );
@@ -112,7 +112,7 @@ class ActivateLogTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'COUNT(*)' => '2',
+                'COUNT(*)' => 2,
             ],
             $array,
         );
