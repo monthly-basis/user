@@ -38,6 +38,9 @@ class User
         if (isset($array['display_name'])) {
             $userEntity->setDisplayName($array['display_name']);
         }
+        if (isset($array['emoji_12_id'])) {
+            $userEntity->emoji12Id = $array['emoji_12_id'];
+        }
         if (isset($array['gender'])) {
             $userEntity->setGender($array['gender']);
         }

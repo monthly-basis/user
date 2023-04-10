@@ -27,6 +27,7 @@ class UserTest extends TestCase
     {
         $array = [
             'display_name'    => 'Display Name',
+            'emoji_12_id'     => 123,
             'https_token'     => 'the-https-token',
             'login_token'     => 'the-login-token',
             'password_hash'   => 'the password hash',
@@ -43,6 +44,7 @@ class UserTest extends TestCase
             ->setUsername($array['username'])
             ->setWelcomeMessage($array['welcome_message'])
             ;
+        $userEntity->emoji12Id = 123;
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArray($array)
