@@ -1,8 +1,6 @@
 <?php
 namespace MonthlyBasis\User;
 
-use Laminas\Router\Http\Literal;
-use Laminas\Router\Http\Segment;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
