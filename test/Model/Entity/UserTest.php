@@ -12,6 +12,21 @@ class UserTest extends TestCase
         $this->userEntity = new UserEntity\User();
     }
 
+    public function test_magicMethods()
+    {
+        $this->assertFalse(
+            isset($this->userEntity->httpsToken)
+        );
+        $this->userEntity->httpsToken = 'abcdefg';
+        $this->assertSame(
+            'abcdefg',
+            $this->userEntity->httpsToken
+        );
+        $this->assertTrue(
+            isset($this->userEntity->httpsToken)
+        );
+    }
+
     public function test_settersAndGetters()
     {
         $userId = 123;
