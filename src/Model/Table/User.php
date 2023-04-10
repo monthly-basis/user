@@ -124,8 +124,19 @@ class User
 
     public function selectWhereUserId(int $userId): Result
     {
-        $sql = $this->getSelect()
-             . '
+        $sql = '
+            SELECT `user_id`
+                 , `emoji_12_id`
+                 , `username`
+                 , `password_hash`
+                 , `gender`
+                 , `display_name`
+                 , `welcome_message`
+                 , `views`
+                 , `created`
+                 , `deleted_datetime`
+                 , `deleted_user_id`
+                 , `deleted_reason`
               FROM `user`
              WHERE `user_id` = ?
                  ;
