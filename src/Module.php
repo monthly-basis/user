@@ -7,6 +7,7 @@ use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Db as UserDb;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -79,6 +80,11 @@ class Module
                 UserDb\Sql::class => function ($sm) {
                     return new UserDb\Sql(
                         $sm->get('user')
+                    );
+                },
+                UserEntity\Config::class => function ($sm) {
+                    return new UserEntity\Config(
+                        $sm->get('Config')['monthly-basis']['user'] ?? []
                     );
                 },
                 UserFactory\Password\Reset\FromArray::class => function ($sm) {
@@ -230,7 +236,9 @@ class Module
                     );
                 },
                 UserService\RootRelativeUrl::class => function ($sm) {
-                    return new UserService\RootRelativeUrl();
+                    return new UserService\RootRelativeUrl(
+                        $sm->get(UserEntity\Config::class)
+                    );
                 },
                 UserService\Url::class => function ($sm) {
                     return new UserService\Url(
