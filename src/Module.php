@@ -126,6 +126,11 @@ class Module
                         $sm->get(UserTable\UserEmail::class)
                     );
                 },
+                UserService\Follow::class => function ($sm) {
+                    return new UserService\Follow(
+                        $sm->get(UserTable\UserFollow::class),
+                    );
+                },
                 UserService\LoggedIn::class => function ($sm) {
                     return new UserService\LoggedIn(
                         $sm->get(UserTable\UserUserToken::class)
