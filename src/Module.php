@@ -326,6 +326,11 @@ class Module
                         $sm->get('user')
                     );
                 },
+                UserTable\UserFollow::class => function ($sm) {
+                    return new UserTable\UserFollow(
+                        $sm->get(UserDb\Sql::class)
+                    );
+                },
                 UserTable\UserUserToken::class => function ($sm) {
                     return new UserTable\UserUserToken(
                         $sm->get(UserDb\Sql::class),
