@@ -6,6 +6,7 @@
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-test": "^4.0",
         "monthly-basis/flash": "^2.0",
+        "monthly-basis/laminas": "^0.0",
         "monthly-basis/laminas-test": "^2.0",
         "monthly-basis/re-captcha": "^3.0",
         "monthly-basis/simple-email-service": "^0.2",
