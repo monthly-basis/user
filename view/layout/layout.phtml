@@ -1,0 +1,70 @@
+<?php
+if (empty($htmlHeadTitle)) {
+    $htmlHeadTitle = 'monthly-basis/user';
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title><?= $this->escape($htmlHeadTitle); ?></title>
+
+        <?php if (isset($htmlHeadAppend)): ?>
+            <?= $htmlHeadAppend ?>
+        <?php endif ?>
+
+<style>
+body {
+    font-family: sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    background-color: #ddd;
+    margin: 0;
+}
+header {
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+footer {
+    background-color: #fff;
+}
+h1 {
+    margin: -5px 0 0;
+    font-size: 40px;
+    line-height: 50px;
+    margin-top: -5px;
+}
+h2 {
+    margin: -5px 0 0;
+    font-size: 35px;
+    line-height: 45px;
+}
+input {
+    font-size: 20px;
+    padding: 5px;
+}
+main {
+    max-width: 1610px;
+    margin: 0 auto 20px;
+}
+.panel {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+    .panel > *:last-child {
+        margin-bottom: 0;
+    }
+</style>
+    </head>
+    <body>
+        <header>
+            header
+        </header>
+        <?= $this->content ?>
+        <footer>
+            footer
+        </footer>
+    </body>
+</html>

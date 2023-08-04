@@ -1,6 +1,8 @@
 <?php
 namespace MonthlyBasis\User;
 
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
@@ -18,6 +20,126 @@ class Module
     public function getConfig()
     {
         return [
+            'router' => [
+                'routes' => [
+                    'account' => [
+                        'type'    => Literal::class,
+                        'options' => [
+                            'route'    => '/account',
+                        ],
+                        'may_terminate' => false,
+                        'child_routes' => [
+                            'change-password' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/change-password',
+                                    'defaults' => [
+                                        'controller' => UserHttpsController\Account\ChangePassword::class,
+                                        'action'     => 'change-password',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                            ],
+                        ],
+                    ],
+                    'activate' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/activate/:registerId/:activationCode',
+                            'defaults' => [
+                                'controller' => UserHttpsController\Activate::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+                    'login' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/login[/:action]',
+                            'defaults' => [
+                                'controller' => UserHttpsController\Login::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+                    'logout' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/logout',
+                            'defaults' => [
+                                'controller' => UserHttpsController\Logout::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
+                    'sign-up' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/sign-up[/:action]',
+                            'defaults' => [
+                                'controller' => UserHttpsController\SignUp::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                    ],
+                    'reset-password' => [
+                        'type'    => Literal::class,
+                        'options' => [
+                            'route'    => '/reset-password',
+                            'defaults' => [
+                                'controller' => UserHttpsController\ResetPassword::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'user-id' => [
+                                'type'    => Segment::class,
+                                'options' => [
+                                    'route'    => '/:userId',
+                                    'constraints' => [
+                                        'userId' => '\d+',
+                                    ],
+                                ],
+                                'may_terminate' => false,
+                                'child_routes' => [
+                                    'code' => [
+                                        'type'    => Segment::class,
+                                        'options' => [
+                                            'route'    => '/:code',
+                                            'defaults' => [
+                                                'controller' => UserHttpsController\ResetPassword\UserId\Code::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            'email-sent' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/email-sent',
+                                    'defaults' => [
+                                        'controller' => UserHttpsController\ResetPassword::class,
+                                        'action'     => 'email-sent',
+                                    ],
+                                ],
+                            ],
+                            'success' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/success',
+                                    'defaults' => [
+                                        'controller' => UserHttpsController\ResetPassword::class,
+                                        'action'     => 'success',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
             'view_helpers' => [
                 'aliases' => [
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
