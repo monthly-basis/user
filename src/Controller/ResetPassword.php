@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\UserHttps\Controller;
+namespace MonthlyBasis\User\Controller;
 
 use Exception;
 use Laminas\Mvc\Controller\AbstractActionController;

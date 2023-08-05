@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\UserHttps\Controller\Account;
+namespace MonthlyBasis\User\Controller\Account;
 
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;

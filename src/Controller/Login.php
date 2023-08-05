@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\UserHttps\Controller;
+namespace MonthlyBasis\User\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
 use MonthlyBasis\Flash\Model\Service\Flash as FlashService;

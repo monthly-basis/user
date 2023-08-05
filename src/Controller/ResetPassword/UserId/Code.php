@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\UserHttps\Controller\ResetPassword\UserId;
+namespace MonthlyBasis\User\Controller\ResetPassword\UserId;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
