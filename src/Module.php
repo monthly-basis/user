@@ -2,6 +2,7 @@
 namespace MonthlyBasis\User;
 
 use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Placeholder;
 use Laminas\Router\Http\Segment;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
@@ -23,6 +24,27 @@ class Module
         return [
             'router' => [
                 'routes' => [
+                    'monthly-basis' => [
+                        'type'    => Placeholder::class,
+                        'child_routes' => [
+                            'user' => [
+                                'type'    => Placeholder::class,
+                                'child_routes' => [
+                                    'index' => [
+                                        'type'    => Literal::class,
+                                        'options' => [
+                                            'route'    => '/',
+                                            'defaults' => [
+                                                'controller' => UserController\Index::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                        'may_terminate' => true,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                     'account' => [
                         'type'    => Literal::class,
                         'options' => [
@@ -212,6 +234,10 @@ class Module
                 UserController\Activate::class => function ($sm) {
                     return new UserController\Activate(
                         $sm->get(UserService\Activate::class)
+                    );
+                },
+                UserController\Index::class => function ($sm) {
+                    return new UserController\Index(
                     );
                 },
                 UserController\Login::class => function ($sm) {
