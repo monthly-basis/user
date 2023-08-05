@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.5.0
+
+### Added
+
+- Followers service
+- Following service
+
 ## v3.3.0
 
 ### Added
