@@ -319,6 +319,12 @@ class Module
                         $sm->get(UserTable\UserFollow::class),
                     );
                 },
+                UserService\Followers::class => function ($sm) {
+                    return new UserService\Followers(
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserTable\UserFollow::class),
+                    );
+                },
                 UserService\LoggedIn::class => function ($sm) {
                     return new UserService\LoggedIn(
                         $sm->get(UserTable\UserUserToken::class)
