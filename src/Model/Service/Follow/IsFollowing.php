@@ -1,5 +1,5 @@
 <?php
-namespace MonthlyBasis\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service\Follow;
 
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Table as UserTable;
