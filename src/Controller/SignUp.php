@@ -55,14 +55,14 @@ class SignUp extends AbstractActionController
         try {
             $this->registerService->register();
         } catch (UserException $userException) {
-            return $this->redirect()->toRoute('sign-up')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/sign-up')->setStatusCode(303);
         }
 
         $params = [
             'action' => 'success',
         ];
         return $this->redirect()
-                    ->toRoute('sign-up', $params)
+                    ->toRoute('monthly-basis/user/sign-up', $params)
                     ->setStatusCode(303);
     }
 }
