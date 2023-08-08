@@ -312,6 +312,7 @@ class Module
                 },
                 UserController\Users\Follow::class => function ($sm) {
                     return new UserController\Users\Follow(
+                        $sm->get(UserFactory\User::class),
                         $sm->get(UserService\LoggedInUser::class),
                         $sm->get(UserService\Url::class),
                     );

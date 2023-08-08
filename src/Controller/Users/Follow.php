@@ -4,11 +4,13 @@ namespace MonthlyBasis\User\Controller\Users;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
 use MonthlyBasis\User\Model\Exception as UserException;
+use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 
 class Follow extends AbstractActionController
 {
     public function __construct(
+        protected UserFactory\User $userFactory,
         protected UserService\LoggedInUser $loggedInUserService,
         protected UserService\Url $urlService,
     ) {
