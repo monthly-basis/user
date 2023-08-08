@@ -15,10 +15,10 @@ class Follow
         UserEntity\User $userEntity1,
         UserEntity\User $userEntity2,
     ): bool {
-        $result = $this->userFollowTable->insertIgnore(
-            $userEntity1->userId,
-            $userEntity2->userId,
-        );
+        $result = $this->userFollowTable->insertIgnore([
+            'user_id_1' => $userEntity1->userId,
+            'user_id_2' => $userEntity2->userId,
+        ]);
 
         return boolval($result->getAffectedRows());
     }
