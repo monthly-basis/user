@@ -16,7 +16,6 @@ class Follow extends AbstractActionController
 
     public function followAction()
     {
-        exit('follow action');
         try {
             $userEntity1 = $this->loggedInUserService->getLoggedInUser();
         } catch (UserException $userException) {
@@ -25,7 +24,7 @@ class Follow extends AbstractActionController
 
         try {
             $userEntity2 = $this->userFactory->buildFromUserId(
-                $this->params()->fromPost('user-id')
+                intval($this->params()->fromPost('user-id'))
             );
         } catch (UserException $userException) {
             return $this->redirect()->toRoute('monthly-basis/user/login')->setStatusCode(303);
