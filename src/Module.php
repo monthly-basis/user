@@ -158,6 +158,26 @@ class Module
                                             ],
                                         ],
                                     ],
+                                    'users' => [
+                                        'type'    => Literal::class,
+                                        'options' => [
+                                            'route'    => '/users',
+                                        ],
+                                        'may_terminate' => false,
+                                        'child_routes' => [
+                                            'follow' => [
+                                                'type'    => Literal::class,
+                                                'options' => [
+                                                    'route'    => '/follow',
+                                                    'defaults' => [
+                                                        'controller' => UserController\Users\Follow::class,
+                                                        'action'     => 'follow',
+                                                    ],
+                                                ],
+                                                'may_terminate' => true,
+                                            ],
+                                        ],
+                                    ],
                                 ],
                             ],
                         ],
@@ -288,6 +308,12 @@ class Module
                         $sm->get(UserTable\ResetPassword::class),
                         $sm->get(UserTable\ResetPasswordAccessLog::class),
                         $sm->get(UserTable\User\UserId::class),
+                    );
+                },
+                UserController\Users\Follow::class => function ($sm) {
+                    return new UserController\Users\Follow(
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Url::class),
                     );
                 },
             ],
