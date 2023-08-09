@@ -511,6 +511,11 @@ class Module
                         $sm->get(UserEntity\Config::class)
                     );
                 },
+                UserService\Unfollow::class => function ($sm) {
+                    return new UserService\Unfollow(
+                        $sm->get(UserTable\UserFollow::class),
+                    );
+                },
                 UserService\Url::class => function ($sm) {
                     return new UserService\Url(
                         $sm->get(UserService\RootRelativeUrl::class)
