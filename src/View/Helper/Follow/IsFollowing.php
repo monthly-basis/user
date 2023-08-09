@@ -2,6 +2,7 @@
 namespace MonthlyBasis\User\View\Helper\Follow;
 
 use Laminas\View\Helper\AbstractHelper;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Service as UserService;
 
 class IsFollowing extends AbstractHelper
