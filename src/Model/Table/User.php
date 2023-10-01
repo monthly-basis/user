@@ -28,6 +28,7 @@ class User
             'gender',
             'display_name',
             'welcome_message',
+            'open_ai_role',
             'views',
             'created',
             'deleted_datetime',
@@ -45,6 +46,7 @@ class User
                  , `gender`
                  , `display_name`
                  , `welcome_message`
+                 , `open_ai_role`
                  , `views`
                  , `created`
                  , `deleted_datetime`
@@ -132,6 +134,7 @@ class User
                  , `gender`
                  , `display_name`
                  , `welcome_message`
+                 , `open_ai_role`
                  , `views`
                  , `created`
                  , `deleted_datetime`
