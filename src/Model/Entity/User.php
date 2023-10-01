@@ -21,6 +21,7 @@ class User
     protected $groups = [];
     protected string $httpsToken;
     protected string $loginToken;
+    public string $openAiRole;
     protected $userId;
     protected $views = 0;
     protected $welcomeMessage;
