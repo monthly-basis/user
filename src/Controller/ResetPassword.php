@@ -54,7 +54,7 @@ class ResetPassword extends AbstractActionController
     {
         $email = $this->flashService->get('email');
         if (empty($email)) {
-            return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/reset-password')->setStatusCode(303);
         }
 
         return [
@@ -73,12 +73,12 @@ class ResetPassword extends AbstractActionController
             $this->resetService->reset();
         } catch (Exception $exception) {
             return $this->redirect()
-                        ->toRoute('reset-password')
+                        ->toRoute('monthly-basis/user/reset-password')
                         ->setStatusCode(303);
         }
 
         return $this->redirect()
-                    ->toRoute('reset-password/email-sent')
+                    ->toRoute('monthly-basis/user/reset-password/email-sent')
                     ->setStatusCode(303);
     }
 }

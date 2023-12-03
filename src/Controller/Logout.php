@@ -16,6 +16,6 @@ class Logout extends AbstractActionController
     {
         $this->logoutService->logout();
 
-        return $this->redirect()->toRoute('index')->setStatusCode(303);
+        return $this->redirect()->toRoute('monthly-basis/user/index')->setStatusCode(303);
     }
 }
