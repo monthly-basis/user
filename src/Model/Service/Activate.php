@@ -52,7 +52,7 @@ class Activate
 
         $this->connection->beginTransaction();
         try {
-            $userId = $this->userTable->insert(
+            $userId = $this->userTable->insertDeprecated(
                 $username,
                 $passwordHash,
                 $birthday,

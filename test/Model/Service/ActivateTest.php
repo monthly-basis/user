@@ -79,7 +79,7 @@ class ActivateTest extends TestCase
              ;
         $this->userTableMock
              ->expects($this->exactly(0))
-             ->method('insert')
+             ->method('insertDeprecated')
              ;
         $this->userEmailTableMock
              ->expects($this->exactly(0))
@@ -156,7 +156,7 @@ class ActivateTest extends TestCase
              ;
         $this->userTableMock
              ->expects($this->exactly(0))
-             ->method('insert')
+             ->method('insertDeprecated')
              ;
         $this->userEmailTableMock
              ->expects($this->exactly(0))
@@ -231,7 +231,7 @@ class ActivateTest extends TestCase
              ;
         $this->userTableMock
              ->expects($this->exactly(1))
-             ->method('insert')
+             ->method('insertDeprecated')
              ->with(
                 'username',
                 'password-hash',
@@ -325,7 +325,7 @@ class ActivateTest extends TestCase
              ;
         $this->userTableMock
              ->expects($this->exactly(1))
-             ->method('insert')
+             ->method('insertDeprecated')
              ->with(
                 'username',
                 'password-hash',

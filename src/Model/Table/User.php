@@ -6,12 +6,12 @@ use Exception;
 use Generator;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\Laminas\Model\Db as LaminasDb;
 use MonthlyBasis\User\Model\Db as UserDb;
 
-class User
+class User extends LaminasDb\Table
 {
     protected Adapter $adapter;
-    protected UserDb\Sql $sql;
 
     public function __construct(UserDb\Sql $sql)
     {
@@ -55,7 +55,7 @@ class User
         ';
     }
 
-    public function insert(
+    public function insertDeprecated(
         string $username,
         string $passwordHash,
         string $birthday,
