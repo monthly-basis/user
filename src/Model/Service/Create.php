@@ -33,7 +33,7 @@ class Create extends AbstractActionController
         $this->adapter->getDriver()->getConnection()->beginTransaction();
 
         try {
-            $userId = $this->userTable->insert(
+            $userId = $this->userTable->insertDeprecated(
                 $username,
                 $passwordHash,
                 $birthday->format('Y-m-d H:i:s'),
