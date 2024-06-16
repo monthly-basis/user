@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    protected UserFactory\User $userFactory;
+    protected UserTable\User $userTableMock;
+
     protected function setUp(): void
     {
         $this->userTableMock = $this->createMock(
@@ -31,6 +34,9 @@ class UserTest extends TestCase
             'https_token'     => 'the-https-token',
             'login_token'     => 'the-login-token',
             'open_ai_role'    => 'Open AI role',
+            'image_256_rru'   => '/path/to/256x256.jpeg',
+            'image_512_rru'   => '/path/to/512x512.jpeg',
+            'image_1024_rru'  => '/path/to/1024x1024.jpeg',
             'password_hash'   => 'the password hash',
             'user_id'         => 1,
             'username'        => 'Testing123',
@@ -47,6 +53,9 @@ class UserTest extends TestCase
             ;
         $userEntity->emoji12Id = 123;
         $userEntity->openAiRole = 'Open AI role';
+        $userEntity->image256Rru = '/path/to/256x256.jpeg';
+        $userEntity->image512Rru = '/path/to/512x512.jpeg';
+        $userEntity->image1024Rru = '/path/to/1024x1024.jpeg';
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArray($array)
