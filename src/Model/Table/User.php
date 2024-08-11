@@ -136,7 +136,7 @@ class User
         return (array) $row;
     }
 
-    public function selectWhereUserId(int $userId): array
+    public function selectWhereUserId(int $userId): Result
     {
         $sql = $this->getSelect()
              . '
@@ -144,7 +144,10 @@ class User
              WHERE `user_id` = ?
                  ;
         ';
-        return $this->adapter->query($sql)->execute([$userId])->current();
+        $parameters = [
+            $userId,
+        ];
+        return $this->adapter->query($sql)->execute($parameters);
     }
 
     public function selectWhereUserIdLoginHash(
