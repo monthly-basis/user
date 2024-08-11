@@ -37,13 +37,11 @@ class Upload
             $fileExtension
         );
 
-        mkdir(
-            $_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId",
-            '0775'
-        );
+        mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
 
         $uploadPath = $_SERVER['DOCUMENT_ROOT']
                     . "/uploads/photos/$photoId/original.$fileExtension";
         move_uploaded_file($fileTmpName, $uploadPath);
+        chmod($uploadPath, 0666);
     }
 }
