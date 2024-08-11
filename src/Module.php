@@ -42,121 +42,121 @@ class Module
                                         ],
                                         'may_terminate' => true,
                                     ],
-                                ],
-                            ],
-                        ],
-                    ],
-                    'account' => [
-                        'type'    => Literal::class,
-                        'options' => [
-                            'route'    => '/account',
-                        ],
-                        'may_terminate' => false,
-                        'child_routes' => [
-                            'change-password' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/change-password',
-                                    'defaults' => [
-                                        'controller' => UserController\Account\ChangePassword::class,
-                                        'action'     => 'change-password',
+                                    'account' => [
+                                        'type'    => Literal::class,
+                                        'options' => [
+                                            'route'    => '/account',
+                                        ],
+                                        'may_terminate' => false,
+                                        'child_routes' => [
+                                            'change-password' => [
+                                                'type'    => Literal::class,
+                                                'options' => [
+                                                    'route'    => '/change-password',
+                                                    'defaults' => [
+                                                        'controller' => UserController\Account\ChangePassword::class,
+                                                        'action'     => 'change-password',
+                                                    ],
+                                                ],
+                                                'may_terminate' => true,
+                                            ],
+                                        ],
                                     ],
-                                ],
-                                'may_terminate' => true,
-                            ],
-                        ],
-                    ],
-                    'activate' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/activate/:registerId/:activationCode',
-                            'defaults' => [
-                                'controller' => UserController\Activate::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'login' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/login[/:action]',
-                            'defaults' => [
-                                'controller' => UserController\Login::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'logout' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/logout',
-                            'defaults' => [
-                                'controller' => UserController\Logout::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'sign-up' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/sign-up[/:action]',
-                            'defaults' => [
-                                'controller' => UserController\SignUp::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                    ],
-                    'reset-password' => [
-                        'type'    => Literal::class,
-                        'options' => [
-                            'route'    => '/reset-password',
-                            'defaults' => [
-                                'controller' => UserController\ResetPassword::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                        'child_routes' => [
-                            'user-id' => [
-                                'type'    => Segment::class,
-                                'options' => [
-                                    'route'    => '/:userId',
-                                    'constraints' => [
-                                        'userId' => '\d+',
-                                    ],
-                                ],
-                                'may_terminate' => false,
-                                'child_routes' => [
-                                    'code' => [
+                                    'activate' => [
                                         'type'    => Segment::class,
                                         'options' => [
-                                            'route'    => '/:code',
+                                            'route'    => '/activate/:registerId/:activationCode',
                                             'defaults' => [
-                                                'controller' => UserController\ResetPassword\UserId\Code::class,
+                                                'controller' => UserController\Activate::class,
                                                 'action'     => 'index',
                                             ],
                                         ],
                                     ],
-                                ],
-                            ],
-                            'email-sent' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/email-sent',
-                                    'defaults' => [
-                                        'controller' => UserController\ResetPassword::class,
-                                        'action'     => 'email-sent',
+                                    'login' => [
+                                        'type'    => Segment::class,
+                                        'options' => [
+                                            'route'    => '/login[/:action]',
+                                            'defaults' => [
+                                                'controller' => UserController\Login::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
                                     ],
-                                ],
-                            ],
-                            'success' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/success',
-                                    'defaults' => [
-                                        'controller' => UserController\ResetPassword::class,
-                                        'action'     => 'success',
+                                    'logout' => [
+                                        'type'    => Segment::class,
+                                        'options' => [
+                                            'route'    => '/logout',
+                                            'defaults' => [
+                                                'controller' => UserController\Logout::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                    ],
+                                    'sign-up' => [
+                                        'type'    => Segment::class,
+                                        'options' => [
+                                            'route'    => '/sign-up[/:action]',
+                                            'defaults' => [
+                                                'controller' => UserController\SignUp::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                        'may_terminate' => true,
+                                    ],
+                                    'reset-password' => [
+                                        'type'    => Literal::class,
+                                        'options' => [
+                                            'route'    => '/reset-password',
+                                            'defaults' => [
+                                                'controller' => UserController\ResetPassword::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                        'may_terminate' => true,
+                                        'child_routes' => [
+                                            'user-id' => [
+                                                'type'    => Segment::class,
+                                                'options' => [
+                                                    'route'    => '/:userId',
+                                                    'constraints' => [
+                                                        'userId' => '\d+',
+                                                    ],
+                                                ],
+                                                'may_terminate' => false,
+                                                'child_routes' => [
+                                                    'code' => [
+                                                        'type'    => Segment::class,
+                                                        'options' => [
+                                                            'route'    => '/:code',
+                                                            'defaults' => [
+                                                                'controller' => UserController\ResetPassword\UserId\Code::class,
+                                                                'action'     => 'index',
+                                                            ],
+                                                        ],
+                                                    ],
+                                                ],
+                                            ],
+                                            'email-sent' => [
+                                                'type'    => Literal::class,
+                                                'options' => [
+                                                    'route'    => '/email-sent',
+                                                    'defaults' => [
+                                                        'controller' => UserController\ResetPassword::class,
+                                                        'action'     => 'email-sent',
+                                                    ],
+                                                ],
+                                            ],
+                                            'success' => [
+                                                'type'    => Literal::class,
+                                                'options' => [
+                                                    'route'    => '/success',
+                                                    'defaults' => [
+                                                        'controller' => UserController\ResetPassword::class,
+                                                        'action'     => 'success',
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
                                     ],
                                 ],
                             ],
