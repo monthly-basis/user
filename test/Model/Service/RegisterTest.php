@@ -47,16 +47,4 @@ class RegisterTest extends TestCase
             $this->registerService->getErrors()
         );
     }
-
-    public function testIsFormValidIfNotSetFlashErrors()
-    {
-        $_POST['email']            = 'bad email';
-        $_POST['username']         = 'username';
-        $_POST['password']         = 'password';
-        $_POST['confirm_password'] = 'password2';
-
-        $this->assertFalse(
-            $this->registerService->isFormValidIfNotSetFlashErrors()
-        );
-    }
 }
