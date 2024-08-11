@@ -48,7 +48,11 @@ class ErrorsTest extends TestCase
         $_POST['birthday-year']    = '2005';
         $_POST['gender']           = 'F';
 
-        $this->validServiceMock->method('isValid')->willReturn(true);
+        $this->validServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
 
         $this->assertSame(
             [],
