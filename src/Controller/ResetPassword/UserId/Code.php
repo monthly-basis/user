@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Controller\ResetPassword\UserId;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
+use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -16,13 +17,17 @@ class Code extends AbstractActionController
 
     public function __construct(
         FlashService\Flash $flashService,
+        UserFactory\Password\Reset\FromUserIdAndCode $fromUserIdAndCodeFactory,
         UserService\Logout $logoutService,
+        UserService\Password\Reset\Expired $expiredService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\ResetPasswordAccessLog $resetPasswordAccessLogTable,
         UserTable\User\PasswordHash $passwordHashTable
     ) {
         $this->flashService                = $flashService;
+        $this->fromUserIdAndCodeFactory    = $fromUserIdAndCodeFactory;
         $this->logoutService               = $logoutService;
+        $this->expiredService              = $expiredService;
         $this->resetPasswordTable          = $resetPasswordTable;
         $this->resetPasswordAccessLogTable = $resetPasswordAccessLogTable;
         $this->passwordHashTable           = $passwordHashTable;
@@ -49,18 +54,23 @@ class Code extends AbstractActionController
 
     public function indexAction()
     {
-        $this->code = $this->params()->fromRoute('code');
+        $this->userId = $this->params()->fromRoute('userId');
+        $this->code   = $this->params()->fromRoute('code');
 
         try {
-            $this->userId = $this->resetPasswordTable->selectUserIdWhereCodeAndCreatedGreaterThan(
+            $resetEntity = $this->fromUserIdAndCodeFactory->buildFromUserIdAndCode(
+                $this->userId,
                 $this->code,
-                date('Y-m-d H:i:s', strtotime('-1 day'))
             );
         } catch (Exception $exception) {
             $this->resetPasswordAccessLogTable->insert(
                 $_SERVER['REMOTE_ADDR'],
                 0
             );
+            return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
+        }
+
+        if ($this->expiredService->isExpired($resetEntity)) {
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
 
