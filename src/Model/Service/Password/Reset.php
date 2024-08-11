@@ -35,9 +35,6 @@ class Reset
         $this->userEmailTable           = $userEmailTable;
     }
 
-    /**
-     *  Reset password.
-     */
     public function reset()
     {
         $this->flashService->set(
