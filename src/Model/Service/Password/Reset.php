@@ -47,10 +47,16 @@ class Reset
             return;
         }
 
-        // Build user from user id
-        // If reset password email should be sent
-            // Generate and store code
-            // Email link
+        $count = $this->resetPasswordTable->selectCountWhereUserIdAndCreatedGreaterThan(
+            $userId,
+            date('Y-m-d H:i:s', strtotime('+3 day'));
+        );
+        if ($count >= 3) {
+            return;
+        }
+
+        // Generate and store code
+        // Email link
     }
 
     /**
