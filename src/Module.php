@@ -9,6 +9,7 @@ use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Controller as UserController;
+use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -190,6 +191,11 @@ class Module
     {
         return [
             'factories' => [
+                UserDb\Sql::class => function ($sm) {
+                    return new UserDb\Sql(
+                        $sm->get('user')
+                    );
+                },
                 UserFactory\Post::class => function ($sm) {
                     return new UserFactory\Post();
                 },
