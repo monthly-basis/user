@@ -8,6 +8,7 @@ use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\String\Model\Service as StringService;
+use MonthlyBasis\User\Controller as UserController;
 use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
@@ -34,7 +35,7 @@ class Module
                                 'options' => [
                                     'route'    => '/change-password',
                                     'defaults' => [
-                                        'controller' => UserHttpsController\Account\ChangePassword::class,
+                                        'controller' => UserController\Account\ChangePassword::class,
                                         'action'     => 'change-password',
                                     ],
                                 ],
@@ -47,7 +48,7 @@ class Module
                         'options' => [
                             'route'    => '/activate/:registerId/:activationCode',
                             'defaults' => [
-                                'controller' => UserHttpsController\Activate::class,
+                                'controller' => UserController\Activate::class,
                                 'action'     => 'index',
                             ],
                         ],
@@ -57,7 +58,7 @@ class Module
                         'options' => [
                             'route'    => '/login[/:action]',
                             'defaults' => [
-                                'controller' => UserHttpsController\Login::class,
+                                'controller' => UserController\Login::class,
                                 'action'     => 'index',
                             ],
                         ],
@@ -67,7 +68,7 @@ class Module
                         'options' => [
                             'route'    => '/logout',
                             'defaults' => [
-                                'controller' => UserHttpsController\Logout::class,
+                                'controller' => UserController\Logout::class,
                                 'action'     => 'index',
                             ],
                         ],
@@ -77,7 +78,7 @@ class Module
                         'options' => [
                             'route'    => '/sign-up[/:action]',
                             'defaults' => [
-                                'controller' => UserHttpsController\SignUp::class,
+                                'controller' => UserController\SignUp::class,
                                 'action'     => 'index',
                             ],
                         ],
@@ -88,7 +89,7 @@ class Module
                         'options' => [
                             'route'    => '/reset-password',
                             'defaults' => [
-                                'controller' => UserHttpsController\ResetPassword::class,
+                                'controller' => UserController\ResetPassword::class,
                                 'action'     => 'index',
                             ],
                         ],
@@ -109,7 +110,7 @@ class Module
                                         'options' => [
                                             'route'    => '/:code',
                                             'defaults' => [
-                                                'controller' => UserHttpsController\ResetPassword\UserId\Code::class,
+                                                'controller' => UserController\ResetPassword\UserId\Code::class,
                                                 'action'     => 'index',
                                             ],
                                         ],
@@ -121,7 +122,7 @@ class Module
                                 'options' => [
                                     'route'    => '/email-sent',
                                     'defaults' => [
-                                        'controller' => UserHttpsController\ResetPassword::class,
+                                        'controller' => UserController\ResetPassword::class,
                                         'action'     => 'email-sent',
                                     ],
                                 ],
@@ -131,7 +132,7 @@ class Module
                                 'options' => [
                                     'route'    => '/success',
                                     'defaults' => [
-                                        'controller' => UserHttpsController\ResetPassword::class,
+                                        'controller' => UserController\ResetPassword::class,
                                         'action'     => 'success',
                                     ],
                                 ],
@@ -191,6 +192,71 @@ class Module
                 'template_path_stack' => [
                     'monthly-basis/user' => __DIR__ . '/../view',
                 ],
+            ],
+        ];
+    }
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                UserController\Account\ChangePassword::class => function ($sm) {
+                    return new UserController\Account\ChangePassword(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\LoggedIn::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Change::class),
+                        $sm->get(UserService\Password\Change\Errors::class),
+                    );
+                },
+                UserController\Activate::class => function ($sm) {
+                    return new UserController\Activate(
+                        $sm->get(UserService\Activate::class)
+                    );
+                },
+                UserController\Login::class => function ($sm) {
+                    return new UserController\Login(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\LoggedIn::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Login::class),
+                        $sm->get(UserTable\LoginLog::class),
+                    );
+                },
+                UserController\Logout::class => function ($sm) {
+                    return new UserController\Logout(
+                        $sm->get(UserService\Logout::class),
+                    );
+                },
+                UserController\SignUp::class => function ($sm) {
+                    return new UserController\SignUp(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Register::class),
+                        $sm->get(UserService\Url::class),
+                    );
+                },
+                UserController\ResetPassword::class => function ($sm) {
+                    return new UserController\ResetPassword(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Reset::class),
+                        $sm->get(UserService\Url::class),
+                    );
+                },
+                UserController\ResetPassword\UserId\Code::class => function ($sm) {
+                    return new UserController\ResetPassword\UserId\Code(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserFactory\Password\Reset\FromUserIdAndCode::class),
+                        $sm->get(UserService\Logout::class),
+                        $sm->get(UserService\Password\Reset\Accessed\ConditionallyUpdate::class),
+                        $sm->get(UserService\Password\Reset\Expired::class),
+                        $sm->get(UserTable\ResetPassword::class),
+                        $sm->get(UserTable\ResetPasswordAccessLog::class),
+                        $sm->get(UserTable\User\UserId::class),
+                    );
+                },
             ],
         ];
     }
