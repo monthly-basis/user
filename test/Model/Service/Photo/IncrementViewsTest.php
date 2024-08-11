@@ -25,4 +25,16 @@ class IncrementViewsTest extends TestCase
             $this->incrementViewsService
         );
     }
+
+    public function testIncrementViews()
+    {
+        $photoEntity = new UserEntity\Photo();
+        $photoEntity->setPhotoId(123);
+
+        $this->photoTableMock->method('updateViewsWherePhotoId')->willReturn(true);
+
+        $this->assertTrue(
+            $this->incrementViewsService->incrementViews($photoEntity)
+        );
+    }
 }
