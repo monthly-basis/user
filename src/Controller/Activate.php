@@ -26,12 +26,12 @@ class Activate extends AbstractActionController
         $registerId     = $this->params()->fromRoute('registerId');
         $activationCode = $this->params()->fromRoute('activationCode');
 
-        $registerArray = $this->registerTable->selectWhereRegisterIdAndActivationCode(
+        $result = $this->registerTable->selectWhereRegisterIdAndActivationCode(
             $registerId,
             $activationCode
         );
 
-        if (empty($registerArray)) {
+        if (false == ($registerArray = $result->current())) {
             $url = 'https://'
                  . $_SERVER['HTTP_HOST'];
             return $this->redirect()->toUrl($url)->setStatusCode(303);

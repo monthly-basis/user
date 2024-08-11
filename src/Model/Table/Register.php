@@ -2,6 +2,7 @@
 namespace MonthlyBasis\User\Model\Table;
 
 use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 
 class Register
 {
@@ -65,7 +66,7 @@ class Register
     public function selectWhereRegisterIdAndActivationCode(
         int $registerId,
         string $activationCode
-    ) {
+    ): Result {
         $sql = '
             SELECT `username`
                  , `email`
@@ -77,6 +78,10 @@ class Register
                AND `activation_code` = ?
                  ;
         ';
-        return $this->adapter->query($sql, [$registerId, $activationCode])->current();
+        $parameters = [
+            $registerId,
+            $activationCode,
+        ];
+        return $this->adapter->query($sql)->execute($parameters);
     }
 }
