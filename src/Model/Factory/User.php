@@ -19,7 +19,7 @@ class User
             $userId
         );
 
-        return $this->buildFromArrayObject($array);
+        return $this->buildFromArray($array);
     }
 
     /**
