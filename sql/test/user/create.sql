@@ -12,5 +12,6 @@ CREATE TABLE `user` (
     `views` int unsigned not null default 0,
     `created` datetime not null,
     PRIMARY KEY (`user_id`),
-    UNIQUE KEY `username` (`username`)
+    UNIQUE KEY `username` (`username`),
+    KEY `created` (`created`)
 ) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
