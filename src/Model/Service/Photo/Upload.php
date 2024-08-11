@@ -43,11 +43,28 @@ class Upload
             $description
         );
 
+        $imagick = new \Imagick($fileTmpName);
+        $orientation = $imagick->getImageOrientation();
+		switch ($orientation) {
+			case \Imagick::ORIENTATION_BOTTOMRIGHT:
+				$imagick->rotateimage("#000", 180); // rotate 180 degrees
+			break;
+
+			case \Imagick::ORIENTATION_RIGHTTOP:
+				$imagick->rotateimage("#000", 90); // rotate 90 degrees CW
+			break;
+
+			case \Imagick::ORIENTATION_LEFTBOTTOM:
+				$imagick->rotateimage("#000", -90); // rotate 90 degrees CCW
+			break;
+		}
+        $imagick->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
+
         mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/photos/$photoId");
 
         $uploadPath = $_SERVER['DOCUMENT_ROOT']
                     . "/uploads/photos/$photoId/original.$fileExtension";
-        move_uploaded_file($fileTmpName, $uploadPath);
-        chmod($uploadPath, 0777);
+
+        $imagick->writeImage($uploadPath);
     }
 }
