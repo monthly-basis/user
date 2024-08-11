@@ -38,9 +38,6 @@ class LoginTest extends TestCase
         $this->validServiceMock = $this->createMock(
             UserService\Password\Valid::class
         );
-        $this->loginTokenTableMock = $this->createMock(
-            UserTable\LoginToken::class
-        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -50,16 +47,20 @@ class LoginTest extends TestCase
         $this->userIdTableMock = $this->createMock(
             UserTable\User\UserId::class
         );
+        $this->userTokenTableMock = $this->createMock(
+            UserTable\UserToken::class
+        );
+
         $this->loginService = new UserService\Login(
             $this->flashServiceMock,
             $this->validReCaptchaServiceMock,
             $this->randomServiceMock,
             $this->userFactoryMock,
             $this->validServiceMock,
-            $this->loginTokenTableMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
             $this->userIdTableMock,
+            $this->userTokenTableMock,
         );
 
         $this->countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
@@ -250,7 +251,7 @@ class LoginTest extends TestCase
              ->method('updateSetLoginIpWhereUserId')
              ->with('123.123.123.123', 123)
              ;
-        $this->loginTokenTableMock
+        $this->userTokenTableMock
              ->expects($this->once())
              ->method('insert')
              ->with(

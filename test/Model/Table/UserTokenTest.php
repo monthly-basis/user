@@ -5,7 +5,7 @@ use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
 use MonthlyBasis\User\Model\Db as UserDb;
 
-class LoginTokenTest extends TableTestCase
+class UserTokenTest extends TableTestCase
 {
     protected function setUp(): void
     {
@@ -13,14 +13,14 @@ class LoginTokenTest extends TableTestCase
             $this->getAdapter()
         );
 
-        $this->loginTokenTable = new UserTable\LoginToken($this->sql);
+        $this->userTokenTable = new UserTable\UserToken($this->sql);
 
-        $this->dropAndCreateTable('login_token');
+        $this->dropAndCreateTable('user_token');
     }
 
     public function test_insert()
     {
-        $result = $this->loginTokenTable->insert([
+        $result = $this->userTokenTable->insert([
             'login_token' => 'the-login-token',
             'login_ip'    => '1.2.3.4',
             'user_id'     => 12345,
@@ -37,7 +37,7 @@ class LoginTokenTest extends TableTestCase
             $result->getAffectedRows()
         );
 
-        $result = $this->loginTokenTable->insert([
+        $result = $this->userTokenTable->insert([
             'login_token' => 'the-login-token',
             'login_ip'    => '1.2.3.4',
             'user_id'     => 12345,
