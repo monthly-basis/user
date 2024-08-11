@@ -58,7 +58,7 @@ class Login
          * Credentials are valid. Update tables and set cookies.
          */
 
-        $loginHash  = $this->randomService->getRandomString(64);
+        $loginToken = $this->randomService->getRandomString(64);
         $httpsToken = $this->randomService->getRandomString(64);
 
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
@@ -66,14 +66,14 @@ class Login
         );
         $this->userTokenTable->insert(
             $userId,
-            $loginHash,
+            $loginToken,
             $httpsToken,
             (new \DateTime())->modify('+30 days'),
         );
 
         $this->setCookies(
             $userId,
-            $loginHash,
+            $loginToken,
             $httpsToken,
         );
 
@@ -82,12 +82,12 @@ class Login
 
     protected function setCookies(
         int $userId,
-        string $loginHash,
+        string $loginToken,
         string $httpsToken
     ) {
         $namesAndValues = [
             'user-id'     => $userId,
-            'login-token' => $loginHash,
+            'login-token' => $loginToken,
             'https-token' => $httpsToken,
         ];
 
