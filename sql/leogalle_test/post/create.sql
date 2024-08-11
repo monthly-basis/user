@@ -5,5 +5,6 @@ CREATE TABLE `post` (
     `message` text not null,
     PRIMARY KEY (`post_id`),
     KEY `to_user_id` (`to_user_id`),
-    CONSTRAINT `from_user_id` FOREIGN KEY (`from_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `from_user_id` FOREIGN KEY (`from_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `to_user_id` FOREIGN KEY (`to_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) charset=utf8;
