@@ -1,17 +1,13 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Table;
 
-use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Db\Adapter\Adapter;
+use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
-class UserEmailTest extends TestCase
+class UserEmailTest extends TableTestCase
 {
-    /**
-     * @var string
-     */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/test/user_email/';
-
     /**
      * @var UserTable\UserEmail
      */
@@ -19,30 +15,9 @@ class UserEmailTest extends TestCase
 
     protected function setUp(): void
     {
-        $configArray          = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray          = $configArray['db']['adapters']['test'];
-        $this->adapter        = new Adapter($configArray);
-        $this->userEmailTable = new UserTable\UserEmail($this->adapter);
+        $this->dropAndCreateTable('user_email');
 
-        $this->dropTable();
-        $this->createTable();
-    }
-
-    protected function dropTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'drop.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    protected function createTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'create.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(UserTable\UserEmail::class, $this->userEmailTable);
+        $this->userEmailTable = new UserTable\UserEmail($this->getAdapter());
     }
 
     public function testInsert()
