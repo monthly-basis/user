@@ -85,6 +85,35 @@ class ErrorsTest extends TestCase
         );
     }
 
+    /**
+     * @preserveGlobalState disabled
+     * @runInSeparateProcess
+     */
+    public function test_getErrors_invalidHttpsToken_errors()
+    {
+        $_POST['current-password']     = 'correct current password';
+        $_POST['new-password']         = 'the new password';
+        $_POST['confirm-new-password'] = 'the new password';
+        $_POST['https-token']          = 'invalid https token';
+
+        $this->reCaptchaValidServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
+
+        $this->assertSame(
+            [
+                'Invalid credentials.',
+            ],
+            $this->errorsService->getErrors(),
+        );
+
+        $this->passwordValidServiceMock
+             ->expects($this->exactly(0))
+             ->method('isValid')
+             ;
+    }
 
     /**
      * @preserveGlobalState disabled
