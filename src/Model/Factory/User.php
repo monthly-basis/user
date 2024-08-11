@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Factory;
 
+use ArrayObject;
 use LeoGalleguillos\User\Model\Entity\User as UserEntity;
 use LeoGalleguillos\User\Model\Table\User as UserTable;
 
@@ -20,6 +21,15 @@ class User
         return $this->buildFromArrayObject($arrayObject);
     }
 
+    public function buildFromArrayObject(ArrayObject $arrayObject)
+    {
+        $userEntity = new UserEntity();
+
+        $userEntity->userId   = $arrayObject['user_id'];
+        $userEntity->username = $arrayObject['username'];
+        return $userEntity;
+    }
+
     public function buildFromUsername(string $username)
     {
         $arrayObject = $this->userTable->selectWhereUsername(
@@ -31,14 +41,5 @@ class User
         }
 
         return $this->buildFromArrayObject($arrayObject);
-    }
-
-    public function buildFromArrayObject(ArrayObject $arrayObject)
-    {
-        $userEntity = new UserEntity();
-
-        $userEntity->userId   = $arrayObject['user_id'];
-        $userEntity->username = $arrayObject['username'];
-        return $userEntity;
     }
 }
