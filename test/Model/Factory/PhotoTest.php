@@ -58,4 +58,24 @@ class PhotoTest extends TestCase
             $this->photoFactory->buildFromArray($array)
         );
     }
+
+    public function testBuildFromPhotoId()
+    {
+        $array = [
+            'photo_id'    => '2',
+            'extension'   => 'jpg',
+            'title'       => 'title',
+            'description' => 'description',
+            'views'       => '0',
+            'created'     => '0000-00-00 00:00:00',
+        ];
+        $this->photoTableMock->method('selectWherePhotoId')->willReturn(
+            $array
+        );
+
+        $this->assertInstanceOf(
+            UserEntity\Photo::class,
+            $this->photoFactory->buildFromPhotoId(1)
+        );
+    }
 }

@@ -42,4 +42,11 @@ class Photo
 
         return $photo;
     }
+
+    public function buildFromPhotoId(
+        int $photoId
+    ) : UserEntity\Photo {
+        $array = $this->photoTable->selectWherePhotoId($photoId);
+        return $this->buildFromArray($array);
+    }
 }
