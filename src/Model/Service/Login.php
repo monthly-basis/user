@@ -29,12 +29,13 @@ class Login
         UserTable\User\LoginHash $loginHashTable,
         UserTable\User\LoginIp $loginIpTable
     ) {
-        $this->validReCaptchaService = $validReCaptchaService;
-        $this->userFactory        = $userFactory;
-        $this->userTable          = $userTable;
-        $this->loginDateTimeTable = $loginDateTimeTable;
-        $this->loginHashTable     = $loginHashTable;
-        $this->loginIpTable       = $loginIpTable;
+        $this->validReCaptchaService    = $validReCaptchaService;
+        $this->userFactory              = $userFactory;
+        $this->reCaptchaRequiredService = $reCaptchaRequiredService;
+        $this->userTable                = $userTable;
+        $this->loginDateTimeTable       = $loginDateTimeTable;
+        $this->loginHashTable           = $loginHashTable;
+        $this->loginIpTable             = $loginIpTable;
     }
 
     /**
@@ -60,6 +61,15 @@ class Login
         if (!password_verify($_POST['password'], $passwordHash)) {
             return false;
         }
+
+        if ($this->reCaptchaRequiredService->isReCaptchaRequired()
+            && !$this->validReCaptchaService->isValid()) {
+            return false;
+        }
+
+        /*
+         * All tests pass. Update tables and set cookies.
+         */
 
         $userEntity = $this->userFactory->buildFromUsername($username);
         $loginHash  = password_hash($userEntity->getUserId() . time(), PASSWORD_DEFAULT);
