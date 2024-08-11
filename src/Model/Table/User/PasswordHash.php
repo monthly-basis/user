@@ -15,6 +15,9 @@ class PasswordHash
         $this->adapter = $adapter;
     }
 
+    /**
+     * @deprecated Use UserTable\User\UserId::updateSetPasswordHashWhereUserId()
+     */
     public function updateWhereUserId(
         string $passwordHash,
         int $userId
