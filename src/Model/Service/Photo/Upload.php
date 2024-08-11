@@ -1,14 +1,16 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service\Photo;
 
-use ArrayObject;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
-use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Upload
 {
+    /**
+     * Construct.
+     *
+     * @param UserTable\Photo $photoTable
+     */
     public function __construct(
         UserTable\Photo $photoTable
     ) {
@@ -17,6 +19,10 @@ class Upload
 
     /**
      * Upload
+     *
+     * @param UserEntity\User $userEntity
+     * @param string $fileName
+     * @param string $fileTmpName
      */
     public function upload(
         UserEntity\User $userEntity,
