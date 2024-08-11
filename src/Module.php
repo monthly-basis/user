@@ -107,6 +107,15 @@ class Module
                 UserFactory\Post::class => function ($sm) {
                     return new UserFactory\Post();
                 },
+                UserFactory\Password\Reset\FromArray::class => function ($sm) {
+                    return new UserFactory\Password\Reset\FromArray();
+                },
+                UserFactory\Password\Reset\FromUserIdAndCode::class => function ($sm) {
+                    return new UserFactory\Password\Reset\FromUserIdAndCode(
+                        $sm->get(UserFactory\Password\Reset\FromArray::class),
+                        $sm->get(UserTable\ResetPassword::class),
+                    );
+                },
                 UserFactory\User::class => function ($sm) {
                     return new UserFactory\User(
                         $sm->get(UserTable\User::class)
