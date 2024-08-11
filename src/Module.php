@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
@@ -16,6 +17,11 @@ class Module
     {
         return [
             'factories' => [
+                UserFactory\User::class => function ($serviceManager) {
+                    return new UserFactory\User(
+                        $serviceManager->get(UserTable\User::class)
+                    );
+                },
                 UserService\Register::class => function ($serviceManager) {
                     return new UserService\Register(
                         $serviceManager->get(FlashService\Flash::class)
