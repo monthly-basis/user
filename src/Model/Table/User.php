@@ -7,14 +7,17 @@ use Generator;
 use TypeError;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\User\Model\Db as UserDb;
 
 class User
 {
     protected Adapter $adapter;
+    protected UserDb\Sql $sql;
 
-    public function __construct(Adapter $adapter)
+    public function __construct(UserDb\Sql $sql)
     {
-        $this->adapter = $adapter;
+        $this->sql     = $sql;
+        $this->adapter = $this->sql->getAdapter();
     }
 
     public function getSelect(): string

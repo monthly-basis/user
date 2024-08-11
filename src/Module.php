@@ -509,7 +509,7 @@ class Module
                 },
                 UserTable\User::class => function ($sm) {
                     return new UserTable\User(
-                        $sm->get('user')
+                        $sm->get(UserDb\Sql::class)
                     );
                 },
                 UserTable\User\DisplayName::class => function ($sm) {

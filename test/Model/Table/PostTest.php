@@ -3,6 +3,7 @@ namespace MonthlyBasis\UserTest\Model\Table;
 
 use ArrayObject;
 use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Db\Adapter\Exception\InvalidQueryException;
 
@@ -15,8 +16,12 @@ class PostTest extends TableTestCase
         $this->createTables(['post', 'user']);
         $this->setForeignKeyChecks1();
 
+        $this->sql = new UserDb\Sql(
+            $this->getAdapter()
+        );
+
         $this->postTable = new UserTable\Post($this->getAdapter());
-        $this->userTable = new UserTable\User($this->getAdapter());
+        $this->userTable = new UserTable\User($this->sql);
     }
 
     public function testInsert()

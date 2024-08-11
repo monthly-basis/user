@@ -4,6 +4,7 @@ namespace MonthlyBasis\UserTest\Model\Table;
 use Exception;
 use Laminas\Db\Adapter\Adapter;
 use MonthlyBasis\LaminasTest\TableTestCase;
+use MonthlyBasis\User\Model\Db as UserDb;
 use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +16,11 @@ class UserEmailTest extends TableTestCase
         $this->dropAndCreateTables(['user', 'user_email']);
         $this->setForeignKeyChecks(1);
 
-        $this->userTable      = new UserTable\User($this->getAdapter());
+        $this->sql = new UserDb\Sql(
+            $this->getAdapter()
+        );
+
+        $this->userTable      = new UserTable\User($this->sql);
         $this->userEmailTable = new UserTable\UserEmail($this->getAdapter());
     }
 
