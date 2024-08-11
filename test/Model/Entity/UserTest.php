@@ -2,19 +2,14 @@
 namespace LeoGalleguillos\UserTest\Model\Entity;
 
 use DateTime;
-use LeoGalleguillos\User\Model\Entity\User as UserEntity;
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
     protected function setUp()
     {
-        $this->userEntity = new UserEntity();
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(UserEntity::class, $this->userEntity);
+        $this->userEntity = new UserEntity\User();
     }
 
     public function testAttributes()
@@ -39,6 +34,13 @@ class UserTest extends TestCase
         $this->assertSame(
             $created,
             $this->userEntity->getCreated()
+        );
+
+        $gender = 'F';
+        $this->userEntity->setGender($gender);
+        $this->assertSame(
+            $gender,
+            $this->userEntity->getGender()
         );
 
         $username = 'myusername';
