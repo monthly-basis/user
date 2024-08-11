@@ -2,12 +2,12 @@
     "name": "leo-galleguillos/user",
     "license": "MIT",
     "require": {
+        "laminas/laminas-db": "^2.9",
+        "laminas/laminas-test": "^3.1",
         "leo-galleguillos/flash": "dev-master",
         "leo-galleguillos/re-captcha": "dev-master",
         "leo-galleguillos/string": "dev-master",
-        "leo-galleguillos/test": "dev-master",
-        "zendframework/zend-test": "^3.1",
-        "zendframework/zend-db": "^2.9"
+        "leo-galleguillos/test": "dev-master"
     },
     "autoload": {
         "psr-4": {
