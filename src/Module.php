@@ -103,12 +103,19 @@ class Module
             'view_helpers' => [
                 'aliases' => [
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
-                    'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'getBirthdaySelectsHtml'   => UserHelper\BirthdaySelectsHtml::class,
                     'getDisplayNameOrUsername' => UserHelper\DisplayNameOrUsername::class,
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                     'getUserFactory'           => UserHelper\Factory\User::class,
                     'getUserHtml'              => UserHelper\UserHtml::class,
+                    /*
+                     * @deprecated 'isUserLoggedIn' is a misnomer since a user cannot
+                     *             exist without being logged in.
+                     *             Use 'isVisitorLoggedIn' view helper instead.
+                     *
+                     */
+                    'isUserLoggedIn'           => UserHelper\LoggedIn::class,
+                    'isVisitorLoggedIn'        => UserHelper\LoggedIn::class,
                 ],
                 'factories' => [
                     UserHelper\BirthdaySelectsHtml::class => function ($sm) {
