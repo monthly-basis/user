@@ -10,10 +10,9 @@ class User
 {
     protected $cache = [];
 
-    public function __construct(UserTable $userTable)
-    {
-        $this->userTable = $userTable;
-    }
+    public function __construct(
+        protected UserTable $userTable
+    ) {}
 
     public function buildFromArray(array $array): UserEntity\User
     {
@@ -46,6 +45,15 @@ class User
         }
         if (isset($array['https_token'])) {
             $userEntity->setHttpsToken($array['https_token']);
+        }
+        if (isset($array['image_256_rru'])) {
+            $userEntity->image256Rru = $array['image_256_rru'];
+        }
+        if (isset($array['image_512_rru'])) {
+            $userEntity->image512Rru = $array['image_512_rru'];
+        }
+        if (isset($array['image_1024_rru'])) {
+            $userEntity->image1024Rru = $array['image_1024_rru'];
         }
         if (isset($array['login_token'])) {
             $userEntity->setLoginToken($array['login_token']);
