@@ -3,6 +3,7 @@ namespace MonthlyBasis\UserTest\Model\Service;
 
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class LogoutTest extends TestCase
@@ -12,9 +13,13 @@ class LogoutTest extends TestCase
         $this->loggedInUserServiceMock = $this->createMock(
             UserService\LoggedInUser::class
         );
+        $this->userTokenTableMock = $this->createMock(
+            UserTable\UserToken::class
+        );
 
         $this->logoutService = new UserService\Logout(
-            $this->loggedInUserServiceMock
+            $this->loggedInUserServiceMock,
+            $this->userTokenTableMock
         );
     }
 

@@ -2,13 +2,16 @@
 namespace MonthlyBasis\User\Model\Service;
 
 use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Logout
 {
     public function __construct(
-        UserService\LoggedInUser $loggedInUserService
+        UserService\LoggedInUser $loggedInUserService,
+        UserTable\UserToken $userTokenTable
     ) {
         $this->loggedInUserService = $loggedInUserService;
+        $this->userTokenTable      = $userTokenTable;
     }
 
     public function logout(): void
