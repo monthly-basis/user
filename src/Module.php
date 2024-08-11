@@ -120,6 +120,9 @@ class Module
                         $serviceManager->get(FlashService\Flash::class)
                     );
                 },
+                UserService\RootRelativeUrl::class => function ($serviceManager) {
+                    return new UserService\RootRelativeUrl();
+                },
                 UserService\User::class => function ($serviceManager) {
                     return new UserService\User(
                         $serviceManager->get(UserTable\User::class)
