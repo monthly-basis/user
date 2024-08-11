@@ -106,6 +106,12 @@ class Module
                         $serviceManager->get(UserTable\User::class)
                     );
                 },
+                UserService\User\NewestUsers::class => function ($serviceManager) {
+                    return new UserService\User\NewestUsers(
+                        $serviceManager->get(UserFactory\User::class),
+                        $serviceManager->get(UserTable\User::class)
+                    );
+                },
                 UserTable\Photo::class => function ($serviceManager) {
                     return new UserTable\Photo(
                         $serviceManager->get('main')
