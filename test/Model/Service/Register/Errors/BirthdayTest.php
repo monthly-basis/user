@@ -24,6 +24,9 @@ class BirthdayTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_ipAddressWasLogged_nonEmptyErrors()
     {
         unset($_POST);
@@ -60,6 +63,9 @@ class BirthdayTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_emptyPost_nonEmptyErrors()
     {
         unset($_POST);
@@ -91,6 +97,9 @@ class BirthdayTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_invalidBirthday_nonEmptyErrors()
     {
         $_POST = [];
@@ -119,6 +128,9 @@ class BirthdayTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_birthdayNotOldEnough_nonEmptyErrors()
     {
         $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
@@ -171,6 +183,9 @@ class BirthdayTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_birthdayOldEnough_emptyErrors()
     {
         $dateTime13YearsAnd3DaysAgo = (new DateTime())->sub(new DateInterval('P13Y3D'));
@@ -178,6 +193,8 @@ class BirthdayTest extends TestCase
         $_POST['birthday-month'] = $dateTime13YearsAnd3DaysAgo->format('m');
         $_POST['birthday-day']   = $dateTime13YearsAnd3DaysAgo->format('d');
         $_POST['birthday-year']  = $dateTime13YearsAnd3DaysAgo->format('Y');
+
+        $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
 
         $this->assertSame(
             [],
