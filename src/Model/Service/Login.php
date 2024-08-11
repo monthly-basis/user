@@ -54,6 +54,11 @@ class Login
             return false;
         }
 
+        if ($this->reCaptchaRequiredService->isReCaptchaRequired()
+            && !$this->validReCaptchaService->isValid()) {
+            return false;
+        }
+
         $userArray = $this->userTable->selectWhereUsername($_POST['username']);
         if (empty($userArray)) {
             return false;
@@ -63,11 +68,6 @@ class Login
         $passwordHash = $userArray['password_hash'];
 
         if (!password_verify($_POST['password'], $passwordHash)) {
-            return false;
-        }
-
-        if ($this->reCaptchaRequiredService->isReCaptchaRequired()
-            && !$this->validReCaptchaService->isValid()) {
             return false;
         }
 
