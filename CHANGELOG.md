@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.0
+
+- Remove deprecated classes, methods, and routes
+
 ## v2.12.0
 
 - Deprecate Controller classes
