@@ -62,6 +62,12 @@ class Register
             }
         }
 
+        if (empty($_POST['gender'])
+            || (!in_array($_POST['gender'], ['M', 'F']))
+        ) {
+            $errors[] = 'Invalid gender.';
+        }
+
         if (!$this->validService->isValid()) {
             $errors[] = 'Invalid reCAPTCHA.';
         }

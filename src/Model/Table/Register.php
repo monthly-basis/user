@@ -20,12 +20,21 @@ class Register
         $username,
         $email,
         $passwordHash,
-        string $birthday
+        string $birthday,
+        string $gender
     ) {
         $sql = '
             INSERT
-              INTO `register` (`activation_code`, `username`, `email`, `password_hash`, `birthday`)
-            VALUES (?, ?, ?, ?, ?)
+              INTO `register`
+                   (
+                         `activation_code`
+                       , `username`
+                       , `email`
+                       , `password_hash`
+                       , `birthday`
+                       , `gender`
+                   )
+            VALUES (?, ?, ?, ?, ?, ?)
                  ;
         ';
         $parameters = [
@@ -33,11 +42,13 @@ class Register
             $username,
             $email,
             $passwordHash,
-            $birthday
+            $birthday,
+            $gender
         ];
         return $this->adapter
-                    ->query($sql, $parameters)
-                    ->getGeneratedValue();
+            ->query($sql)
+            ->execute($parameters)
+            ->getGeneratedValue();
     }
 
     public function selectCount()
