@@ -122,37 +122,6 @@ class User
         }
     }
 
-    /**
-     * @deprecated If needed, write a new selectWhereUsernameOrEmail method instead
-     */
-    public function selectRow($usernameOrEmail)
-    {
-        $sql = '
-            SELECT `user`.`user_id`
-                 , `user`.`username`
-                 , `user`.`password_hash`
-                 , `user`.`display_name`
-              FROM `user`
-              JOIN `user_email`
-             USING (`user_id`)
-             WHERE `user`.`username` = ?
-                OR `user_email`.`address` = ?
-             LIMIT 1
-                 ;
-        ';
-        $parameters = [
-            $usernameOrEmail,
-            $usernameOrEmail
-        ];
-        $row = $this->adapter->query($sql, $parameters)->current();
-
-        if (empty($row)) {
-            return false;
-        }
-
-        return (array) $row;
-    }
-
     public function selectWhereUserId(int $userId): Result
     {
         $sql = $this->getSelect()
