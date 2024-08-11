@@ -6,6 +6,6 @@ CREATE TABLE `reset_password` (
     `accessed` datetime DEFAULT NULL,
     `used` datetime DEFAULT NULL,
     PRIMARY KEY (`reset_password_id`),
-    KEY (`code`),
-    KEY (`user_id`, `code`)
+    KEY `code` (`code`),
+    KEY `user_id_code` (`user_id`, `code`)
 ) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
