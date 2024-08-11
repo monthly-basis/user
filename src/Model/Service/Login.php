@@ -43,8 +43,9 @@ class Login
             return false;
         }
 
+        $loginHash = password_hash($_POST['username'] . time(), PASSWORD_DEFAULT);
         $this->loginHashTable->updateWhereUsername(
-            password_hash($_POST['username'] . time(), PASSWORD_DEFAULT),
+            $loginHash,
             $_POST['username']
         );
 
