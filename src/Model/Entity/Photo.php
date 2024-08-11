@@ -21,6 +21,11 @@ class Photo
         return $this->created;
     }
 
+    public function getOriginal() : ImageEntity\Image
+    {
+        return $this->original;
+    }
+
     public function getTitle() : string
     {
         return $this->title;
