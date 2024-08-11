@@ -28,6 +28,11 @@ class Photo
         return $this->description;
     }
 
+    public function getExtension() : string
+    {
+        return $this->extension;
+    }
+
     public function getOriginal() : ImageEntity\Image
     {
         return $this->original;
@@ -67,6 +72,12 @@ class Photo
     public function setDescription(string $description) : UserEntity\Photo
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function setExtension(string $extension) : UserEntity\Photo
+    {
+        $this->extension = $extension;
         return $this;
     }
 

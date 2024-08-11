@@ -33,6 +33,7 @@ class PhotoTest extends TestCase
 
     public function testBuildFromArrayObject()
     {
+        $_SERVER['DOCUMENT_ROOT'] = $_SERVER['PWD'];
         $array = [
             'photo_id'    => '2',
             'extension'   => 'jpg',
@@ -48,6 +49,7 @@ class PhotoTest extends TestCase
                     ->setTitle('title')
                     ->setUserId(123)
                     ->setDescription('description')
+                    ->setExtension('jpg')
                     ->setCreated(new DateTime('0000-00-00 00:00:00'))
                     ->setViews(5);
 
