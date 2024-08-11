@@ -30,7 +30,11 @@ class BuildFromCookies
             // Do nothing.
         }
 
+        $userEntity = new UserEntity\User();
+
         $userId    = $this->userTable->insert();
+        $userEntity->setUserId($userId);
+
         $loginHash = password_hash($userId . time(), PASSWORD_DEFAULT);
         $loginIp   = $_SERVER['REMOTE_ADDR'];
 
@@ -80,5 +84,7 @@ class BuildFromCookies
             $domain,
             $secure
         );
+
+        return $userEntity;
     }
 }
