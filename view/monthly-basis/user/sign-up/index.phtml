@@ -22,11 +22,6 @@ $monthOptions = [
 $dayOptions = [
     '' => 'Day',
 ];
-$genderOptions = [
-    '' => 'Select',
-    'M' => 'Male',
-    'F' => 'Female',
-];
 for ($dayIteration = 1; $dayIteration <= 31; $dayIteration++) {
     $dayIterationPadded = sprintf("%02d", $dayIteration);
     $dayOptions[$dayIterationPadded] = $dayIteration;
@@ -81,16 +76,6 @@ for ($yearIteration = date('Y'); $yearIteration >= date('Y') - 120; $yearIterati
                     <select name="birthday-year">
                         <?php foreach ($yearOptions as $key => $value): ?>
                             <?php $selected = ($key == $flashService->get('birthday-year')) ? ' selected' : ''; ?>
-                            <option value="<?= $key ?>"<?= $selected ?>><?= $value ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </p>
-
-                <p>
-                    Gender<br>
-                    <select name="gender">
-                        <?php foreach ($genderOptions as $key => $value): ?>
-                            <?php $selected = ($key == $flashService->get('gender')) ? ' selected' : ''; ?>
                             <option value="<?= $key ?>"<?= $selected ?>><?= $value ?></option>
                         <?php endforeach ?>
                     </select>
