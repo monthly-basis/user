@@ -35,18 +35,46 @@ class ErrorsTest extends TestCase
         );
     }
 
-    public function test_getErrors()
+    public function test_getErrors_allDataValid_emptyArray()
     {
-        $_POST = [];
-
+        $_POST                     = [];
         $_POST['email']            = 'test@example.com';
-        $_POST['username']         = 'username';
+        $_POST['username']         = 'username123';
         $_POST['password']         = 'password';
         $_POST['confirm-password'] = 'password';
         $_POST['birthday-month']   = '08';
         $_POST['birthday-day']     = '03';
         $_POST['birthday-year']    = '2005';
         $_POST['gender']           = 'F';
+
+        $_SERVER['REMOTE_ADDR'] = '1.2.3.4';
+
+        $this->toxicServiceMock
+             ->expects($this->once())
+             ->method('isIpAddressToxic')
+             ->with('1.2.3.4')
+             ->willReturn(false)
+             ;
+
+        $this->emailExistsServiceMock
+             ->expects($this->once())
+             ->method('doesEmailExist')
+             ->with('test@example.com')
+             ->willReturn(false)
+             ;
+
+        $this->usernameExistsServiceMock
+             ->expects($this->once())
+             ->method('doesUsernameExist')
+             ->with('username123')
+             ->willReturn(false)
+             ;
+
+        $this->birthdayErrorsServiceMock
+             ->expects($this->once())
+             ->method('getBirthdayErrors')
+             ->willReturn([])
+             ;
 
         $this->validServiceMock
              ->expects($this->once())
