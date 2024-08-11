@@ -11,6 +11,7 @@ class Follow extends AbstractActionController
 {
     public function __construct(
         protected UserFactory\User $userFactory,
+        protected UserService\Follow $followService,
         protected UserService\LoggedInUser $loggedInUserService,
         protected UserService\Url $urlService,
     ) {
