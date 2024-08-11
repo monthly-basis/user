@@ -4,7 +4,7 @@ namespace LeoGalleguillos\User\View\Helper;
 use Exception;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Service as UserService;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class LoggedInUser extends AbstractHelper
 {

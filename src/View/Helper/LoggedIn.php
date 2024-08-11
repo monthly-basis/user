@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\User\View\Helper;
 
 use LeoGalleguillos\User\Model\Service as UserService;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class LoggedIn extends AbstractHelper
 {

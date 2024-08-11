@@ -5,7 +5,7 @@ use MonthlyBasis\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Service as UserService;
 use TypeError;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class UserHtml extends AbstractHelper
 {

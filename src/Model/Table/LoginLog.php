@@ -4,7 +4,7 @@ namespace LeoGalleguillos\User\Model\Table;
 use ArrayObject;
 use Exception;
 use Generator;
-use Zend\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Adapter;
 
 class LoginLog
 {
