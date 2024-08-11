@@ -32,12 +32,14 @@ class UserTest extends TestCase
     public function testBuildFromArray()
     {
         $array = [
+            'display_name'    => 'Display Name',
             'user_id'         => 1,
             'username'        => 'Testing123',
             'welcome_message' => 'Welcome to my page.',
         ];
         $userEntity = new UserEntity\User();
-        $userEntity->setUserId($array['user_id'])
+        $userEntity->setDisplayName($array['display_name'])
+                   ->setUserId($array['user_id'])
                    ->setUsername($array['username'])
                    ->setWelcomeMessage($array['welcome_message']);
         $this->assertEquals(
