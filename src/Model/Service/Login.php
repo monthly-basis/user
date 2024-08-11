@@ -97,6 +97,7 @@ class Login
         $namesAndValues = [
             'user-id'     => $userEntity->getUserId(),
             'login-hash'  => $loginHash,
+            'login-token' => $loginHash,
             'https-token' => $httpsToken,
         ];
 
