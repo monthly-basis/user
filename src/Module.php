@@ -156,7 +156,9 @@ class Module
                 UserController\SignUp::class => function ($sm) {
                     return new UserController\SignUp(
                         $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\LoggedInUser::class),
                         $sm->get(UserService\Register::class),
+                        $sm->get(UserService\Url::class),
                     );
                 },
                 UserController\ResetPassword::class => function ($sm) {

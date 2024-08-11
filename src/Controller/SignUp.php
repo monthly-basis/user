@@ -2,6 +2,7 @@
 namespace MonthlyBasis\User\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -11,10 +12,27 @@ class SignUp extends AbstractActionController
 {
     public function __construct(
         FlashService\Flash $flashService,
-        UserService\Register $registerService
+        UserService\LoggedInUser $loggedInUserService,
+        UserService\Register $registerService,
+        UserService\Url $urlService
     ) {
-        $this->flashService    = $flashService;
-        $this->registerService = $registerService;
+        $this->flashService        = $flashService;
+        $this->loggedInUserService = $loggedInUserService;
+        $this->registerService     = $registerService;
+        $this->urlService          = $urlService;
+    }
+
+    public function onDispatch(MvcEvent $mvcEvent)
+    {
+        try {
+            $userEntity = $this->loggedInUserService->getLoggedInUser();
+            $url        = $this->urlService->getUrl($userEntity);
+            return $this->redirect()->toUrl($url) ->setStatusCode(303);
+        } catch (UserException $userException) {
+            // Do nothing.
+        }
+
+        return parent::onDispatch($mvcEvent);
     }
 
     public function indexAction()
