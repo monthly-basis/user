@@ -26,7 +26,7 @@ class ChangePassword extends AbstractActionController
     public function onDispatch(MvcEvent $mvcEvent)
     {
         if (!$this->loggedInService->isLoggedIn()) {
-            return $this->redirect()->toRoute('login')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/login')->setStatusCode(303);
         }
 
         return parent::onDispatch($mvcEvent);
@@ -50,7 +50,7 @@ class ChangePassword extends AbstractActionController
                 'errors',
                 $errors
             );
-            return $this->redirect()->toRoute('account/change-password')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/account/change-password')->setStatusCode(303);
         }
 
         $this->changeService->changePassword(
