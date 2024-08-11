@@ -27,7 +27,7 @@ class SignUp extends AbstractActionController
         try {
             $userEntity = $this->loggedInUserService->getLoggedInUser();
             $url        = $this->urlService->getUrl($userEntity);
-            return $this->redirect()->toUrl($url) ->setStatusCode(303);
+            return $this->redirect()->toUrl($url)->setStatusCode(303);
         } catch (UserException $userException) {
             // Do nothing.
         }
