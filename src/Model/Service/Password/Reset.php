@@ -79,12 +79,7 @@ class Reset
         );
     }
 
-    /**
-     * Get errors.
-     *
-     * @return array
-     */
-    protected function getErrors()
+    protected function getErrors(): array
     {
         $errors = [];
 
