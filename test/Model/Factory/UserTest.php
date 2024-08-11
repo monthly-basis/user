@@ -81,6 +81,7 @@ class UserTest extends TestCase
         $userEntity           = new UserEntity\User();
         $userEntity->userId   = 1;
         $userEntity->username = 'Testing123';
+        $userEntity->setViews(0);
         $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->userTableMock->method('selectWhereUsername')->willReturn(

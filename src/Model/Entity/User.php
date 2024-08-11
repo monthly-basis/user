@@ -11,6 +11,8 @@ class User
     public $firstName;
     public $lastName;
 
+    protected $views = 0;
+
     protected $welcomeMessage = '';
 
     public function getUserId() : int
@@ -21,6 +23,11 @@ class User
     public function getUsername() : string
     {
         return $this->username;
+    }
+
+    public function getViews() : int
+    {
+        return $this->views;
     }
 
     public function getWelcomeMessage() : string
@@ -37,6 +44,12 @@ class User
     public function setUsername(string $username) : UserEntity\User
     {
         $this->username = $username;
+        return $this;
+    }
+
+    public function setViews(int $views) : UserEntity\User
+    {
+        $this->views = $views;
         return $this;
     }
 
