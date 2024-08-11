@@ -172,6 +172,7 @@ class Module
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                     'getUserFactory'           => UserHelper\Factory\User::class,
                     'getUserHtml'              => UserHelper\UserHtml::class,
+                    'isUserFollowing'          => UserHelper\Follow\IsFollowing::class,
                     'isVisitorLoggedIn'        => UserHelper\LoggedIn::class,
                 ],
                 'factories' => [
@@ -181,6 +182,11 @@ class Module
                     UserHelper\DisplayNameOrUsername::class => function ($sm) {
                         return new UserHelper\DisplayNameOrUsername(
                             $sm->get(UserService\DisplayNameOrUsername::class)
+                        );
+                    },
+                    UserHelper\Follow\IsFollowing::class => function ($sm) {
+                        return new UserHelper\Follow\IsFollowing(
+                            $sm->get(UserService\Follow\IsFollowing::class)
                         );
                     },
                     UserHelper\LoggedIn::class => function ($sm) {
