@@ -56,7 +56,7 @@ class LoginTest extends TestCase
     }
 
     /**
-      * @runInSeparateProcess
+      * @runInSeparateProcess because login service sends headers
       */
     public function testLogin()
     {
