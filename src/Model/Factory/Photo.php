@@ -4,11 +4,15 @@ namespace LeoGalleguillos\User\Model\Factory;
 use DateTime;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Photo
 {
+    /**
+     * Construct.
+     *
+     * @param UserTable\Photo $photoTable
+     */
     public function __construct(
         UserTable\Photo $photoTable
     ) {
@@ -45,6 +49,12 @@ class Photo
         return $photo;
     }
 
+    /**
+     * Build from photo ID.
+     *
+     * @param int $photoId
+     * @return UserEntity\Photo
+     */
     public function buildFromPhotoId(
         int $photoId
     ) : UserEntity\Photo {
