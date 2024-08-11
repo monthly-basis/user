@@ -12,6 +12,7 @@ class User
     public $lastName;
 
     protected $created;
+    protected $displayName;
     protected $userId;
     protected $views = 0;
     protected $welcomeMessage = '';
@@ -19,6 +20,11 @@ class User
     public function getCreated() : DateTime
     {
         return $this->created;
+    }
+
+    public function getDisplayName() : string
+    {
+        return $this->displayName;
     }
 
     public function getUserId() : int
@@ -44,6 +50,12 @@ class User
     public function setCreated(DateTime $created) : UserEntity\User
     {
         $this->created = $created;
+        return $this;
+    }
+
+    public function setDisplayName(string $displayName) : UserEntity\User
+    {
+        $this->displayName = $displayName;
         return $this;
     }
 

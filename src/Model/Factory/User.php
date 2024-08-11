@@ -37,7 +37,9 @@ class User
         if (isset($array['username'])) {
             $userEntity->setUsername($array['username']);
         }
-
+        if (isset($array['display_name'])) {
+            $userEntity->setDisplayName($array['display_name']);
+        }
         if (isset($array['created'])) {
             $userEntity->setCreated(
                 new DateTime($array['created'])
