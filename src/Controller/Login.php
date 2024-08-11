@@ -56,6 +56,20 @@ class Login extends AbstractActionController
     {
         $this->loginLogTable->insert($_SERVER['REMOTE_ADDR'], 1);
 
+        $options = [
+            'expires'  => time() - 3600,
+            'path'     => '/',
+            'domain'   => $_SERVER['HTTP_HOST'],
+            'secure'   => true,
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ];
+        setcookie(
+            'name',
+            null,
+            $options,
+        );
+
         $userEntity = $this->userFactory->buildFromUsername(
             $_POST['username']
         );
