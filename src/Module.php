@@ -385,6 +385,11 @@ class Module
                         $sm->get('user')
                     );
                 },
+                UserTable\RegisterNotOldEnoughLog::class => function ($sm) {
+                    return new UserTable\RegisterNotOldEnoughLog(
+                        $sm->get(UserDb\Sql::class)
+                    );
+                },
                 UserTable\ResetPassword::class => function ($sm) {
                     return new UserTable\ResetPassword(
                         $sm->get('user')
