@@ -27,6 +27,29 @@ class BirthdayTest extends TestCase
     /**
      * @runInSeparateProcess
      */
+    public function test_cookieIsSet_nonEmptyErrors()
+    {
+        $_COOKIE['register-not-old-enough'] = true;
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(0))
+             ->method('selectWhereIpAddressAndCreatedGreaterThan')
+             ;
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+
+        $this->assertSame(
+            [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH],
+            $this->birthdayService->getBirthdayErrors()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function test_getErrors_ipAddressWasLogged_nonEmptyErrors()
     {
         unset($_POST);

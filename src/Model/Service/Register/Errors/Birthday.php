@@ -20,6 +20,11 @@ class Birthday
     {
         $errors = [];
 
+        if (isset($_COOKIE['register-not-old-enough'])) {
+            $errors[] = self::ERROR_NOT_OLD_ENOUGH;
+            return $errors;
+        }
+
         $result = $this->registerNotOldEnoughLogTable->selectWhereIpAddressAndCreatedGreaterThan(
             $_SERVER['REMOTE_ADDR'],
             (new DateTime())->modify('-30 days')
