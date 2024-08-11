@@ -3,6 +3,7 @@
 return [
     'modules' => [
         'LeoGalleguillos\Flash',
+        'LeoGalleguillos\Image',
         'LeoGalleguillos\User',
         'Zend\Db',
         'Zend\Router',
