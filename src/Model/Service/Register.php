@@ -40,6 +40,10 @@ class Register
             $errors[] = 'Password and confirm password do not match.';
         }
 
+        if (!$this->validService->isValid()) {
+            $errors[] = 'Invalid reCAPTCHA.';
+        }
+
         return $errors;
     }
 
