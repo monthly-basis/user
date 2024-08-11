@@ -15,11 +15,12 @@ class UrlTest extends TestCase
     {
         $_SERVER['HTTP_HOST'] = 'example.com';
 
-        $code = 'code';
-        $url  = $this->urlService->getUrl($code);
+        $userId = 12345;
+        $code   = 'code';
+        $url    = $this->urlService->getUrl($userId, $code);
 
         $this->assertSame(
-            'https://example.com/reset-password/code',
+            'https://example.com/reset-password/12345/code',
             $url
         );
     }
