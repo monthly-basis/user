@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
+use LeoGalleguillos\Image\Model\Service as ImageService;
 use LeoGalleguillos\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -46,6 +47,7 @@ class Module
             'factories' => [
                 UserFactory\Photo::class => function ($serviceManager) {
                     return new UserFactory\Photo(
+                        $serviceManager->get(ImageService\Thumbnail\Create::class),
                         $serviceManager->get(UserTable\Photo::class)
                     );
                 },
