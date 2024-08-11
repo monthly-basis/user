@@ -6,6 +6,9 @@ use DateTime;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 
+/**
+ * @deprecated Use MonthlyBasis\Post module instead
+ */
 class Post
 {
     /**

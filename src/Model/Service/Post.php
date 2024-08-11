@@ -7,6 +7,9 @@ use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 
+/**
+ * @deprecated Use MonthlyBasis\Post module instead
+ */
 class Post
 {
     public function __construct(
