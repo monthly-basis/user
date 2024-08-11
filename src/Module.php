@@ -104,12 +104,6 @@ class Module
                 UserService\Logout::class => function ($serviceManager) {
                     return new UserService\Logout();
                 },
-                UserService\Photo\Photos::class => function ($serviceManager) {
-                    return new UserService\Photo\Photos(
-                        $serviceManager->get(UserFactory\Photo::class),
-                        $serviceManager->get(UserTable\Photo::class)
-                    );
-                },
                 UserService\Post::class => function ($serviceManager) {
                     return new UserService\Post(
                         $serviceManager->get(UserTable\Post::class)
