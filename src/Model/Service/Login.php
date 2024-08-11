@@ -3,6 +3,7 @@ namespace LeoGalleguillos\User\Model\Service;
 
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
+use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Login
@@ -10,14 +11,16 @@ class Login
     /**
      * Construct.
      *
-     * @param UserFactory\User $userFactory,
-     * @param UserTable\User $userTable,
-     * @param UserTable\User\LoginDateTime $loginDateTimeTable,
-     * @param UserTable\User\LoginHash $loginHashTable,
+     * @param UserFactory\User $userFactory
+     * @param UserService\Login\ReCaptchaRequired $reCaptchaRequiredService
+     * @param UserTable\User $userTable
+     * @param UserTable\User\LoginDateTime $loginDateTimeTable
+     * @param UserTable\User\LoginHash $loginHashTable
      * @param UserTable\User\LoginIp $loginIpTable
      */
     public function __construct(
         UserFactory\User $userFactory,
+        UserService\Login\ReCaptchaRequired $reCaptchaRequiredService,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
         UserTable\User\LoginHash $loginHashTable,
