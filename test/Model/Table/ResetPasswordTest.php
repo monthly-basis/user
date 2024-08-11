@@ -38,4 +38,35 @@ class ResetPasswordTest extends TableTestCase
         $this->assertNull($array['accessed']);
         $this->assertNull($array['used']);
     }
+
+    public function test_updateSetAccessedToUtcTimestampWhereUserIdAndCode()
+    {
+        $result = $this->resetPasswordTable->updateSetAccessedToUtcTimestampWhereUserIdAndCode(
+            12345,
+            'the-code',
+        );
+        $this->assertSame(
+            0,
+            $result->getAffectedRows()
+        );
+
+        $this->resetPasswordTable->insert(
+            12345,
+            'the-code',
+        );
+        $result = $this->resetPasswordTable->updateSetAccessedToUtcTimestampWhereUserIdAndCode(
+            12345,
+            'the-code',
+        );
+        $this->assertSame(
+            1,
+            $result->getAffectedRows()
+        );
+        $result = $this->resetPasswordTable->selectWhereUserIdAndCode(
+            12345,
+            'the-code',
+        );
+        $array = $result->current();
+        $this->assertNotNull($array['accessed']);
+    }
 }

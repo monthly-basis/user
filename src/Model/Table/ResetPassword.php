@@ -83,4 +83,22 @@ class ResetPassword
         ];
         return $this->adapter->query($sql)->execute($parameters);
     }
+
+    public function updateSetAccessedToUtcTimestampWhereUserIdAndCode(
+        int $userId,
+        string $code
+    ): Result {
+        $sql = '
+            UPDATE `reset_password`
+               SET `reset_password`.`accessed` = UTC_TIMESTAMP()
+             WHERE `reset_password`.`user_id` = ?
+               AND `reset_password`.`code` = ?
+                 ;
+        ';
+        $parameters = [
+            $userId,
+            $code,
+        ];
+        return $this->adapter->query($sql)->execute($parameters);
+    }
 }
