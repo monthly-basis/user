@@ -16,13 +16,15 @@ class Login
     public function __construct(
         UserFactory\User $userFactory,
         UserTable\User $userTable,
+        UserTable\User\LoginDateTime $loginDateTimeTable,
         UserTable\User\LoginHash $loginHashTable,
         UserTable\User\LoginIp $loginIpTable
     ) {
-        $this->userFactory    = $userFactory;
-        $this->userTable      = $userTable;
-        $this->loginHashTable = $loginHashTable;
-        $this->loginIpTable   = $loginIpTable;
+        $this->userFactory        = $userFactory;
+        $this->userTable          = $userTable;
+        $this->loginDateTimeTable = $loginDateTimeTable;
+        $this->loginHashTable     = $loginHashTable;
+        $this->loginIpTable       = $loginIpTable;
     }
 
     /**
@@ -53,6 +55,9 @@ class Login
         $loginHash  = password_hash($userEntity->getUserId() . time(), PASSWORD_DEFAULT);
         $loginIp    = $_SERVER['REMOTE_ADDR'];
 
+        $this->loginDateTimeTable->updateSetToNowWhereUserId(
+            $userEntity->getUserId()
+        );
         $this->loginHashTable->updateWhereUserId(
             $loginHash,
             $userEntity->getUserId()
