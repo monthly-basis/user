@@ -4,15 +4,18 @@ namespace LeoGalleguillos\User\Model\Service\Password;
 use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 
 class Reset
 {
     public function __construct(
         FlashService\Flash $flashService,
-        ReCaptchaService\Valid $validService
+        ReCaptchaService\Valid $validService,
+        UserFactory\User $userFactory
     ) {
-        $this->flashService       = $flashService;
-        $this->validService       = $validService;
+        $this->flashService = $flashService;
+        $this->validService = $validService;
+        $this->userFactory  = $userFactory;
     }
 
     /**
@@ -29,6 +32,11 @@ class Reset
             $this->flashService->set('errors', $errors);
             throw new Exception('Errors with form.');
         }
+
+        // Build user from email
+        // If reset password email should be sent
+            // Generate and store code
+            // Email link
     }
 
     /**
