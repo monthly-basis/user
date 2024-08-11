@@ -21,10 +21,11 @@ class UserIdTest extends TableTestCase
         $this->setForeignKeyChecks1();
     }
 
-    public function test_updateSetLoginHashWhereUserId()
+    public function test_updateSetLoginHashHttpsTokenWhereUserId()
     {
-        $result = $this->userIdTable->updateSetLoginHashWhereUserId(
+        $result = $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
             'the-login-hash',
+            'the-https-token',
             1,
         );
         $this->assertSame(
@@ -38,8 +39,9 @@ class UserIdTest extends TableTestCase
             '1983-01-01 00:00:00',
         );
 
-        $result = $this->userIdTable->updateSetLoginHashWhereUserId(
+        $result = $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
             'the-login-hash',
+            'the-https-token',
             1,
         );
         $this->assertSame(
@@ -49,8 +51,14 @@ class UserIdTest extends TableTestCase
 
         $array = $this->userTable->selectWhereUserId(1)->current();
         $this->assertSame(
-            'the-login-hash',
-            $array['login_hash'],
+            [
+                'login_hash' => 'the-login-hash',
+                'https_token' => 'the-https-token',
+            ],
+            [
+                'login_hash'  => $array['login_hash'],
+                'https_token' => $array['https_token'],
+            ]
         );
     }
 

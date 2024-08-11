@@ -133,8 +133,9 @@ class UserTest extends TableTestCase
             '1983-10-22',
             'M'
         );
-        $this->userIdTable->updateSetLoginHashWhereUserId(
+        $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
             'login-hash',
+            'https-token',
             1
         );
         $this->userIdTable->updateSetLoginIpWhereUserId(
