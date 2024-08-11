@@ -79,6 +79,7 @@ class Module
                 },
                 UserService\Login::class => function ($serviceManager) {
                     return new UserService\Login(
+                        $serviceManager->get(FlashService\Flash::class),
                         $serviceManager->get(ReCaptchaService\Valid::class),
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserService\Login\ReCaptchaRequired::class),
