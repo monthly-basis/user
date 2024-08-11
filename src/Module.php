@@ -3,6 +3,7 @@ namespace MonthlyBasis\User;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Controller as UserController;
 use MonthlyBasis\User\Model\Factory as UserFactory;
@@ -171,6 +172,7 @@ class Module
                     return new UserService\Password\Reset(
                         $serviceManager->get(FlashService\Flash::class),
                         $serviceManager->get(ReCaptchaService\Valid::class),
+                        $serviceManager->get(SimpleEmailServiceService\Send\Conditionally::class),
                         $userConfig['email-address'],
                         $userConfig['website-name'],
                         $serviceManager->get(UserFactory\User::class),

@@ -3,6 +3,7 @@ namespace MonthlyBasis\UserTest\Model\Service\Password;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -18,6 +19,9 @@ class ResetTest extends TestCase
         );
         $this->validServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
+        );
+        $this->conditionallySendServiceMock = $this->createMock(
+            SimpleEmailServiceService\Send\Conditionally::class
         );
         $this->emailAddress = 'test@example.com';
         $this->websiteName = 'My Test Website';
@@ -40,6 +44,7 @@ class ResetTest extends TestCase
         $this->resetService = new UserService\Password\Reset(
             $this->flashServiceMock,
             $this->validServiceMock,
+            $this->conditionallySendServiceMock,
             $this->emailAddress,
             $this->websiteName,
             $this->userFactoryMock,
