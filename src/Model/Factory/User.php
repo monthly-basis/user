@@ -21,6 +21,12 @@ class User
         return $this->buildFromArrayObject($arrayObject);
     }
 
+    /**
+     * Build from array object.
+     *
+     * @param ArrayObject $arrayObject
+     * @return UserEntity\User
+     */
     public function buildFromArrayObject(ArrayObject $arrayObject)
     {
         $userEntity = new UserEntity();
@@ -28,10 +34,17 @@ class User
         $userEntity->userId   = $arrayObject['user_id'];
         $userEntity->username = $arrayObject['username'];
 
-        $userEntity->setWelcomeMessage($arrayObject['welcome_message']);
+        $userEntity->setWelcomeMessage((string) $arrayObject['welcome_message']);
+
         return $userEntity;
     }
 
+    /**
+     * Build from username.
+     *
+     * @param string $username
+     * @return UserEntity\User
+     */
     public function buildFromUsername(string $username)
     {
         $arrayObject = $this->userTable->selectWhereUsername(
