@@ -68,4 +68,31 @@ class UserTokenTest extends TableTestCase
             $result->getAffectedRows()
         );
     }
+
+    public function test_updateSetDeletedWhereUserIdLoginToken_result()
+    {
+        $result = $this->userTokenTable->updateSetDeletedWhereUserIdLoginToken(
+            2718,
+            'the-login-token'
+        );
+        $this->assertSame(
+            0,
+            $result->getAffectedRows()
+        );
+
+        $this->userTokenTable->insert(
+            2718,
+            'the-login-token',
+            'the-https-token',
+            (new DateTime())->modify('+30 days'),
+        );
+        $result = $this->userTokenTable->updateSetDeletedWhereUserIdLoginToken(
+            2718,
+            'the-login-token'
+        );
+        $this->assertSame(
+            1,
+            $result->getAffectedRows()
+        );
+    }
 }
