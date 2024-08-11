@@ -37,14 +37,10 @@ class User
 
         $userEntity->setUserId($array['user_id']);
 
-        if (isset($array['username'])) {
-            $userEntity->setUsername($array['username']);
-        }
-        if (isset($array['display_name'])) {
-            $userEntity->setDisplayName($array['display_name']);
-        }
-        if (isset($array['gender'])) {
-            $userEntity->setGender($array['gender']);
+        if (isset($array['created'])) {
+            $userEntity->setCreated(
+                new DateTime($array['created'])
+            );
         }
         if (isset($array['deleted_datetime'])) {
             $userEntity->setDeletedDateTime(new DateTime($array['deleted_datetime']));
@@ -55,10 +51,14 @@ class User
         if (isset($array['deleted_user_id'])) {
             $userEntity->setDeletedUserId($array['deleted_user_id']);
         }
-        if (isset($array['created'])) {
-            $userEntity->setCreated(
-                new DateTime($array['created'])
-            );
+        if (isset($array['display_name'])) {
+            $userEntity->setDisplayName($array['display_name']);
+        }
+        if (isset($array['gender'])) {
+            $userEntity->setGender($array['gender']);
+        }
+        if (isset($array['username'])) {
+            $userEntity->setUsername($array['username']);
         }
         if (isset($array['welcome_message'])) {
             $userEntity->setWelcomeMessage($array['welcome_message']);
