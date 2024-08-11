@@ -85,8 +85,12 @@ class Errors
             }
         }
 
-        if (!$this->validService->isValid()) {
-            $errors[] = 'Invalid reCAPTCHA.';
+        if (!isset($this->config['required']['re-captcha'])
+            || ($this->config['required']['re-captcha'])
+        ) {
+            if (!$this->validService->isValid()) {
+                $errors[] = 'Invalid reCAPTCHA.';
+            }
         }
 
         return $errors;
