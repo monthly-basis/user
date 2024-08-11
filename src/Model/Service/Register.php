@@ -103,7 +103,9 @@ class Register
             throw new Exception('Invalid registration.');
         }
 
-        if ($config['require-activation-via-email']) {
+        if (isset($this->config['require-activation-via-email'])
+            && $this->config['require-activation-via-email']
+        ) {
             return;
         }
 
