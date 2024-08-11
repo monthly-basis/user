@@ -3,12 +3,12 @@ namespace LeoGalleguillos\User;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\Image\Model\Service as ImageService;
+use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\User\View\Helper as UserHelper;
-use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 
 class Module
 {
@@ -79,6 +79,7 @@ class Module
                 },
                 UserService\Login::class => function ($serviceManager) {
                     return new UserService\Login(
+                        $serviceManager->get(ReCaptchaService\Valid::class),
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserService\Login\ReCaptchaRequired::class),
                         $serviceManager->get(UserTable\User::class),

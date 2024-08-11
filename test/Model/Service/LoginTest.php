@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service;
 
+use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -14,6 +15,9 @@ class LoginTest extends TestCase
         $_SERVER['HTTP_HOST']   = 'www.example.com';
         $_SERVER['REMOTE_ADDR'] = '123.123.123.123';
 
+        $this->validReCaptchaServiceMock = $this->createMock(
+            ReCaptchaService\Valid::class
+        );
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
         );
@@ -33,6 +37,7 @@ class LoginTest extends TestCase
             UserTable\User\LoginIp::class
         );
         $this->loginService = new UserService\Login(
+            $this->validReCaptchaServiceMock,
             $this->userFactoryMock,
             $this->reCaptchaRequiredServiceMock,
             $this->userTableMock,

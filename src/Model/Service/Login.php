@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -11,6 +12,7 @@ class Login
     /**
      * Construct.
      *
+     * @param ReCaptchaService\Valid $validReCaptchaService
      * @param UserFactory\User $userFactory
      * @param UserService\Login\ReCaptchaRequired $reCaptchaRequiredService
      * @param UserTable\User $userTable
@@ -19,6 +21,7 @@ class Login
      * @param UserTable\User\LoginIp $loginIpTable
      */
     public function __construct(
+        ReCaptchaService\Valid $validReCaptchaService,
         UserFactory\User $userFactory,
         UserService\Login\ReCaptchaRequired $reCaptchaRequiredService,
         UserTable\User $userTable,
@@ -26,6 +29,7 @@ class Login
         UserTable\User\LoginHash $loginHashTable,
         UserTable\User\LoginIp $loginIpTable
     ) {
+        $this->validReCaptchaService = $validReCaptchaService;
         $this->userFactory        = $userFactory;
         $this->userTable          = $userTable;
         $this->loginDateTimeTable = $loginDateTimeTable;
