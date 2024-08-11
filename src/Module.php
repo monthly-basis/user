@@ -19,6 +19,7 @@ class Module
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
                     'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isLoginReCaptchaRequired' => UserHelper\Login\ReCaptchaRequired::class,
+                    'getBirthdaySelectsHtml'   => UserHelper\BirthdaySelectsHtml::class,
                     'getDisplayNameOrUsername' => UserHelper\DisplayNameOrUsername::class,
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                     'getUserFactory'           => UserHelper\Factory\User::class,
