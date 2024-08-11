@@ -42,5 +42,15 @@ class PhotoTest extends TestCase
             $original,
             $this->photoEntity->getOriginal()
         );
+
+        $userId = 123;
+        $this->assertSame(
+            $this->photoEntity,
+            $this->photoEntity->setUserId($userId)
+        );
+        $this->assertSame(
+            $userId,
+            $this->photoEntity->getUserId()
+        );
     }
 }
