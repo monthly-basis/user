@@ -14,7 +14,7 @@ class LoginTest extends TestCase
 {
     protected function setUp()
     {
-        $_SERVER['HTTP_HOST']   = 'www.example.com';
+        $_SERVER['HTTP_HOST']   = 'example.com';
         $_SERVER['REMOTE_ADDR'] = '123.123.123.123';
 
         $this->flashServiceMock = $this->createMock(

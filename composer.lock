@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fed3b516c4cb58f5b873bdfc76210712",
+    "content-hash": "408b815dc4e48c3c8c9eff452746b973",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -215,16 +215,16 @@
         },
         {
             "name": "laminas/laminas-db",
-            "version": "2.11.1",
+            "version": "2.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-db.git",
-                "reference": "8ed705724d1b03d9a7ab59dc110a43ed1781c7e4"
+                "reference": "76f9527da996c2fef32ef1f3a939e18ca5e9d962"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/8ed705724d1b03d9a7ab59dc110a43ed1781c7e4",
-                "reference": "8ed705724d1b03d9a7ab59dc110a43ed1781c7e4",
+                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/76f9527da996c2fef32ef1f3a939e18ca5e9d962",
+                "reference": "76f9527da996c2fef32ef1f3a939e18ca5e9d962",
                 "shasum": ""
             },
             "require": {
@@ -273,7 +273,7 @@
                 "db",
                 "laminas"
             ],
-            "time": "2020-01-10T22:07:11+00:00"
+            "time": "2020-01-14T13:07:26+00:00"
         },
         {
             "name": "laminas/laminas-dom",
@@ -1296,21 +1296,21 @@
         },
         {
             "name": "leo-galleguillos/re-captcha",
-            "version": "dev-master",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/ReCaptcha.git",
-                "reference": "d16c5b4ca0ca3697c28293f717a5afa1e3fc9121"
+                "reference": "9bf9dfed9f6b3c1b936612b6dd0294003407207a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/d16c5b4ca0ca3697c28293f717a5afa1e3fc9121",
-                "reference": "d16c5b4ca0ca3697c28293f717a5afa1e3fc9121",
+                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/9bf9dfed9f6b3c1b936612b6dd0294003407207a",
+                "reference": "9bf9dfed9f6b3c1b936612b6dd0294003407207a",
                 "shasum": ""
             },
             "require": {
-                "leo-galleguillos/string": "dev-master",
-                "zendframework/zend-test": "^3.1"
+                "laminas/laminas-test": "^3.1",
+                "leo-galleguillos/string": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -1323,7 +1323,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-01-26T18:46:02+00:00"
+            "time": "2020-01-18T08:02:37+00:00"
         },
         {
             "name": "leo-galleguillos/string",
@@ -2900,7 +2900,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "leo-galleguillos/flash": 20,
-        "leo-galleguillos/re-captcha": 20,
         "leo-galleguillos/string": 20,
         "leo-galleguillos/test": 20
     },
