@@ -32,13 +32,14 @@ class BuildFromCookies
 
         $userId    = $this->userTable->insert();
         $loginHash = password_hash($userId . time(), PASSWORD_DEFAULT);
+        $loginIp   = $_SERVER['REMOTE_ADDR'];
 
         $this->loginHashTable->updateWhereUserId(
-            password_hash($userId . time(), PASSWORD_DEFAULT),
+            $loginHash,
             $userId
         );
         $this->loginIpTable->updateWhereUserId(
-            $_SERVER['REMOTE_ADDR'],
+            $loginIp,
             $userId
         );
 
@@ -70,7 +71,7 @@ class BuildFromCookies
         );
 
         $name  = 'loginIp';
-        $value = $_SERVER['REMOTE_ADDR'];
+        $value = $loginIp;
         @setcookie(
             $name,
             $value,
