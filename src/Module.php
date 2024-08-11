@@ -5,12 +5,26 @@ use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
+use LeoGalleguillos\User\View\Helper as UserHelper;
 
 class Module
 {
     public function getConfig()
     {
-        return [];
+        return [
+            'view_helpers' => [
+                'aliases' => [
+                    'loggedIn' => UserHelper\LoggedIn::class,
+                ],
+                'factories' => [
+                    UserHelper\LoggedIn::class => function ($serviceManager) {
+                        return new UserHelper\LoggedIn(
+                            $serviceManager->get(UserService\LoggedIn::class)
+                        );
+                    },
+                ],
+            ],
+        ];
     }
 
     public function getServiceConfig()
