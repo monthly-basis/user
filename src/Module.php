@@ -110,11 +110,6 @@ class Module
                         $serviceManager->get(UserTable\Photo::class)
                     );
                 },
-                UserService\Photo\Slug::class => function ($serviceManager) {
-                    return new UserService\Photo\Slug(
-                        $serviceManager->get(StringService\UrlFriendly::class)
-                    );
-                },
                 UserService\Photo\Upload::class => function ($serviceManager) {
                     return new UserService\Photo\Upload(
                         $serviceManager->get(UserTable\Photo::class)
