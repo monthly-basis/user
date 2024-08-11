@@ -517,11 +517,6 @@ class Module
                         $sm->get('user')
                     );
                 },
-                UserTable\User\PasswordHash::class => function ($sm) {
-                    return new UserTable\User\PasswordHash(
-                        $sm->get('user')
-                    );
-                },
                 UserTable\User\UserId::class => function ($sm) {
                     return new UserTable\User\UserId(
                         $sm->get(UserDb\Sql::class)
