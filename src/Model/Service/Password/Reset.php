@@ -54,7 +54,7 @@ class Reset
 
         $count = $this->resetPasswordTable->selectCountWhereUserIdAndCreatedGreaterThan(
             $userId,
-            date('Y-m-d H:i:s', strtotime('+3 day'))
+            date('Y-m-d H:i:s', strtotime('-3 day'))
         );
         if ($count >= 3) {
             return;
