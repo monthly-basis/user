@@ -31,6 +31,9 @@ class Module
     {
         return [
             'factories' => [
+                UserFactory\Photo::class => function ($serviceManager) {
+                    return new UserFactory\Photo();
+                },
                 UserFactory\Post::class => function ($serviceManager) {
                     return new UserFactory\Post();
                 },
@@ -54,6 +57,7 @@ class Module
                 },
                 UserService\Photo\Photos::class => function ($serviceManager) {
                     return new UserService\Photo\Photos(
+                        $serviceManager->get(UserFactory\Photo::class),
                         $serviceManager->get(UserTable\Photo::class)
                     );
                 },

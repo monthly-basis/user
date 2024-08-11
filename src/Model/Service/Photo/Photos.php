@@ -6,6 +6,7 @@ use Generator;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\Photo\Model\Entity as PhotoEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Photos
@@ -16,9 +17,11 @@ class Photos
      * @param UserTable\Photo $photoTable
      */
     public function __construct(
+        UserFactory\Photo $photoFactory,
         UserTable\Photo $photoTable
     ) {
-        $this->photoTable = $photoTable;
+        $this->photoFactory = $photoFactory;
+        $this->photoTable   = $photoTable;
     }
 
     /**
