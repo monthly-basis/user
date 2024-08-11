@@ -18,7 +18,7 @@ class RegisterTest extends TableTestCase
         $this->registerTable = new UserTable\Register($this->sql);
     }
 
-    public function testInsert()
+    public function test_insert()
     {
         $this->registerTable->insert(
             '1',
@@ -44,7 +44,7 @@ class RegisterTest extends TableTestCase
         );
     }
 
-    public function testSelectCount()
+    public function test_selectCount()
     {
         $this->assertSame(
             0,

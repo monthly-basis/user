@@ -1,19 +1,16 @@
 <?php
 namespace MonthlyBasis\User\Model\Table;
 
-use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\User\Model\Db as UserDb;
 
 class Register
 {
-    protected Adapter $adapter;
     protected UserDb\Sql $sql;
 
     public function __construct(UserDb\Sql $sql)
     {
-        $this->sql     = $sql;
-        $this->adapter = $sql->getAdapter();
+        $this->sql = $sql;
     }
 
     public function insert(
@@ -46,7 +43,8 @@ class Register
             $birthday,
             $gender
         ];
-        return $this->adapter
+        return $this->sql
+            ->getAdapter()
             ->query($sql)
             ->execute($parameters)
             ->getGeneratedValue();
@@ -59,7 +57,7 @@ class Register
               FROM `register`
                  ;
         ';
-        $row = $this->adapter->query($sql)->execute()->current();
+        $row = $this->sql->getAdapter()->query($sql)->execute()->current();
         return (int) $row['count'];
     }
 
@@ -82,7 +80,7 @@ class Register
             $registerId,
             $activationCode,
         ];
-        return $this->adapter->query($sql)->execute($parameters);
+        return $this->sql->getAdapter()->query($sql)->execute($parameters);
     }
 
     public function updateSetActivatedWhereRegisterId(
