@@ -20,7 +20,7 @@ class Register
         $passwordHash,
         string $birthday,
         string $gender = null
-    ) {
+    ): Result {
         $sql = '
             INSERT
               INTO `register`
@@ -46,8 +46,7 @@ class Register
         return $this->sql
             ->getAdapter()
             ->query($sql)
-            ->execute($parameters)
-            ->getGeneratedValue();
+            ->execute($parameters);
     }
 
     public function selectCount()

@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Service;
 
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
@@ -54,6 +55,12 @@ class RegisterTest extends TestCase
 
     public function test_register_noErrors_successfulRegistration()
     {
+        $resultMock = $this->createMock(Result::class);
+        $resultMock
+            ->method('getGeneratedValue')
+            ->willReturn('12345')
+            ;
+
         $_POST = [];
 
         $_POST['email']            = 'email@example.com';
@@ -92,6 +99,7 @@ class RegisterTest extends TestCase
                 $this->isType('string'),
                 '2005-08-03 00:00:00',
             )
+            ->willReturn($resultMock)
             ;
         $this->conditionallySendServiceMock
              ->expects($this->once())
