@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\View\Helper;
 
-use LeoGalleguillos\String\Model\Service as StringService;
+use MonthlyBasis\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\View\Helper as UserHelper;
 use LeoGalleguillos\User\Model\Service as UserService;

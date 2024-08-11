@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service\Login;
 
-use LeoGalleguillos\String\Model\Service as StringService;
+use MonthlyBasis\String\Model\Service as StringService;
 
 class ShouldRedirectToReferer
 {
