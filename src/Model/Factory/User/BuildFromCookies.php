@@ -68,5 +68,16 @@ class BuildFromCookies
             $domain,
             $secure
         );
+
+        $name  = 'loginIp';
+        $value = $_SERVER['REMOTE_ADDR'];
+        @setcookie(
+            $name,
+            $value,
+            $expire,
+            $path,
+            $domain,
+            $secure
+        );
     }
 }
