@@ -89,20 +89,21 @@ class Login
         UserEntity\User $userEntity,
         string $loginHash
     ) {
-        $expires = empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60;
+        $options = [
+            'expires'  => empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60,
+            'path'     => '/',
+            'domain'   => $_SERVER['HTTP_HOST'],
+            'secure'   => true,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        ];
 
         $name   = 'userId';
         $value  = $userEntity->getUserId();
-        $path   = '/';
-        $domain = $_SERVER['HTTP_HOST'];
-        $secure = true;
         setcookie(
             $name,
             $value,
-            $expires,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
 
         $name   = 'loginHash';
@@ -110,10 +111,7 @@ class Login
         setcookie(
             $name,
             $value,
-            $expires,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
 
         $name  = 'loginIp';
@@ -121,10 +119,7 @@ class Login
         setcookie(
             $name,
             $value,
-            $expires,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
     }
 }
