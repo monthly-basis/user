@@ -1,5 +1,6 @@
 CREATE TABLE `user` (
     `user_id` int(10) unsigned auto_increment,
+    `emoji_12_id` int(10) unsigned,
     `username` varchar(255) default null,
     `password_hash` varchar(255) default null,
     `birthday` DATETIME default null,
