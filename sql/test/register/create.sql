@@ -9,4 +9,4 @@ CREATE TABLE `register` (
     `activated` tinyint(1) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`register_id`),
     UNIQUE KEY `register_id_activation_code` (`register_id`,`activation_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
