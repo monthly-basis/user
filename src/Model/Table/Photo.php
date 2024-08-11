@@ -98,7 +98,7 @@ class Photo
         return $this->adapter->query($sql)->execute([$photoId])->current();
     }
 
-    public function selectWhereUserId(int $userId)
+    public function selectWhereUserId(int $userId) : Generator
     {
         $sql = '
             SELECT `photo`.`photo_id`
