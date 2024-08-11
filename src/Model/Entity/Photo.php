@@ -13,6 +13,7 @@ class Photo
     protected $extension;
     protected $original;
     protected $photoId;
+    protected $thumbnails;
     protected $title;
     protected $userId;
     protected $views;
@@ -35,6 +36,11 @@ class Photo
     public function getPhotoId() : int
     {
         return $this->photoId;
+    }
+
+    public function getThumbnails() : array
+    {
+        return $this->thumbnails;
     }
 
     public function getTitle() : string
@@ -73,6 +79,12 @@ class Photo
     public function setPhotoId(int $photoId) : UserEntity\Photo
     {
         $this->photoId = $photoId;
+        return $this;
+    }
+
+    public function setThumbnails(array $thumbnails) : UserEntity\Photo
+    {
+        $this->thumbnails = $thumbnails;
         return $this;
     }
 
