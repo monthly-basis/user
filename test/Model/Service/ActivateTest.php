@@ -16,6 +16,9 @@ class ActivateTest extends TestCase
         $this->connectionMock = $this->createMock(
             Connection::class
         );
+        $this->activateLogTableMock = $this->createMock(
+            UserTable\ActivateLog::class
+        );
         $this->registerTableMock = $this->createMock(
             UserTable\Register::class
         );
@@ -27,6 +30,7 @@ class ActivateTest extends TestCase
         );
         $this->activateService = new UserService\Activate(
             $this->connectionMock,
+            $this->activateLogTableMock,
             $this->registerTableMock,
             $this->userTableMock,
             $this->userEmailTableMock,
@@ -37,6 +41,7 @@ class ActivateTest extends TestCase
 
     public function test_activate_invalidActivationCode_false()
     {
+        $_SERVER['REMOTE_ADDR'] = '1.2.4.8';
         $resultMock = $this->createMock(
             Result::class
         );
@@ -50,6 +55,14 @@ class ActivateTest extends TestCase
              ->method('selectWhereRegisterIdAndActivationCode')
              ->with(12345, 'invalid-activation-code')
              ->willReturn($resultMock)
+             ;
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('insert')
+             ->with(
+                '1.2.4.8',
+                false,
+             )
              ;
         $this->connectionMock
              ->expects($this->exactly(0))
@@ -135,6 +148,10 @@ class ActivateTest extends TestCase
              ->expects($this->exactly(0))
              ->method('commit')
              ;
+        $this->activateLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
 
         $this->assertFalse(
             $this->activateService->activate(54321, 'valid-code')
@@ -195,6 +212,14 @@ class ActivateTest extends TestCase
         $this->connectionMock
              ->expects($this->exactly(1))
              ->method('commit')
+             ;
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('insert')
+             ->with(
+                '1.2.4.8',
+                true,
+             )
              ;
 
         $this->assertTrue(
