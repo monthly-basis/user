@@ -12,8 +12,12 @@ class LoginTest extends TestCase
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
+        $this->loginHashTableMock = $this->createMock(
+            UserTable\User\LoginHash::class
+        );
         $this->loginService = new UserService\Login(
-            $this->userTableMock
+            $this->userTableMock,
+            $this->loginHashTableMock
         );
     }
 

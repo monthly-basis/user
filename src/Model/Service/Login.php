@@ -6,9 +6,11 @@ use LeoGalleguillos\User\Model\Table as UserTable;
 class Login
 {
     public function __construct(
-        UserTable\User $userTable
+        UserTable\User $userTable,
+        UserTable\User\LoginHash $loginHashTable
     ) {
         $this->userTable = $userTable;
+        $this->loginHashTable = $loginHashTable;
     }
 
     /**
