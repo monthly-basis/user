@@ -39,10 +39,9 @@ class LoggedIn
         }
 
         try {
-            $this->userTable->selectWhereUserIdLoginHashLoginIp(
+            $this->userTable->selectWhereUserIdLoginHash(
                 $_COOKIE['userId'],
-                $_COOKIE['loginHash'],
-                $_COOKIE['loginIp']
+                $_COOKIE['loginHash']
             );
         } catch (Exception $exception) {
             $this->isLoggedIn = false;
