@@ -477,11 +477,6 @@ class Module
                         $sm->get('user')
                     );
                 },
-                UserTable\UserToken::class => function ($sm) {
-                    return new UserTable\UserToken(
-                        $sm->get(UserDb\Sql::class)
-                    );
-                },
                 UserTable\Post::class => function ($sm) {
                     return new UserTable\Post(
                         $sm->get('user')
@@ -540,6 +535,11 @@ class Module
                 UserTable\UserEmail::class => function ($sm) {
                     return new UserTable\UserEmail(
                         $sm->get('user')
+                    );
+                },
+                UserTable\UserToken::class => function ($sm) {
+                    return new UserTable\UserToken(
+                        $sm->get(UserDb\Sql::class)
                     );
                 },
             ],
