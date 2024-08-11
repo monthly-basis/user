@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\UserTest\Model\Entity;
 
 use DateTime;
+use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
 use PHPUnit\Framework\TestCase;
 
@@ -30,6 +31,16 @@ class PhotoTest extends TestCase
         $this->assertSame(
             $created,
             $this->photoEntity->getCreated()
+        );
+
+        $original = new ImageEntity\Image();
+        $this->assertSame(
+            $this->photoEntity,
+            $this->photoEntity->setOriginal($original)
+        );
+        $this->assertSame(
+            $original,
+            $this->photoEntity->getOriginal()
         );
     }
 }
