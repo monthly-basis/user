@@ -19,19 +19,21 @@ class Register
         $activationCode,
         $username,
         $email,
-        $passwordHash
+        $passwordHash,
+        string $birthday
     ) {
         $sql = '
             INSERT
-              INTO `register` (`activation_code`, `username`, `email`, `password_hash`)
-            VALUES (?, ?, ?, ?)
+              INTO `register` (`activation_code`, `username`, `email`, `password_hash`, `birthday`)
+            VALUES (?, ?, ?, ?, ?)
                  ;
         ';
         $parameters = [
             $activationCode,
             $username,
             $email,
-            $passwordHash
+            $passwordHash,
+            $birthday
         ];
         return $this->adapter
                     ->query($sql, $parameters)
