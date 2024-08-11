@@ -23,6 +23,9 @@ class ReCaptchaRequired
      */
     public function isReCaptchaRequired() : bool
     {
-        return false;
+        $count = $this->loginLogTable->selectCountWhereIpSuccessCreated(
+            $_SERVER['REMOTE_ADDR']
+        );
+        return ($count >= 3);
     }
 }
