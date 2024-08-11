@@ -15,35 +15,16 @@ class LoginDateTime
         $this->adapter = $adapter;
     }
 
-    public function updateWhereUserId(string $loginDateTime, int $userId)
+    public function updateSetToNowWhereUserId(int $userId)
     {
         $sql = '
             UPDATE `user`
-               SET `user`.`login_datetime` = :loginDateTime
+               SET `user`.`login_datetime` = UTC_TIMESTAMP()
              WHERE `user`.`user_id` = :userId
                  ;
         ';
         $parameters = [
-            'loginDateTime' => $loginDateTime,
             'userId'        => $userId,
-        ];
-        return (bool) $this->adapter
-                           ->query($sql)
-                           ->execute($parameters)
-                           ->getAffectedRows();
-    }
-
-    public function updateWhereUsername(string $loginDateTime, string $username)
-    {
-        $sql = '
-            UPDATE `user`
-               SET `user`.`login_datetime` = :loginDateTime
-             WHERE `user`.`username` = :username
-                 ;
-        ';
-        $parameters = [
-            'loginDateTime' => $loginDateTime,
-            'username'      => $username,
         ];
         return (bool) $this->adapter
                            ->query($sql)
