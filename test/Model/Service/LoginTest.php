@@ -53,12 +53,14 @@ class LoginTest extends TestCase
             $this->loginDateTimeTableMock,
             $this->userIdTableMock,
         );
+
+        $this->countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
     }
 
     /**
      * @runInSeparateProcess
      */
-    public function testLogin_emptyPostData_false()
+    public function test_login_emptyPostData_false()
     {
         unset($_POST['username']);
         unset($_POST['password']);
@@ -71,7 +73,7 @@ class LoginTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testLogin_invalidReCaptcha_false()
+    public function test_login_invalidReCaptcha_false()
     {
         $_POST['username'] = 'username';
         $_POST['password'] = 'password';
@@ -90,20 +92,44 @@ class LoginTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testLogin()
+    public function test_login_emptyResult_false()
     {
-        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $_POST['username'] = 'username-which-does-not-exist';
+        $_POST['password'] = 'password';
+
+        $this->validReCaptchaServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
+
         $emptyResultMock = $this->createMock(
             Result::class
         );
-        $countableIteratorHydrator->hydrate(
+        $this->countableIteratorHydrator->hydrate(
             $emptyResultMock,
             [],
         );
+        $this->userTableMock
+             ->expects($this->once())
+             ->method('selectWhereUsername')
+             ->willReturn($emptyResultMock)
+             ;
+
+        $this->assertFalse(
+            $this->loginService->login()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testLogin()
+    {
         $wrongPasswordResultMock = $this->createMock(
             Result::class
         );
-        $countableIteratorHydrator->hydrate(
+        $this->countableIteratorHydrator->hydrate(
             $wrongPasswordResultMock,
             [
                 [
@@ -115,7 +141,7 @@ class LoginTest extends TestCase
         $correctUsernameAndPasswordResultMock = $this->createMock(
             Result::class
         );
-        $countableIteratorHydrator->hydrate(
+        $this->countableIteratorHydrator->hydrate(
             $correctUsernameAndPasswordResultMock,
             [
                 [
@@ -126,23 +152,16 @@ class LoginTest extends TestCase
         );
 
         $this->validReCaptchaServiceMock
-             ->expects($this->exactly(3))
+             ->expects($this->exactly(2))
              ->method('isValid')
              ->willReturn(true)
              ;
 
         $this->userTableMock->method('selectWhereUsername')->will(
             $this->onConsecutiveCalls(
-                $emptyResultMock,
                 $wrongPasswordResultMock,
                 $correctUsernameAndPasswordResultMock,
             )
-        );
-
-        $_POST['username'] = 'nonexistent username';
-        $_POST['password'] = 'password';
-        $this->assertFalse(
-            $this->loginService->login()
         );
 
         $_POST['username'] = 'username';
