@@ -11,7 +11,7 @@ class NewestUsers
     /**
      * Construct.
      *
-     * @param UserFactory\User $userFactory,
+     * @param UserFactory\User $userFactory
      * @param UserTable\User $userTable
      */
     public function __construct(
@@ -25,9 +25,10 @@ class NewestUsers
     /**
      * Get newest users
      *
+     * @return Generator
      * @yield UserEntity\User
      */
-    public function getNewestUsers() : Generator
+    public function getNewestUsers(): Generator
     {
         foreach ($this->userTable->selectOrderByCreatedDesc() as $array) {
             yield $this->userFactory->buildFromArray($array);
