@@ -80,6 +80,9 @@ class Module
                         $serviceManager->get(UserTable\User\LoginIp::class)
                     );
                 },
+                UserService\DisplayNameOrUsername::class => function ($sm) {
+                    return new UserService\DisplayNameOrUsername();
+                },
                 UserService\LoggedIn::class => function ($serviceManager) {
                     return new UserService\LoggedIn(
                         $serviceManager->get(UserTable\User::class)
