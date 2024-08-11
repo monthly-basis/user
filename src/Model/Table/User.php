@@ -167,15 +167,8 @@ class User
         int $userId,
         string $loginHash
     ) : array {
-        $sql = '
-            SELECT `user_id`
-                 , `username`
-                 , `password_hash`
-                 , `gender`
-                 , `display_name`
-                 , `welcome_message`
-                 , `views`
-                 , `created`
+        $sql = $this->getSelect()
+             . '
               FROM `user`
              WHERE `user_id` = :userId
                AND `login_hash` = :loginHash
