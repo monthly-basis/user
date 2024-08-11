@@ -21,6 +21,43 @@ class UserIdTest extends TableTestCase
         $this->setForeignKeyChecks1();
     }
 
+    public function test_updateSetPasswordHashWhereUserId()
+    {
+        $result = $this->userIdTable->updateSetPasswordHashWhereUserId(
+            'the-new-password-hash',
+            1,
+        );
+        $this->assertSame(
+            0,
+            $result->getAffectedRows()
+        );
+
+        $this->userTable->insert(
+            'username',
+            'password-hash',
+            '1983-01-01 00:00:00',
+        );
+
+        $result = $this->userIdTable->updateSetPasswordHashWhereUserId(
+            'the-new-password-hash',
+            1,
+        );
+        $this->assertSame(
+            1,
+            $result->getAffectedRows()
+        );
+
+        $array = $this->userTable->selectWhereUserId(1)->current();
+        $this->assertSame(
+            [
+                'password_hash' => 'the-new-password-hash',
+            ],
+            [
+                'password_hash'  => $array['password_hash'],
+            ]
+        );
+    }
+
     public function test_updateSetLoginHashHttpsTokenWhereUserId()
     {
         $result = $this->userIdTable->updateSetLoginHashHttpsTokenWhereUserId(
