@@ -329,6 +329,14 @@ class Module
                         $sm->get(UserService\Url::class),
                     );
                 },
+                UserController\Users\Unfollow::class => function ($sm) {
+                    return new UserController\Users\Unfollow(
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\Unfollow::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Url::class),
+                    );
+                },
             ],
         ];
     }
