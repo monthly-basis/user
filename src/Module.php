@@ -162,6 +162,11 @@ class Module
                 UserService\RootRelativeUrl::class => function ($serviceManager) {
                     return new UserService\RootRelativeUrl();
                 },
+                UserService\Url::class => function ($sm) {
+                    return new UserService\Url(
+                        $sm->get(UserService\RootRelativeUrl::class)
+                    );
+                },
                 UserService\User::class => function ($serviceManager) {
                     return new UserService\User(
                         $serviceManager->get(UserTable\User::class)
