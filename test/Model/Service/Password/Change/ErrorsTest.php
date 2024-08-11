@@ -43,11 +43,34 @@ class ErrorsTest extends TestCase
      * @preserveGlobalState disabled
      * @runInSeparateProcess
      */
+    public function test_getErrors_newPasswordAndConfirmNewPasswordDoNotMatch_errors()
+    {
+        $_POST['current-password']     = 'current password';
+        $_POST['new-password']         = 'the new password';
+        $_POST['confirm-new-password'] = 'a different new password';
+
+        $this->validServiceMock
+             ->expects($this->exactly(0))
+             ->method('isValid')
+             ;
+
+        $this->assertSame(
+            [
+                'New password and confirm new password do not match.',
+            ],
+            $this->errorsService->getErrors(),
+        );
+    }
+
+    /**
+     * @preserveGlobalState disabled
+     * @runInSeparateProcess
+     */
     public function test_getErrors_invalidReCaptcha_errors()
     {
         $_POST['current-password']     = 'current password';
-        $_POST['new-password']         = 'new password';
-        $_POST['confirm-new-password'] = 'confirm new password';
+        $_POST['new-password']         = 'the new password';
+        $_POST['confirm-new-password'] = 'the new password';
 
         $this->validServiceMock
              ->expects($this->once())

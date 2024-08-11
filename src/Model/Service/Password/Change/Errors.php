@@ -25,6 +25,11 @@ class Errors
             return $errors;
         }
 
+        if ($_POST['new-password'] != $_POST['confirm-new-password']) {
+            $errors[] = 'New password and confirm new password do not match.';
+            return $errors;
+        }
+
         if (!$this->validService->isValid()) {
             $errors[] = 'Invalid reCAPTCHA.';
         }
