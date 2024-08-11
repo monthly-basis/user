@@ -42,7 +42,9 @@ class Module
                     );
                 },
                 UserService\User::class => function ($serviceManager) {
-                    return new UserService\User();
+                    return new UserService\User(
+                        $serviceManager->get(UserTable\User::class)
+                    );
                 },
                 UserTable\Post::class => function ($serviceManager) {
                     return new UserTable\Post(
