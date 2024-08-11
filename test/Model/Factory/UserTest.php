@@ -32,13 +32,15 @@ class UserTest extends TestCase
     public function testBuildFromArrayObject()
     {
         $arrayObject = new ArrayObject([
-            'user_id'  => 1,
-            'username' => 'Testing123',
+            'user_id'         => 1,
+            'username'        => 'Testing123',
+            'welcome_message' => 'Welcome to my page.',
         ]);
 
         $userEntity           = new UserEntity\User();
         $userEntity->userId   = 1;
         $userEntity->username = 'Testing123';
+        $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->assertEquals(
             $userEntity,
@@ -49,13 +51,15 @@ class UserTest extends TestCase
     public function testBuildFromUsername()
     {
         $arrayObject = new ArrayObject([
-            'user_id'  => 1,
-            'username' => 'Testing123',
+            'user_id'         => 1,
+            'username'        => 'Testing123',
+            'welcome_message' => 'Welcome to my page.',
         ]);
 
         $userEntity           = new UserEntity\User();
         $userEntity->userId   = 1;
         $userEntity->username = 'Testing123';
+        $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->userTableMock->method('selectWhereUsername')->willReturn(
             $arrayObject
