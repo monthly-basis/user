@@ -12,6 +12,9 @@ class User
     public $lastName;
 
     protected $created;
+    protected $deletedDateTime;
+    protected $deletedReason;
+    protected $deletedUserId;
     protected $displayName;
     protected $gender;
     protected $groups = [];
