@@ -100,7 +100,7 @@ class User
         return (array) $row;
     }
 
-    public function selectWhereUserId($userId) : ArrayObject
+    public function selectWhereUserId($userId) : array
     {
         $sql = '
             SELECT `user_id`
@@ -113,9 +113,7 @@ class User
              WHERE `user_id` = ?
                  ;
         ';
-        $arrayObject = $this->adapter->query($sql, [$userId])->current();
-
-        return $arrayObject;
+        return $this->adapter->query($sql)->execute([$userId])->current();
     }
 
     public function selectWhereUsername(string $username) : ArrayObject

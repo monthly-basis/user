@@ -1,7 +1,6 @@
 <?php
 namespace LeoGalleguillos\User\Model\Factory;
 
-use ArrayObject;
 use DateTime;
 use LeoGalleguillos\Image\Model\Entity as ImageEntity;
 use LeoGalleguillos\User\Model\Entity as UserEntity;
@@ -12,23 +11,23 @@ class Photo
     /**
      * Build from array object.
      *
-     * @param ArrayObject $arrayObject
+     * @param array $array
      * @return UserEntity\Photo
      */
-    public function buildFromArrayObject(
-        ArrayObject $arrayObject
+    public function buildFromArray(
+        array $array
     ) : UserEntity\Photo {
         $photo = new UserEntity\Photo();
 
-        $photo->setTitle($arrayObject['title'])
-              ->setDescription($arrayObject['description']);
+        $photo->setTitle($array['title'])
+              ->setDescription($array['description']);
 
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl(
             '/uploads/photos/'
-            . $arrayObject['photo_id']
+            . $array['photo_id']
             . '/original.'
-            . $arrayObject['extension']
+            . $array['extension']
         );
         $photo->setOriginal($original);
 

@@ -27,18 +27,18 @@ class PhotoTest extends TestCase
 
     public function testBuildFromArrayObject()
     {
-        $arrayObject = new ArrayObject([
+        $array = [
             'photo_id'    => '2',
             'extension'   => 'jpg',
             'title'       => 'title',
             'description' => 'description',
             'views'       => '0',
             'created'     => '0000-00-00 00:00:00',
-        ]);
+        ];
         $photoEntity = new UserEntity\Photo();
 
-        $photoEntity->setTitle($arrayObject['title'])
-                    ->setDescription($arrayObject['description']);
+        $photoEntity->setTitle($array['title'])
+                    ->setDescription($array['description']);
 
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
@@ -47,7 +47,7 @@ class PhotoTest extends TestCase
 
         $this->assertEquals(
             $photoEntity,
-            $this->photoFactory->buildFromArrayObject($arrayObject)
+            $this->photoFactory->buildFromArray($array)
         );
     }
 }
