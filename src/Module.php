@@ -26,6 +26,7 @@ class Module
                 'routes' => [
                     'monthly-basis' => [
                         'type'    => Placeholder::class,
+                        'priority' => -1,
                         'child_routes' => [
                             'user' => [
                                 'type'    => Placeholder::class,
