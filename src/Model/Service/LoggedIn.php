@@ -8,22 +8,12 @@ class LoggedIn
 {
     protected $isLoggedIn;
 
-    /**
-     * Construct
-     *
-     * @param UserTable\User $userTable
-     */
     public function __construct(
         UserTable\User $userTable
     ) {
         $this->userTable = $userTable;
     }
 
-    /**
-     * Is logged in.
-     *
-     * @return bool
-     */
     public function isLoggedIn() : bool
     {
         if (isset($this->isLoggedIn)) {
