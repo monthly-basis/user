@@ -29,6 +29,11 @@ class Errors
             return $errors;
         }
 
+        if (!$this->reCaptchaValid->isValid()) {
+            $errors[] = 'Invalid reCAPTCHA.';
+            return $errors;
+        }
+
         $isPasswordValid = $this->passwordValidService->isValid(
             $_POST['current-password'],
             $this->loggedInUserService->getLoggedInUser()->getPasswordHash()
@@ -41,10 +46,6 @@ class Errors
         if ($_POST['new-password'] != $_POST['confirm-new-password']) {
             $errors[] = 'New password and confirm new password do not match.';
             return $errors;
-        }
-
-        if (!$this->reCaptchaValid->isValid()) {
-            $errors[] = 'Invalid reCAPTCHA.';
         }
 
         return $errors;
