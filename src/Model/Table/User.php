@@ -94,6 +94,9 @@ class User
         }
     }
 
+    /**
+     * @deprecated If needed, write a new selectWhereUsernameOrEmail method instead
+     */
     public function selectRow($usernameOrEmail)
     {
         $sql = '
@@ -137,7 +140,7 @@ class User
         return $this->adapter->query($sql)->execute([$userId])->current();
     }
 
-    public function selectWhereUsername(string $username) : ArrayObject
+    public function selectWhereUsername(string $username)
     {
         $sql = '
             SELECT `user_id`
