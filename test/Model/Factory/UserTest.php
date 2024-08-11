@@ -23,7 +23,7 @@ class UserTest extends TestCase
         );
     }
 
-    public function testBuildFromArray()
+    public function test_buildFromArray()
     {
         $array = [
             'display_name'    => 'Display Name',

@@ -16,22 +16,6 @@ class User
         $this->userTable = $userTable;
     }
 
-    public function buildFromUserId(int $userId)
-    {
-        if (isset($this->cache[$userId])) {
-            return $this->cache[$userId];
-        }
-
-        $array = $this->userTable->selectWhereUserId(
-            $userId
-        );
-        $userEntity = $this->buildFromArray($array);
-
-        $this->cache[$userId] = $userEntity;
-
-        return $userEntity;
-    }
-
     public function buildFromArray(array $array) : UserEntity\User
     {
         $userEntity = new UserEntity\User();
@@ -68,6 +52,22 @@ class User
         $userEntity->setViews(
             (int) ($array['views'] ?? 0)
         );
+
+        return $userEntity;
+    }
+
+    public function buildFromUserId(int $userId)
+    {
+        if (isset($this->cache[$userId])) {
+            return $this->cache[$userId];
+        }
+
+        $array = $this->userTable->selectWhereUserId(
+            $userId
+        );
+        $userEntity = $this->buildFromArray($array);
+
+        $this->cache[$userId] = $userEntity;
 
         return $userEntity;
     }
