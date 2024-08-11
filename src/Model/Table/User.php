@@ -100,7 +100,7 @@ class User
         return (array) $row;
     }
 
-    public function selectWhereUserId($userId) : array
+    public function selectWhereUserId(int $userId) : array
     {
         $sql = '
             SELECT `user_id`

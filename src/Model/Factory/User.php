@@ -13,13 +13,13 @@ class User
         $this->userTable = $userTable;
     }
 
-    public function createFromUserId($userId)
+    public function buildFromUserId(int $userId)
     {
-        $arrayObject = $this->userTable->selectWhereUserId(
+        $array = $this->userTable->selectWhereUserId(
             $userId
         );
 
-        return $this->buildFromArrayObject($arrayObject);
+        return $this->buildFromArrayObject($array);
     }
 
     /**
