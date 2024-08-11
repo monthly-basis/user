@@ -42,25 +42,18 @@ class UserEmailTest extends TableTestCase
         );
     }
 
-    public function test_selectUserIdWhereAddress()
+    public function test_selectWhereAddress()
     {
-        try {
-            $userId = $this->userEmailTable->selectUserIdWhereAddress('user@example.com');
-            $this->fail();
-        } catch (Exception $exception) {
-            $this->assertSame(
-                'Address not found.',
-                $exception->getMessage(),
-            );
-        }
+        $result = $this->userEmailTable->selectWhereAddress('user@example.com');
+        $this->assertEmpty($result);
 
         $this->userEmailTable->insert(
             '12345',
             'user@example.com'
         );
         $this->assertSame(
-            12345,
-            $this->userEmailTable->selectUserIdWhereAddress('user@example.com'),
+            '12345',
+            $this->userEmailTable->selectWhereAddress('user@example.com')->current()['user_id']
         );
     }
 }
