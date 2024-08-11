@@ -52,6 +52,16 @@ class Module
                             ],
                         ],
                     ],
+                    'login' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/login[/:action]',
+                            'defaults' => [
+                                'controller' => UserController\Login::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
                     'sign-up' => [
                         'type'    => Segment::class,
                         'options' => [
@@ -192,6 +202,16 @@ class Module
                 UserController\Activate::class => function ($sm) {
                     return new UserController\Activate(
                         $sm->get(UserService\Activate::class)
+                    );
+                },
+                UserController\Login::class => function ($sm) {
+                    return new UserController\Login(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserFactory\User::class),
+                        $sm->get(UserService\LoggedIn::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Login::class),
+                        $sm->get(UserTable\LoginLog::class),
                     );
                 },
                 UserController\SignUp::class => function ($sm) {
