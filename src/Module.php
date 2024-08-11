@@ -1,6 +1,8 @@
 <?php
 namespace MonthlyBasis\User;
 
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
@@ -16,6 +18,65 @@ class Module
     public function getConfig()
     {
         return [
+            'router' => [
+                'routes' => [
+                    'reset-password' => [
+                        'type'    => Literal::class,
+                        'options' => [
+                            'route'    => '/reset-password',
+                            'defaults' => [
+                                'controller' => UserController\ResetPassword::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'user-id' => [
+                                'type'    => Segment::class,
+                                'options' => [
+                                    'route'    => '/:userId',
+                                    'constraints' => [
+                                        'userId' => '\d+',
+                                    ],
+                                ],
+                                'may_terminate' => false,
+                                'child_routes' => [
+                                    'code' => [
+                                        'type'    => Segment::class,
+                                        'options' => [
+                                            'route'    => '/:code',
+                                            'defaults' => [
+                                                'controller' => UserController\ResetPassword\UserId\Code::class,
+                                                'action'     => 'index',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            'email-sent' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/email-sent',
+                                    'defaults' => [
+                                        'controller' => UserController\ResetPassword::class,
+                                        'action'     => 'email-sent',
+                                    ],
+                                ],
+                            ],
+                            'success' => [
+                                'type'    => Literal::class,
+                                'options' => [
+                                    'route'    => '/success',
+                                    'defaults' => [
+                                        'controller' => UserController\ResetPassword::class,
+                                        'action'     => 'success',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
             'view_helpers' => [
                 'aliases' => [
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
@@ -332,5 +393,12 @@ class Module
                 },
             ],
         ];
+    }
+
+    public function onBootstrap()
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
     }
 }
