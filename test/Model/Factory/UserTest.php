@@ -58,6 +58,60 @@ class UserTest extends TestCase
         );
     }
 
+    public function test_buildFromUserId_invalidUserId_throwsUserException()
+    {
+        $this->expectException(UserException::class);
+
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [],
+        );
+
+        $this->userTableMock->method('selectWhereUserId')->willReturn(
+            $resultMock
+        );
+
+        $this->userFactory->buildFromUserId(12345);
+    }
+
+    public function test_buildFromUserId_validUserId_userObject()
+    {
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [
+                [
+                    'user_id'         => '1',
+                    'username'        => 'Testing123',
+                    'welcome_message' => 'Welcome to my page.',
+                ]
+            ],
+        );
+
+        $userEntity = (new UserEntity\User())
+            ->setUserId(1)
+            ->setUsername('Testing123')
+            ->setViews(0)
+            ->setWelcomeMessage('Welcome to my page.')
+            ;
+
+        $this->userTableMock->method('selectWhereUserId')->willReturn(
+            $resultMock
+        );
+
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromUserId(1)
+        );
+    }
+
     public function test_buildFromUsername_invalidUsername_throwsUserException()
     {
         $this->expectException(UserException::class);
