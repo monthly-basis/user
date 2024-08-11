@@ -59,4 +59,21 @@ class ResetPassword
                           ->execute($parameters)
                           ->current()['count'];
     }
+
+    public function selectUserIdWhereCode(string $code): int
+    {
+        $sql = '
+            SELECT `reset_password`.`user_id`
+              FROM `reset_password`
+             WHERE `reset_password`.`code` = ?
+                 ;
+        ';
+        $parameters = [
+            $code,
+        ];
+        return (int) $this->adapter
+                          ->query($sql)
+                          ->execute($parameters)
+                          ->current()['user_id'];
+    }
 }
