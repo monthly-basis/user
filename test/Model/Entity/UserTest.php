@@ -27,6 +27,15 @@ class UserTest extends TestCase
         );
     }
 
+    public function test_properties()
+    {
+        $this->userEntity->emoji12Id = 1;
+        $this->assertSame(
+            1,
+            $this->userEntity->emoji12Id
+        );
+    }
+
     public function test_settersAndGetters()
     {
         $userId = 123;

@@ -16,6 +16,7 @@ class User
     protected $deletedReason;
     protected $deletedUserId;
     protected $displayName;
+    protected int $emoji12Id;
     protected $gender;
     protected $groups = [];
     protected string $httpsToken;
