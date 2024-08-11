@@ -46,6 +46,9 @@ class Photo
         );
         $photo->setOriginal($original);
 
+        $thumbnails = [];
+        $photo->setThumbnails($thumbnails);
+
         return $photo;
     }
 
