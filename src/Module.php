@@ -213,14 +213,6 @@ class Module
                         $sm->get(UserTable\User::class)
                     );
                 },
-                UserFactory\User\BuildFromCookies::class => function ($sm) {
-                    return new UserFactory\User\BuildFromCookies(
-                        $sm->get(UserService\LoggedInUser::class),
-                        $sm->get(UserTable\User::class),
-                        $sm->get(UserTable\User\LoginHash::class),
-                        $sm->get(UserTable\User\LoginIp::class)
-                    );
-                },
                 UserService\Create::class => function ($sm) {
                     return new UserService\Create(
                         $sm->get('user'),
