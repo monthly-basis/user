@@ -193,6 +193,11 @@ class Module
                         $sm->get(UserTable\UserEmail::class)
                     );
                 },
+                UserService\Password\Reset\Accessed\ConditionallyUpdate::class => function ($sm) {
+                    return new UserService\Password\Reset\Accessed\ConditionallyUpdate(
+                        $sm->get(UserTable\ResetPassword::class),
+                    );
+                },
                 UserService\Password\Reset\Expired::class => function ($sm) {
                     return new UserService\Password\Reset\Expired();
                 },
