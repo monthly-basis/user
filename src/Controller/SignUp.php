@@ -1,7 +1,6 @@
 <?php
 namespace MonthlyBasis\User\Controller;
 
-use DateTime;
 use Exception;
 use Laminas\Mvc\Controller\AbstractActionController;
 use MonthlyBasis\Flash\Model\Service as FlashService;
