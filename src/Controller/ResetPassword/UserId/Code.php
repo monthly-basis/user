@@ -9,6 +9,9 @@ use MonthlyBasis\User\Model\Table as UserTable;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class Code extends AbstractActionController
 {
     protected string $code;

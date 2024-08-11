@@ -7,6 +7,9 @@ use Laminas\View\Model\ViewModel;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\User\Model\Service as UserService;
 
+/**
+ * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
+ */
 class ChangePassword extends AbstractActionController
 {
     public function __construct(
