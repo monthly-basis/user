@@ -78,6 +78,9 @@ class Module
                         $serviceManager->get(UserTable\User\LoginIp::class)
                     );
                 },
+                UserService\Logout::class => function ($serviceManager) {
+                    return new UserService\Logout();
+                },
                 UserService\Photo\IncrementViews::class => function ($serviceManager) {
                     return new UserService\Photo\IncrementViews(
                         $serviceManager->get(UserTable\Photo::class)
