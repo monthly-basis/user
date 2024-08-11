@@ -27,15 +27,18 @@ class UserTest extends TestCase
     {
         $array = [
             'display_name'    => 'Display Name',
+            'https_token'     => 'the-https-token',
             'user_id'         => 1,
             'username'        => 'Testing123',
             'welcome_message' => 'Welcome to my page.',
         ];
-        $userEntity = new UserEntity\User();
-        $userEntity->setDisplayName($array['display_name'])
-                   ->setUserId($array['user_id'])
-                   ->setUsername($array['username'])
-                   ->setWelcomeMessage($array['welcome_message']);
+        $userEntity = (new UserEntity\User())
+            ->setDisplayName($array['display_name'])
+            ->setHttpsToken($array['https_token'])
+            ->setUserId($array['user_id'])
+            ->setUsername($array['username'])
+            ->setWelcomeMessage($array['welcome_message'])
+            ;
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArray($array)
