@@ -42,12 +42,12 @@ for ($yearIteration = date('Y'); $yearIteration >= date('Y') - 120; $yearIterati
             <form action="/sign-up" method="post">
                 <p>
                     Email<br>
-                    <input type="text" name="email">
+                    <input type="text" name="email" value="<?= $this->escape($flashService->get('email')); ?>">
                 </p>
 
                 <p>
                     Username<br>
-                    <input type="text" name="username">
+                    <input type="text" name="username" value="<?= $this->escape($flashService->get('username')); ?>">
                 </p>
 
                 <p>
