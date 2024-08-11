@@ -63,6 +63,16 @@ class UserTest extends TestCase
             $this->userEntity->getHttpsToken()
         );
 
+        $passwordHash = 'the password hash';
+        $this->assertSame(
+            $this->userEntity,
+            $this->userEntity->setPasswordHash($passwordHash)
+        );
+        $this->assertSame(
+            $passwordHash,
+            $this->userEntity->getPasswordHash()
+        );
+
         $username = 'myusername';
         $this->userEntity->setUsername($username);
         $this->assertSame(

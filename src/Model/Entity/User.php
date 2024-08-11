@@ -63,6 +63,11 @@ class User
         return $this->httpsToken;
     }
 
+    public function getPasswordHash(): string
+    {
+        return $this->passwordHash;
+    }
+
     public function getUserId() : int
     {
         return $this->userId;
@@ -128,6 +133,12 @@ class User
     public function setHttpsToken(string $httpsToken): UserEntity\User
     {
         $this->httpsToken = $httpsToken;
+        return $this;
+    }
+
+    public function setPasswordHash(string $passwordHash): UserEntity\User
+    {
+        $this->passwordHash = $passwordHash;
         return $this;
     }
 
