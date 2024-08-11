@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Table;
+namespace MonthlyBasis\UserTest\Model\Table;
 
-use LeoGalleguillos\User\Model\Table as UserTable;
-use LeoGalleguillos\UserTest\TableTestCase;
+use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\UserTest\TableTestCase;
 use PHPUnit\Framework\TestCase;
 use Laminas\Db\Adapter\Adapter;
 

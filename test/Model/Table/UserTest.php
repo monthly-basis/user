@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Table;
+namespace MonthlyBasis\UserTest\Model\Table;
 
 use ArrayObject;
 use Exception;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Table as UserTable;
 use MonthlyBasis\LaminasTest\TableTestCase;
 use Laminas\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;

@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Register;
+namespace MonthlyBasis\User\Model\Service\Register;
 
 use DateTime;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Errors
 {

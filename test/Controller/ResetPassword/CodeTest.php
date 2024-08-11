@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\UserTest\Controller\ResetPassword;
+namespace MonthlyBasis\UserTest\Controller\ResetPassword;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\User\Controller as UserController;
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Controller as UserController;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class CodeTest extends TestCase

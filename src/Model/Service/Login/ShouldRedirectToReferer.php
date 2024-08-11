@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Login;
+namespace MonthlyBasis\User\Model\Service\Login;
 
 use MonthlyBasis\String\Model\Service as StringService;
 

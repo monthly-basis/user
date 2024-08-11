@@ -1,11 +1,11 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service;
 
 use DateTime;
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 
 class Register
 {

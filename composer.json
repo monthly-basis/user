@@ -1,5 +1,5 @@
 {
-    "name": "leo-galleguillos/user",
+    "name": "monthly-basis/user",
     "license": "MIT",
     "require": {
         "laminas/laminas-db": "^2.9",
@@ -11,8 +11,8 @@
     },
     "autoload": {
         "psr-4": {
-            "LeoGalleguillos\\User\\": "src/",
-            "LeoGalleguillos\\UserTest\\": "test/"
+            "MonthlyBasis\\User\\": "src/",
+            "MonthlyBasis\\UserTest\\": "test/"
         }
     }
 }

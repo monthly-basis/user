@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\User\Controller;
+namespace MonthlyBasis\User\Controller;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
 

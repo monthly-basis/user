@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Service;
+namespace MonthlyBasis\UserTest\Model\Service;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 
 class RegisterTest extends TestCase

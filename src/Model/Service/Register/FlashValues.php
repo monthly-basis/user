@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Register;
+namespace MonthlyBasis\User\Model\Service\Register;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 

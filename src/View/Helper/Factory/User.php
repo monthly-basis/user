@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\User\View\Helper\Factory;
+namespace MonthlyBasis\User\View\Helper\Factory;
 
-use LeoGalleguillos\User\Model\Factory as UserFactory;
+use MonthlyBasis\User\Model\Factory as UserFactory;
 use Laminas\View\Helper\AbstractHelper;
 
 class User extends AbstractHelper

@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service;
 
-use LeoGalleguillos\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 use TypeError;
 
 class DisplayNameOrUsername

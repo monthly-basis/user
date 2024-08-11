@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\User\View\Helper;
+namespace MonthlyBasis\User\View\Helper;
 
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\View\Helper\AbstractHelper;
 
 class RootRelativeUrl extends AbstractHelper

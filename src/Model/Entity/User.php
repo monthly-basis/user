@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\User\Model\Entity;
+namespace MonthlyBasis\User\Model\Entity;
 
 use DateTime;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Entity as UserEntity;
 
 class User
 {

@@ -1,12 +1,12 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Service;
+namespace MonthlyBasis\UserTest\Model\Service;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Factory as UserFactory;
-use LeoGalleguillos\User\Model\Service as UserService;
-use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Factory as UserFactory;
+use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 use TypeError;
 

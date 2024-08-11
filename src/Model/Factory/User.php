@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\User\Model\Factory;
+namespace MonthlyBasis\User\Model\Factory;
 
 use ArrayObject;
 use DateTime;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Table\User as UserTable;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Table\User as UserTable;
 
 class User
 {

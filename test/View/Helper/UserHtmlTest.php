@@ -1,10 +1,10 @@
 <?php
-namespace LeoGalleguillos\UserTest\View\Helper;
+namespace MonthlyBasis\UserTest\View\Helper;
 
 use MonthlyBasis\String\Model\Service as StringService;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\View\Helper as UserHelper;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\View\Helper as UserHelper;
+use MonthlyBasis\User\Model\Service as UserService;
 use PHPUnit\Framework\TestCase;
 
 class UserHtmlTest extends TestCase

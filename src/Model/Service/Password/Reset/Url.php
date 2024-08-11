@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service\Password\Reset;
+namespace MonthlyBasis\User\Model\Service\Password\Reset;
 
 class Url
 {

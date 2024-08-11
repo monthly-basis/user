@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace MonthlyBasis\User\Model\Service;
 
-use LeoGalleguillos\User\Model\Entity as UserEntity;
-use LeoGalleguillos\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Service as UserService;
 
 class Url
 {

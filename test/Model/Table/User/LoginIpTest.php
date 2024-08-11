@@ -1,8 +1,8 @@
 <?php
-namespace LeoGalleguillos\UserTest\Model\Table\User;
+namespace MonthlyBasis\UserTest\Model\Table\User;
 
-use LeoGalleguillos\User\Model\Table as UserTable;
-use LeoGalleguillos\UserTest\TableTestCase;
+use MonthlyBasis\User\Model\Table as UserTable;
+use MonthlyBasis\UserTest\TableTestCase;
 use Laminas\Db\Adapter\Adapter;
 
 class LoginIpTest extends TableTestCase
