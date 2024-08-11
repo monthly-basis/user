@@ -27,42 +27,46 @@ class BuildFromCookies
             $userEntity = $this->loggedInUserService->getLoggedInUser();
             return $userEntity;
         } catch (Exception $exception) {
-            $userId = $this->userTable->insert();
-            $this->loginHashTable->updateWhereUserId(
-                password_hash($userId . time(), PASSWORD_DEFAULT),
-                $userId
-            );
-            $this->loginIpTable->updateWhereUserId(
-                $_SERVER['REMOTE_ADDR'],
-                $userId
-            );
-
-            $expire = time() + 30 * 24 * 60 * 60;
-            $path   = '/';
-            $domain = $_SERVER['HTTP_HOST'];
-            $secure = true;
-
-            $name   = 'userId';
-            $value  = $userId;
-            @setcookie(
-                $name,
-                $value,
-                $expire,
-                $path,
-                $domain,
-                $secure
-            );
-
-            $name   = 'loginHash';
-            $value  = $loginHash;
-            @setcookie(
-                $name,
-                $value,
-                $expire,
-                $path,
-                $domain,
-                $secure
-            );
+            // Do nothing.
         }
+
+        $userId    = $this->userTable->insert();
+        $loginHash = password_hash($userId . time(), PASSWORD_DEFAULT);
+
+        $this->loginHashTable->updateWhereUserId(
+            password_hash($userId . time(), PASSWORD_DEFAULT),
+            $userId
+        );
+        $this->loginIpTable->updateWhereUserId(
+            $_SERVER['REMOTE_ADDR'],
+            $userId
+        );
+
+        $expire = time() + 30 * 24 * 60 * 60;
+        $path   = '/';
+        $domain = $_SERVER['HTTP_HOST'];
+        $secure = true;
+
+        $name   = 'userId';
+        $value  = $userId;
+        @setcookie(
+            $name,
+            $value,
+            $expire,
+            $path,
+            $domain,
+            $secure
+        );
+
+        $name   = 'loginHash';
+        $value  = $loginHash;
+        @setcookie(
+            $name,
+            $value,
+            $expire,
+            $path,
+            $domain,
+            $secure
+        );
     }
 }
