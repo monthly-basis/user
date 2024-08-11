@@ -31,6 +31,10 @@ class UserTest extends TestCase
 
     public function testBuildFromArrayObject()
     {
+        /*
+         * Test with welcome message.
+         */
+
         $arrayObject = new ArrayObject([
             'user_id'         => 1,
             'username'        => 'Testing123',
@@ -41,6 +45,24 @@ class UserTest extends TestCase
         $userEntity->userId   = 1;
         $userEntity->username = 'Testing123';
         $userEntity->setWelcomeMessage('Welcome to my page.');
+
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromArrayObject($arrayObject)
+        );
+
+        /*
+         * Test without welcome message.
+         */
+
+        $arrayObject = new ArrayObject([
+            'user_id'         => 1,
+            'username'        => 'Testing123',
+        ]);
+
+        $userEntity           = new UserEntity\User();
+        $userEntity->userId   = 1;
+        $userEntity->username = 'Testing123';
 
         $this->assertEquals(
             $userEntity,

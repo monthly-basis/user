@@ -34,7 +34,9 @@ class User
         $userEntity->userId   = $arrayObject['user_id'];
         $userEntity->username = $arrayObject['username'];
 
-        $userEntity->setWelcomeMessage((string) $arrayObject['welcome_message']);
+        $userEntity->setWelcomeMessage(
+            (string) ($arrayObject['welcome_message'] ?? '')
+        );
 
         return $userEntity;
     }
