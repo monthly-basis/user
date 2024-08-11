@@ -5,6 +5,7 @@ use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
+use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use TypeError;
 
@@ -14,14 +15,16 @@ class Reset
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         UserFactory\User $userFactory,
+        UserService\Password\Reset\GenerateCode $generateCodeService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\UserEmail $userEmailTable
     ) {
-        $this->flashService       = $flashService;
-        $this->validService       = $validService;
-        $this->userFactory        = $userFactory;
-        $this->resetPasswordTable = $resetPasswordTable;
-        $this->userEmailTable     = $userEmailTable;
+        $this->flashService        = $flashService;
+        $this->validService        = $validService;
+        $this->userFactory         = $userFactory;
+        $this->generateCodeService = $generateCodeService;
+        $this->resetPasswordTable  = $resetPasswordTable;
+        $this->userEmailTable      = $userEmailTable;
     }
 
     /**
@@ -49,7 +52,7 @@ class Reset
 
         $count = $this->resetPasswordTable->selectCountWhereUserIdAndCreatedGreaterThan(
             $userId,
-            date('Y-m-d H:i:s', strtotime('+3 day'));
+            date('Y-m-d H:i:s', strtotime('+3 day'))
         );
         if ($count >= 3) {
             return;
