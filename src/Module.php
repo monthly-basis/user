@@ -333,7 +333,9 @@ class Module
                 },
                 UserService\Password\Change\Errors::class => function ($sm) {
                     return new UserService\Password\Change\Errors(
-                        $sm->get(ReCaptchaService\Valid::class)
+                        $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Valid::class)
                     );
                 },
                 UserService\Password\Reset::class => function ($sm) {
