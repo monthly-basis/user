@@ -2,10 +2,10 @@
 namespace MonthlyBasis\User\Model\Service;
 
 use DateTime;
-use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 
@@ -74,7 +74,7 @@ class Register
     }
 
     /**
-     * @throws Exception
+     * @throws UserException
      */
     public function register()
     {
@@ -83,7 +83,7 @@ class Register
 
         if (!empty($errors)) {
             $this->flashService->set('errors', $errors);
-            throw new Exception('Invalid registration.');
+            throw new UserException('Invalid registration.');
         }
 
         $activationCode = rand(1, 999999999);
