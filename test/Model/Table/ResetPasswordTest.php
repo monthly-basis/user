@@ -13,9 +13,9 @@ class ResetPasswordTest extends TableTestCase
      */
     protected $sqlPath;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->sqlPath       = $_SERVER['PWD'] . '/sql/leogalle_test/reset_password/';
+        $this->sqlPath       = $_SERVER['PWD'] . '/sql/test/reset_password/';
         $this->adapter       = $this->getAdapter();
         $this->resetPasswordTable = new UserTable\ResetPassword($this->adapter);
 

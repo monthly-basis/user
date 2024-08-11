@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->postEntity = new UserEntity\Post();
     }

@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class BuildFromCookiesTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->logginUserUserServiceMock = $this->createMock(
             UserService\LoggedInUser::class

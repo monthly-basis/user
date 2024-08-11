@@ -13,12 +13,12 @@ class PostTest extends TableTestCase
     /**
      * @var string
      */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/leogalle_test/post/';
+    protected $sqlPath = __DIR__ . '/../../..' . '/sql/test/post/';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $configArray     = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray     = $configArray['db']['adapters']['leogalle_test'];
+        $configArray     = $configArray['db']['adapters']['test'];
         $this->adapter   = new Adapter($configArray);
 
         $this->setForeignKeyChecks0();
@@ -32,19 +32,19 @@ class PostTest extends TableTestCase
 
     protected function dropTables()
     {
-        $sql = file_get_contents($this->sqlDirectory . '/leogalle_test/user/drop.sql');
+        $sql = file_get_contents($this->sqlDirectory . '/test/user/drop.sql');
         $result = $this->adapter->query($sql)->execute();
 
-        $sql = file_get_contents($this->sqlDirectory . '/leogalle_test/post/drop.sql');
+        $sql = file_get_contents($this->sqlDirectory . '/test/post/drop.sql');
         $result = $this->adapter->query($sql)->execute();
     }
 
     protected function createTables()
     {
-        $sql = file_get_contents($this->sqlDirectory . '/leogalle_test/user/create.sql');
+        $sql = file_get_contents($this->sqlDirectory . '/test/user/create.sql');
         $result = $this->adapter->query($sql)->execute();
 
-        $sql = file_get_contents($this->sqlDirectory . '/leogalle_test/post/create.sql');
+        $sql = file_get_contents($this->sqlDirectory . '/test/post/create.sql');
         $result = $this->adapter->query($sql)->execute();
     }
 
@@ -154,7 +154,9 @@ class PostTest extends TableTestCase
         );
 
         $this->assertEmpty(
-            $this->postTable->selectWhereToUserId(1),
+            $this->postTable->selectWhereToUserId(1)
+        );
+        $this->assertEmpty(
             $this->postTable->selectWhereToUserId(3)
         );
     }

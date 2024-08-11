@@ -8,7 +8,7 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class ResetPasswordTest extends AbstractHttpControllerTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->flashServiceMock = $this->createMock(
             FlashService\Flash::class

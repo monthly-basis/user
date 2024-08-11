@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class LoggedInTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->loggedInServiceMock = $this->createMock(
             UserService\LoggedIn::class

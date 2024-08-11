@@ -10,7 +10,7 @@ use Zend\Db\Adapter\Adapter;
 
 class CreateTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adapterMock = $this->createMock(
             Adapter::class

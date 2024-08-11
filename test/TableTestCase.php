@@ -26,7 +26,7 @@ class TableTestCase extends TestCase
     protected function getConfigArray() : array
     {
         $configArray = require($_SERVER['PWD'] . '/config/autoload/local.php');
-        return $configArray['db']['adapters']['leogalle_test'];
+        return $configArray['db']['adapters']['test'];
     }
 
     protected function setForeignKeyChecks0()

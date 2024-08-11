@@ -7,7 +7,7 @@ use Zend\Mvc\Application;
 
 class ModuleTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->module = new Module();
     }

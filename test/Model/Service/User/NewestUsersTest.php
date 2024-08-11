@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class NewestUsersTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class

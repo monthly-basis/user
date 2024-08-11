@@ -12,7 +12,7 @@ use TypeError;
 
 class LoginTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $_SERVER['HTTP_HOST']   = 'example.com';
         $_SERVER['REMOTE_ADDR'] = '123.123.123.123';

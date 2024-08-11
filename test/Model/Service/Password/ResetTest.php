@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ResetTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->flashServiceMock = $this->createMock(
             FlashService\Flash::class
