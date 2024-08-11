@@ -20,6 +20,17 @@ class Module
         return [
             'router' => [
                 'routes' => [
+                    'sign-up' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/sign-up[/:action]',
+                            'defaults' => [
+                                'controller' => UserController\SignUp::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                    ],
                     'reset-password' => [
                         'type'    => Literal::class,
                         'options' => [
@@ -142,6 +153,12 @@ class Module
     {
         return [
             'factories' => [
+                UserController\SignUp::class => function ($sm) {
+                    return new UserController\SignUp(
+                        $sm->get(FlashService\Flash::class),
+                        $sm->get(UserService\Register::class),
+                    );
+                },
                 UserController\ResetPassword::class => function ($sm) {
                     return new UserController\ResetPassword(
                         $sm->get(FlashService\Flash::class),
@@ -286,7 +303,9 @@ class Module
                         $config,
                         $sm->get(FlashService\Flash::class),
                         $sm->get(ReCaptchaService\Valid::class),
-                        $sm->get(UserService\Register\FlashValues::class)
+                        $sm->get(SimpleEmailServiceService\Send\Conditionally::class),
+                        $sm->get(UserService\Register\FlashValues::class),
+                        $sm->get(UserTable\Register::class),
                     );
                 },
                 UserService\Register\Errors::class => function ($sm) {
