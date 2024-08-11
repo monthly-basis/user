@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.8.5
 
 - Add `https_token` column to `user` table
 
