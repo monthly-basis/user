@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User\Model\Service;
+namespace LeoGalleguillos\UserTest\Model\Service;
 
 use LeoGalleguillos\User\Model\Entity\User as UserEntity;
 use LeoGalleguillos\User\Model\Service\User as UserService;

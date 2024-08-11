@@ -1,4 +1,6 @@
 <?php
+namespace LeoGalleguillos\UserTest\Model\Entity;
+
 use LeoGalleguillos\User\Model\Entity\User as UserEntity;
 use PHPUnit\Framework\TestCase;
 

@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\User;
+namespace LeoGalleguillos\UserTest;
 
 use LeoGalleguillos\User\Module;
 use PHPUnit\Framework\TestCase;
