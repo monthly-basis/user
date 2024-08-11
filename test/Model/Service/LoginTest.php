@@ -92,7 +92,7 @@ class LoginTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function test_login_emptyResult_false()
+    public function test_login_usernameWhichDoesNotExist_false()
     {
         $_POST['username'] = 'username-which-does-not-exist';
         $_POST['password'] = 'password';
@@ -124,7 +124,43 @@ class LoginTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testLogin()
+    public function test_login_incorrectPassword_false()
+    {
+        $_POST['username'] = 'username';
+        $_POST['password'] = 'incorrect password';
+
+        $this->validReCaptchaServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
+        $wrongPasswordResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $wrongPasswordResultMock,
+            [
+                [
+                    'username'      => 'username',
+                    'password_hash' => 'password-hash-which-does-not-match-incorrect-password',
+                ],
+            ],
+        );
+        $this->userTableMock
+             ->expects($this->once())
+             ->method('selectWhereUsername')
+             ->willReturn($wrongPasswordResultMock)
+             ;
+
+        $this->assertFalse(
+            $this->loginService->login()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function test_login()
     {
         $wrongPasswordResultMock = $this->createMock(
             Result::class
