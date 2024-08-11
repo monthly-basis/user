@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Entity;
 
+use DateTime;
 use LeoGalleguillos\User\Model\Entity\User as UserEntity;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,13 @@ class UserTest extends TestCase
         $this->assertSame(
             $userId,
             $this->userEntity->getUserId()
+        );
+
+        $created = new DateTime();
+        $this->userEntity->setCreated($created);
+        $this->assertSame(
+            $created,
+            $this->userEntity->getCreated()
         );
 
         $username = 'myusername';
