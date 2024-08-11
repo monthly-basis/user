@@ -1,6 +1,8 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Service;
 
+use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\User\Model\Entity as UserEntity;
@@ -58,21 +60,50 @@ class LoginTest extends TestCase
       */
     public function testLogin()
     {
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $emptyResultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $emptyResultMock,
+            [],
+        );
+        $wrongPasswordResultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $wrongPasswordResultMock,
+            [
+                [
+                    'username'      => 'username',
+                    'password_hash' => 'password-hash-which-is-not-valid',
+                ],
+            ],
+        );
+        $correctUsernameAndPasswordResultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $correctUsernameAndPasswordResultMock,
+            [
+                [
+                    'username'      => 'username',
+                    'password_hash' => '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2',
+                ],
+            ],
+        );
+
         unset($_POST['username']);
         unset($_POST['password']);
         $this->assertFalse(
             $this->loginService->login()
         );
 
-        $array = [
-            'username'      => 'username',
-            'password_hash' => '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2',
-        ];
         $this->userTableMock->method('selectWhereUsername')->will(
             $this->onConsecutiveCalls(
-                new TypeError(),
-                $array,
-                $array
+                $emptyResultMock,
+                $wrongPasswordResultMock,
+                $correctUsernameAndPasswordResultMock,
             )
         );
 
