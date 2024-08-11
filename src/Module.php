@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User;
 
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\String\Model\Service as StringService;
 use LeoGalleguillos\User\Controller as UserController;

@@ -3,7 +3,7 @@ namespace LeoGalleguillos\User\Model\Service;
 
 use DateTime;
 use Exception;
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Service as UserService;
 

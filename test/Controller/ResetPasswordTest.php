@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Controller;
 
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Controller as UserController;
 use LeoGalleguillos\User\Model\Service as UserService;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;

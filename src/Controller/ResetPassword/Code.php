@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\User\Controller\ResetPassword;
 
 use Exception;
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use Zend\Mvc\Controller\AbstractActionController;

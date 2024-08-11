@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service\Register;
 
-use LeoGalleguillos\Flash\Model\Service as FlashService;
+use MonthlyBasis\Flash\Model\Service as FlashService;
 
 class FlashValues
 {
