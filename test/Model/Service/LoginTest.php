@@ -11,10 +11,13 @@ use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
-use TypeError;
 
 class LoginTest extends TestCase
 {
+    /**
+     * @runInSeparateProcess Login service sends headers and therefore needs
+     *                       to run in its own process.
+     */
     protected function setUp(): void
     {
         $_SERVER['HTTP_HOST']   = 'example.com';
@@ -53,8 +56,40 @@ class LoginTest extends TestCase
     }
 
     /**
-      * @runInSeparateProcess because login service sends headers
-      */
+     * @runInSeparateProcess
+     */
+    public function testLogin_emptyPostData_false()
+    {
+        unset($_POST['username']);
+        unset($_POST['password']);
+
+        $this->assertFalse(
+            $this->loginService->login()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testLogin_invalidReCaptcha_false()
+    {
+        $_POST['username'] = 'username';
+        $_POST['password'] = 'password';
+
+        $this->validReCaptchaServiceMock
+             ->expects($this->exactly(1))
+             ->method('isValid')
+             ->willReturn(false)
+             ;
+
+        $this->assertFalse(
+            $this->loginService->login()
+        );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function testLogin()
     {
         $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
@@ -88,12 +123,6 @@ class LoginTest extends TestCase
                     'password_hash' => '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2',
                 ],
             ],
-        );
-
-        unset($_POST['username']);
-        unset($_POST['password']);
-        $this->assertFalse(
-            $this->loginService->login()
         );
 
         $this->validReCaptchaServiceMock
