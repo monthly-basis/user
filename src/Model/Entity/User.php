@@ -18,6 +18,7 @@ class User
     protected $displayName;
     protected $gender;
     protected $groups = [];
+    protected string $httpsToken;
     protected $userId;
     protected $views = 0;
     protected $welcomeMessage;
@@ -55,6 +56,11 @@ class User
     public function getGroups(): array
     {
         return $this->groups;
+    }
+
+    public function getHttpsToken(): string
+    {
+        return $this->httpsToken;
     }
 
     public function getUserId() : int
@@ -116,6 +122,12 @@ class User
     public function setGroups(array $groups): UserEntity\User
     {
         $this->groups = $groups;
+        return $this;
+    }
+
+    public function setHttpsToken(string $httpsToken): UserEntity\User
+    {
+        $this->httpsToken = $httpsToken;
         return $this;
     }
 
