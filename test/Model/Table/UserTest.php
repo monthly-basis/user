@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Table;
 
+use ArrayObject;
 use LeoGalleguillos\User\Model\Table\User as UserTable;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
@@ -70,6 +71,26 @@ class UserTest extends TestCase
         $this->assertSame(
             0,
             $this->userTable->selectCount()
+        );
+    }
+
+    public function testUpdateWhereUserId()
+    {
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+
+        $arrayObject = new ArrayObject([
+            'welcome_message' => 'My welcome message.',
+        ]);
+
+        $this->assertTrue(
+            $this->userTable->updateWhereUserId($arrayObject, 1)
+        );
+        $this->assertFalse(
+            $this->userTable->updateWhereUserId($arrayObject, 1)
         );
     }
 }
