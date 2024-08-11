@@ -85,6 +85,10 @@ class ActivateTest extends TestCase
              ->expects($this->exactly(0))
              ->method('insert')
              ;
+        $this->registerTableMock
+             ->expects($this->exactly(0))
+             ->method('updateSetActivatedWhereRegisterId')
+             ;
         $this->connectionMock
              ->expects($this->exactly(0))
              ->method('rollback')
@@ -157,6 +161,10 @@ class ActivateTest extends TestCase
         $this->userEmailTableMock
              ->expects($this->exactly(0))
              ->method('insert')
+             ;
+        $this->registerTableMock
+             ->expects($this->exactly(0))
+             ->method('updateSetActivatedWhereRegisterId')
              ;
         $this->connectionMock
              ->expects($this->exactly(0))
@@ -243,6 +251,10 @@ class ActivateTest extends TestCase
                 $this->throwException(new InvalidQueryException())
              )
              ;
+        $this->registerTableMock
+             ->expects($this->exactly(0))
+             ->method('updateSetActivatedWhereRegisterId')
+             ;
         $this->connectionMock
              ->expects($this->exactly(1))
              ->method('rollback')
@@ -328,6 +340,14 @@ class ActivateTest extends TestCase
              ->with(
                 12345,
                 'email@example.com',
+             )
+             ;
+        $this->registerTableMock
+             ->expects($this->exactly(1))
+             ->method('updateSetActivatedWhereRegisterId')
+             ->with(
+                true,
+                54321,
              )
              ;
         $this->connectionMock
