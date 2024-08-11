@@ -331,6 +331,11 @@ class Module
                 UserService\Logout::class => function ($sm) {
                     return new UserService\Logout();
                 },
+                UserService\Password\Change\Errors::class => function ($sm) {
+                    return new UserService\Password\Change\Errors(
+                        $sm->get(ReCaptchaService\Valid::class)
+                    );
+                },
                 UserService\Password\Reset::class => function ($sm) {
                     $userConfig = $sm->get('Config')['user'];
                     return new UserService\Password\Reset(
