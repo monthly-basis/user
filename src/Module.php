@@ -46,12 +46,6 @@ class Module
     {
         return [
             'factories' => [
-                UserFactory\Photo::class => function ($serviceManager) {
-                    return new UserFactory\Photo(
-                        $serviceManager->get(ImageService\Thumbnail\Create::class),
-                        $serviceManager->get(UserTable\Photo::class)
-                    );
-                },
                 UserFactory\Post::class => function ($serviceManager) {
                     return new UserFactory\Post();
                 },
