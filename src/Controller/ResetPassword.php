@@ -2,23 +2,36 @@
 namespace MonthlyBasis\User\Controller;
 
 use Exception;
-use MonthlyBasis\Flash\Model\Service as FlashService;
-use MonthlyBasis\User\Model\Service as UserService;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
+use MonthlyBasis\User\Model\Exception as UserException;
+use MonthlyBasis\Flash\Model\Service as FlashService;
+use MonthlyBasis\User\Model\Service as UserService;
 
 class ResetPassword extends AbstractActionController
 {
     public function __construct(
         FlashService\Flash $flashService,
-        UserService\Password\Reset $resetService
+        UserService\LoggedInUser $loggedInUserService,
+        UserService\Password\Reset $resetService,
+        UserService\Url $urlService
     ) {
-        $this->flashService = $flashService;
-        $this->resetService = $resetService;
+        $this->flashService        = $flashService;
+        $this->loggedInUserService = $loggedInUserService;
+        $this->resetService        = $resetService;
+        $this->urlService          = $urlService;
     }
 
     public function onDispatch(MvcEvent $mvcEvent)
     {
+        try {
+            $userEntity = $this->loggedInUserService->getLoggedInUser();
+            $url        = $this->urlService->getUrl($userEntity);
+            return $this->redirect()->toUrl($url) ->setStatusCode(303);
+        } catch (UserException $userException) {
+            // Do nothing.
+        }
+
         $this->layout()->setVariables([
             'showAds' => false,
         ]);
