@@ -66,16 +66,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.185.8",
+            "version": "3.185.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d30661623a1835ba4bb406675f865c4b40b4b425"
+                "reference": "2c66ec7eab4ce3ca93f86295ac4e0fe56ddec128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d30661623a1835ba4bb406675f865c4b40b4b425",
-                "reference": "d30661623a1835ba4bb406675f865c4b40b4b425",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2c66ec7eab4ce3ca93f86295ac4e0fe56ddec128",
+                "reference": "2c66ec7eab4ce3ca93f86295ac4e0fe56ddec128",
                 "shasum": ""
             },
             "require": {
@@ -150,9 +150,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.185.8"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.185.13"
             },
-            "time": "2021-07-07T18:14:28+00:00"
+            "time": "2021-07-14T18:15:40+00:00"
         },
         {
             "name": "brick/varexporter",
@@ -1789,16 +1789,16 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.14.4",
+            "version": "2.14.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "e370c4695db1c81e6dfad38d8c4dbdb37b23d776"
+                "reference": "4680bc4241cb5b3ff78954c421fe43105ca413b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/e370c4695db1c81e6dfad38d8c4dbdb37b23d776",
-                "reference": "e370c4695db1c81e6dfad38d8c4dbdb37b23d776",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/4680bc4241cb5b3ff78954c421fe43105ca413b7",
+                "reference": "4680bc4241cb5b3ff78954c421fe43105ca413b7",
                 "shasum": ""
             },
             "require": {
@@ -1812,7 +1812,7 @@
             },
             "require-dev": {
                 "laminas/laminas-cache": "^2.6.1",
-                "laminas/laminas-coding-standard": "~1.0.0",
+                "laminas/laminas-coding-standard": "~2.2.1",
                 "laminas/laminas-config": "^2.6",
                 "laminas/laminas-db": "^2.7",
                 "laminas/laminas-filter": "^2.6",
@@ -1877,7 +1877,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-01-24T20:45:49+00:00"
+            "time": "2021-07-14T13:59:23+00:00"
         },
         {
             "name": "laminas/laminas-view",
@@ -2152,16 +2152,16 @@
         },
         {
             "name": "monthly-basis/simple-email-service",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monthly-basis/simple-email-service.git",
-                "reference": "835bec2de0b86e345e12241df1ad7d65ad05fdda"
+                "reference": "23b124fe28e71159432e6a3e1c612e42af2bba9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monthly-basis/simple-email-service/zipball/835bec2de0b86e345e12241df1ad7d65ad05fdda",
-                "reference": "835bec2de0b86e345e12241df1ad7d65ad05fdda",
+                "url": "https://api.github.com/repos/monthly-basis/simple-email-service/zipball/23b124fe28e71159432e6a3e1c612e42af2bba9b",
+                "reference": "23b124fe28e71159432e6a3e1c612e42af2bba9b",
                 "shasum": ""
             },
             "require": {
@@ -2172,6 +2172,7 @@
                 "laminas/laminas-mvc": "^3.0",
                 "laminas/laminas-test": "^3.1",
                 "monthly-basis/laminas-test": "^2.0",
+                "monthly-basis/stop-forum-spam": "^1.0",
                 "monthly-basis/website": "^2.0",
                 "php": "^7.4"
             },
@@ -2188,9 +2189,45 @@
             ],
             "support": {
                 "issues": "https://github.com/monthly-basis/simple-email-service/issues",
-                "source": "https://github.com/monthly-basis/simple-email-service/tree/v0.1.3"
+                "source": "https://github.com/monthly-basis/simple-email-service/tree/v0.1.4"
             },
-            "time": "2021-07-04T04:36:33+00:00"
+            "time": "2021-07-10T02:05:56+00:00"
+        },
+        {
+            "name": "monthly-basis/stop-forum-spam",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monthly-basis/stop-forum-spam.git",
+                "reference": "e5be8852b7b67c5f6e5054a8cce13066d4dd6beb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monthly-basis/stop-forum-spam/zipball/e5be8852b7b67c5f6e5054a8cce13066d4dd6beb",
+                "reference": "e5be8852b7b67c5f6e5054a8cce13066d4dd6beb",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-db": "^2.9",
+                "laminas/laminas-test": "^3.1",
+                "monthly-basis/laminas-test": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MonthlyBasis\\StopForumSpam\\": "src/",
+                    "MonthlyBasis\\StopForumSpamTest\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "issues": "https://github.com/monthly-basis/stop-forum-spam/issues",
+                "source": "https://github.com/monthly-basis/stop-forum-spam/tree/v1.0.1"
+            },
+            "time": "2021-07-10T02:02:26+00:00"
         },
         {
             "name": "monthly-basis/string",
