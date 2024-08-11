@@ -39,7 +39,7 @@ class ResetPasswordAccessLog
                     ->getGeneratedValue();
     }
 
-    public function selectCountWhereUserIdAndCreatedGreaterThan(
+    public function selectCountWhereUserIdAndValidAndCreatedGreaterThan(
         string $ip,
         int $valid,
         string $created
