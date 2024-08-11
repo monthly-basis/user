@@ -41,6 +41,7 @@ class User extends LaminasDb\Table
     {
         return '
             SELECT `user_id`
+                 , `emoji_12_id`
                  , `username`
                  , `password_hash`
                  , `gender`
@@ -126,20 +127,8 @@ class User extends LaminasDb\Table
 
     public function selectWhereUserId(int $userId): Result
     {
-        $sql = '
-            SELECT `user_id`
-                 , `emoji_12_id`
-                 , `username`
-                 , `password_hash`
-                 , `gender`
-                 , `display_name`
-                 , `welcome_message`
-                 , `open_ai_role`
-                 , `views`
-                 , `created`
-                 , `deleted_datetime`
-                 , `deleted_user_id`
-                 , `deleted_reason`
+        $sql = $this->getSelect()
+            . '
               FROM `user`
              WHERE `user_id` = ?
                  ;
