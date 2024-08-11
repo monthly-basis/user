@@ -5,6 +5,7 @@ use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -26,11 +27,11 @@ class ResetTest extends TestCase
         );
         $this->emailAddress = 'test@example.com';
         $this->websiteName = 'My Test Website';
+        $this->randomServiceMock = $this->createMock(
+            StringService\Random::class
+        );
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
-        );
-        $this->generateCodeServiceMock = $this->createMock(
-            UserService\Password\Reset\GenerateCode::class
         );
         $this->urlServiceMock = $this->createMock(
             UserService\Password\Reset\Url::class
@@ -48,8 +49,8 @@ class ResetTest extends TestCase
             $this->conditionallySendServiceMock,
             $this->emailAddress,
             $this->websiteName,
+            $this->randomServiceMock,
             $this->userFactoryMock,
-            $this->generateCodeServiceMock,
             $this->urlServiceMock,
             $this->resetPasswordTableMock,
             $this->userEmailTableMock

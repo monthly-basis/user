@@ -281,8 +281,8 @@ class Module
                         $sm->get(SimpleEmailServiceService\Send\Conditionally::class),
                         $userConfig['email-address'],
                         $userConfig['website-name'],
+                        $sm->get(StringService\Random::class),
                         $sm->get(UserFactory\User::class),
-                        $sm->get(UserService\Password\Reset\GenerateCode::class),
                         $sm->get(UserService\Password\Reset\Url::class),
                         $sm->get(UserTable\ResetPassword::class),
                         $sm->get(UserTable\UserEmail::class)

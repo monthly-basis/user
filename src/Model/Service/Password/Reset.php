@@ -5,6 +5,7 @@ use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -17,8 +18,8 @@ class Reset
         SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
         string $emailAddress,
         string $websiteName,
+        StringService\Random $randomService,
         UserFactory\User $userFactory,
-        UserService\Password\Reset\GenerateCode $generateCodeService,
         UserService\Password\Reset\Url $urlService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\UserEmail $userEmailTable
@@ -28,8 +29,8 @@ class Reset
         $this->conditionallySendService = $conditionallySendService;
         $this->emailAddress             = $emailAddress;
         $this->websiteName              = $websiteName;
+        $this->randomService            = $randomService;
         $this->userFactory              = $userFactory;
-        $this->generateCodeService      = $generateCodeService;
         $this->urlService               = $urlService;
         $this->resetPasswordTable       = $resetPasswordTable;
         $this->userEmailTable           = $userEmailTable;
@@ -64,7 +65,7 @@ class Reset
             return;
         }
 
-        $code = $this->generateCodeService->generateCode();
+        $code = $this->randomService->getRandomString(32);
         $this->resetPasswordTable->insert(
             $userId,
             $code
