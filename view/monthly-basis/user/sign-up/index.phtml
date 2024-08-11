@@ -2,7 +2,8 @@
 $flashService = $this->flash();
 $this->layout()->setVariables([
     'htmlHeadAppend' => $this->getReCaptchaScriptTag(),
-    'htmlHeadTitle'  => 'Sign Up'
+    'htmlHeadTitle'  => 'Sign Up',
+    'useContainer'   => false,
 ]);
 $monthOptions = [
     '' => 'Month',
