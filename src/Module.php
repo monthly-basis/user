@@ -450,6 +450,11 @@ class Module
                         $sm->get('user')
                     );
                 },
+                UserTable\User\UserId::class => function ($sm) {
+                    return new UserTable\User\UserId(
+                        $sm->get(UserDb\Sql::class)
+                    );
+                },
                 UserTable\User\Username::class => function ($sm) {
                     return new UserTable\User\Username(
                         $sm->get('user')
