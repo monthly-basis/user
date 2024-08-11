@@ -16,6 +16,15 @@ class Errors
     {
         $errors = [];
 
+        if (
+            empty($_POST['current-password'])
+            || empty($_POST['new-password'])
+            || empty($_POST['confirm-new-password'])
+        ) {
+            $errors[] = 'Missing fields.';
+            return $errors;
+        }
+
         if (!$this->validService->isValid()) {
             $errors[] = 'Invalid reCAPTCHA.';
         }
