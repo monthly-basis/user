@@ -70,7 +70,7 @@ class Module
             ],
             'view_manager' => [
                 'template_path_stack' => [
-                    'leo-galleguillos/user' => __DIR__ . '/../view',
+                    'monthly-basis/user' => __DIR__ . '/../view',
                 ],
             ],
         ];
