@@ -21,8 +21,8 @@ class Errors
     {
         $errors = [];
 
-        if (!isset($this->config['required']['email'])
-            || ($this->config['required']['email'])
+        if (!isset($this->config['register']['required']['email'])
+            || ($this->config['register']['required']['email'])
         ) {
             if (empty($_POST['email'])
                 || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
@@ -75,8 +75,8 @@ class Errors
             }
         }
 
-        if (!isset($this->config['required']['gender'])
-            || ($this->config['required']['gender'])
+        if (!isset($this->config['register']['required']['gender'])
+            || ($this->config['register']['required']['gender'])
         ) {
             if (empty($_POST['gender'])
                 || (!in_array($_POST['gender'], ['M', 'F']))
@@ -85,8 +85,8 @@ class Errors
             }
         }
 
-        if (!isset($this->config['required']['re-captcha'])
-            || ($this->config['required']['re-captcha'])
+        if (!isset($this->config['register']['required']['re-captcha'])
+            || ($this->config['register']['required']['re-captcha'])
         ) {
             if (!$this->validService->isValid()) {
                 $errors[] = 'Invalid reCAPTCHA.';
