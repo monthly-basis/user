@@ -21,9 +21,9 @@ class UserToken
             'user_id',
             'login_token',
             'https_token',
-            'created',
-            'expires',
-            'deleted',
+            'user_token_created' => 'created',
+            'user_token_expires' => 'expires',
+            'user_token_deleted' => 'deleted',
         ];
     }
 
