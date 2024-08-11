@@ -16,7 +16,7 @@ class User
     protected $groups = [];
     protected $userId;
     protected $views = 0;
-    protected $welcomeMessage = '';
+    protected $welcomeMessage;
 
     public function getCreated() : DateTime
     {
