@@ -201,6 +201,7 @@ class Module
                         $sm->get(FlashService\Flash::class),
                         $sm->get(UserService\LoggedIn::class),
                         $sm->get(UserService\LoggedInUser::class),
+                        $sm->get(UserService\Password\Change::class),
                         $sm->get(UserService\Password\Change\Errors::class),
                     );
                 },

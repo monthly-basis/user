@@ -13,11 +13,13 @@ class ChangePassword extends AbstractActionController
         FlashService\Flash $flashService,
         UserService\LoggedIn $loggedInService,
         UserService\LoggedInUser $loggedInUserService,
+        UserService\Password\Change $changeService,
         UserService\Password\Change\Errors $errorsService
     ) {
         $this->flashService        = $flashService;
         $this->loggedInService     = $loggedInService;
         $this->loggedInUserService = $loggedInUserService;
+        $this->changeService       = $changeService;
         $this->errorsService       = $errorsService;
     }
 
@@ -50,6 +52,11 @@ class ChangePassword extends AbstractActionController
             );
             return $this->redirect()->toRoute('account/change-password')->setStatusCode(303);
         }
+
+        $this->changeService->changePassword(
+            $this->loggedInUserService->getLoggedInUser(),
+            $_POST['new-password']
+        );
 
         return (new ViewModel())
             ->setTemplate('monthly-basis/user/account/change-password/success')
