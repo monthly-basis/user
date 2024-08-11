@@ -97,7 +97,7 @@ class Code extends AbstractActionController
                 'code'   => $this->code,
             ];
             return $this->redirect()
-                ->toRoute('reset-password/code', $parameters)
+                ->toRoute('reset-password/user-id/code', $parameters)
                 ->setStatusCode(303);
         }
 
