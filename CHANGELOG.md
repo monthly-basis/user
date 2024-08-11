@@ -1,5 +1,9 @@
 # Changelog
 
+```
+ALTER TABLE `user` ADD COLUMN `emoji_12_id` int(10) unsigned DEFAULT NULL AFTER `user_id`;
+```
+
 ## v3.0.0
 
 - Remove deprecated classes, methods, and routes
