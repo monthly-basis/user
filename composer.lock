@@ -1254,21 +1254,21 @@
         },
         {
             "name": "leo-galleguillos/re-captcha",
-            "version": "v2.0.4",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/ReCaptcha.git",
-                "reference": "95546a9ebd1581ce43bdb955808c1b19946c309a"
+                "reference": "21a80f77efb39ec0d658ac872b51d51c1c8b3418"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/95546a9ebd1581ce43bdb955808c1b19946c309a",
-                "reference": "95546a9ebd1581ce43bdb955808c1b19946c309a",
+                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/21a80f77efb39ec0d658ac872b51d51c1c8b3418",
+                "reference": "21a80f77efb39ec0d658ac872b51d51c1c8b3418",
                 "shasum": ""
             },
             "require": {
                 "laminas/laminas-test": "^3.1",
-                "leo-galleguillos/string": "^2.0"
+                "monthly-basis/string": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -1281,20 +1281,20 @@
             "license": [
                 "MIT"
             ],
-            "time": "2020-08-10T02:17:30+00:00"
+            "time": "2020-11-24T06:55:21+00:00"
         },
         {
             "name": "leo-galleguillos/string",
-            "version": "v2.3.1",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/String.git",
-                "reference": "d615b80d68ed7e05f21be74eaef7a418daeae01e"
+                "reference": "c016f7202a637c03a864af98f6ac440ea80675d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/d615b80d68ed7e05f21be74eaef7a418daeae01e",
-                "reference": "d615b80d68ed7e05f21be74eaef7a418daeae01e",
+                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/c016f7202a637c03a864af98f6ac440ea80675d4",
+                "reference": "c016f7202a637c03a864af98f6ac440ea80675d4",
                 "shasum": ""
             },
             "require": {
@@ -1311,7 +1311,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2020-09-07T17:42:04+00:00"
+            "time": "2020-11-16T20:23:33+00:00"
         },
         {
             "name": "monthly-basis/flash",
@@ -1375,17 +1375,47 @@
             "time": "2020-07-03T01:24:44+00:00"
         },
         {
-            "name": "myclabs/deep-copy",
-            "version": "1.10.1",
+            "name": "monthly-basis/string",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
+                "url": "https://github.com/monthly-basis/string.git",
+                "reference": "4a98c479856a005a40b12ff813dd02d527cf4a8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "url": "https://api.github.com/repos/monthly-basis/string/zipball/4a98c479856a005a40b12ff813dd02d527cf4a8f",
+                "reference": "4a98c479856a005a40b12ff813dd02d527cf4a8f",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-test": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MonthlyBasis\\String\\": "src/",
+                    "MonthlyBasis\\StringTest\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-11-19T06:15:40+00:00"
+        },
+        {
+            "name": "myclabs/deep-copy",
+            "version": "1.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
                 "shasum": ""
             },
             "require": {
@@ -1420,7 +1450,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-06-29T13:22:24+00:00"
+            "time": "2020-11-13T09:40:50+00:00"
         },
         {
             "name": "phar-io/manifest",
