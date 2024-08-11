@@ -28,6 +28,7 @@ class User
                  , `welcome_message`
                  , `login_hash`
                  , `login_ip`
+                 , `https_token`
                  , `views`
                  , `created`
                  , `deleted_datetime`
