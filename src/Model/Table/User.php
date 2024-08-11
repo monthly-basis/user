@@ -84,6 +84,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `display_name`
                  , `welcome_message`
                  , `views`
                  , `created`
@@ -107,6 +108,7 @@ class User
             SELECT `user`.`user_id`
                  , `user`.`username`
                  , `user`.`password_hash`
+                 , `user`.`display_name`
               FROM `user`
               JOIN `user_email`
              USING (`user_id`)
@@ -134,6 +136,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `display_name`
                  , `welcome_message`
                  , `views`
                  , `created`
@@ -153,6 +156,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `display_name`
                  , `welcome_message`
                  , `views`
                  , `created`
@@ -183,6 +187,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `display_name`
                  , `welcome_message`
                  , `views`
                  , `created`
