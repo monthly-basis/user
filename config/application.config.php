@@ -2,9 +2,9 @@
 
 return [
     'modules' => [
-        'LeoGalleguillos\ReCaptcha',
         'LeoGalleguillos\User',
         'MonthlyBasis\Flash',
+        'MonthlyBasis\ReCaptcha',
         'MonthlyBasis\String',
         'Zend\Db',
         'Zend\Router',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "72b4b966aa4287a1c92a4bb1d5d0a442",
+    "content-hash": "6396b2100a9ef35f3d858b7e7adb386e",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1253,37 +1253,6 @@
             "time": "2020-09-14T14:23:00+00:00"
         },
         {
-            "name": "leo-galleguillos/re-captcha",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LeoGalleguillos/ReCaptcha.git",
-                "reference": "21a80f77efb39ec0d658ac872b51d51c1c8b3418"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/21a80f77efb39ec0d658ac872b51d51c1c8b3418",
-                "reference": "21a80f77efb39ec0d658ac872b51d51c1c8b3418",
-                "shasum": ""
-            },
-            "require": {
-                "laminas/laminas-test": "^3.1",
-                "monthly-basis/string": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LeoGalleguillos\\ReCaptcha\\": "src/",
-                    "LeoGalleguillos\\ReCaptchaTest\\": "test/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "time": "2020-11-24T06:55:21+00:00"
-        },
-        {
             "name": "monthly-basis/flash",
             "version": "v2.0.0",
             "source": {
@@ -1343,6 +1312,37 @@
                 "MIT"
             ],
             "time": "2020-07-03T01:24:44+00:00"
+        },
+        {
+            "name": "monthly-basis/re-captcha",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monthly-basis/re-captcha.git",
+                "reference": "a257b841a99fb2da2ba228230570cb6e0f595acc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monthly-basis/re-captcha/zipball/a257b841a99fb2da2ba228230570cb6e0f595acc",
+                "reference": "a257b841a99fb2da2ba228230570cb6e0f595acc",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-test": "^3.1",
+                "monthly-basis/string": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MonthlyBasis\\ReCaptcha\\": "src/",
+                    "MonthlyBasis\\ReCaptchaTest\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-11-26T18:24:04+00:00"
         },
         {
             "name": "monthly-basis/string",

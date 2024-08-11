@@ -3,7 +3,7 @@ namespace LeoGalleguillos\User\Model\Service\Password;
 
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
