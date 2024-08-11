@@ -20,10 +20,11 @@ class User
     protected $gender;
     protected $groups = [];
     protected string $httpsToken;
-    protected string $image256Rru;
-    protected string $image512Rru;
-    protected string $image1024Rru;
+    public string $image256Rru;
+    public string $image512Rru;
+    public string $image1024Rru;
     protected string $loginToken;
+    public string $passwordHash;
     public string $openAiRole;
     protected $userId;
     protected $views = 0;

@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    protected UserEntity\User $userEntity;
+
     protected function setUp(): void
     {
         $this->userEntity = new UserEntity\User();
@@ -30,9 +32,9 @@ class UserTest extends TestCase
     public function test_properties()
     {
         $this->userEntity->emoji12Id = 1;
-        $this->userEntity->image256rru = '/path/to/256x256.jpeg';
-        $this->userEntity->image512rru = '/path/to/512x512.jpeg';
-        $this->userEntity->image1024rru = '/path/to/1024x1024.jpeg';
+        $this->userEntity->image256Rru = '/path/to/256x256.jpeg';
+        $this->userEntity->image512Rru = '/path/to/512x512.jpeg';
+        $this->userEntity->image1024Rru = '/path/to/1024x1024.jpeg';
 
         $this->assertSame(
             1,
@@ -40,15 +42,15 @@ class UserTest extends TestCase
         );
         $this->assertSame(
             '/path/to/256x256.jpeg',
-            $this->userEntity->image256rru
+            $this->userEntity->image256Rru
         );
         $this->assertSame(
             '/path/to/512x512.jpeg',
-            $this->userEntity->image512rru
+            $this->userEntity->image512Rru
         );
         $this->assertSame(
             '/path/to/1024x1024.jpeg',
-            $this->userEntity->image1024rru
+            $this->userEntity->image1024Rru
         );
     }
 
