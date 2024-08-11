@@ -65,6 +65,7 @@ class ErrorsTest extends TestCase
         $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'the new password';
+        $_POST['https-token']          = 'the https token';
 
         $this->reCaptchaValidServiceMock
              ->expects($this->once())
@@ -94,6 +95,7 @@ class ErrorsTest extends TestCase
         $_POST['current-password']     = 'invalid current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'the new password';
+        $_POST['https-token']          = 'the https token';
 
         $this->reCaptchaValidServiceMock
              ->expects($this->exactly(1))
@@ -104,7 +106,9 @@ class ErrorsTest extends TestCase
              ->expects($this->exactly(1))
              ->method('getLoggedInUser')
              ->willReturn(
-                (new UserEntity\User())->setPasswordHash('the password hash')
+                 (new UserEntity\User())
+                     ->setHttpsToken('the https token')
+                     ->setPasswordHash('the password hash')
              )
              ;
         $this->passwordValidServiceMock
@@ -134,6 +138,7 @@ class ErrorsTest extends TestCase
         $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'a different new password';
+        $_POST['https-token']          = 'the https token';
 
         $this->reCaptchaValidServiceMock
              ->expects($this->exactly(1))
@@ -144,7 +149,9 @@ class ErrorsTest extends TestCase
              ->expects($this->exactly(1))
              ->method('getLoggedInUser')
              ->willReturn(
-                (new UserEntity\User())->setPasswordHash('the password hash')
+                 (new UserEntity\User())
+                     ->setHttpsToken('the https token')
+                     ->setPasswordHash('the password hash')
              )
              ;
         $this->passwordValidServiceMock
@@ -174,12 +181,15 @@ class ErrorsTest extends TestCase
         $_POST['current-password']     = 'correct current password';
         $_POST['new-password']         = 'the new password';
         $_POST['confirm-new-password'] = 'the new password';
+        $_POST['https-token']          = 'the https token';
 
         $this->loggedInUserServiceMock
              ->expects($this->exactly(1))
              ->method('getLoggedInUser')
              ->willReturn(
-                (new UserEntity\User())->setPasswordHash('the password hash')
+                 (new UserEntity\User())
+                     ->setHttpsToken('the https token')
+                     ->setPasswordHash('the password hash')
              )
              ;
         $this->passwordValidServiceMock
