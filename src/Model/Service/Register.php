@@ -3,7 +3,6 @@ namespace MonthlyBasis\User\Model\Service;
 
 use DateTime;
 use MonthlyBasis\Flash\Model\Service as FlashService;
-use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Exception as UserException;
