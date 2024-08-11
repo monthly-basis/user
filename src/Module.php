@@ -67,6 +67,11 @@ class Module
                         $serviceManager->get(UserFactory\User::class)
                     );
                 },
+                UserService\Login::class => function ($serviceManager) {
+                    return new UserService\Login(
+                        $serviceManager->get(UserTable\User::class)
+                    );
+                },
                 UserService\Photo\IncrementViews::class => function ($serviceManager) {
                     return new UserService\Photo\IncrementViews(
                         $serviceManager->get(UserTable\Photo::class)
