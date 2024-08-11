@@ -34,10 +34,12 @@ class Create extends AbstractActionController
                 $birthday->format('Y-m-d H:i:s'),
                 $gender
             );
-            $this->userEmailTable->insert(
-                $userId,
-                $email
-            );
+            if (isset($email)) {
+                $this->userEmailTable->insert(
+                    $userId,
+                    $email
+                );
+            }
         } catch (InvalidQueryException $exception) {
             $this->adapter->getDriver()->getConnection()->rollback();
             return;
