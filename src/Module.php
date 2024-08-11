@@ -474,6 +474,11 @@ class Module
                         $sm->get('user')
                     );
                 },
+                UserTable\LoginToken::class => function ($sm) {
+                    return new UserTable\LoginToken(
+                        $sm->get(UserDb\Sql::class)
+                    );
+                },
                 UserTable\Post::class => function ($sm) {
                     return new UserTable\Post(
                         $sm->get('user')
