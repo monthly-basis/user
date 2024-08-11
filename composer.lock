@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/Image.git",
-                "reference": "ce9a23c0c432ba402942e9bc96d8fcbefff0d42b"
+                "reference": "4884675c8dd1e374d515458c70d1f31a52f1aa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/Image/zipball/ce9a23c0c432ba402942e9bc96d8fcbefff0d42b",
-                "reference": "ce9a23c0c432ba402942e9bc96d8fcbefff0d42b",
+                "url": "https://api.github.com/repos/LeoGalleguillos/Image/zipball/4884675c8dd1e374d515458c70d1f31a52f1aa52",
+                "reference": "4884675c8dd1e374d515458c70d1f31a52f1aa52",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-02-06 20:32:23"
+            "time": "2018-02-21 16:14:54"
         },
         {
             "name": "leo-galleguillos/string",
@@ -483,16 +483,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be"
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
                 "shasum": ""
             },
             "require": {
@@ -542,7 +542,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11 18:49:29"
+            "time": "2018-02-19 10:16:54"
         },
         {
             "name": "phpunit/php-code-coverage",
