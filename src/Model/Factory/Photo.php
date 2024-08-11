@@ -49,8 +49,15 @@ class Photo
 
         $thumbnails = [];
         $thumbnail300RootPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension();
-        if (!file_exists($thumbnail300RootPath)) {
 
+        if (!file_exists($thumbnail300RootPath)) {
+            /*
+            $imageEntity = $this->createThumbnailService->create(
+                $imageEntity,
+                $width,
+                $destination
+            );
+             */
         }
         $photo->setThumbnails($thumbnails);
 
