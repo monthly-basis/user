@@ -21,12 +21,7 @@ class Register
         $this->flashValuesService = $flashValuesService;
     }
 
-    /**
-     * Get form errors.
-     *
-     * @return array
-     */
-    public function getErrors()
+    public function getErrors(): array
     {
         $errors = [];
 
@@ -91,12 +86,40 @@ class Register
             throw new Exception('Invalid registration.');
         }
 
-        if (isset($this->config['require-activation-via-email'])
-            && $this->config['require-activation-via-email']
-        ) {
-            return;
-        }
+        $activationCode = rand(1, 999999999);
+        $passwordHash   = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $dateTime = DateTime::createFromFormat(
+            'Y-m-d',
+            $_POST['birthday-year'] . '-' . $_POST['birthday-month'] . '-' . $_POST['birthday-day']
+        );
 
-        // Activate account immediately.
+        $registerId = $this->registerTable->insert(
+            $activationCode,
+            $_POST['username'],
+            $_POST['email'],
+            $passwordHash,
+            $dateTime->format('Y-m-d 00:00:00'),
+            $_POST['gender']
+        );
+
+        $headers ="From: {$config['website-name']} <{$config['email-address']}>\r\n";
+        mail(
+            $_POST['email'],
+            "{$config['website-name']} - Activate Your Account",
+            $this->getEmailBodyText($registerId, $activationCode),
+            $headers
+        );
+    }
+
+    protected function getEmailBodyText($registerId, $activationCode): string
+    {
+        $text = "Thank you for signing up with {$config['website-name']}.\n\n";
+        $text .= "To activate your account, please click on the following link:\n\n";
+        $text .= 'https://' . $_SERVER['HTTP_HOST'] . '/activate/'
+               . urlencode($registerId)
+               . '/'
+               . urlencode($activationCode)
+               . "\n\n";
+        return $text;
     }
 }
