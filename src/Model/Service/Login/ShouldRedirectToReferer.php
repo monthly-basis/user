@@ -14,6 +14,9 @@ class ShouldRedirectToReferer
     public function shouldRedirectToReferer(
         bool $wasLoginSuccessful
     ) : bool {
-        return false;
+        if (!$wasLoginSuccessful
+            || empty($_POST['referer'])) {
+            return false;
+        }
     }
 }
