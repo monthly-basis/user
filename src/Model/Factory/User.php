@@ -3,7 +3,7 @@ namespace LeoGalleguillos\User\Model\Factory;
 
 use ArrayObject;
 use DateTime;
-use LeoGalleguillos\User\Model\Entity\User as UserEntity;
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Table\User as UserTable;
 
 class User
@@ -28,9 +28,9 @@ class User
      * @param array $array
      * @return UserEntity\User
      */
-    public function buildFromArray(array $array)
+    public function buildFromArray(array $array) : UserEntity\User
     {
-        $userEntity = new UserEntity();
+        $userEntity = new UserEntity\User();
 
         $userEntity->userId   = $array['user_id'];
         $userEntity->username = $array['username'];
@@ -60,7 +60,7 @@ class User
      */
     public function buildFromArrayObject($arrayObject)
     {
-        $userEntity = new UserEntity();
+        $userEntity = new UserEntity\User();
 
         $userEntity->userId   = $arrayObject['user_id'];
         $userEntity->username = $arrayObject['username'];
