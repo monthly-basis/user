@@ -160,20 +160,16 @@ class LoginTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function test_login()
+    public function test_login_validReCaptchaCorrectUsernameAndCorrectPassword_true()
     {
-        $wrongPasswordResultMock = $this->createMock(
-            Result::class
-        );
-        $this->countableIteratorHydrator->hydrate(
-            $wrongPasswordResultMock,
-            [
-                [
-                    'username'      => 'username',
-                    'password_hash' => 'password-hash-which-is-not-valid',
-                ],
-            ],
-        );
+        $_POST['username'] = 'username';
+        $_POST['password'] = 'correct password';
+
+        $this->validReCaptchaServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
         $correctUsernameAndPasswordResultMock = $this->createMock(
             Result::class
         );
@@ -186,32 +182,20 @@ class LoginTest extends TestCase
                 ],
             ],
         );
-
-        $this->validReCaptchaServiceMock
-             ->expects($this->exactly(2))
-             ->method('isValid')
-             ->willReturn(true)
+        $this->userTableMock
+             ->expects($this->once())
+             ->method('selectWhereUsername')
+             ->willReturn($correctUsernameAndPasswordResultMock)
              ;
-
-        $this->userTableMock->method('selectWhereUsername')->will(
-            $this->onConsecutiveCalls(
-                $wrongPasswordResultMock,
-                $correctUsernameAndPasswordResultMock,
-            )
-        );
-
-        $_POST['username'] = 'username';
-        $_POST['password'] = 'incorrect password';
-        $this->assertFalse(
-            $this->loginService->login()
-        );
-
-        $userEntity = new UserEntity\User();
-        $userEntity->setUserId(123)
-                   ->setUsername('username');
-        $this->userFactoryMock->method('buildFromUsername')->willReturn(
-            $userEntity
-        );
+        $userEntity = (new UserEntity\User())
+            ->setUserId(123)
+            ->setUsername('username')
+            ;
+        $this->userFactoryMock
+             ->expects($this->once())
+             ->method('buildFromUsername')
+             ->willReturn($userEntity)
+             ;
         $this->randomServiceMock
              ->expects($this->once())
              ->method('getRandomString')
@@ -228,8 +212,6 @@ class LoginTest extends TestCase
              ->method('updateSetLoginIpWhereUserId')
              ->with('123.123.123.123', 123)
              ;
-
-        $_POST['password'] = 'correct password';
 
         $this->assertTrue(
             $this->loginService->login()
