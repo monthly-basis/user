@@ -8,19 +8,21 @@ class Logout
      */
     public function logout()
     {
+        $options = [
+            'expires'  => time() - 3600,
+            'path'     => '/',
+            'domain'   => $_SERVER['HTTP_HOST'],
+            'secure'   => true,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        ];
+
         $name   = 'userId';
         $value  = 0;
-        $expire = time() - 3600;
-        $path   = '/';
-        $domain = $_SERVER['HTTP_HOST'];
-        $secure = true;
         setcookie(
             $name,
             $value,
-            $expire,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
 
         $name   = 'loginHash';
@@ -28,10 +30,7 @@ class Logout
         setcookie(
             $name,
             $value,
-            $expire,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
 
         $name  = 'loginIp';
@@ -39,10 +38,7 @@ class Logout
         setcookie(
             $name,
             $value,
-            $expire,
-            $path,
-            $domain,
-            $secure
+            $options,
         );
     }
 }
