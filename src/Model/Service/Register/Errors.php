@@ -26,6 +26,11 @@ class Errors
     {
         $errors = [];
 
+        $birthdayErrors = $this->birthdayErrorsService->getBirthdayErrors();
+        if ($birthdayErrors == [UserService\Register\Errors\Birthday::ERROR_NOT_OLD_ENOUGH]) {
+            return $birthdayErrors;
+        }
+
         if (isset($_SERVER['REMOTE_ADDR'])
             && $this->toxicService->isIpAddressToxic($_SERVER['REMOTE_ADDR'])
         ) {
@@ -56,7 +61,7 @@ class Errors
 
         $errors = array_merge(
             $errors,
-            $this->birthdayErrorsService->getBirthdayErrors()
+            $birthdayErrors,
         );
 
         if (!$this->validService->isValid()) {
