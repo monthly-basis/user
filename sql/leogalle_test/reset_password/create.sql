@@ -3,5 +3,6 @@ CREATE TABLE `reset_password` (
     `user_id` int(10) unsigned not null,
     `code` varchar(32) not null,
     `created` datetime not null,
-    PRIMARY KEY (`reset_password_id`)
+    PRIMARY KEY (`reset_password_id`),
+    KEY (`code`)
 ) charset=utf8;
