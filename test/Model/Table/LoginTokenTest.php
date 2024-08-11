@@ -36,5 +36,21 @@ class LoginTokenTest extends TableTestCase
             1,
             $result->getAffectedRows()
         );
+
+        $result = $this->loginTokenTable->insert([
+            'login_token' => 'the-login-token',
+            'login_ip'    => '1.2.3.4',
+            'user_id'     => 12345,
+            'expires'     => '2021-01-19 07:30:13',
+        ]);
+
+        $this->assertSame(
+            '2',
+            $result->getGeneratedValue()
+        );
+        $this->assertSame(
+            1,
+            $result->getAffectedRows()
+        );
     }
 }
