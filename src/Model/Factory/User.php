@@ -1,7 +1,6 @@
 <?php
 namespace MonthlyBasis\User\Model\Factory;
 
-use ArrayObject;
 use DateTime;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Exception as UserException;
@@ -16,7 +15,7 @@ class User
         $this->userTable = $userTable;
     }
 
-    public function buildFromArray(array $array) : UserEntity\User
+    public function buildFromArray(array $array): UserEntity\User
     {
         $userEntity = new UserEntity\User();
 
@@ -56,7 +55,7 @@ class User
         return $userEntity;
     }
 
-    public function buildFromUserId(int $userId)
+    public function buildFromUserId(int $userId): UserEntity\User
     {
         if (isset($this->cache[$userId])) {
             return $this->cache[$userId];
