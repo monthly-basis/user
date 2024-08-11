@@ -18,6 +18,9 @@ class FlashValues
             'username',
             'password',
             'confirm-password',
+            'birthday-month',
+            'birthday-day',
+            'birthday-year',
         ];
         foreach ($keys as $key) {
             $this->flashService->set(

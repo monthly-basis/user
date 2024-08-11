@@ -34,13 +34,22 @@ class Register
             || preg_match('/\W/', $_POST['username'])) {
             $errors[] = 'Invalid username.';
         }
-
         if (empty($_POST['password'])) {
             $errors[] = 'Invalid password.';
         }
 
         if ($_POST['password'] != $_POST['confirm-password']) {
             $errors[] = 'Password and confirm password do not match.';
+        }
+
+        if (empty($_POST['birthday-month'])) {
+            $errors[] = 'Invalid birthday month.';
+        }
+        if (empty($_POST['birthday-day'])) {
+            $errors[] = 'Invalid birthday day.';
+        }
+        if (empty($_POST['birthday-year'])) {
+            $errors[] = 'Invalid birthday year.';
         }
 
         if (!$this->validService->isValid()) {
