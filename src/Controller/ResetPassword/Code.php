@@ -54,8 +54,9 @@ class Code extends AbstractActionController
     {
         $this->code = $this->params()->fromRoute('code');
         try {
-            $this->userId = $this->resetPasswordTable->selectUserIdWhereCode(
-                $this->code
+            $this->userId = $this->resetPasswordTable->selectUserIdWhereCodeAndCreatedGreaterThan(
+                $this->code,
+                date('Y-m-d H:i:s', strtotime('-1 day'))
             );
         } catch (Exception $exception) {
             $this->resetPasswordAccessLogTable->insert(
@@ -64,6 +65,8 @@ class Code extends AbstractActionController
             );
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
+
+        // At this point, code is valid.
 
         if (!empty($_POST)) {
             return $this->postAction();
