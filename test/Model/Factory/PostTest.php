@@ -25,13 +25,13 @@ class PostTest extends TestCase
     public function testBuildFromArrayObject()
     {
         $arrayObject = new ArrayObject([
-            'post_id' => 123,
-            'from_user_user_id' => 456,
+            'post_id'            => 123,
+            'from_user_user_id'  => 456,
             'from_user_username' => 'username1',
-            'to_user_user_id' => 789,
-            'to_user_username' => 'username2',
-            'message' => 'this is the message',
-            'created' => '2018-01-29 19:46:03',
+            'to_user_user_id'    => 789,
+            'to_user_username'   => 'username2',
+            'message'            => 'this is the message',
+            'created'            => '2018-01-29 19:46:03',
         ]);
 
         $fromUserEntity = new UserEntity\User();
