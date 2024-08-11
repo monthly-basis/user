@@ -21,6 +21,9 @@ class RegisterTest extends TestCase
         $this->conditionallySendServiceMock = $this->createMock(
             SimpleEmailServiceService\Send\Conditionally::class
         );
+        $this->usernameExistsServiceMock = $this->createMock(
+            UserService\Username\Exists::class
+        );
         $this->flashValuesServiceMock = $this->createMock(
             UserService\Register\FlashValues::class
         );
@@ -32,6 +35,7 @@ class RegisterTest extends TestCase
             $this->flashServiceMock,
             $this->validServiceMock,
             $this->conditionallySendServiceMock,
+            $this->usernameExistsServiceMock,
             $this->flashValuesServiceMock,
             $this->registerTableMock,
         );
