@@ -10,11 +10,18 @@ class RootRelativeUrl
     ) {
 
     }
+
     public function getRootRelativeUrl(UserEntity\User $userEntity): string
     {
-        return '/users/'
-             . $userEntity->getUserId()
-             . '/'
-             . urlencode($userEntity->getUsername());
+        $rootRelativeUrl = '/users';
+
+        $includeUserId = $this->configEntity['root-relative-url']['include-user-id'] ?? true;
+        if ($includeUserId) {
+            $rootRelativeUrl .= '/' . $userEntity->userId;
+        }
+
+        $rootRelativeUrl .= '/' . urlencode($userEntity->getUsername());
+
+        return $rootRelativeUrl;
     }
 }
