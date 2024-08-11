@@ -42,6 +42,6 @@ class Upload
         $uploadPath = $_SERVER['DOCUMENT_ROOT']
                     . "/uploads/photos/$photoId/original.$fileExtension";
         move_uploaded_file($fileTmpName, $uploadPath);
-        chmod($uploadPath, 0666);
+        chmod($uploadPath, 0775);
     }
 }
