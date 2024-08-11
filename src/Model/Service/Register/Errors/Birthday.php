@@ -55,6 +55,17 @@ class Birthday
         $dateTime13YearsAnd2DaysAgo = (new DateTime())
             ->sub(new DateInterval('P13Y2D'));
         if ($dateTime13YearsAnd2DaysAgo < $dateTime) {
+            setcookie(
+                'register-not-old-enough',
+                true,
+                [
+                    'domain'   => $_SERVER['HTTP_HOST'],
+                    'expires'  => time() + 30 * 24 * 60 * 60,
+                    'path'     => '/',
+                    'samesite' => 'None',
+                    'secure'   => true,
+                ]
+            );
             $this->registerNotOldEnoughLogTable->insert(
                 $_SERVER['REMOTE_ADDR']
             );
