@@ -225,6 +225,14 @@ class Module
                         $sm->get(UserTable\User::class)
                     );
                 },
+                UserService\Activate::class => function ($sm) {
+                    return new UserService\Activate(
+                        $sm->get('user')->getDriver()->getConnection(),
+                        $sm->get(UserTable\Register::class),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\UserEmail::class),
+                    );
+                },
                 UserService\Create::class => function ($sm) {
                     return new UserService\Create(
                         $sm->get('user'),
