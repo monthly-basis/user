@@ -130,7 +130,7 @@ class Code extends AbstractActionController
         );
 
         return $this->redirect()
-            ->toRoute('reset-password/sucess')
+            ->toRoute('reset-password/success')
             ->setStatusCode(303);
     }
 }
