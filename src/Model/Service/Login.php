@@ -7,21 +7,10 @@ use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
+use TypeError;
 
 class Login
 {
-    /**
-     * Construct.
-     *
-     * @param FlashService\Flash $flashService
-     * @param ReCaptchaService\Valid $validReCaptchaService
-     * @param UserFactory\User $userFactory
-     * @param UserService\Login\ReCaptchaRequired $reCaptchaRequiredService
-     * @param UserTable\User $userTable
-     * @param UserTable\User\LoginDateTime $loginDateTimeTable
-     * @param UserTable\User\LoginHash $loginHashTable
-     * @param UserTable\User\LoginIp $loginIpTable
-     */
     public function __construct(
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validReCaptchaService,
@@ -42,12 +31,7 @@ class Login
         $this->loginIpTable             = $loginIpTable;
     }
 
-    /**
-     * Login
-     *
-     * @return bool
-     */
-    public function login() : bool
+    public function login(): bool
     {
         if (empty($_POST['username'])
             || empty($_POST['password'])) {
@@ -59,8 +43,9 @@ class Login
             return false;
         }
 
-        $userArray = $this->userTable->selectWhereUsername($_POST['username']);
-        if (empty($userArray)) {
+        try {
+            $userArray = $this->userTable->selectWhereUsername($_POST['username']);
+        } catch (TypeError $typeError) {
             return false;
         }
 
@@ -72,7 +57,7 @@ class Login
         }
 
         /*
-         * All tests pass. Update tables and set cookies.
+         * Credentials are valid. Update tables and set cookies.
          */
 
         $userEntity = $this->userFactory->buildFromUsername($username);
