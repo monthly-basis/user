@@ -38,15 +38,16 @@ class PhotoTest extends TestCase
             'extension'   => 'jpg',
             'title'       => 'title',
             'description' => 'description',
-            'views'       => '0',
+            'views'       => '5',
             'created'     => '0000-00-00 00:00:00',
         ];
         $photoEntity = new UserEntity\Photo();
 
-        $photoEntity->setPhotoId($array['photo_id'])
-                    ->setTitle($array['title'])
-                    ->setDescription($array['description'])
-                    ->setCreated(new DateTime($array['created']));
+        $photoEntity->setPhotoId(2)
+                    ->setTitle('title')
+                    ->setDescription('description')
+                    ->setCreated(new DateTime('0000-00-00 00:00:00'))
+                    ->setViews(5);
 
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
