@@ -32,8 +32,8 @@ class User
     ) {
         $sql = '
             INSERT
-              INTO `user` (`username`, `password_hash`)
-            VALUES (?, ?)
+              INTO `user` (`username`, `password_hash`, `created`)
+            VALUES (?, ?, UTC_TIMESTAMP())
                  ;
         ';
         $parameters = [
