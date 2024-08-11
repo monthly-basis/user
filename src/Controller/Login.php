@@ -49,7 +49,7 @@ class Login extends AbstractActionController
 
         $this->loginLogTable->insert($_SERVER['REMOTE_ADDR'], 0);
         $this->flashService->set('error', 'Invalid username or password.');
-        return $this->redirect()->toRoute('login')->setStatusCode(303);
+        return $this->redirect()->toRoute('monthly-basis/user/login')->setStatusCode(303);
     }
 
     protected function loginSuccess()
