@@ -20,6 +20,9 @@ class Photo
     ) : UserEntity\Photo {
         $photo = new UserEntity\Photo();
 
+        $photo->setTitle($arrayObject['title'])
+              ->setDescription($arrayObject['description']);
+
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl(
             '/uploads/photos/'
