@@ -93,7 +93,6 @@ class Login
     ) {
         $namesAndValues = [
             'user-id'     => $userId,
-            'login-hash'  => $loginHash,
             'login-token' => $loginHash,
             'https-token' => $httpsToken,
         ];
