@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Service\Password;
 
+use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
@@ -55,11 +56,16 @@ class ResetTest extends TestCase
         );
     }
 
-    public function testInitialize()
+    public function test_reset_invalidEmail_errorMessage()
     {
-        $this->assertInstanceOf(
-            UserService\Password\Reset::class,
-            $this->resetService
-        );
+        try {
+            $this->resetService->reset();
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                'Errors with form.',
+                $exception->getMessage()
+            );
+        }
     }
 }
