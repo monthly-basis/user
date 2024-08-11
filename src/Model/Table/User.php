@@ -27,6 +27,7 @@ class User
                  , `display_name`
                  , `welcome_message`
                  , `login_hash`
+                 , `login_ip`
                  , `views`
                  , `created`
                  , `deleted_datetime`
