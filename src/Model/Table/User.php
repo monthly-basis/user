@@ -29,6 +29,9 @@ class User extends LaminasDb\Table
             'display_name',
             'welcome_message',
             'open_ai_role',
+            'image_256_rru',
+            'image_512_rru',
+            'image_1024_rru',
             'views',
             'created',
             'deleted_datetime',
@@ -48,6 +51,9 @@ class User extends LaminasDb\Table
                  , `display_name`
                  , `welcome_message`
                  , `open_ai_role`
+                 , `image_256_rru`
+                 , `image_512_rru`
+                 , `image_1024_rru`
                  , `views`
                  , `created`
                  , `deleted_datetime`
