@@ -246,7 +246,6 @@ class Module
                         $sm->get(ReCaptchaService\Valid::class),
                         $sm->get(StringService\Random::class),
                         $sm->get(UserFactory\User::class),
-                        $sm->get(UserService\Login\ReCaptchaRequired::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\User\LoginDateTime::class),
                         $sm->get(UserTable\User\LoginHash::class),
