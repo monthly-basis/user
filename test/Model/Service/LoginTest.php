@@ -38,9 +38,6 @@ class LoginTest extends TestCase
         $this->loginDateTimeTableMock = $this->createMock(
             UserTable\User\LoginDateTime::class
         );
-        $this->loginIpTableMock = $this->createMock(
-            UserTable\User\LoginIp::class
-        );
         $this->userIdTableMock = $this->createMock(
             UserTable\User\UserId::class
         );
@@ -51,7 +48,6 @@ class LoginTest extends TestCase
             $this->userFactoryMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
-            $this->loginIpTableMock,
             $this->userIdTableMock,
         );
     }
@@ -142,6 +138,11 @@ class LoginTest extends TestCase
              ->expects($this->once())
              ->method('updateSetLoginHashWhereUserId')
              ->with('5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84', 123)
+             ;
+        $this->userIdTableMock
+             ->expects($this->once())
+             ->method('updateSetLoginIpWhereUserId')
+             ->with('123.123.123.123', 123)
              ;
 
         $_POST['password'] = 'correct password';

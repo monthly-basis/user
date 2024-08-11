@@ -273,7 +273,6 @@ class Module
                         $sm->get(UserFactory\User::class),
                         $sm->get(UserTable\User::class),
                         $sm->get(UserTable\User\LoginDateTime::class),
-                        $sm->get(UserTable\User\LoginIp::class),
                         $sm->get(UserTable\User\UserId::class),
                     );
                 },
