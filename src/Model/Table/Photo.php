@@ -98,6 +98,33 @@ class Photo
         return $this->adapter->query($sql)->execute([$photoId])->current();
     }
 
+    public function selectWhereUserId(int $userId)
+    {
+        $sql = '
+            SELECT `photo`.`photo_id`
+                 , `photo`.`user_id`
+                 , `photo`.`extension`
+                 , `photo`.`title`
+                 , `photo`.`description`
+                 , `photo`.`views`
+                 , `photo`.`created`
+              FROM `photo`
+             WHERE `photo`.`user_id` = :userId
+             ORDER
+                BY `photo`.`created` DESC
+             LIMIT 10
+                 ;
+        ';
+        $parameters = [
+            'userId' => $userId,
+        ];
+        $resultSet = $this->adapter->query($sql)->execute($parameters);
+
+        foreach ($resultSet as $array) {
+            yield $array;
+        }
+    }
+
     public function updateViewsWherePhotoId(int $photoId) : bool
     {
         $sql = '
