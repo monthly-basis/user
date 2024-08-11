@@ -28,6 +28,9 @@ class User
         $this->adapter->getDriver()->getConnection()->commit();
     }
 
+    /**
+     * @return int
+     */
     public function insert(
         $username,
         $passwordHash

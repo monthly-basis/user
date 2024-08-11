@@ -66,6 +66,14 @@ class Module
                         $serviceManager->get(UserTable\User::class)
                     );
                 },
+                UserFactory\User\BuildFromCookies::class => function ($serviceManager) {
+                    return new UserFactory\User\BuildFromCookies(
+                        $serviceManager->get(UserService\LoggedInUser::class),
+                        $serviceManager->get(UserTable\User::class),
+                        $serviceManager->get(UserTable\User\LoginHash::class),
+                        $serviceManager->get(UserTable\User\LoginIp::class)
+                    );
+                },
                 UserService\LoggedIn::class => function ($serviceManager) {
                     return new UserService\LoggedIn(
                         $serviceManager->get(UserTable\User::class)
