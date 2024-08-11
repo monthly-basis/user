@@ -42,8 +42,8 @@ class UserTest extends TestCase
         ]);
 
         $userEntity           = new UserEntity\User();
-        $userEntity->userId   = 1;
-        $userEntity->username = 'Testing123';
+        $userEntity->setUserId(1)
+                   ->setUsername('Testing123');
         $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->assertEquals(
@@ -61,7 +61,7 @@ class UserTest extends TestCase
         ]);
 
         $userEntity           = new UserEntity\User();
-        $userEntity->userId   = 1;
+        $userEntity->setUserId(1);
         $userEntity->username = 'Testing123';
 
         $this->assertEquals(
@@ -79,7 +79,7 @@ class UserTest extends TestCase
         ]);
 
         $userEntity           = new UserEntity\User();
-        $userEntity->userId   = 1;
+        $userEntity->setUserId(1);
         $userEntity->username = 'Testing123';
         $userEntity->setViews(0);
         $userEntity->setWelcomeMessage('Welcome to my page.');
