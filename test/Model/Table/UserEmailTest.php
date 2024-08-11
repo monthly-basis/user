@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Table;
 
+use Exception;
 use Laminas\Db\Adapter\Adapter;
 use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -38,6 +39,28 @@ class UserEmailTest extends TableTestCase
         $this->assertSame(
             0,
             $this->userEmailTable->selectCount()
+        );
+    }
+
+    public function test_selectUserIdWhereAddress()
+    {
+        try {
+            $userId = $this->userEmailTable->selectUserIdWhereAddress('user@example.com');
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                'Address not found.',
+                $exception->getMessage(),
+            );
+        }
+
+        $this->userEmailTable->insert(
+            '12345',
+            'user@example.com'
+        );
+        $this->assertSame(
+            12345,
+            $this->userEmailTable->selectUserIdWhereAddress('user@example.com'),
         );
     }
 }
