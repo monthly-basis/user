@@ -38,9 +38,6 @@ class Photos
                 . '/original.'
                 . $arrayObject['extension']
             );
-            $imagick = new \Imagick($_SERVER['DOCUMENT_ROOT'] . $original->getRootRelativeUrl());
-            $original->setOrientation($imagick->getImageOrientation());
-
             $photo->setOriginal($original);
             yield $photo;
         }
