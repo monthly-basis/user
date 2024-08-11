@@ -3,10 +3,11 @@ namespace LeoGalleguillos\UserTest\Model\Table;
 
 use ArrayObject;
 use LeoGalleguillos\User\Model\Table\User as UserTable;
+use LeoGalleguillos\UserTest\TableTestCase;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class UserTest extends TableTestCase
 {
     /**
      * @var string
@@ -22,11 +23,13 @@ class UserTest extends TestCase
     {
         $configArray     = require(__DIR__ . '/../../../config/autoload/local.php');
         $configArray     = $configArray['db']['adapters']['leogalle_test'];
-        $this->adapter         = new Adapter($configArray);
+        $this->adapter   = new Adapter($configArray);
         $this->userTable = new UserTable($this->adapter);
 
+        $this->setForeignKeyChecks0();
         $this->dropTable();
         $this->createTable();
+        $this->setForeignKeyChecks1();
     }
 
     protected function dropTable()
