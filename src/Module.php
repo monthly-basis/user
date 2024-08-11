@@ -95,7 +95,9 @@ class Module
                     );
                 },
                 UserService\Login\ShouldRedirectToReferer::class => function ($serviceManager) {
-                    return new UserService\Login\ShouldRedirectToReferer();
+                    return new UserService\Login\ShouldRedirectToReferer(
+                        $serviceManager->get(StringService\StartsWith::class)
+                    );
                 },
                 UserService\Logout::class => function ($serviceManager) {
                     return new UserService\Logout();
