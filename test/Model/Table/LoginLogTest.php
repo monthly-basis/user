@@ -1,8 +1,8 @@
 <?php
 namespace LeoGalleguillos\LoginLogTest\Model\Table;
 
-use LeoGalleguillos\Test\TableTestCase;
 use LeoGalleguillos\User\Model\Table as UserTable;
+use MonthlyBasis\LaminasTest\TableTestCase;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
