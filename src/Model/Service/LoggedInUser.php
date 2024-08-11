@@ -28,7 +28,7 @@ class LoggedInUser
             return $this->cache['userEntity'];
         }
 
-        if (empty($_COOKIE['userId'])
+        if (empty($_COOKIE['user-id'])
             || empty($_COOKIE['loginHash'])
         ) {
             throw new UserException('User is not logged in (cookies are not set).');
@@ -36,7 +36,7 @@ class LoggedInUser
 
         try {
             $array = $this->userTable->selectWhereUserIdLoginHash(
-                $_COOKIE['userId'],
+                $_COOKIE['user-id'],
                 $_COOKIE['loginHash']
             );
         } catch (Exception $exception) {

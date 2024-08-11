@@ -20,7 +20,7 @@ class LoggedIn
             return $this->isLoggedIn;
         }
 
-        if (empty($_COOKIE['userId'])
+        if (empty($_COOKIE['user-id'])
             || empty($_COOKIE['loginHash'])
         ) {
             $this->isLoggedIn = false;
@@ -29,7 +29,7 @@ class LoggedIn
 
         try {
             $this->userTable->selectWhereUserIdLoginHash(
-                $_COOKIE['userId'],
+                $_COOKIE['user-id'],
                 $_COOKIE['loginHash']
             );
         } catch (Exception $exception) {

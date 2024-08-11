@@ -3,10 +3,7 @@ namespace MonthlyBasis\User\Model\Service;
 
 class Logout
 {
-    /**
-     * Logout
-     */
-    public function logout()
+    public function logout(): void
     {
         $options = [
             'expires'  => time() - 3600,
@@ -17,7 +14,7 @@ class Logout
             'samesite' => 'Strict',
         ];
 
-        $name   = 'userId';
+        $name   = 'user-id';
         $value  = 0;
         setcookie(
             $name,

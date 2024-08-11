@@ -93,7 +93,7 @@ class Login
             'samesite' => 'Strict',
         ];
 
-        $name   = 'userId';
+        $name   = 'user-id';
         $value  = $userEntity->getUserId();
         setcookie(
             $name,
