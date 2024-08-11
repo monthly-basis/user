@@ -40,7 +40,7 @@ class UserUserTokenTest extends TableTestCase
 
     public function test_selectWhereUserIdLoginTokenExpiresDeleted_emptyResultDueToExpiredToken()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username',
             'the-password-hash',
             '1983-10-22 00:00:00',
@@ -61,7 +61,7 @@ class UserUserTokenTest extends TableTestCase
 
     public function test_selectWhereUserIdLoginTokenExpiresDeleted_nonEmptyResult()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             '$2y$10$DpCNnOVP6.wXA0ufpKt4S.uWi.u1Lm8zVvw1EuhyiiomFcLOb2p9i',
             '1983-10-22 00:00:00',

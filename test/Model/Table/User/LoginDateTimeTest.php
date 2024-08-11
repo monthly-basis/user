@@ -26,7 +26,7 @@ class LoginDateTimeTest extends TableTestCase
             $this->loginDateTimeTable->updateSetToNowWhereUserId(1)
         );
 
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username',
             'password hash',
             '1983-10-22',

@@ -26,7 +26,7 @@ class UserEmailTest extends TableTestCase
 
     public function testInsert()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username1',
             'password-hash',
             '2021-07-14 17:51:23',
@@ -36,7 +36,7 @@ class UserEmailTest extends TableTestCase
             'test@example.com'
         );
 
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username2',
             'password-hash',
             '2021-07-14 17:51:23',
@@ -65,7 +65,7 @@ class UserEmailTest extends TableTestCase
         $result = $this->userEmailTable->selectWhereAddress('user@example.com');
         $this->assertEmpty($result);
 
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username',
             'password-hash',
             '2021-07-14 17:51:23',

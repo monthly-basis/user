@@ -40,9 +40,9 @@ class UserTest extends TableTestCase
         );
     }
 
-    public function test_insert()
+    public function test_insertDeprecated()
     {
-        $userId = $this->userTable->insert(
+        $userId = $this->userTable->insertDeprecated(
             'username',
             'password hash',
             '1983-10-22',
@@ -53,7 +53,7 @@ class UserTest extends TableTestCase
             $userId,
         );
 
-        $userId = $this->userTable->insert(
+        $userId = $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
@@ -80,13 +80,13 @@ class UserTest extends TableTestCase
 
     public function testSelectOrderByCreatedDesc()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
             'M'
         );
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'Username',
             'passwordhash12345',
             '1983-10-22',
@@ -106,7 +106,7 @@ class UserTest extends TableTestCase
             $this->userTable->selectWhereUserId(1)
         );
 
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
@@ -132,7 +132,7 @@ class UserTest extends TableTestCase
         $this->assertEmpty(
             $result = $this->userTable->selectWhereUsername('LeoGalleguillos')
         );
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
@@ -154,7 +154,7 @@ class UserTest extends TableTestCase
 
     public function testUpdateViewsWhereUserId()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
@@ -176,7 +176,7 @@ class UserTest extends TableTestCase
 
     public function testUpdateWhereUserId()
     {
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'LeoGalleguillos',
             '$2y$10$u.zUjyq1akFSMW5WzTa8Iurj3WjVXrrWZUaZREukilchH6s8Kcq1O',
             '1983-10-22',

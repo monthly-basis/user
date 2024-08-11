@@ -32,7 +32,7 @@ class UserIdTest extends TableTestCase
             $result->getAffectedRows()
         );
 
-        $this->userTable->insert(
+        $this->userTable->insertDeprecated(
             'username',
             'password-hash',
             '1983-01-01 00:00:00',
