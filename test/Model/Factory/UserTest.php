@@ -66,6 +66,20 @@ class UserTest extends TestCase
         );
     }
 
+    public function test_buildFromArray_missingOptionalFields_userEntity()
+    {
+        $array = [
+            'user_id' => 1,
+        ];
+        $userEntity = (new UserEntity\User())
+            ->setUserId($array['user_id'])
+            ;
+        $this->assertEquals(
+            $userEntity,
+            $this->userFactory->buildFromArray($array)
+        );
+    }
+
     public function test_buildFromUserId_invalidUserId_throwsUserException()
     {
         $this->expectException(UserException::class);
