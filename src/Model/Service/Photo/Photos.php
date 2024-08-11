@@ -37,6 +37,14 @@ class Photos
         }
     }
 
+    /**
+     * @return int
+     */
+    public function getNumberOfPhotosForUser(UserEntity\User $userEntity)
+    {
+        return $this->photoTable->selectCountWhereUserId($userEntity->getUserId());
+    }
+
     public function getPhotosForUser(UserEntity\User $userEntity)
     {
         foreach ($this->photoTable->selectWhereUserId($userEntity->getUserId()) as $array) {
