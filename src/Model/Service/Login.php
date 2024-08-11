@@ -3,6 +3,7 @@ namespace MonthlyBasis\User\Model\Service;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -14,6 +15,7 @@ class Login
     public function __construct(
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validReCaptchaService,
+        StringService\Random $randomService,
         UserFactory\User $userFactory,
         UserService\Login\ReCaptchaRequired $reCaptchaRequiredService,
         UserTable\User $userTable,
@@ -23,6 +25,7 @@ class Login
     ) {
         $this->flashService             = $flashService;
         $this->validReCaptchaService    = $validReCaptchaService;
+        $this->randomService            = $randomService;
         $this->userFactory              = $userFactory;
         $this->reCaptchaRequiredService = $reCaptchaRequiredService;
         $this->userTable                = $userTable;
@@ -60,7 +63,7 @@ class Login
          */
 
         $userEntity = $this->userFactory->buildFromUsername($username);
-        $loginHash  = password_hash($userEntity->getUserId() . time(), PASSWORD_DEFAULT);
+        $loginHash  = $this->randomService->getRandomString(64);
         $loginIp    = $_SERVER['REMOTE_ADDR'];
 
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
