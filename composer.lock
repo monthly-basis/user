@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "94e12945a5f4300515f7ab529910362b",
-    "content-hash": "86ae4c0de69016455f17e98ae1b20a85",
+    "hash": "4165a3d941d601a7141d15aa24ca6c8c",
+    "content-hash": "785c79f49c58bfd3655775a8f33db75f",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -121,36 +121,6 @@
                 "MIT"
             ],
             "time": "2018-02-05 17:33:48"
-        },
-        {
-            "name": "leo-galleguillos/image",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LeoGalleguillos/Image.git",
-                "reference": "4be51aff572f4cd63679853a3030c6d03c321dd7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/Image/zipball/4be51aff572f4cd63679853a3030c6d03c321dd7",
-                "reference": "4be51aff572f4cd63679853a3030c6d03c321dd7",
-                "shasum": ""
-            },
-            "require": {
-                "zendframework/zend-test": "^3.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LeoGalleguillos\\Image\\": "src/",
-                    "LeoGalleguillos\\ImageTest\\": "test/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "time": "2018-03-06 14:49:28"
         },
         {
             "name": "leo-galleguillos/re-captcha",
@@ -2670,7 +2640,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "leo-galleguillos/flash": 20,
-        "leo-galleguillos/image": 20,
         "leo-galleguillos/re-captcha": 20,
         "leo-galleguillos/string": 20
     },
