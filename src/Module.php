@@ -20,129 +20,6 @@ class Module
     public function getConfig()
     {
         return [
-            /**
-             * @deprecated Use routes in MonthlyBasis\UserHttps module instead
-             */
-            'router' => [
-                'routes' => [
-                    'account' => [
-                        'type'    => Literal::class,
-                        'options' => [
-                            'route'    => '/account',
-                        ],
-                        'may_terminate' => false,
-                        'child_routes' => [
-                            'change-password' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/change-password',
-                                    'defaults' => [
-                                        'controller' => UserController\Account\ChangePassword::class,
-                                        'action'     => 'change-password',
-                                    ],
-                                ],
-                                'may_terminate' => true,
-                            ],
-                        ],
-                    ],
-                    'activate' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/activate/:registerId/:activationCode',
-                            'defaults' => [
-                                'controller' => UserController\Activate::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'login' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/login[/:action]',
-                            'defaults' => [
-                                'controller' => UserController\Login::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'logout' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/logout',
-                            'defaults' => [
-                                'controller' => UserController\Logout::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                    ],
-                    'sign-up' => [
-                        'type'    => Segment::class,
-                        'options' => [
-                            'route'    => '/sign-up[/:action]',
-                            'defaults' => [
-                                'controller' => UserController\SignUp::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                    ],
-                    'reset-password' => [
-                        'type'    => Literal::class,
-                        'options' => [
-                            'route'    => '/reset-password',
-                            'defaults' => [
-                                'controller' => UserController\ResetPassword::class,
-                                'action'     => 'index',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                        'child_routes' => [
-                            'user-id' => [
-                                'type'    => Segment::class,
-                                'options' => [
-                                    'route'    => '/:userId',
-                                    'constraints' => [
-                                        'userId' => '\d+',
-                                    ],
-                                ],
-                                'may_terminate' => false,
-                                'child_routes' => [
-                                    'code' => [
-                                        'type'    => Segment::class,
-                                        'options' => [
-                                            'route'    => '/:code',
-                                            'defaults' => [
-                                                'controller' => UserController\ResetPassword\UserId\Code::class,
-                                                'action'     => 'index',
-                                            ],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                            'email-sent' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/email-sent',
-                                    'defaults' => [
-                                        'controller' => UserController\ResetPassword::class,
-                                        'action'     => 'email-sent',
-                                    ],
-                                ],
-                            ],
-                            'success' => [
-                                'type'    => Literal::class,
-                                'options' => [
-                                    'route'    => '/success',
-                                    'defaults' => [
-                                        'controller' => UserController\ResetPassword::class,
-                                        'action'     => 'success',
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
             'view_helpers' => [
                 'aliases' => [
                     'getLoggedInUser'          => UserHelper\LoggedInUser::class,
@@ -151,13 +28,6 @@ class Module
                     'getUserRootRelativeUrl'   => UserHelper\RootRelativeUrl::class,
                     'getUserFactory'           => UserHelper\Factory\User::class,
                     'getUserHtml'              => UserHelper\UserHtml::class,
-                    /*
-                     * @deprecated 'isUserLoggedIn' is a misnomer since a user cannot
-                     *             exist without being logged in.
-                     *             Use 'isVisitorLoggedIn' view helper instead.
-                     *
-                     */
-                    'isUserLoggedIn'           => UserHelper\LoggedIn::class,
                     'isVisitorLoggedIn'        => UserHelper\LoggedIn::class,
                 ],
                 'factories' => [
@@ -205,74 +75,6 @@ class Module
         ];
     }
 
-    /**
-     * @deprecated Use Controller classes in MonthlyBasis\UserHttps module instead
-     */
-    public function getControllerConfig()
-    {
-        return [
-            'factories' => [
-                UserController\Account\ChangePassword::class => function ($sm) {
-                    return new UserController\Account\ChangePassword(
-                        $sm->get(FlashService\Flash::class),
-                        $sm->get(UserService\LoggedIn::class),
-                        $sm->get(UserService\LoggedInUser::class),
-                        $sm->get(UserService\Password\Change::class),
-                        $sm->get(UserService\Password\Change\Errors::class),
-                    );
-                },
-                UserController\Activate::class => function ($sm) {
-                    return new UserController\Activate(
-                        $sm->get(UserService\Activate::class)
-                    );
-                },
-                UserController\Login::class => function ($sm) {
-                    return new UserController\Login(
-                        $sm->get(FlashService\Flash::class),
-                        $sm->get(UserFactory\User::class),
-                        $sm->get(UserService\LoggedIn::class),
-                        $sm->get(UserService\LoggedInUser::class),
-                        $sm->get(UserService\Login::class),
-                        $sm->get(UserTable\LoginLog::class),
-                    );
-                },
-                UserController\Logout::class => function ($sm) {
-                    return new UserController\Logout(
-                        $sm->get(UserService\Logout::class),
-                    );
-                },
-                UserController\SignUp::class => function ($sm) {
-                    return new UserController\SignUp(
-                        $sm->get(FlashService\Flash::class),
-                        $sm->get(UserService\LoggedInUser::class),
-                        $sm->get(UserService\Register::class),
-                        $sm->get(UserService\Url::class),
-                    );
-                },
-                UserController\ResetPassword::class => function ($sm) {
-                    return new UserController\ResetPassword(
-                        $sm->get(FlashService\Flash::class),
-                        $sm->get(UserService\LoggedInUser::class),
-                        $sm->get(UserService\Password\Reset::class),
-                        $sm->get(UserService\Url::class),
-                    );
-                },
-                UserController\ResetPassword\UserId\Code::class => function ($sm) {
-                    return new UserController\ResetPassword\UserId\Code(
-                        $sm->get(FlashService\Flash::class),
-                        $sm->get(UserFactory\Password\Reset\FromUserIdAndCode::class),
-                        $sm->get(UserService\Logout::class),
-                        $sm->get(UserService\Password\Reset\Accessed\ConditionallyUpdate::class),
-                        $sm->get(UserService\Password\Reset\Expired::class),
-                        $sm->get(UserTable\ResetPassword::class),
-                        $sm->get(UserTable\ResetPasswordAccessLog::class),
-                        $sm->get(UserTable\User\UserId::class),
-                    );
-                },
-            ],
-        ];
-    }
-
     public function getServiceConfig()
     {
         return [
@@ -281,12 +83,6 @@ class Module
                     return new UserDb\Sql(
                         $sm->get('user')
                     );
-                },
-                /**
-                 * @deprecated Use MonthlyBasis\Post module instead
-                 */
-                UserFactory\Post::class => function ($sm) {
-                    return new UserFactory\Post();
                 },
                 UserFactory\Password\Reset\FromArray::class => function ($sm) {
                     return new UserFactory\Password\Reset\FromArray();
@@ -405,23 +201,6 @@ class Module
                 UserService\Password\Valid::class => function ($sm) {
                     return new UserService\Password\Valid();
                 },
-                /**
-                 * @deprecated Use MonthlyBasis\Post module instead
-                 */
-                UserService\Post::class => function ($sm) {
-                    return new UserService\Post(
-                        $sm->get(UserTable\Post::class)
-                    );
-                },
-                /**
-                 * @deprecated Use MonthlyBasis\Post module instead
-                 */
-                UserService\Posts::class => function ($sm) {
-                    return new UserService\Posts(
-                        $sm->get(UserFactory\Post::class),
-                        $sm->get(UserTable\Post::class)
-                    );
-                },
                 UserService\Register::class => function ($sm) {
                     $config = $sm->get('Config')['user'];
                     return new UserService\Register(
@@ -489,14 +268,6 @@ class Module
                 },
                 UserTable\LoginLog::class => function ($sm) {
                     return new UserTable\LoginLog(
-                        $sm->get('user')
-                    );
-                },
-                /**
-                 * @deprecated Use MonthlyBasis\Post module instead
-                 */
-                UserTable\Post::class => function ($sm) {
-                    return new UserTable\Post(
                         $sm->get('user')
                     );
                 },
