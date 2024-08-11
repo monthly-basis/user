@@ -5,6 +5,7 @@ use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\User\Model\Entity as UserEntity;
+use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -57,7 +58,27 @@ class UserTest extends TestCase
         );
     }
 
-    public function test_buildFromUsername()
+    public function test_buildFromUsername_invalidUsername_throwsUserException()
+    {
+        $this->expectException(UserException::class);
+
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [],
+        );
+
+        $this->userTableMock->method('selectWhereUsername')->willReturn(
+            $resultMock
+        );
+
+        $this->userFactory->buildFromUsername('InvalidUsername');
+    }
+
+    public function test_buildFromUsername_validUsername_userObject()
     {
         $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
         $resultMock = $this->createMock(
