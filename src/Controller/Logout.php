@@ -7,18 +7,14 @@ use MonthlyBasis\User\Model\Service as UserService;
 class Logout extends AbstractActionController
 {
     public function __construct(
-        UserService\LoggedInUser $loggedInUserService,
         UserService\Logout $logoutService
     ) {
-        $this->loggedInUserService = $loggedInUserService;
-        $this->logoutService       = $logoutService;
+        $this->logoutService = $logoutService;
     }
 
     public function indexAction()
     {
-        $this->logoutService->logout(
-            $this->loggedInUserService->getLoggedInUser()
-        );
+        $this->logoutService->logout();
 
         return $this->redirect()->toRoute('index')->setStatusCode(303);
     }

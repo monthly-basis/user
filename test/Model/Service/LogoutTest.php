@@ -9,7 +9,13 @@ class LogoutTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->logoutService = new UserService\Logout();
+        $this->loggedInUserServiceMock = $this->createMock(
+            UserService\LoggedInUser::class
+        );
+
+        $this->logoutService = new UserService\Logout(
+            $this->loggedInUserServiceMock
+        );
     }
 
     /**
@@ -19,10 +25,8 @@ class LogoutTest extends TestCase
     {
         $_SERVER['HTTP_HOST'] = 'example.com';
 
-        $userEntity = new UserEntity\User();
-
         $this->assertNull(
-            $this->logoutService->logout($userEntity)
+            $this->logoutService->logout()
         );
     }
 }

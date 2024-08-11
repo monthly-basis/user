@@ -232,7 +232,6 @@ class Module
                 },
                 UserController\Logout::class => function ($sm) {
                     return new UserController\Logout(
-                        $sm->get(UserService\LoggedInUser::class),
                         $sm->get(UserService\Logout::class),
                     );
                 },
@@ -349,7 +348,9 @@ class Module
                     );
                 },
                 UserService\Logout::class => function ($sm) {
-                    return new UserService\Logout();
+                    return new UserService\Logout(
+                        $sm->get(UserService\LoggedInUser::class),
+                    );
                 },
                 UserService\Password\Change::class => function ($sm) {
                     return new UserService\Password\Change(
