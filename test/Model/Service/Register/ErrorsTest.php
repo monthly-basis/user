@@ -133,4 +133,57 @@ class ErrorsTest extends TestCase
             $this->errorsService->getErrors()
         );
     }
+
+    public function test_getErrors_multipleErrors_nonEmptyArray()
+    {
+        $_POST                     = [];
+        $_POST['email']            = 'invalid-email';
+        $_POST['username']         = 'username123';
+        $_POST['password']         = 'password';
+        $_POST['confirm-password'] = 'password';
+        $_POST['birthday-month']   = '08';
+        $_POST['birthday-day']     = '03';
+        $_POST['birthday-year']    = '2005';
+
+        $_SERVER['REMOTE_ADDR'] = '1.2.3.4';
+
+        $this->toxicServiceMock
+             ->expects($this->once())
+             ->method('isIpAddressToxic')
+             ->with('1.2.3.4')
+             ->willReturn(false)
+             ;
+
+        $this->emailExistsServiceMock
+             ->expects($this->exactly(0))
+             ->method('doesEmailExist')
+             ;
+
+        $this->usernameExistsServiceMock
+             ->expects($this->once())
+             ->method('doesUsernameExist')
+             ->with('username123')
+             ->willReturn(false)
+             ;
+
+        $this->birthdayErrorsServiceMock
+             ->expects($this->once())
+             ->method('getBirthdayErrors')
+             ->willReturn(['A birthday error.'])
+             ;
+
+        $this->validServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->willReturn(true)
+             ;
+
+        $this->assertSame(
+            [
+                'Invalid email address.',
+                'A birthday error.',
+            ],
+            $this->errorsService->getErrors()
+        );
+    }
 }
