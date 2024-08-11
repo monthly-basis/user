@@ -92,6 +92,7 @@ class Module
                         $sm->get(FlashService\Flash::class),
                         $sm->get(UserFactory\Password\Reset\FromUserIdAndCode::class),
                         $sm->get(UserService\Logout::class),
+                        $sm->get(UserService\Password\Reset\Accessed\ConditionallyUpdate::class),
                         $sm->get(UserService\Password\Reset\Expired::class),
                         $sm->get(UserTable\ResetPassword::class),
                         $sm->get(UserTable\ResetPasswordAccessLog::class),

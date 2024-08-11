@@ -19,6 +19,7 @@ class Code extends AbstractActionController
         FlashService\Flash $flashService,
         UserFactory\Password\Reset\FromUserIdAndCode $fromUserIdAndCodeFactory,
         UserService\Logout $logoutService,
+        UserService\Password\Reset\Accessed\ConditionallyUpdate $conditionallyUpdateService,
         UserService\Password\Reset\Expired $expiredService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\ResetPasswordAccessLog $resetPasswordAccessLogTable,
@@ -27,6 +28,7 @@ class Code extends AbstractActionController
         $this->flashService                = $flashService;
         $this->fromUserIdAndCodeFactory    = $fromUserIdAndCodeFactory;
         $this->logoutService               = $logoutService;
+        $this->conditionallyUpdateService  = $conditionallyUpdateService;
         $this->expiredService              = $expiredService;
         $this->resetPasswordTable          = $resetPasswordTable;
         $this->resetPasswordAccessLogTable = $resetPasswordAccessLogTable;
@@ -69,6 +71,10 @@ class Code extends AbstractActionController
             );
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
+
+        $this->conditionallyUpdateService->conditionallyUpdateAccessed(
+            $resetEntity
+        );
 
         if ($this->expiredService->isExpired($resetEntity)) {
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);

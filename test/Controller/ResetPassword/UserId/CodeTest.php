@@ -22,6 +22,9 @@ class CodeTest extends TestCase
         $this->logoutServiceMock = $this->createMock(
             UserService\Logout::class
         );
+        $this->conditionallyUpdateServiceMock = $this->createMock(
+            UserService\Password\Reset\Accessed\ConditionallyUpdate::class
+        );
         $this->expiredServiceMock = $this->createMock(
             UserService\Password\Reset\Expired::class
         );
@@ -39,6 +42,7 @@ class CodeTest extends TestCase
             $this->flashServiceMock,
             $this->fromUserIdAndCodeFactoryMock,
             $this->logoutServiceMock,
+            $this->conditionallyUpdateServiceMock,
             $this->expiredServiceMock,
             $this->resetPasswordTableMock,
             $this->resetPasswordAccessLogTableMock,
