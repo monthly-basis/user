@@ -154,6 +154,11 @@ class Module
                         $serviceManager->get('main')
                     );
                 },
+                UserTable\User\LoginDateTime::class => function ($serviceManager) {
+                    return new UserTable\User\LoginDateTime(
+                        $serviceManager->get('main')
+                    );
+                },
                 UserTable\User\LoginHash::class => function ($serviceManager) {
                     return new UserTable\User\LoginHash(
                         $serviceManager->get('main')
