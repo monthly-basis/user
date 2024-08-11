@@ -3,16 +3,19 @@ namespace MonthlyBasis\User\Model\Service\Register;
 
 use DateTime;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\User\Model\Service as UserService;
 
 class Errors
 {
     public function __construct(
         ReCaptchaService\Valid $validService,
+        StopForumSpamService\IpAddress\Toxic $toxicService,
         UserService\Email\Exists $emailExistsService,
         UserService\Username\Exists $usernameExistsService
     ) {
         $this->validService          = $validService;
+        $this->toxicService          = $toxicService;
         $this->emailExistsService    = $emailExistsService;
         $this->usernameExistsService = $usernameExistsService;
     }
@@ -20,6 +23,13 @@ class Errors
     public function getErrors(): array
     {
         $errors = [];
+
+        if (isset($_SERVER['REMOTE_ADDR'])
+            && $this->toxicService->isIpAddressToxic($_SERVER['REMOTE_ADDR'])
+        ) {
+            $errors[] = 'Registration is currently unavailable.';
+            return $errors;
+        }
 
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Invalid email address.';

@@ -6,6 +6,7 @@ use Laminas\Router\Http\Segment;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\StopForumSpam\Model\Service as StopForumSpamService;
 use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Controller as UserController;
 use MonthlyBasis\User\Model\Factory as UserFactory;
@@ -320,6 +321,7 @@ class Module
                 UserService\Register\Errors::class => function ($sm) {
                     return new UserService\Register\Errors(
                         $sm->get(ReCaptchaService\Valid::class),
+                        $sm->get(StopForumSpamService\IpAddress\Toxic::class),
                         $sm->get(UserService\Email\Exists::class),
                         $sm->get(UserService\Username\Exists::class),
                     );
