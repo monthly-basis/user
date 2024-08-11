@@ -50,6 +50,7 @@ class PhotoTest extends TestCase
         ];
         $original = new ImageEntity\Image();
         $original->setRootRelativeUrl('/uploads/photos/2/original.jpg');
+        $original->setRootUrl($_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/2/original.jpg');
 
         $photoEntity = new UserEntity\Photo();
         $photoEntity->setPhotoId(2)

@@ -48,6 +48,13 @@ class Photo
             . '/original.'
             . $array['extension']
         );
+        $original->setRootUrl(
+            $_SERVER['DOCUMENT_ROOT']
+            . '/uploads/photos/'
+            . $array['photo_id']
+            . '/original.'
+            . $array['extension']
+        );
         $photo->setOriginal($original);
 
         $thumbnails = [];
