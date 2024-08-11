@@ -22,7 +22,6 @@ class UserTokenTest extends TableTestCase
     {
         $result = $this->userTokenTable->insert([
             'login_token' => 'the-login-token',
-            'login_ip'    => '1.2.3.4',
             'user_id'     => 12345,
             'created'     => '2021-10-19 07:30:13',
             'expires'     => '2021-01-19 07:30:13',
@@ -39,7 +38,6 @@ class UserTokenTest extends TableTestCase
 
         $result = $this->userTokenTable->insert([
             'login_token' => 'the-login-token',
-            'login_ip'    => '1.2.3.4',
             'user_id'     => 12345,
             'expires'     => '2021-01-19 07:30:13',
         ]);

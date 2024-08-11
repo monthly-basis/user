@@ -258,7 +258,6 @@ class LoginTest extends TestCase
                 $this->callback(function ($array) {
                     return (
                         $array['login_token'] == '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84'
-                        && $array['login_ip'] == '123.123.123.123'
                         && $array['user_id']  == '2718'
                         && is_string($array['expires'])
                     );
