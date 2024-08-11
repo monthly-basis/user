@@ -12,20 +12,24 @@ class RegisterTest extends TestCase
 {
     protected function setUp(): void
     {
+        $config = [
+            'email-address' => 'test@example.com',
+            'website-name'  => 'My Website Name',
+            'register'      => [
+                'required' => [
+                    'email' => false,
+                    're-captcha' => true,
+                ],
+            ],
+        ];
         $this->flashServiceMock = $this->createMock(
             FlashService\Flash::class
-        );
-        $this->validServiceMock = $this->createMock(
-            ReCaptchaService\Valid::class
         );
         $this->conditionallySendServiceMock = $this->createMock(
             SimpleEmailServiceService\Send\Conditionally::class
         );
-        $this->emailExistsServiceMock = $this->createMock(
-            UserService\Email\Exists::class
-        );
-        $this->usernameExistsServiceMock = $this->createMock(
-            UserService\Username\Exists::class
+        $this->errorsServiceMock = $this->createMock(
+            UserService\Register\Errors::class
         );
         $this->flashValuesServiceMock = $this->createMock(
             UserService\Register\FlashValues::class
@@ -34,18 +38,16 @@ class RegisterTest extends TestCase
             UserTable\Register::class
         );
         $this->registerService = new UserService\Register(
-            [],
+            $config,
             $this->flashServiceMock,
-            $this->validServiceMock,
             $this->conditionallySendServiceMock,
-            $this->emailExistsServiceMock,
-            $this->usernameExistsServiceMock,
+            $this->errorsServiceMock,
             $this->flashValuesServiceMock,
             $this->registerTableMock,
         );
     }
 
-    public function testGetErrors()
+    public function test_register()
     {
         $_POST = [];
 
@@ -58,11 +60,16 @@ class RegisterTest extends TestCase
         $_POST['birthday-year']    = '2005';
         $_POST['gender']           = 'F';
 
-        $this->validServiceMock->method('isValid')->willReturn(true);
+        $this->flashValuesServiceMock
+             ->expects($this->once())
+             ->method('setFlashValues')
+             ;
+        $this->errorsServiceMock
+             ->expects($this->once())
+             ->method('getErrors')
+             ->willReturn([])
+             ;
 
-        $this->assertSame(
-            [],
-            $this->registerService->getErrors()
-        );
+        $this->registerService->register();
     }
 }

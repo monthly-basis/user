@@ -311,10 +311,8 @@ class Module
                     return new UserService\Register(
                         $config,
                         $sm->get(FlashService\Flash::class),
-                        $sm->get(ReCaptchaService\Valid::class),
                         $sm->get(SimpleEmailServiceService\Send\Conditionally::class),
-                        $sm->get(UserService\Email\Exists::class),
-                        $sm->get(UserService\Username\Exists::class),
+                        $sm->get(UserService\Register\Errors::class),
                         $sm->get(UserService\Register\FlashValues::class),
                         $sm->get(UserTable\Register::class),
                     );
