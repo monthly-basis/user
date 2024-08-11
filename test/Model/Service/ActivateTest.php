@@ -39,22 +39,104 @@ class ActivateTest extends TestCase
         $this->countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
     }
 
-    public function test_activate_invalidActivationCode_false()
+    public function test_activate_tooManyFailedAttempts_false()
     {
         $_SERVER['REMOTE_ADDR'] = '1.2.4.8';
-        $resultMock = $this->createMock(
+
+        $activateLogResultMock = $this->createMock(
             Result::class
         );
         $this->countableIteratorHydrator->hydrate(
-            $resultMock,
+            $activateLogResultMock,
+            [
+                [
+                    'COUNT(*)' => 3,
+                ],
+            ],
+        );
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('selectCountWhereIpAddressAndSuccess')
+             ->with(
+                '1.2.4.8',
+                false,
+             )
+             ->willReturn(
+                $activateLogResultMock
+             )
+             ;
+        $this->registerTableMock
+             ->expects($this->exactly(0))
+             ->method('selectWhereRegisterIdAndActivationCode')
+             ;
+        $this->activateLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+        $this->connectionMock
+             ->expects($this->exactly(0))
+             ->method('beginTransaction')
+             ;
+        $this->userTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+        $this->userEmailTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+        $this->connectionMock
+             ->expects($this->exactly(0))
+             ->method('rollback')
+             ;
+        $this->connectionMock
+             ->expects($this->exactly(0))
+             ->method('commit')
+             ;
+
+        $this->assertFalse(
+            $this->activateService->activate(12345, 'invalid-activation-code')
+        );
+    }
+
+    public function test_activate_invalidActivationCode_false()
+    {
+        $_SERVER['REMOTE_ADDR'] = '1.2.4.8';
+
+        $activateLogResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $activateLogResultMock,
+            [
+                [
+                    'COUNT(*)' => 2,
+                ],
+            ],
+        );
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('selectCountWhereIpAddressAndSuccess')
+             ->with(
+                '1.2.4.8',
+                false,
+             )
+             ->willReturn(
+                $activateLogResultMock
+             )
+             ;
+        $registerResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $registerResultMock,
             [],
         );
-
         $this->registerTableMock
              ->expects($this->once())
              ->method('selectWhereRegisterIdAndActivationCode')
              ->with(12345, 'invalid-activation-code')
-             ->willReturn($resultMock)
+             ->willReturn($registerResultMock)
              ;
         $this->activateLogTableMock
              ->expects($this->exactly(1))
@@ -92,11 +174,33 @@ class ActivateTest extends TestCase
 
     public function test_activate_invalidQueryExceptionIsThrown_rollbackAndReturnFalse()
     {
-        $resultMock = $this->createMock(
+        $activateLogResultMock = $this->createMock(
             Result::class
         );
         $this->countableIteratorHydrator->hydrate(
-            $resultMock,
+            $activateLogResultMock,
+            [
+                [
+                    'COUNT(*)' => 0,
+                ],
+            ],
+        );
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('selectCountWhereIpAddressAndSuccess')
+             ->with(
+                '1.2.4.8',
+                false,
+             )
+             ->willReturn(
+                $activateLogResultMock
+             )
+             ;
+        $registerResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $registerResultMock,
             [
                 [
                     'username'      => 'username',
@@ -107,12 +211,11 @@ class ActivateTest extends TestCase
                 ],
             ],
         );
-
         $this->registerTableMock
              ->expects($this->once())
              ->method('selectWhereRegisterIdAndActivationCode')
              ->with(54321, 'valid-code')
-             ->willReturn($resultMock)
+             ->willReturn($registerResultMock)
              ;
         $this->connectionMock
              ->expects($this->exactly(1))
@@ -160,11 +263,33 @@ class ActivateTest extends TestCase
 
     public function test_activate_validRegisterIdAndActivationCode_true()
     {
-        $resultMock = $this->createMock(
+        $activateLogResultMock = $this->createMock(
             Result::class
         );
         $this->countableIteratorHydrator->hydrate(
-            $resultMock,
+            $activateLogResultMock,
+            [
+                [
+                    'COUNT(*)' => 1,
+                ],
+            ],
+        );
+        $this->activateLogTableMock
+             ->expects($this->exactly(1))
+             ->method('selectCountWhereIpAddressAndSuccess')
+             ->with(
+                '1.2.4.8',
+                false,
+             )
+             ->willReturn(
+                $activateLogResultMock
+             )
+             ;
+        $registerResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $registerResultMock,
             [
                 [
                     'username'      => 'username',
@@ -180,7 +305,7 @@ class ActivateTest extends TestCase
              ->expects($this->once())
              ->method('selectWhereRegisterIdAndActivationCode')
              ->with(54321, 'valid-code')
-             ->willReturn($resultMock)
+             ->willReturn($registerResultMock)
              ;
         $this->connectionMock
              ->expects($this->exactly(1))
