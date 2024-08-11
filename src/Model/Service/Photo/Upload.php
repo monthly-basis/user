@@ -26,7 +26,7 @@ class Upload
         $fileExtension = preg_replace('/\W/', '', $fileExtension);
 
         $photoId = $this->photoTable->insert(
-            $uerEntity->getUserId(),
+            $userEntity->getUserId(),
             $fileExtension
         );
 
