@@ -6,10 +6,28 @@ use PHPUnit\Framework\TestCase;
 
 class TableTestCase extends TestCase
 {
+    protected $adapter;
+
     /**
      * @var string
      */
     protected $sqlDirectory = __DIR__ . '/../sql';
+
+    protected function getAdapter() : Adapter
+    {
+        if (isset($this->adapter)) {
+            return $this->adapter;
+        }
+
+        $this->adapter = new Adapter($this->getConfigArray());
+        return $this->adapter;
+    }
+
+    protected function getConfigArray() : array
+    {
+        $configArray = require($_SERVER['PWD'] . '/config/autoload/local.php');
+        return $configArray['db']['adapters']['leogalle_test'];
+    }
 
     protected function setForeignKeyChecks0()
     {
