@@ -40,11 +40,13 @@ class PhotoTest extends TestCase
             'description' => 'description',
             'views'       => '5',
             'created'     => '0000-00-00 00:00:00',
+            'user_id'     => '123',
         ];
         $photoEntity = new UserEntity\Photo();
 
         $photoEntity->setPhotoId(2)
                     ->setTitle('title')
+                    ->setUserId(123)
                     ->setDescription('description')
                     ->setCreated(new DateTime('0000-00-00 00:00:00'))
                     ->setViews(5);
@@ -69,6 +71,7 @@ class PhotoTest extends TestCase
             'description' => 'description',
             'views'       => '0',
             'created'     => '0000-00-00 00:00:00',
+            'user_id'     => '123',
         ];
         $this->photoTableMock->method('selectWherePhotoId')->willReturn(
             $array

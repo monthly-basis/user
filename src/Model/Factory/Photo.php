@@ -28,6 +28,7 @@ class Photo
 
         $photo->setPhotoId($array['photo_id'])
               ->setTitle($array['title'])
+              ->setUserId($array['user_id'])
               ->setDescription($array['description'])
               ->setCreated(new DateTime($array['created']))
               ->setViews((int) $array['views']);
