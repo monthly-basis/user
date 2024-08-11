@@ -73,10 +73,6 @@ class Login
             $httpsToken,
             $userEntity->getUserId()
         );
-        $this->userIdTable->updateSetLoginIpWhereUserId(
-            $loginIp,
-            $userEntity->getUserId()
-        );
         $this->userTokenTable->insert(
             $userId,
             $loginHash,

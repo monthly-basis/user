@@ -246,11 +246,6 @@ class LoginTest extends TestCase
                  123
              )
              ;
-        $this->userIdTableMock
-             ->expects($this->once())
-             ->method('updateSetLoginIpWhereUserId')
-             ->with('123.123.123.123', 123)
-             ;
         $this->userTokenTableMock
              ->expects($this->once())
              ->method('insert')
