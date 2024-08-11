@@ -109,13 +109,16 @@ class Module
                         $serviceManager->get(ReCaptchaService\Valid::class),
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserService\Password\Reset\GenerateCode::class),
+                        $serviceManager->get(UserService\Password\Reset\Url::class),
                         $serviceManager->get(UserTable\ResetPassword::class),
                         $serviceManager->get(UserTable\UserEmail::class)
                     );
                 },
                 UserService\Password\Reset\GenerateCode::class => function ($serviceManager) {
-                    return new UserService\Password\Reset\GenerateCode(
-                    );
+                    return new UserService\Password\Reset\GenerateCode();
+                },
+                UserService\Password\Reset\Url::class => function ($serviceManager) {
+                    return new UserService\Password\Reset\Url();
                 },
                 UserService\Post::class => function ($serviceManager) {
                     return new UserService\Post(

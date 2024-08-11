@@ -16,6 +16,7 @@ class Reset
         ReCaptchaService\Valid $validService,
         UserFactory\User $userFactory,
         UserService\Password\Reset\GenerateCode $generateCodeService,
+        UserService\Password\Reset\Url $urlService,
         UserTable\ResetPassword $resetPasswordTable,
         UserTable\UserEmail $userEmailTable
     ) {
@@ -23,6 +24,7 @@ class Reset
         $this->validService        = $validService;
         $this->userFactory         = $userFactory;
         $this->generateCodeService = $generateCodeService;
+        $this->urlService          = $urlService;
         $this->resetPasswordTable  = $resetPasswordTable;
         $this->userEmailTable      = $userEmailTable;
     }
@@ -58,8 +60,21 @@ class Reset
             return;
         }
 
-        // Generate and store code
-        // Email link
+        $code = $this->generateCodeService->generateCode();
+        $this->resetPasswordTable->insert(
+            $userId,
+            $code
+        );
+
+        $url = $this->urlService->getUrl($code);
+
+        $headers ="From: Monthly Basis <webmaster@monthlybasis.com>\r\n";
+        mail(
+            $_POST['email'],
+            'Monthly Basis - Reset Password',
+            $this->getEmailBodyText($url),
+            $headers
+        );
     }
 
     /**
@@ -83,5 +98,12 @@ class Reset
         }
 
         return $errors;
+    }
+
+    protected function getEmailBodyText(string $url)
+    {
+        return "To reset your password, please go to:\n\n"
+             . $url
+             . "If you did not request this email, you may ignore it.";
     }
 }

@@ -1,4 +1,5 @@
 <?php
+namespace LeoGalleguillos\User\Model\Service\Password\Reset;
 
 class Url
 {
