@@ -37,7 +37,8 @@ class PhotoTest extends TestCase
         ];
         $photoEntity = new UserEntity\Photo();
 
-        $photoEntity->setTitle($array['title'])
+        $photoEntity->setPhotoId($array['photo_id'])
+                    ->setTitle($array['title'])
                     ->setDescription($array['description']);
 
         $original = new ImageEntity\Image();
