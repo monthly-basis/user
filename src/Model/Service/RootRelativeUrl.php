@@ -8,7 +8,6 @@ class RootRelativeUrl
     public function __construct(
         protected UserEntity\Config $configEntity,
     ) {
-
     }
 
     public function getRootRelativeUrl(UserEntity\User $userEntity): string
@@ -20,7 +19,7 @@ class RootRelativeUrl
             $rootRelativeUrl .= '/' . $userEntity->userId;
         }
 
-        $rootRelativeUrl .= '/' . urlencode($userEntity->getUsername());
+        $rootRelativeUrl .= '/' . urlencode($userEntity->username);
 
         return $rootRelativeUrl;
     }
