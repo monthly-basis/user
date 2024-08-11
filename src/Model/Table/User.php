@@ -30,6 +30,9 @@ class User
                  , `welcome_message`
                  , `views`
                  , `created`
+                 , `deleted_datetime`
+                 , `deleted_user_id`
+                 , `deleted_reason`
         ';
     }
 
