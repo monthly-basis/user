@@ -536,6 +536,13 @@ class Module
                         $sm->get('user')
                     );
                 },
+                UserTable\UserUserToken::class => function ($sm) {
+                    return new UserTable\UserUserToken(
+                        $sm->get(UserDb\Sql::class),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\UserToken::class),
+                    );
+                },
                 UserTable\UserToken::class => function ($sm) {
                     return new UserTable\UserToken(
                         $sm->get(UserDb\Sql::class)
