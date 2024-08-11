@@ -30,6 +30,11 @@ class Module
                         $serviceManager->get(FlashService\Flash::class)
                     );
                 },
+                UserService\Post::class => function ($serviceManager) {
+                    return new UserService\Post(
+                        $serviceManager->get(UserTable\Post::class)
+                    );
+                },
                 UserService\Posts::class => function ($serviceManager) {
                     return new UserService\Posts(
                         $serviceManager->get(UserFactory\Post::class),
