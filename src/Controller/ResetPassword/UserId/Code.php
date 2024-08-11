@@ -43,7 +43,7 @@ class Code extends AbstractActionController
                 date('Y-m-d H:i:s', strtotime('-7 days'))
             );
         if ($count >= 3) {
-            return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/reset-password')->setStatusCode(303);
         }
 
         $this->layout()->setVariables([
@@ -68,7 +68,7 @@ class Code extends AbstractActionController
                 $_SERVER['REMOTE_ADDR'],
                 0
             );
-            return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/reset-password')->setStatusCode(303);
         }
 
         $this->conditionallyUpdateService->conditionallyUpdateAccessed(
@@ -76,7 +76,7 @@ class Code extends AbstractActionController
         );
 
         if ($this->expiredService->isExpired($resetEntity)) {
-            return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
+            return $this->redirect()->toRoute('monthly-basis/user/reset-password')->setStatusCode(303);
         }
 
         // At this point, code is valid and not expired.
@@ -112,7 +112,7 @@ class Code extends AbstractActionController
                 'code'   => $this->code,
             ];
             return $this->redirect()
-                ->toRoute('reset-password/user-id/code', $parameters)
+                ->toRoute('monthly-basis/user/reset-password/user-id/code', $parameters)
                 ->setStatusCode(303);
         }
 
@@ -129,7 +129,7 @@ class Code extends AbstractActionController
         );
 
         return $this->redirect()
-            ->toRoute('reset-password/success')
+            ->toRoute('monthly-basis/user/reset-password/success')
             ->setStatusCode(303);
     }
 }
