@@ -19,6 +19,7 @@ class User
     protected $gender;
     protected $groups = [];
     protected string $httpsToken;
+    protected string $loginToken;
     protected $userId;
     protected $views = 0;
     protected $welcomeMessage;
@@ -61,6 +62,11 @@ class User
     public function getHttpsToken(): string
     {
         return $this->httpsToken;
+    }
+
+    public function getLoginToken(): string
+    {
+        return $this->loginToken;
     }
 
     public function getPasswordHash(): string
@@ -133,6 +139,12 @@ class User
     public function setHttpsToken(string $httpsToken): UserEntity\User
     {
         $this->httpsToken = $httpsToken;
+        return $this;
+    }
+
+    public function setLoginToken(string $loginToken): UserEntity\User
+    {
+        $this->loginToken = $loginToken;
         return $this;
     }
 
