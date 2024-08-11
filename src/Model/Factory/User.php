@@ -78,7 +78,7 @@ class User
     public function buildFromUsername(string $username): UserEntity\User
     {
         $result = $this->userTable->selectWhereUsername($username);
-        if (null === ($array = $result->current())) {
+        if (false == ($array = $result->current())) {
             throw new UserException('Invalid username');
         }
 
