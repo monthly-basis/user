@@ -46,6 +46,9 @@ class User
         if (isset($array['https_token'])) {
             $userEntity->setHttpsToken($array['https_token']);
         }
+        if (isset($array['image_128_rru'])) {
+            $userEntity->image128Rru = $array['image_128_rru'];
+        }
         if (isset($array['image_256_rru'])) {
             $userEntity->image256Rru = $array['image_256_rru'];
         }

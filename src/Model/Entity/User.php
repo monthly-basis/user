@@ -20,6 +20,7 @@ class User
     protected $gender;
     protected $groups = [];
     protected string $httpsToken;
+    public string $image128Rru;
     public string $image256Rru;
     public string $image512Rru;
     public string $image1024Rru;

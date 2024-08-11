@@ -34,6 +34,7 @@ class UserTest extends TestCase
             'https_token'     => 'the-https-token',
             'login_token'     => 'the-login-token',
             'open_ai_role'    => 'Open AI role',
+            'image_128_rru'   => '/path/to/128x128.jpeg',
             'image_256_rru'   => '/path/to/256x256.jpeg',
             'image_512_rru'   => '/path/to/512x512.jpeg',
             'image_1024_rru'  => '/path/to/1024x1024.jpeg',
@@ -53,6 +54,7 @@ class UserTest extends TestCase
             ;
         $userEntity->emoji12Id = 123;
         $userEntity->openAiRole = 'Open AI role';
+        $userEntity->image128Rru = '/path/to/128x128.jpeg';
         $userEntity->image256Rru = '/path/to/256x256.jpeg';
         $userEntity->image512Rru = '/path/to/512x512.jpeg';
         $userEntity->image1024Rru = '/path/to/1024x1024.jpeg';
