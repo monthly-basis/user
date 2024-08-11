@@ -30,9 +30,25 @@ class UserTest extends TestCase
     public function test_properties()
     {
         $this->userEntity->emoji12Id = 1;
+        $this->userEntity->image256rru = '/path/to/256x256.jpeg';
+        $this->userEntity->image512rru = '/path/to/512x512.jpeg';
+        $this->userEntity->image1024rru = '/path/to/1024x1024.jpeg';
+
         $this->assertSame(
             1,
             $this->userEntity->emoji12Id
+        );
+        $this->assertSame(
+            '/path/to/256x256.jpeg',
+            $this->userEntity->image256rru
+        );
+        $this->assertSame(
+            '/path/to/512x512.jpeg',
+            $this->userEntity->image512rru
+        );
+        $this->assertSame(
+            '/path/to/1024x1024.jpeg',
+            $this->userEntity->image1024rru
         );
     }
 
