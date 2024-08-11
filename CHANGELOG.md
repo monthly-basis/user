@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add `https_token` column to `user` table
+
 ## v2.8.0
 
 - Replace calls to $this->isUserLoggedIn() view helper with $this->isVisitorLoggedIn()
