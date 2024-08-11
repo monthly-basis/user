@@ -17,6 +17,15 @@ class Birthday
     {
         $errors = [];
 
+        $result = $this->registerNotOldEnoughLogTable->selectWhereIpAddressAndCreatedGreaterThan(
+            $_SERVER['REMOTE_ADDR'],
+            (new DateTime())->modify('-30 days')
+        );
+        if (!empty($result->current())) {
+            $errors[] = 'Must be at least 13 years old to sign up.';
+            return $errors;
+        }
+
         if (empty($_POST['birthday-month'])
             || empty($_POST['birthday-day'])
             || empty($_POST['birthday-year'])) {

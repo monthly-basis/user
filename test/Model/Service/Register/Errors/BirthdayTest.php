@@ -3,6 +3,8 @@ namespace MonthlyBasis\UserTest\Model\Service\Register\Errors;
 
 use DateInterval;
 use DateTime;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
+use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
@@ -11,6 +13,8 @@ class BirthdayTest extends TestCase
 {
     protected function setUp(): void
     {
+        $this->countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+
         $this->registerNotOldEnoughLogTableMock = $this->createMock(
             UserTable\RegisterNotOldEnoughLog::class
         );
@@ -20,9 +24,57 @@ class BirthdayTest extends TestCase
         );
     }
 
+    public function test_getErrors_ipAddressWasLogged_nonEmptyErrors()
+    {
+        unset($_POST);
+
+        $nonEmptyResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $nonEmptyResultMock,
+            [
+                [
+                    'register_not_old_enough_log_id' => '12345',
+                    'ip_address'                     => '255.255.255.255',
+                ],
+            ],
+        );
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->once())
+             ->method('selectWhereIpAddressAndCreatedGreaterThan')
+             ->willReturn($nonEmptyResultMock)
+             ;
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->exactly(0))
+             ->method('insert')
+             ;
+
+        $this->assertSame(
+            ['Must be at least 13 years old to sign up.'],
+            $this->birthdayService->getBirthdayErrors()
+        );
+    }
+
     public function test_getErrors_emptyPost_nonEmptyErrors()
     {
         unset($_POST);
+
+        $emptyResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $emptyResultMock,
+            [],
+        );
+
+        $this->registerNotOldEnoughLogTableMock
+             ->expects($this->once())
+             ->method('selectWhereIpAddressAndCreatedGreaterThan')
+             ->willReturn($emptyResultMock)
+             ;
 
         $this->registerNotOldEnoughLogTableMock
              ->expects($this->exactly(0))
@@ -42,6 +94,14 @@ class BirthdayTest extends TestCase
         $_POST['birthday-day']   = 'invalid value';
         $_POST['birthday-year']  = 'invalid value';
 
+        $emptyResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $emptyResultMock,
+            [],
+        );
+
         $this->registerNotOldEnoughLogTableMock
              ->expects($this->exactly(0))
              ->method('insert')
@@ -56,6 +116,14 @@ class BirthdayTest extends TestCase
     public function test_getErrors_birthdayNotOldEnough_nonEmptyErrors()
     {
         $_SERVER['REMOTE_ADDR'] = '255.255.255.255';
+
+        $emptyResultMock = $this->createMock(
+            Result::class
+        );
+        $this->countableIteratorHydrator->hydrate(
+            $emptyResultMock,
+            [],
+        );
 
         $this->registerNotOldEnoughLogTableMock
              ->expects($this->exactly(3))
