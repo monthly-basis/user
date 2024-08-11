@@ -255,13 +255,10 @@ class LoginTest extends TestCase
              ->expects($this->once())
              ->method('insert')
              ->with(
-                $this->callback(function ($array) {
-                    return (
-                        $array['login_token'] == '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84'
-                        && $array['user_id']  == '2718'
-                        && is_string($array['expires'])
-                    );
-                })
+                '2718',
+                '5a153d2efedba593a3979bb7abaeb24443f1c33201de1a01da851fc982a6ba84',
+                'i8x33h0tbe0x7scgmh17vqlij0xwgpjbelq7g15a7u5jyxlxo2de7guflhxdvfl4',
+                // DateTime 30 days into the future,
              )
              ;
 

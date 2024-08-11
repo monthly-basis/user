@@ -77,11 +77,12 @@ class Login
             $loginIp,
             $userEntity->getUserId()
         );
-        $this->userTokenTable->insert([
-            'user_id'     => $userId,
-            'login_token' => $loginHash,
-            'expires'     => (new \DateTime())->modify('+30 days')->format('Y-m-d H:i:s'),
-        ]);
+        $this->userTokenTable->insert(
+            $userId,
+            $loginHash,
+            $httpsToken,
+            (new \DateTime())->modify('+30 days'),
+        );
 
         $this->setCookies(
             $userEntity,
