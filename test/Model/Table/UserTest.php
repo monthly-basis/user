@@ -115,7 +115,7 @@ class UserTest extends TableTestCase
         $array = $this->userTable->selectWhereUserId(1)->current();
         $this->assertSame(
             [
-                'user_id'       => '1',
+                'user_id'       => 1,
                 'username'      => 'LeoGalleguillos',
                 'password_hash' => 'abcdefg1234567890',
             ],
@@ -142,7 +142,7 @@ class UserTest extends TableTestCase
         $array = $result->current();
         $this->assertSame(
             [
-                'user_id' => '1',
+                'user_id' => 1,
                 'username' => 'LeoGalleguillos',
             ],
             [
@@ -170,7 +170,7 @@ class UserTest extends TableTestCase
 
         $this->assertSame(
             $array['views'],
-            '3'
+            3
         );
     }
 
