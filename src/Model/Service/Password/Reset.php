@@ -47,13 +47,14 @@ class Reset
             throw new Exception('Errors with form.');
         }
 
-        try {
-            $userId = $this->userEmailTable->selectUserIdWhereAddress(
-                $_POST['email']
-            );
-        } catch (Exception $exception) {
+        $result = $this->userEmailTable->selectWhereAddress(
+            $_POST['email']
+        );
+        if (false == ($array = $result->current())) {
             return;
         }
+
+        $userId = $array['user_id'];
 
         $count = $this->resetPasswordTable->selectCountWhereUserIdAndCreatedGreaterThan(
             $userId,
