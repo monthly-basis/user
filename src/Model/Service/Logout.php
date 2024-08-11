@@ -10,7 +10,7 @@ class Logout
     {
         $name   = 'userId';
         $value  = 0;
-        $expire = -1;
+        $expire = time() - 3600;
         $path   = '/';
         $domain = $_SERVER['HTTP_HOST'];
         $secure = true;
