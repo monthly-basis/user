@@ -68,4 +68,30 @@ class LoginLogTest extends TableTestCase
             $this->loginLogTable->selectCount()
         );
     }
+
+    public function testselectCountWhereIpSuccessCreated()
+    {
+        $this->assertSame(
+            0,
+            $this->loginLogTable->selectCountWhereIpSuccessCreated('123.123.123.123')
+        );
+        $this->loginLogTable->insert('123.123.123.123', 1);
+        $this->assertSame(
+            0,
+            $this->loginLogTable->selectCountWhereIpSuccessCreated('123.123.123.123')
+        );
+        $this->loginLogTable->insert('123.123.123.123', 0);
+        $this->loginLogTable->insert('123.123.123.123', 0);
+        $this->loginLogTable->insert('123.123.123.123', 0);
+        $this->assertSame(
+            3,
+            $this->loginLogTable->selectCountWhereIpSuccessCreated('123.123.123.123')
+        );
+        $this->loginLogTable->insert('123.123.123.123', 1);
+        $this->loginLogTable->insert('123.123.123.123', 0);
+        $this->assertSame(
+            4,
+            $this->loginLogTable->selectCountWhereIpSuccessCreated('123.123.123.123')
+        );
+    }
 }
