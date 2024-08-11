@@ -84,4 +84,20 @@ class Register
         ];
         return $this->adapter->query($sql)->execute($parameters);
     }
+
+    public function updateSetActivatedWhereRegisterId(
+        bool $activated,
+        int $registerId
+    ): Result {
+        $update = $this->sql
+            ->update('register')
+            ->set([
+               'activated' => intval($activated),
+            ])
+            ->where([
+               'register_id' => $registerId,
+            ])
+            ;
+        return $this->sql->prepareStatementForSqlObject($update)->execute();
+    }
 }
