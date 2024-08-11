@@ -100,7 +100,7 @@ class User
         return (array) $row;
     }
 
-    public function selectWhereUserId($userId)
+    public function selectWhereUserId($userId) : ArrayObject
     {
         $sql = '
             SELECT `user_id`
@@ -113,9 +113,9 @@ class User
              WHERE `user_id` = ?
                  ;
         ';
-        $row = $this->adapter->query($sql, [$userId])->current();
+        $arrayObject = $this->adapter->query($sql, [$userId])->current();
 
-        return $row ? (array) $row : false;
+        return $arrayObject;
     }
 
     public function selectWhereUsername(string $username) : ArrayObject
@@ -131,9 +131,8 @@ class User
              WHERE `username` = ?
                  ;
         ';
-        $row = $this->adapter->query($sql, [$username])->current();
-
-        return $row ? $row : false;
+        $arrayObject = $this->adapter->query($sql, [$username])->current();
+        return $arrayObject;
     }
 
     public function updateWhereUserId(ArrayObject $arrayObject, int $userId)

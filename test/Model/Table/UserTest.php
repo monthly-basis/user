@@ -77,6 +77,32 @@ class UserTest extends TableTestCase
         );
     }
 
+    public function testSelectWhereUserId()
+    {
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+        $this->assertInstanceOf(
+            ArrayObject::class,
+            $this->userTable->selectWhereUserId(1)
+        );
+    }
+
+    public function testSelectWhereUsername()
+    {
+        $this->userTable->insert(
+            'LeoGalleguillos',
+            'abcdefg1234567890',
+            'Leo Galleguillos'
+        );
+        $this->assertInstanceOf(
+            ArrayObject::class,
+            $this->userTable->selectWhereUsername('LeoGalleguillos')
+        );
+    }
+
     public function testUpdateWhereUserId()
     {
         $this->userTable->insert(
