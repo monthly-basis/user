@@ -16,6 +16,7 @@ class Register
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
+        UserService\Email\Exists $emailExistsService,
         UserService\Username\Exists $usernameExistsService,
         UserService\Register\FlashValues $flashValuesService,
         UserTable\Register $registerTable
@@ -24,6 +25,7 @@ class Register
         $this->flashService             = $flashService;
         $this->validService             = $validService;
         $this->conditionallySendService = $conditionallySendService;
+        $this->emailExistsService       = $emailExistsService;
         $this->usernameExistsService    = $usernameExistsService;
         $this->flashValuesService       = $flashValuesService;
         $this->registerTable            = $registerTable;
@@ -35,6 +37,8 @@ class Register
 
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Invalid email address.';
+        } elseif ($this->emailExistsService->doesEmailExist($_POST['email'])) {
+            $errors[] = 'Email already exists.';
         }
 
         if (empty($_POST['username'])
