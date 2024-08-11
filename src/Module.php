@@ -221,6 +221,11 @@ class Module
                 UserService\DisplayNameOrUsername::class => function ($sm) {
                     return new UserService\DisplayNameOrUsername();
                 },
+                UserService\Email\Exists::class => function ($sm) {
+                    return new UserService\Email\Exists(
+                        $sm->get(UserTable\UserEmail::class)
+                    );
+                },
                 UserService\LoggedIn::class => function ($sm) {
                     return new UserService\LoggedIn(
                         $sm->get(UserTable\User::class)
