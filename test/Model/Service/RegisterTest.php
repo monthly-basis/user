@@ -16,9 +16,13 @@ class RegisterTest extends TestCase
         $this->validServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
         );
+        $this->flashValuesServiceMock = $this->createMock(
+            UserService\Register\FlashValues::class
+        );
         $this->registerService = new UserService\Register(
             $this->flashServiceMock,
-            $this->validServiceMock
+            $this->validServiceMock,
+            $this->flashValuesServiceMock
         );
     }
 
