@@ -47,6 +47,10 @@ class Code extends AbstractActionController
             return $this->redirect()->toRoute('reset-password')->setStatusCode(303);
         }
 
+        $this->layout()->setVariables([
+            'showAds' => false,
+        ]);
+
         return parent::onDispatch($mvcEvent);
     }
 
