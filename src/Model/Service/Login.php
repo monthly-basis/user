@@ -100,7 +100,7 @@ class Login
         $path   = '/';
         $domain = $_SERVER['HTTP_HOST'];
         $secure = true;
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,
@@ -111,7 +111,7 @@ class Login
 
         $name   = 'loginHash';
         $value  = $loginHash;
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,
@@ -122,7 +122,7 @@ class Login
 
         $name  = 'loginIp';
         $value = $_SERVER['REMOTE_ADDR'];
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,

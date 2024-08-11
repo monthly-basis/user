@@ -53,6 +53,9 @@ class LoginTest extends TestCase
         );
     }
 
+    /**
+      * @runInSeparateProcess
+      */
     public function testLogin()
     {
         unset($_POST['username']);
