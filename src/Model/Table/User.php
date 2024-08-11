@@ -6,6 +6,7 @@ use Exception;
 use Generator;
 use TypeError;
 use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 
 class User
 {
@@ -192,10 +193,7 @@ class User
         return $result;
     }
 
-    /**
-     * @throws TypeError
-     */
-    public function selectWhereUsername(string $username): array
+    public function selectWhereUsername(string $username): Result
     {
         $sql = $this->getSelect()
              . '
@@ -206,7 +204,7 @@ class User
         $parameters = [
             $username,
         ];
-        return $this->adapter->query($sql)->execute($parameters)->current();
+        return $this->adapter->query($sql)->execute($parameters);
     }
 
     public function updateViewsWhereUserId(int $userId) : bool

@@ -130,16 +130,28 @@ class UserTest extends TableTestCase
         );
     }
 
-    public function testSelectWhereUsername()
+    public function test_selectWhereUsername()
     {
+        $this->assertEmpty(
+            $result = $this->userTable->selectWhereUsername('LeoGalleguillos')
+        );
         $this->userTable->insert(
             'LeoGalleguillos',
             'abcdefg1234567890',
             '1983-10-22',
             'M'
         );
-        $this->assertIsArray(
-            $this->userTable->selectWhereUsername('LeoGalleguillos')
+        $result = $this->userTable->selectWhereUsername('LeoGalleguillos');
+        $array = $result->current();
+        $this->assertSame(
+            [
+                'user_id' => '1',
+                'username' => 'LeoGalleguillos',
+            ],
+            [
+                'user_id' => $array['user_id'],
+                'username' => $array['username'],
+            ]
         );
     }
 
