@@ -15,17 +15,17 @@ class LoginHash
         $this->adapter = $adapter;
     }
 
-    public function updateWhereUserId(string $loginHash, int $userId)
+    public function updateWhereUsername(string $loginHash, string $username)
     {
         $sql = '
             UPDATE `user`
                SET `user`.`login_hash` = :loginHash
-             WHERE `user`.`user_id` = :userId
+             WHERE `user`.`username` = :username
                  ;
         ';
         $parameters = [
             'loginHash' => $loginHash,
-            'userId'    => $userId,
+            'username'  => $username,
         ];
         return (bool) $this->adapter
                            ->query($sql)
