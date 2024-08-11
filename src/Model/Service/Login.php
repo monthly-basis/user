@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
 class Login
@@ -12,10 +13,12 @@ class Login
      * @param UserTable\User\LoginHash $loginHashTable
      */
     public function __construct(
+        UserFactory\User $userFactory,
         UserTable\User $userTable,
         UserTable\User\LoginHash $loginHashTable
     ) {
-        $this->userTable = $userTable;
+        $this->userFactory    = $userFactory;
+        $this->userTable      = $userTable;
         $this->loginHashTable = $loginHashTable;
     }
 

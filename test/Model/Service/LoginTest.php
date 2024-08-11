@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\UserTest\Model\Service;
 
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
@@ -9,6 +10,9 @@ class LoginTest extends TestCase
 {
     protected function setUp()
     {
+        $this->userFactoryMock = $this->createMock(
+            UserFactory\User::class
+        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -16,6 +20,7 @@ class LoginTest extends TestCase
             UserTable\User\LoginHash::class
         );
         $this->loginService = new UserService\Login(
+            $this->userFactoryMock,
             $this->userTableMock,
             $this->loginHashTableMock
         );
