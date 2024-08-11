@@ -33,7 +33,7 @@ class Photos
     public function getNewestPhotos() : Generator
     {
         foreach ($this->photoTable->selectOrderByCreatedDesc() as $arrayObject) {
-            yield $this->photoFactory->buildFromArrayObject($arrayObject);
+            yield $this->photoFactory->buildFromArray($arrayObject);
         }
     }
 }
