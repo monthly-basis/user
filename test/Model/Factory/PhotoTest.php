@@ -15,7 +15,12 @@ class PhotoTest extends TestCase
 {
     protected function setUp()
     {
-        $this->photoFactory = new UserFactory\Photo();
+        $this->photoTableMock = $this->createMock(
+            UserTable\Photo::class
+        );
+        $this->photoFactory = new UserFactory\Photo(
+            $this->photoTableMock
+        );
     }
 
     public function testInitialize()
