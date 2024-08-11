@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User\Model\Service;
 
 use DateTime;
+use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
 use LeoGalleguillos\ReCaptcha\Model\Service as ReCaptchaService;
 use LeoGalleguillos\User\Model\Service as UserService;
@@ -9,10 +10,12 @@ use LeoGalleguillos\User\Model\Service as UserService;
 class Register
 {
     public function __construct(
+        array $config,
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
         UserService\Register\FlashValues $flashValuesService
     ) {
+        $this->config             = $config;
         $this->flashService       = $flashService;
         $this->validService       = $validService;
         $this->flashValuesService = $flashValuesService;
@@ -87,13 +90,23 @@ class Register
         return $isFormValid;
     }
 
+    /**
+     * @throws Exception
+     */
     public function register()
     {
         $this->flashValuesService->setFlashValues();
-
         $errors = $this->getErrors();
+
         if (!empty($errors)) {
             $this->flashService->set('errors', $errors);
+            throw new Exception('Invalid registration.');
         }
+
+        if ($config['require-activation-via-email']) {
+            return;
+        }
+
+        // Activate account immediately.
     }
 }
