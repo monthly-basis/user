@@ -104,9 +104,12 @@ class Module
                     return new UserService\Logout();
                 },
                 UserService\Password\Reset::class => function ($serviceManager) {
+                    $userConfig = $serviceManager->get('Config')['user'];
                     return new UserService\Password\Reset(
                         $serviceManager->get(FlashService\Flash::class),
                         $serviceManager->get(ReCaptchaService\Valid::class),
+                        $userConfig['email-address'],
+                        $userConfig['website-name'],
                         $serviceManager->get(UserFactory\User::class),
                         $serviceManager->get(UserService\Password\Reset\GenerateCode::class),
                         $serviceManager->get(UserService\Password\Reset\Url::class),

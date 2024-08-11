@@ -13,6 +13,8 @@ class Reset
     public function __construct(
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
+        string $emailAddress,
+        string $websiteName,
         UserFactory\User $userFactory,
         UserService\Password\Reset\GenerateCode $generateCodeService,
         UserService\Password\Reset\Url $urlService,
@@ -21,6 +23,8 @@ class Reset
     ) {
         $this->flashService        = $flashService;
         $this->validService        = $validService;
+        $this->emailAddress        = $emailAddress;
+        $this->websiteName         = $websiteName;
         $this->userFactory         = $userFactory;
         $this->generateCodeService = $generateCodeService;
         $this->urlService          = $urlService;
@@ -67,10 +71,10 @@ class Reset
 
         $url = $this->urlService->getUrl($code);
 
-        $headers ="From: Monthly Basis <webmaster@monthlybasis.com>\r\n";
+        $headers ="From: {$this->websiteName} <{$this->emailAddress}>\r\n";
         mail(
             $_POST['email'],
-            'Monthly Basis - Reset Password',
+            "{$this->websiteName} - Reset Password",
             $this->getEmailBodyText($url),
             $headers
         );
