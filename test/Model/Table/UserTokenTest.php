@@ -2,6 +2,7 @@
 namespace MonthlyBasis\UserTest\Model\Table;
 
 use DateTime;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
 use MonthlyBasis\User\Model\Db as UserDb;
@@ -17,6 +18,20 @@ class UserTokenTest extends TableTestCase
         $this->userTokenTable = new UserTable\UserToken($this->sql);
 
         $this->dropAndCreateTable('user_token');
+    }
+
+    public function test_getColumns_result()
+    {
+        $select = $this->sql
+             ->select()
+             ->columns($this->userTokenTable->getColumns())
+             ->from('user_token');
+        $result = $this->sql->prepareStatementForSqlObject($select)->execute();
+
+        $this->assertInstanceOf(
+            Result::class,
+            $result
+        );
     }
 
     public function test_insert()
