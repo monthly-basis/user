@@ -334,7 +334,9 @@ class Module
                     );
                 },
                 UserService\Register\Errors\Birthday::class => function ($sm) {
-                    return new UserService\Register\Errors\Birthday();
+                    return new UserService\Register\Errors\Birthday(
+                        $sm->get(UserTable\RegisterNotOldEnoughLog::class)
+                    );
                 },
                 UserService\Register\FlashValues::class => function ($sm) {
                     return new UserService\Register\FlashValues(
