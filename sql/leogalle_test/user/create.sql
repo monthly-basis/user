@@ -4,7 +4,7 @@ CREATE TABLE `user` (
     `password_hash` varchar(255) not null,
     `welcome_message` text default null,
     `login_hash` varchar(255) default null,
-    `login_ip` varchar(15) default null,
+    `login_ip` varchar(45) default null,
     `views` int unsigned not null default 0,
     `created` datetime not null,
     PRIMARY KEY (`user_id`),
