@@ -26,8 +26,8 @@ class PasswordHash
                  ;
         ';
         $parameters = [
-            'passwordHash' => $passwordHash,
-            'userId'       => $userId,
+            $passwordHash,
+            $userId,
         ];
         return (bool) $this->adapter
                            ->query($sql)
