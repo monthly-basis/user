@@ -22,6 +22,16 @@ class Module
         return [
             'router' => [
                 'routes' => [
+                    'activate' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/activate/:registerId/:activationCode',
+                            'defaults' => [
+                                'controller' => UserController\Activate::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
                     'sign-up' => [
                         'type'    => Segment::class,
                         'options' => [
@@ -149,6 +159,14 @@ class Module
     {
         return [
             'factories' => [
+                UserController\Activate::class => function ($sm) {
+                    return new UserController\Activate(
+                        $sm->get('user'),
+                        $sm->get(UserTable\Register::class),
+                        $sm->get(UserTable\User::class),
+                        $sm->get(UserTable\UserEmail::class)
+                    );
+                },
                 UserController\SignUp::class => function ($sm) {
                     return new UserController\SignUp(
                         $sm->get(FlashService\Flash::class),
