@@ -8,9 +8,11 @@ use MonthlyBasis\User\Model\Service as UserService;
 class ChangePassword extends AbstractActionController
 {
     public function __construct(
-        UserService\LoggedIn $loggedInService
+        UserService\LoggedIn $loggedInService,
+        UserService\LoggedInUser $loggedInUserService
     ) {
-        $this->loggedInService = $loggedInService;
+        $this->loggedInService     = $loggedInService;
+        $this->loggedInUserService = $loggedInUserService;
     }
 
     public function onDispatch(MvcEvent $mvcEvent)
@@ -24,5 +26,8 @@ class ChangePassword extends AbstractActionController
 
     public function changePasswordAction()
     {
+        return [
+            'user' => $this->loggedInUserService->getLoggedInUser(),
+        ];
     }
 }
