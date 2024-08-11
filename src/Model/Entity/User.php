@@ -13,6 +13,7 @@ class User
 
     protected $created;
     protected $displayName;
+    protected $groups = [];
     protected $userId;
     protected $views = 0;
     protected $welcomeMessage = '';
@@ -25,6 +26,11 @@ class User
     public function getDisplayName() : string
     {
         return $this->displayName;
+    }
+
+    public function getGroups(): array
+    {
+        return $this->groups;
     }
 
     public function getUserId() : int
@@ -56,6 +62,12 @@ class User
     public function setDisplayName(string $displayName) : UserEntity\User
     {
         $this->displayName = $displayName;
+        return $this;
+    }
+
+    public function setGroups(array $groups): UserEntity\User
+    {
+        $this->groups = $groups;
         return $this;
     }
 
