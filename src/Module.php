@@ -320,11 +320,10 @@ class Module
                     );
                 },
                 UserService\Register\Errors::class => function ($sm) {
-                    $registerConfig = $sm->get('Config')['user'];
                     return new UserService\Register\Errors(
-                        $registerConfig,
                         $sm->get(ReCaptchaService\Valid::class),
-                        $sm->get(UserTable\User\Username::class)
+                        $sm->get(UserService\Email\Exists::class),
+                        $sm->get(UserService\Username\Exists::class),
                     );
                 },
                 UserService\Register\FlashValues::class => function ($sm) {
