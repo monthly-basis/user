@@ -18,8 +18,8 @@ class Login
         UserFactory\User $userFactory,
         UserTable\User $userTable,
         UserTable\User\LoginDateTime $loginDateTimeTable,
-        UserTable\User\LoginHash $loginHashTable,
-        UserTable\User\LoginIp $loginIpTable
+        UserTable\User\LoginIp $loginIpTable,
+        UserTable\User\UserId $userIdTable
     ) {
         $this->flashService          = $flashService;
         $this->validReCaptchaService = $validReCaptchaService;
@@ -27,8 +27,8 @@ class Login
         $this->userFactory           = $userFactory;
         $this->userTable             = $userTable;
         $this->loginDateTimeTable    = $loginDateTimeTable;
-        $this->loginHashTable        = $loginHashTable;
         $this->loginIpTable          = $loginIpTable;
+        $this->userIdTable           = $userIdTable;
     }
 
     public function login(): bool
@@ -65,7 +65,7 @@ class Login
         $this->loginDateTimeTable->updateSetToNowWhereUserId(
             $userEntity->getUserId()
         );
-        $this->loginHashTable->updateWhereUserId(
+        $this->userIdTable->updateSetLoginHashWhereUserId(
             $loginHash,
             $userEntity->getUserId()
         );
