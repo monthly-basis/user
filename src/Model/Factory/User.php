@@ -50,6 +50,9 @@ class User
         if (isset($array['login_token'])) {
             $userEntity->setLoginToken($array['login_token']);
         }
+        if (isset($array['open_ai_role'])) {
+            $userEntity->openAiRole = $array['open_ai_role'];
+        }
         if (isset($array['password_hash'])) {
             $userEntity->setPasswordHash($array['password_hash']);
         }

@@ -30,6 +30,7 @@ class UserTest extends TestCase
             'emoji_12_id'     => 123,
             'https_token'     => 'the-https-token',
             'login_token'     => 'the-login-token',
+            'open_ai_role'    => 'Open AI role',
             'password_hash'   => 'the password hash',
             'user_id'         => 1,
             'username'        => 'Testing123',
@@ -45,6 +46,7 @@ class UserTest extends TestCase
             ->setWelcomeMessage($array['welcome_message'])
             ;
         $userEntity->emoji12Id = 123;
+        $userEntity->openAiRole = 'Open AI role';
         $this->assertEquals(
             $userEntity,
             $this->userFactory->buildFromArray($array)
