@@ -3,7 +3,9 @@ namespace MonthlyBasis\UserTest\Model\Service;
 
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
 
 class RegisterTest extends TestCase
@@ -16,14 +18,22 @@ class RegisterTest extends TestCase
         $this->validServiceMock = $this->createMock(
             ReCaptchaService\Valid::class
         );
+        $this->conditionallySendServiceMock = $this->createMock(
+            SimpleEmailServiceService\Send\Conditionally::class
+        );
         $this->flashValuesServiceMock = $this->createMock(
             UserService\Register\FlashValues::class
+        );
+        $this->registerTableMock = $this->createMock(
+            UserTable\Register::class
         );
         $this->registerService = new UserService\Register(
             [],
             $this->flashServiceMock,
             $this->validServiceMock,
-            $this->flashValuesServiceMock
+            $this->conditionallySendServiceMock,
+            $this->flashValuesServiceMock,
+            $this->registerTableMock,
         );
     }
 
