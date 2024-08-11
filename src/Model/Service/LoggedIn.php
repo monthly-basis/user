@@ -6,6 +6,8 @@ use LeoGalleguillos\User\Model\Table as UserTable;
 
 class LoggedIn
 {
+    protected $isLoggedIn;
+
     /**
      * Construct
      *
@@ -24,11 +26,16 @@ class LoggedIn
      */
     public function isLoggedIn() : bool
     {
+        if (isset($this->isLoggedIn)) {
+            return $this->isLoggedIn;
+        }
+
         if (empty($_COOKIE['userId'])
             || empty($_COOKIE['loginHash'])
             || empty($_COOKIE['loginIp'])
         ) {
-            return false;
+            $this->isLoggedIn = false;
+            return $this->isLoggedIn;
         }
 
         try {
@@ -38,9 +45,11 @@ class LoggedIn
                 $_COOKIE['loginIp']
             );
         } catch (Exception $exception) {
-            return false;
+            $this->isLoggedIn = false;
+            return $this->isLoggedIn;
         }
 
-        return true;
+        $this->isLoggedIn = true;
+        return $this->isLoggedIn;
     }
 }

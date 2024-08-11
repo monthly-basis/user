@@ -26,7 +26,7 @@ class LoggedInTest extends TestCase
         );
     }
 
-    public function testIsLoggedIn()
+    public function testIsLoggedInFalse()
     {
         unset($_COOKIE['userId']);
         unset($_COOKIE['loginHash']);
@@ -51,10 +51,30 @@ class LoggedInTest extends TestCase
         $this->assertFalse(
             $this->loggedInService->isLoggedIn()
         );
-        $this->assertTrue(
+
+        /*
+         * Should be false even though table mock returns array
+         * since result is cached as false in service.
+         */
+        $this->assertFalse(
             $this->loggedInService->isLoggedIn()
         );
         $this->assertFalse(
+            $this->loggedInService->isLoggedIn()
+        );
+    }
+
+    public function testIsLoggedInTrue()
+    {
+        $_COOKIE['userId']    = 123;
+        $_COOKIE['loginHash'] = 'login-hash';
+        $_COOKIE['loginIp']   = 'login-ip';
+
+        $this->userTableMock->method('selectWhereUserIdLoginHashLoginIp')->willReturn(
+            []
+        );
+
+        $this->assertTrue(
             $this->loggedInService->isLoggedIn()
         );
     }
