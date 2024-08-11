@@ -13,7 +13,7 @@ class RootRelativeUrl
      */
     public function getRootRelativeUrl(UserEntity\User $userEntity)
     {
-        return '/'
+        return '/users/'
              . $userEntity->getUserId()
              . '/'
              . $userEntity->getUsername();
