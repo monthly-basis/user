@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.11.5
+
+```
+ALTER TABLE `user` DROP COLUMN `login_hash`;
+ALTER TABLE `user` DROP COLUMN `https_token`;
+```
+
 ## v2.11.0
 
 ```
