@@ -21,14 +21,6 @@ class UserTest extends TestCase
         );
     }
 
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserFactory\User::class,
-            $this->userFactory
-        );
-    }
-
     public function testBuildFromArray()
     {
         $array = [
@@ -49,11 +41,13 @@ class UserTest extends TestCase
 
         $array = [
             'display_name'    => 'Hello World',
+            'gender'          => 'M',
             'user_id'         => 5,
             'username'        => 'Testing123',
         ];
         $userEntity = new UserEntity\User();
         $userEntity->setDisplayName($array['display_name'])
+                   ->setGender($array['gender'])
                    ->setUserId($array['user_id'])
                    ->setUsername($array['username']);
         $this->assertEquals(
