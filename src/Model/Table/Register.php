@@ -71,6 +71,7 @@ class Register
                  , `email`
                  , `password_hash`
                  , `birthday`
+                 , `gender`
               FROM `register`
              WHERE `register_id` = ?
                AND `activation_code` = ?

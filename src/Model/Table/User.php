@@ -38,18 +38,27 @@ class User
     public function insert(
         string $username,
         string $passwordHash,
-        string $birthday
+        string $birthday,
+        string $gender
     ) {
         $sql = '
             INSERT
-              INTO `user` (`username`, `password_hash`, `birthday`, `created`)
-            VALUES (?, ?, ?, UTC_TIMESTAMP())
+              INTO `user`
+                   (
+                       `username`
+                     , `password_hash`
+                     , `birthday`
+                     , `gender`
+                     , `created`
+                   )
+            VALUES (?, ?, ?, ?, UTC_TIMESTAMP())
                  ;
         ';
         $parameters = [
             $username,
             $passwordHash,
             $birthday,
+            $gender,
         ];
         return $this->adapter
                     ->query($sql)

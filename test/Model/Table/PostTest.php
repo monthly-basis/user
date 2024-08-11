@@ -65,7 +65,8 @@ class PostTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            '1983-10-22'
+            '1983-10-22',
+            'M'
         );
 
         try {
@@ -78,7 +79,8 @@ class PostTest extends TableTestCase
         $this->userTable->insert(
             'another_username',
             'password hash',
-            '1983-10-22'
+            '1983-10-22',
+            'M'
         );
 
         $this->assertSame(
@@ -104,17 +106,20 @@ class PostTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            '1983-10-22'
+            '1983-10-22',
+            'M'
         );
         $this->userTable->insert(
             'username2',
             'password hash',
-            '1983-10-22'
+            '1983-10-22',
+            'M'
         );
         $this->userTable->insert(
             'username3',
             'password hash',
-            '1983-10-22'
+            '1983-10-22',
+            'M'
         );
         $this->postTable->insert(1, 2, 'message');
         $this->postTable->insert(3, 2, 'another message');
