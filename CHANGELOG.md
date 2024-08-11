@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `user`.`open_ai_role` column
+```
+ALTER TABLE `user` ADD COLUMN `open_ai_role` varchar(255) DEFAULT NULL AFTER `welcome_message`;
+```
+
 ## v3.5.0
 
 ### Added

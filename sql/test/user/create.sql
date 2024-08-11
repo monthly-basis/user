@@ -7,6 +7,7 @@ CREATE TABLE `user` (
     `gender` char(1) DEFAULT NULL,
     `display_name` varchar(255) DEFAULT NULL,
     `welcome_message` text DEFAULT NULL,
+    `open_ai_role` varchar(255) DEFAULT NULL,
     `login_datetime` datetime DEFAULT NULL,
     `views` int unsigned NOT NULL default 0,
     `created` datetime NOT NULL,
