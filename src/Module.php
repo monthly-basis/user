@@ -176,6 +176,17 @@ class Module
                                                 ],
                                                 'may_terminate' => true,
                                             ],
+                                            'unfollow' => [
+                                                'type'    => Literal::class,
+                                                'options' => [
+                                                    'route'    => '/unfollow',
+                                                    'defaults' => [
+                                                        'controller' => UserController\Users\Unfollow::class,
+                                                        'action'     => 'unfollow',
+                                                    ],
+                                                ],
+                                                'may_terminate' => true,
+                                            ],
                                         ],
                                     ],
                                 ],
