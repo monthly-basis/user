@@ -346,6 +346,11 @@ class Module
                         $sm->get(UserTable\UserFollow::class),
                     );
                 },
+                UserService\Follow\IsFollowing::class => function ($sm) {
+                    return new UserService\Follow\IsFollowing(
+                        $sm->get(UserTable\UserFollow::class),
+                    );
+                },
                 UserService\Followers::class => function ($sm) {
                     return new UserService\Followers(
                         $sm->get(UserFactory\User::class),
