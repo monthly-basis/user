@@ -46,20 +46,50 @@ class CodeTest extends TestCase
         );
     }
 
-    public function test_onDispatch()
+    public function test_onDispatch_countIsLessThan3_expectedExceptionThrown()
     {
         $mvcEventMock = $this->createMock(
             MvcEvent::class
         );
         $_SERVER['REMOTE_ADDR'] = '1.2.3.4';
+        $this->resetPasswordAccessLogTableMock
+            ->expects($this->once())
+            ->method('selectCountWhereIpAndValidAndCreatedGreaterThan')
+            ->with('1.2.3.4', 0)
+            ->willReturn(2)
+            ;
 
         try {
             $this->codeController->onDispatch($mvcEventMock);
             $this->fail();
         } catch (\Laminas\Mvc\Exception\DomainException $domainException) {
             $this->assertSame(
-                $domainException->getMessage(),
                 'Missing route matches; unsure how to retrieve action',
+                $domainException->getMessage(),
+            );
+        }
+    }
+
+    public function test_onDispatch_countIsGreaterThanOrEqualTo3_expectedExceptionThrown()
+    {
+        $mvcEventMock = $this->createMock(
+            MvcEvent::class
+        );
+        $_SERVER['REMOTE_ADDR'] = '1.2.3.4';
+        $this->resetPasswordAccessLogTableMock
+            ->expects($this->once())
+            ->method('selectCountWhereIpAndValidAndCreatedGreaterThan')
+            ->with('1.2.3.4', 0)
+            ->willReturn(3)
+            ;
+
+        try {
+            $this->codeController->onDispatch($mvcEventMock);
+            $this->fail();
+        } catch (\Laminas\Mvc\Exception\DomainException $domainException) {
+            $this->assertSame(
+                'Url plugin requires that controller event compose a router; none found',
+                $domainException->getMessage(),
             );
         }
     }
