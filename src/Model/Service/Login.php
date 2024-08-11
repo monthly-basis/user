@@ -67,7 +67,6 @@ class Login
             $loginHash
         );
 
-        $_SESSION['username'] = $userEntity->getUsername();
         return true;
     }
 
