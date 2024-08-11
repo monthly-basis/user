@@ -159,12 +159,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/String.git",
-                "reference": "3d9c3173570a95a1224332538992f1bb58dd6cd2"
+                "reference": "0214787c4101c64451c4a5f9f2a542d4d1d5430d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/3d9c3173570a95a1224332538992f1bb58dd6cd2",
-                "reference": "3d9c3173570a95a1224332538992f1bb58dd6cd2",
+                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/0214787c4101c64451c4a5f9f2a542d4d1d5430d",
+                "reference": "0214787c4101c64451c4a5f9f2a542d4d1d5430d",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-08-15 17:32:47"
+            "time": "2018-09-21 04:14:07"
         },
         {
             "name": "myclabs/deep-copy",
@@ -796,16 +796,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.12",
+            "version": "6.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "24da433d7384824d65ea93fbb462e2f31bbb494e"
+                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/24da433d7384824d65ea93fbb462e2f31bbb494e",
-                "reference": "24da433d7384824d65ea93fbb462e2f31bbb494e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0973426fb012359b2f18d3bd1e90ef1172839693",
+                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693",
                 "shasum": ""
             },
             "require": {
@@ -876,7 +876,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-08-22 06:32:48"
+            "time": "2018-09-08 15:10:43"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
