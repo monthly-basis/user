@@ -1,7 +1,8 @@
 CREATE TABLE `user` (
     `user_id` int(10) unsigned auto_increment,
-    `username` varchar(255) not null,
-    `password_hash` varchar(255) not null,
+    `username` varchar(255) default null,
+    `password_hash` varchar(255) default null,
+    `display_name` varchar(255) default null,
     `welcome_message` text default null,
     `login_datetime` datetime default null,
     `login_hash` varchar(255) default null,
