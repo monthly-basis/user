@@ -52,11 +52,11 @@ class RegisterTest extends TestCase
         );
     }
 
-    public function test_register()
+    public function test_register_noErrors_successfulRegistration()
     {
         $_POST = [];
 
-        $_POST['email']            = 'test@example.com';
+        $_POST['email']            = 'email@example.com';
         $_POST['username']         = 'username';
         $_POST['password']         = 'password';
         $_POST['confirm-password'] = 'password';
@@ -64,6 +64,8 @@ class RegisterTest extends TestCase
         $_POST['birthday-day']     = '03';
         $_POST['birthday-year']    = '2005';
         $_POST['gender']           = 'F';
+
+        $_SERVER['HTTP_HOST'] = 'www.example.com';
 
         $this->flashValuesServiceMock
              ->expects($this->once())
@@ -79,6 +81,27 @@ class RegisterTest extends TestCase
              ->method('getRandomString')
              ->with(31)
              ->willReturn('abcdefghijklmnopqrstuvwxzy123456')
+             ;
+        $this->registerTableMock
+            ->expects($this->once())
+            ->method('insert')
+            ->with(
+                'abcdefghijklmnopqrstuvwxzy123456',
+                'username',
+                'email@example.com',
+                $this->isType('string'),
+                '2005-08-03 00:00:00',
+            )
+            ;
+        $this->conditionallySendServiceMock
+             ->expects($this->once())
+             ->method('conditionallySend')
+             ->with(
+                 'email@example.com',
+                 'My Website Name <test@example.com>',
+                 'My Website Name - Activate Your Account',
+                 $this->isType('string'),
+             )
              ;
 
         $this->registerService->register();
