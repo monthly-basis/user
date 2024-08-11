@@ -8,6 +8,8 @@ use LeoGalleguillos\User\Model\Table as UserTable;
 
 class LoggedInUser
 {
+    protected $cache = [];
+
     /**
      * Construct
      *
@@ -30,6 +32,10 @@ class LoggedInUser
      */
     public function getLoggedInUser() : UserEntity\User
     {
+        if (isset($this->cache['userEntity'])) {
+            return $this->cache['userEntity'];
+        }
+
         if (empty($_COOKIE['userId'])
             || empty($_COOKIE['loginHash'])
             || empty($_COOKIE['loginIp'])
@@ -46,8 +52,9 @@ class LoggedInUser
             throw new Exception('User is not logged in (could not find row).');
         }
 
-        return $this->userFactory->buildFromArray(
+        $this->cache['userEntity'] = $this->userFactory->buildFromArray(
             $array
         );
+        return $this->cache['userEntity'];
     }
 }
