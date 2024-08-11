@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eaf636bfe11a78e8a6cd7996124c444",
+    "content-hash": "a652742561d6fef4387e079b451021ea",
     "packages": [
         {
             "name": "aws/aws-php-sns-message-validator",
@@ -2233,16 +2233,16 @@
         },
         {
             "name": "monthly-basis/string",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monthly-basis/string.git",
-                "reference": "a7a9ee080562882ad13f8020765dbd41f5c1078e"
+                "reference": "08f86dbb2d25c2ca4af230718ada65b85709dc2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monthly-basis/string/zipball/a7a9ee080562882ad13f8020765dbd41f5c1078e",
-                "reference": "a7a9ee080562882ad13f8020765dbd41f5c1078e",
+                "url": "https://api.github.com/repos/monthly-basis/string/zipball/08f86dbb2d25c2ca4af230718ada65b85709dc2d",
+                "reference": "08f86dbb2d25c2ca4af230718ada65b85709dc2d",
                 "shasum": ""
             },
             "require": {
@@ -2261,9 +2261,9 @@
             ],
             "support": {
                 "issues": "https://github.com/monthly-basis/string/issues",
-                "source": "https://github.com/monthly-basis/string/tree/v3.2.1"
+                "source": "https://github.com/monthly-basis/string/tree/v3.3.0"
             },
-            "time": "2021-07-22T21:24:04+00:00"
+            "time": "2021-07-24T21:23:19+00:00"
         },
         {
             "name": "monthly-basis/website",
