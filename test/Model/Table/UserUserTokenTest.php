@@ -62,8 +62,8 @@ class UserUserTokenTest extends TableTestCase
     public function test_selectWhereUserIdLoginTokenExpiresDeleted_nonEmptyResult()
     {
         $this->userTable->insert(
-            'username',
-            'the-password-hash',
+            'LeoGalleguillos',
+            '$2y$10$DpCNnOVP6.wXA0ufpKt4S.uWi.u1Lm8zVvw1EuhyiiomFcLOb2p9i',
             '1983-10-22 00:00:00',
         );
         $this->userTokenTable->insert(
@@ -82,8 +82,8 @@ class UserUserTokenTest extends TableTestCase
         $this->assertSame(
             [
                 'user_id'       => '1',
-                'username'      => 'username',
-                'password_hash' => 'the-password-hash',
+                'username'      => 'LeoGalleguillos',
+                'password_hash' => '$2y$10$DpCNnOVP6.wXA0ufpKt4S.uWi.u1Lm8zVvw1EuhyiiomFcLOb2p9i',
                 'login_token'   => 'the-login-token',
                 'https_token'   => 'the-https-token',
             ],
