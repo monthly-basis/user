@@ -1,7 +1,7 @@
 CREATE TABLE `post` (
     `post_id` int(10) unsigned auto_increment,
-    `from_user_id` int(10) unsigned not null,
-    `to_user_id` int(10) unsigned not null,
+    `from_user_id` bigint unsigned not null,
+    `to_user_id` bigint unsigned not null,
     `message` text not null,
     `created` datetime not null,
     PRIMARY KEY (`post_id`),
