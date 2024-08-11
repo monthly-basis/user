@@ -14,7 +14,7 @@ class Logout
         $path   = '/';
         $domain = $_SERVER['HTTP_HOST'];
         $secure = true;
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,
@@ -25,7 +25,7 @@ class Logout
 
         $name   = 'loginHash';
         $value  = 'login-hash';
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,
@@ -36,7 +36,7 @@ class Logout
 
         $name  = 'loginIp';
         $value = 'login-ip';
-        @setcookie(
+        setcookie(
             $name,
             $value,
             $expire,
