@@ -13,32 +13,32 @@ class User
 
     public function createFromUserId($userId)
     {
-        $userArray = $this->userTable->selectWhereUserId(
+        $arrayObject = $this->userTable->selectWhereUserId(
             $userId
         );
 
-        return $this->createFromUserArray($userArray);
+        return $this->buildFromArrayObject($arrayObject);
     }
 
     public function buildFromUsername(string $username)
     {
-        $userArray = $this->userTable->selectWhereUsername(
+        $arrayObject = $this->userTable->selectWhereUsername(
             $username
         );
 
-        if (empty($userArray)) {
+        if (empty($arrayObject)) {
             return false;
         }
 
-        return $this->createFromUserArray($userArray);
+        return $this->buildFromArrayObject($arrayObject);
     }
 
-    public function createFromUserArray(array $userArray)
+    public function buildFromArrayObject(ArrayObject $arrayObject)
     {
         $userEntity = new UserEntity();
 
-        $userEntity->userId   = $userArray['user_id'];
-        $userEntity->username = $userArray['username'];
+        $userEntity->userId   = $arrayObject['user_id'];
+        $userEntity->username = $arrayObject['username'];
         return $userEntity;
     }
 }

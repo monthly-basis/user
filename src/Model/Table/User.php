@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Table;
 
+use ArrayObject;
 use Zend\Db\Adapter\Adapter;
 
 class User
@@ -114,7 +115,7 @@ class User
         return $row ? (array) $row : false;
     }
 
-    public function selectWhereUsername($username)
+    public function selectWhereUsername(string $username) : ArrayObject
     {
         $sql = '
             SELECT `user_id`
@@ -126,6 +127,6 @@ class User
         ';
         $row = $this->adapter->query($sql, [$username])->current();
 
-        return $row ? (array) $row : false;
+        return $row ? $row : false;
     }
 }
