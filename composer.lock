@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "deebff05509259292978b23f052b5eb0",
+    "content-hash": "f82eb23a2607794d21f8ac7163f2c559",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/String.git",
-                "reference": "8d65b9df499ad3920b69e84a074dd3452d4a0f3a"
+                "reference": "745163fd83a924b030ac95445d6933431ee2e4ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/8d65b9df499ad3920b69e84a074dd3452d4a0f3a",
-                "reference": "8d65b9df499ad3920b69e84a074dd3452d4a0f3a",
+                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/745163fd83a924b030ac95445d6933431ee2e4ed",
+                "reference": "745163fd83a924b030ac95445d6933431ee2e4ed",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-05-31T09:17:58+00:00"
+            "time": "2019-06-07T01:42:17+00:00"
         },
         {
             "name": "leo-galleguillos/test",
@@ -212,6 +212,39 @@
                 "MIT"
             ],
             "time": "2019-03-11T11:59:50+00:00"
+        },
+        {
+            "name": "leo-galleguillos/website",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LeoGalleguillos/Website.git",
+                "reference": "20891d1ab77585f58b2e4e8f05fda39e0762e377"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LeoGalleguillos/Website/zipball/20891d1ab77585f58b2e4e8f05fda39e0762e377",
+                "reference": "20891d1ab77585f58b2e4e8f05fda39e0762e377",
+                "shasum": ""
+            },
+            "require": {
+                "leo-galleguillos/string": "dev-master",
+                "leo-galleguillos/test": "dev-master",
+                "zendframework/zend-db": "^2.9",
+                "zendframework/zend-test": "^3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LeoGalleguillos\\Website\\": "src/",
+                    "LeoGalleguillos\\WebsiteTest\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2019-06-04T04:01:31+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2784,7 +2817,8 @@
         "leo-galleguillos/flash": 20,
         "leo-galleguillos/re-captcha": 20,
         "leo-galleguillos/string": 20,
-        "leo-galleguillos/test": 20
+        "leo-galleguillos/test": 20,
+        "leo-galleguillos/website": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
