@@ -11,7 +11,7 @@ class User
     /**
      * @var Adapter
      */
-    private $adapter;
+    protected $adapter;
 
     public function __construct(Adapter $adapter)
     {
@@ -22,21 +22,24 @@ class User
      * @return int
      */
     public function insert(
-        $username = null,
-        $passwordHash = null
+        string $username,
+        string $passwordHash,
+        string $birthday
     ) {
         $sql = '
             INSERT
-              INTO `user` (`username`, `password_hash`, `created`)
-            VALUES (?, ?, UTC_TIMESTAMP())
+              INTO `user` (`username`, `password_hash`, `birthday`, `created`)
+            VALUES (?, ?, ?, UTC_TIMESTAMP())
                  ;
         ';
         $parameters = [
             $username,
-            $passwordHash
+            $passwordHash,
+            $birthday,
         ];
         return $this->adapter
-                    ->query($sql, $parameters)
+                    ->query($sql)
+                    ->execute($parameters)
                     ->getGeneratedValue();
     }
 

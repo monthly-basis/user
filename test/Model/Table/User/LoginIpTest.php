@@ -61,7 +61,7 @@ class LoginIpTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            'full name'
+            '1983-10-22'
         );
         $this->assertTrue(
             $this->loginIpTable->updateWhereUsername('123.456.789.012', 'username')

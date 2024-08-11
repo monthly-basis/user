@@ -63,7 +63,7 @@ class LoginDateTimeTest extends TableTestCase
         $this->userTable->insert(
             'username',
             'password hash',
-            'full name'
+            '1983-10-22'
         );
         $this->assertTrue(
             $this->loginDateTimeTable->updateSetToNowWhereUserId(1)
