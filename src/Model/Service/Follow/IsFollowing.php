@@ -20,8 +20,8 @@ class IsFollowing
                 'created'
             ],
             where: [
-                $userEntity1->userId,
-                $userEntity2->userId,
+                'user_id_1' => $userEntity1->userId,
+                'user_id_2' => $userEntity2->userId,
             ],
         );
 
