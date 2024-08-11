@@ -8,7 +8,6 @@ use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
-use TypeError;
 
 class Login
 {
@@ -86,12 +85,6 @@ class Login
         return true;
     }
 
-    /**
-     * Set cookies.
-     *
-     * @param UserEntity\User $userEntity
-     * @param string $loginHash
-     */
     protected function setCookies(
         UserEntity\User $userEntity,
         string $loginHash
