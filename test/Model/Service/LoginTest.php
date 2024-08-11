@@ -54,7 +54,8 @@ class LoginTest extends TestCase
             $this->loginService->login()
         );
 
-        $_POST['password'] = 'correct password';
+        $_POST['password']    = 'correct password';
+        $_SERVER['HTTP_HOST'] = 'www.example.com';
         $this->assertTrue(
             $this->loginService->login()
         );
