@@ -1,8 +1,9 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Factory;
 
-use ArrayObject;
+use Laminas\Db\Adapter\Driver\Pdo\Result;
 use MonthlyBasis\Flash\Model\Service as FlashService;
+use MonthlyBasis\LaminasTest\Hydrator as LaminasTestHydrator;
 use MonthlyBasis\User\Model\Entity as UserEntity;
 use MonthlyBasis\User\Model\Factory as UserFactory;
 use MonthlyBasis\User\Model\Service as UserService;
@@ -56,13 +57,22 @@ class UserTest extends TestCase
         );
     }
 
-    public function testBuildFromUsername()
+    public function test_buildFromUsername()
     {
-        $array = [
-            'user_id'         => 1,
-            'username'        => 'Testing123',
-            'welcome_message' => 'Welcome to my page.',
-        ];
+        $countableIteratorHydrator = new LaminasTestHydrator\CountableIterator();
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $countableIteratorHydrator->hydrate(
+            $resultMock,
+            [
+                [
+                    'user_id'         => 1,
+                    'username'        => 'Testing123',
+                    'welcome_message' => 'Welcome to my page.',
+                ]
+            ],
+        );
 
         $userEntity = new UserEntity\User();
         $userEntity->setUserId(1);
@@ -71,7 +81,7 @@ class UserTest extends TestCase
         $userEntity->setWelcomeMessage('Welcome to my page.');
 
         $this->userTableMock->method('selectWhereUsername')->willReturn(
-            $array
+            $resultMock
         );
 
         $this->assertEquals(
