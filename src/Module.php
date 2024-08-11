@@ -2,6 +2,7 @@
 namespace LeoGalleguillos\User;
 
 use LeoGalleguillos\Flash\Model\Service as FlashService;
+use LeoGalleguillos\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 use LeoGalleguillos\User\Model\Table as UserTable;
@@ -15,11 +16,17 @@ class Module
             'view_helpers' => [
                 'aliases' => [
                     'loggedIn' => UserHelper\LoggedIn::class,
+                    'photoRootRelativeUrl' => UserHelper\Photo\RootRelativeUrl::class,
                 ],
                 'factories' => [
                     UserHelper\LoggedIn::class => function ($serviceManager) {
                         return new UserHelper\LoggedIn(
                             $serviceManager->get(UserService\LoggedIn::class)
+                        );
+                    },
+                    UserHelper\Photo\RootRelativeUrl::class => function ($serviceManager) {
+                        return new UserHelper\Photo\RootRelativeUrl(
+                            $serviceManager->get(UserService\Photo\RootRelativeUrl::class)
                         );
                     },
                 ],
@@ -42,11 +49,6 @@ class Module
                         $serviceManager->get(UserTable\User::class)
                     );
                 },
-                UserService\Register::class => function ($serviceManager) {
-                    return new UserService\Register(
-                        $serviceManager->get(FlashService\Flash::class)
-                    );
-                },
                 UserService\LoggedIn::class => function ($serviceManager) {
                     return new UserService\LoggedIn();
                 },
@@ -59,6 +61,16 @@ class Module
                     return new UserService\Photo\Photos(
                         $serviceManager->get(UserFactory\Photo::class),
                         $serviceManager->get(UserTable\Photo::class)
+                    );
+                },
+                UserService\Photo\RootRelativeUrl::class => function ($serviceManager) {
+                    return new UserService\Photo\RootRelativeUrl(
+                        $serviceManager->get(UserService\Photo\Slug::class)
+                    );
+                },
+                UserService\Photo\Slug::class => function ($serviceManager) {
+                    return new UserService\Photo\Slug(
+                        $serviceManager->get(StringService\UrlFriendly::class)
                     );
                 },
                 UserService\Photo\Upload::class => function ($serviceManager) {
@@ -75,6 +87,11 @@ class Module
                     return new UserService\Posts(
                         $serviceManager->get(UserFactory\Post::class),
                         $serviceManager->get(UserTable\Post::class)
+                    );
+                },
+                UserService\Register::class => function ($serviceManager) {
+                    return new UserService\Register(
+                        $serviceManager->get(FlashService\Flash::class)
                     );
                 },
                 UserService\User::class => function ($serviceManager) {
