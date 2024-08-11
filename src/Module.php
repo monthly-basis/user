@@ -47,6 +47,11 @@ class Module
                 UserService\LoggedIn::class => function ($serviceManager) {
                     return new UserService\LoggedIn();
                 },
+                UserService\LoggedInUser::class => function ($serviceManager) {
+                    return new UserService\LoggedInUser(
+                        $serviceManager->get(UserFactory\User::class)
+                    );
+                },
                 UserService\Post::class => function ($serviceManager) {
                     return new UserService\Post(
                         $serviceManager->get(UserTable\Post::class)
