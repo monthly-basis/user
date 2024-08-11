@@ -2,7 +2,8 @@
 namespace LeoGalleguillos\UserTest\Model\Table;
 
 use ArrayObject;
-use LeoGalleguillos\User\Model\Table\User as UserTable;
+use Exception;
+use LeoGalleguillos\User\Model\Table as UserTable;
 use LeoGalleguillos\UserTest\TableTestCase;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
@@ -14,17 +15,15 @@ class UserTest extends TableTestCase
      */
     protected $sqlPath = __DIR__ . '/../../..' . '/sql/leogalle_test/user/';
 
-    /**
-     * @var UserTable
-     */
-    protected $userTable;
-
     protected function setUp()
     {
         $configArray     = require(__DIR__ . '/../../../config/autoload/local.php');
         $configArray     = $configArray['db']['adapters']['leogalle_test'];
         $this->adapter   = new Adapter($configArray);
-        $this->userTable = new UserTable($this->adapter);
+
+        $this->userTable      = new UserTable\User($this->adapter);
+        $this->loginHashTable = new UserTable\User\LoginHash($this->adapter);
+        $this->loginIpTable   = new UserTable\User\LoginIp($this->adapter);
 
         $this->setForeignKeyChecks0();
         $this->dropTable();
@@ -46,7 +45,10 @@ class UserTest extends TableTestCase
 
     public function testInitialize()
     {
-        $this->assertInstanceOf(UserTable::class, $this->userTable);
+        $this->assertInstanceOf(
+            UserTable\User::class,
+            $this->userTable
+        );
     }
 
     public function testInsert()
@@ -107,6 +109,49 @@ class UserTest extends TableTestCase
         $this->assertInternalType(
             'array',
             $this->userTable->selectWhereUserId(1)
+        );
+    }
+
+    public function testSelectWhereUserIdLoginHashLoginIp()
+    {
+        try {
+            $this->userTable->selectWhereUserIdLoginHashLoginIp(
+                1,
+                'login-hash',
+                'login-ip'
+            );
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                $exception->getMessage(),
+                'Row with user ID, login hash, and login IP not found.'
+            );
+        }
+
+        $this->userTable->insert(
+            'username',
+            'password-hash'
+        );
+        $this->loginHashTable->updateWhereUserId(
+            'login-hash',
+            1
+        );
+        $this->loginIpTable->updateWhereUserId(
+            'login-ip',
+            1
+        );
+        $array = $this->userTable->selectWhereUserIdLoginHashLoginIp(
+            1,
+            'login-hash',
+            'login-ip'
+        );
+        $this->assertSame(
+            'username',
+            $array['username']
+        );
+        $this->assertSame(
+            'password-hash',
+            $array['password_hash']
         );
     }
 
