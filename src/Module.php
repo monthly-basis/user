@@ -323,6 +323,7 @@ class Module
                         $sm->get(ReCaptchaService\Valid::class),
                         $sm->get(StopForumSpamService\IpAddress\Toxic::class),
                         $sm->get(UserService\Email\Exists::class),
+                        $sm->get(UserService\Register\Errors\Birthday::class),
                         $sm->get(UserService\Username\Exists::class),
                     );
                 },
