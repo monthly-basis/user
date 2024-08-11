@@ -56,12 +56,12 @@ class PhotoTest extends TableTestCase
     {
         $this->assertSame(
             1,
-            $this->photoTable->insert(123, 'jpg')
+            $this->photoTable->insert(123, 'jpg', 'title', 'description')
         );
 
         $this->assertSame(
             2,
-            $this->photoTable->insert(123, 'jpg')
+            $this->photoTable->insert(123, 'jpg', 't', 'd')
         );
     }
 
