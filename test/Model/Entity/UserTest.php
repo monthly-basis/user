@@ -36,6 +36,27 @@ class UserTest extends TestCase
             $this->userEntity->getCreated()
         );
 
+        $deletedDatetime = new DateTime();
+        $this->userEntity->setDeletedDatetime($deletedDatetime);
+        $this->assertSame(
+            $deletedDatetime,
+            $this->userEntity->getDeletedDateTime()
+        );
+
+        $deletedReason = 'multiple copyright strikes';
+        $this->userEntity->setDeletedReason($deletedReason);
+        $this->assertSame(
+            $deletedReason,
+            $this->userEntity->getDeletedReason()
+        );
+
+        $deletedUserId = 1;
+        $this->userEntity->setDeletedUserId($deletedUserId);
+        $this->assertSame(
+            $deletedUserId,
+            $this->userEntity->getDeletedUserId()
+        );
+
         $gender = 'F';
         $this->userEntity->setGender($gender);
         $this->assertSame(
