@@ -35,6 +35,9 @@ class LoginTest extends TestCase
         $this->userFactoryMock = $this->createMock(
             UserFactory\User::class
         );
+        $this->validServiceMock = $this->createMock(
+            UserService\Password\Valid::class
+        );
         $this->userTableMock = $this->createMock(
             UserTable\User::class
         );
@@ -49,6 +52,7 @@ class LoginTest extends TestCase
             $this->validReCaptchaServiceMock,
             $this->randomServiceMock,
             $this->userFactoryMock,
+            $this->validServiceMock,
             $this->userTableMock,
             $this->loginDateTimeTableMock,
             $this->userIdTableMock,
@@ -152,6 +156,15 @@ class LoginTest extends TestCase
              ->method('selectWhereUsername')
              ->willReturn($wrongPasswordResultMock)
              ;
+        $this->validServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->with(
+                 'incorrect password',
+                 'password-hash-which-does-not-match-incorrect-password'
+             )
+             ->willReturn(false)
+             ;
 
         $this->assertFalse(
             $this->loginService->login()
@@ -188,6 +201,15 @@ class LoginTest extends TestCase
              ->expects($this->once())
              ->method('selectWhereUsername')
              ->willReturn($correctUsernameAndPasswordResultMock)
+             ;
+        $this->validServiceMock
+             ->expects($this->once())
+             ->method('isValid')
+             ->with(
+                 'correct password',
+                 '$2y$10$/O2EsOXRypBlEEuEVNHBa.Zd2p6jM3K3IkG3HzfaulFxArpbZC2y2'
+             )
+             ->willReturn(true)
              ;
         $userEntity = (new UserEntity\User())
             ->setUserId(123)
