@@ -15,6 +15,24 @@ class LoginHash
         $this->adapter = $adapter;
     }
 
+    public function updateWhereUserId(string $loginHash, int $userId)
+    {
+        $sql = '
+            UPDATE `user`
+               SET `user`.`login_hash` = :loginHash
+             WHERE `user`.`user_id` = :userId
+                 ;
+        ';
+        $parameters = [
+            'loginHash' => $loginHash,
+            'userId'    => $userId,
+        ];
+        return (bool) $this->adapter
+                           ->query($sql)
+                           ->execute($parameters)
+                           ->getAffectedRows();
+    }
+
     public function updateWhereUsername(string $loginHash, string $username)
     {
         $sql = '

@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\User\Model\Service;
 
+use LeoGalleguillos\User\Model\Entity as UserEntity;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Table as UserTable;
 
@@ -15,11 +16,13 @@ class Login
     public function __construct(
         UserFactory\User $userFactory,
         UserTable\User $userTable,
-        UserTable\User\LoginHash $loginHashTable
+        UserTable\User\LoginHash $loginHashTable,
+        UserTable\User\LoginIp $loginIpTable
     ) {
         $this->userFactory    = $userFactory;
         $this->userTable      = $userTable;
         $this->loginHashTable = $loginHashTable;
+        $this->loginIpTable   = $loginIpTable;
     }
 
     /**
@@ -46,21 +49,34 @@ class Login
             return false;
         }
 
-        $loginHash = password_hash($_POST['username'] . time(), PASSWORD_DEFAULT);
-        $this->loginHashTable->updateWhereUsername(
-            $loginHash,
-            $_POST['username']
-        );
-        $this->setCookies($loginHash);
+        $userEntity = $this->userFactory->buildFromUsername($username);
+        $loginHash  = password_hash($userEntity->getUserId() . time(), PASSWORD_DEFAULT);
+        $loginIp    = $_SERVER['REMOTE_ADDR'];
 
-        $_SESSION['username'] = $username;
+        $this->loginHashTable->updateWhereUserId(
+            $loginHash,
+            $userEntity->getUserId()
+        );
+        $this->loginIpTable->updateWhereUserId(
+            $loginIp,
+            $userEntity->getUserId()
+        );
+
+        $this->setCookies(
+            $userEntity,
+            $loginHash
+        );
+
+        $_SESSION['username'] = $userEntity->getUsername();
         return true;
     }
 
-    protected function setCookies(string $loginHash)
-    {
-        $name   = 'username';
-        $value  = $_POST['username'];
+    protected function setCookies(
+        UserEntity\User $userEntity,
+        string $loginHash
+    ) {
+        $name   = 'userId';
+        $value  = $userEntity->getUserId();
         $expire = empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60;
         $path   = '/';
         $domain = $_SERVER['HTTP_HOST'];
