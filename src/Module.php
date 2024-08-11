@@ -20,6 +20,9 @@ class Module
     public function getConfig()
     {
         return [
+            /**
+             * @deprecated Use routes in MonthlyBasis\UserHttps module instead
+             */
             'router' => [
                 'routes' => [
                     'account' => [
