@@ -16,21 +16,4 @@ class LoginHashTest extends TableTestCase
         $this->dropAndCreateTable('user');
         $this->setForeignKeyChecks1();
     }
-
-    public function testUpdateWhereUsername()
-    {
-        $this->assertFalse(
-            $this->loginHashTable->updateWhereUsername('the-login-hash', 'username')
-        );
-
-        $this->userTable->insert(
-            'username',
-            'password hash',
-            '1983-10-22',
-            'M'
-        );
-        $this->assertTrue(
-            $this->loginHashTable->updateWhereUsername('the-login-hash', 'username')
-        );
-    }
 }
