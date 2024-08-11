@@ -11,11 +11,11 @@ class RootRelativeUrl
      * @param UserEntity\User $userEntity
      * @return string
      */
-    public function getRootRelativeUrl(UserEntity\User $userEntity)
+    public function getRootRelativeUrl(UserEntity\User $userEntity): string
     {
         return '/users/'
              . $userEntity->getUserId()
              . '/'
-             . $userEntity->getUsername();
+             . urlencode($userEntity->getUsername());
     }
 }
