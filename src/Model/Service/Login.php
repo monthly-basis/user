@@ -21,14 +21,14 @@ class Login
         UserTable\User\LoginHash $loginHashTable,
         UserTable\User\LoginIp $loginIpTable
     ) {
-        $this->flashService             = $flashService;
-        $this->validReCaptchaService    = $validReCaptchaService;
-        $this->randomService            = $randomService;
-        $this->userFactory              = $userFactory;
-        $this->userTable                = $userTable;
-        $this->loginDateTimeTable       = $loginDateTimeTable;
-        $this->loginHashTable           = $loginHashTable;
-        $this->loginIpTable             = $loginIpTable;
+        $this->flashService          = $flashService;
+        $this->validReCaptchaService = $validReCaptchaService;
+        $this->randomService         = $randomService;
+        $this->userFactory           = $userFactory;
+        $this->userTable             = $userTable;
+        $this->loginDateTimeTable    = $loginDateTimeTable;
+        $this->loginHashTable        = $loginHashTable;
+        $this->loginIpTable          = $loginIpTable;
     }
 
     public function login(): bool
