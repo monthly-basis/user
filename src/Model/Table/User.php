@@ -171,6 +171,7 @@ class User
             SELECT `user_id`
                  , `username`
                  , `password_hash`
+                 , `gender`
                  , `display_name`
                  , `welcome_message`
                  , `views`
