@@ -8,11 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class UserEmailTest extends TableTestCase
 {
-    /**
-     * @var UserTable\UserEmail
-     */
-    protected $userEmailTable;
-
     protected function setUp(): void
     {
         $this->dropAndCreateTable('user_email');
