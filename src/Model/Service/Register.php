@@ -5,7 +5,9 @@ use DateTime;
 use Exception;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
+use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
 use MonthlyBasis\User\Model\Service as UserService;
+use MonthlyBasis\User\Model\Table as UserTable;
 
 class Register
 {
@@ -13,12 +15,16 @@ class Register
         array $config,
         FlashService\Flash $flashService,
         ReCaptchaService\Valid $validService,
-        UserService\Register\FlashValues $flashValuesService
+        SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
+        UserService\Register\FlashValues $flashValuesService,
+        UserTable\Register $registerTable
     ) {
-        $this->config             = $config;
-        $this->flashService       = $flashService;
-        $this->validService       = $validService;
-        $this->flashValuesService = $flashValuesService;
+        $this->config                   = $config;
+        $this->flashService             = $flashService;
+        $this->validService             = $validService;
+        $this->conditionallySendService = $conditionallySendService;
+        $this->flashValuesService       = $flashValuesService;
+        $this->registerTable            = $registerTable;
     }
 
     public function getErrors(): array
@@ -102,12 +108,11 @@ class Register
             $_POST['gender']
         );
 
-        $headers ="From: {$config['website-name']} <{$config['email-address']}>\r\n";
-        mail(
+        $this->conditionallySendService->conditionallySend(
             $_POST['email'],
-            "{$config['website-name']} - Activate Your Account",
+            "{$config['website-name']} <{$config['email-address']}>",
+            "{$config['website-name']} - Reset Password",
             $this->getEmailBodyText($registerId, $activationCode),
-            $headers
         );
     }
 
