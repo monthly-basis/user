@@ -34,6 +34,11 @@ class Module
                         $serviceManager->get('main')
                     );
                 },
+                UserTable\UserEmail::class => function ($serviceManager) {
+                    return new UserTable\UserEmail(
+                        $serviceManager->get('main')
+                    );
+                },
             ],
         ];
     }
