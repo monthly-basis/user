@@ -1,48 +1,16 @@
 <?php
 namespace MonthlyBasis\UserTest\Model\Table;
 
+use MonthlyBasis\LaminasTest\TableTestCase;
 use MonthlyBasis\User\Model\Table as UserTable;
-use Laminas\Db\Adapter\Adapter;
-use PHPUnit\Framework\TestCase;
 
-class RegisterTest extends TestCase
+class RegisterTest extends TableTestCase
 {
-    /**
-     * @var string
-     */
-    protected $sqlPath = __DIR__ . '/../../..' . '/sql/test/register/';
-
-    /**
-     * @var RegisterTable
-     */
-    protected $registerTable;
-
     protected function setUp(): void
     {
-        $configArray         = require(__DIR__ . '/../../../config/autoload/local.php');
-        $configArray         = $configArray['db']['adapters']['test'];
-        $this->adapter       = new Adapter($configArray);
-        $this->registerTable = new UserTable\Register($this->adapter);
+        $this->dropAndCreateTable('register');
 
-        $this->dropTable();
-        $this->createTable();
-    }
-
-    protected function dropTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'drop.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    protected function createTable()
-    {
-        $sql = file_get_contents($this->sqlPath . 'create.sql');
-        $result = $this->adapter->query($sql)->execute();
-    }
-
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(UserTable\Register::class, $this->registerTable);
+        $this->registerTable = new UserTable\Register($this->getAdapter());
     }
 
     public function testInsert()
