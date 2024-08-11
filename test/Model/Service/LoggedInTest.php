@@ -18,17 +18,9 @@ class LoggedInTest extends TestCase
         );
     }
 
-    public function testInitialize()
-    {
-        $this->assertInstanceOf(
-            UserService\LoggedIn::class,
-            $this->loggedInService
-        );
-    }
-
     public function testIsLoggedInFalse()
     {
-        unset($_COOKIE['userId']);
+        unset($_COOKIE['user-id']);
         unset($_COOKIE['loginHash']);
         unset($_COOKIE['loginIp']);
 
@@ -36,7 +28,7 @@ class LoggedInTest extends TestCase
             $this->loggedInService->isLoggedIn()
         );
 
-        $_COOKIE['userId']    = 123;
+        $_COOKIE['user-id']   = 123;
         $_COOKIE['loginHash'] = 'login-hash';
         $_COOKIE['loginIp']   = 'login-ip';
 
@@ -66,7 +58,7 @@ class LoggedInTest extends TestCase
 
     public function testIsLoggedInTrue()
     {
-        $_COOKIE['userId']    = 123;
+        $_COOKIE['user-id']   = 123;
         $_COOKIE['loginHash'] = 'login-hash';
         $_COOKIE['loginIp']   = 'login-ip';
 
