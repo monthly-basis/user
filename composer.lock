@@ -159,12 +159,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/String.git",
-                "reference": "9ded408d544b1bc513379eb536c2bb8326ec4ef8"
+                "reference": "fa2ac264ef71c4c60f2d3176b4dcba4434350e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/9ded408d544b1bc513379eb536c2bb8326ec4ef8",
-                "reference": "9ded408d544b1bc513379eb536c2bb8326ec4ef8",
+                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/fa2ac264ef71c4c60f2d3176b4dcba4434350e26",
+                "reference": "fa2ac264ef71c4c60f2d3176b4dcba4434350e26",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-04-29 05:21:22"
+            "time": "2018-08-01 00:01:44"
         },
         {
             "name": "myclabs/deep-copy",
@@ -880,16 +880,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "5.0.7",
+            "version": "5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "3eaf040f20154d27d6da59ca2c6e28ac8fd56dce"
+                "reference": "6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/3eaf040f20154d27d6da59ca2c6e28ac8fd56dce",
-                "reference": "3eaf040f20154d27d6da59ca2c6e28ac8fd56dce",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f",
+                "reference": "6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f",
                 "shasum": ""
             },
             "require": {
@@ -935,7 +935,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2018-05-29 13:50:43"
+            "time": "2018-07-13 03:27:23"
         },
         {
             "name": "psr/container",
@@ -1952,16 +1952,16 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.8.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51"
+                "reference": "44197164a270259116162a442f639085ea24094a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51",
-                "reference": "f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51",
+                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/44197164a270259116162a442f639085ea24094a",
+                "reference": "44197164a270259116162a442f639085ea24094a",
                 "shasum": ""
             },
             "require": {
@@ -2003,7 +2003,7 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-04-26 21:04:50"
+            "time": "2018-08-01 13:50:48"
         },
         {
             "name": "zendframework/zend-loader",
@@ -2184,22 +2184,22 @@
         },
         {
             "name": "zendframework/zend-router",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-router.git",
-                "reference": "f5dbec5398ca98b35170716ec5146029197fe249"
+                "reference": "a80a7427afb8f736b9aeeb341a78dae855849291"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-router/zipball/f5dbec5398ca98b35170716ec5146029197fe249",
-                "reference": "f5dbec5398ca98b35170716ec5146029197fe249",
+                "url": "https://api.github.com/repos/zendframework/zend-router/zipball/a80a7427afb8f736b9aeeb341a78dae855849291",
+                "reference": "a80a7427afb8f736b9aeeb341a78dae855849291",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.2",
                 "php": "^5.6 || ^7.0",
-                "zendframework/zend-http": "^2.6",
+                "zendframework/zend-http": "^2.8.1",
                 "zendframework/zend-servicemanager": "^2.7.8 || ^3.3",
                 "zendframework/zend-stdlib": "^2.7.7 || ^3.1"
             },
@@ -2217,8 +2217,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1.x-dev",
-                    "dev-develop": "3.2.x-dev"
+                    "dev-master": "3.2.x-dev",
+                    "dev-develop": "3.3.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Router",
@@ -2242,7 +2242,7 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-06-18 21:10:59"
+            "time": "2018-08-01 22:24:35"
         },
         {
             "name": "zendframework/zend-servicemanager",
