@@ -7,7 +7,8 @@ use MonthlyBasis\User\Model\Table as UserTable;
 
 class Birthday
 {
-    public const ERROR_NOT_OLD_ENOUGH = 'Registration is currently unavailable.';
+    public const ERROR_NOT_OLD_ENOUGH   = 'Registration is currently unavailable.';
+    public const ERROR_INVALID_BIRTHDAY = 'Invalid birthday.';
 
     public function __construct(
         UserTable\RegisterNotOldEnoughLog $registerNotOldEnoughLogTable
@@ -31,7 +32,7 @@ class Birthday
         if (empty($_POST['birthday-month'])
             || empty($_POST['birthday-day'])
             || empty($_POST['birthday-year'])) {
-            $errors[] = 'Invalid birthday.';
+            $errors[] = self::ERROR_INVALID_BIRTHDAY;
             return $errors;
         }
 
@@ -40,7 +41,7 @@ class Birthday
             "{$_POST['birthday-year']}-{$_POST['birthday-month']}-{$_POST['birthday-day']} 23:59:59"
         );
         if (!$dateTime) {
-            $errors[] = 'Invalid birthday.';
+            $errors[] = self::ERROR_INVALID_BIRTHDAY;
             return $errors;
         }
 
