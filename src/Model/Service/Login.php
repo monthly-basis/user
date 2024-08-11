@@ -76,7 +76,8 @@ class Login
 
         $this->setCookies(
             $userEntity,
-            $loginHash
+            $loginHash,
+            $httpsToken,
         );
 
         return true;
@@ -84,7 +85,8 @@ class Login
 
     protected function setCookies(
         UserEntity\User $userEntity,
-        string $loginHash
+        string $loginHash,
+        string $httpsToken
     ) {
         $options = [
             'expires'  => empty($_POST['keep']) ? 0 : time() + 30 * 24 * 60 * 60,
@@ -105,6 +107,14 @@ class Login
 
         $name   = 'login-hash';
         $value  = $loginHash;
+        setcookie(
+            $name,
+            $value,
+            $options,
+        );
+
+        $name  = 'https-token';
+        $value = $httpsToken;
         setcookie(
             $name,
             $value,
