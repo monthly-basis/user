@@ -171,31 +171,6 @@ class User
         return $this->adapter->query($sql)->execute($parameters);
     }
 
-    public function selectWhereUserIdLoginHash(
-        int $userId,
-        string $loginHash
-    ) : array {
-        $sql = $this->getSelect()
-             . '
-              FROM `user`
-             WHERE `user_id` = :userId
-               AND `login_hash` = :loginHash
-                 ;
-        ';
-        $parameters = [
-            'userId'    => $userId,
-            'loginHash' => $loginHash,
-        ];
-        $result = $this->adapter
-                       ->query($sql)
-                       ->execute($parameters)
-                       ->current();
-        if (empty($result)) {
-            throw new Exception('Row with user ID and login hash not found.');
-        }
-        return $result;
-    }
-
     public function selectWhereUsername(string $username): Result
     {
         $sql = $this->getSelect()
