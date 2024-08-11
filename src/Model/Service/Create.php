@@ -21,8 +21,8 @@ class Create extends AbstractActionController
 
     public function create(
         DateTime $birthday,
-        string $email,
-        string $gender,
+        string $email = null,
+        string $gender = null,
         string $passwordHash,
         string $username
     ) {
