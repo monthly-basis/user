@@ -107,6 +107,8 @@ class User
                  , `username`
                  , `password_hash`
                  , `welcome_message`
+                 , `views`
+                 , `created`
               FROM `user`
              WHERE `user_id` = ?
                  ;
@@ -123,6 +125,8 @@ class User
                  , `username`
                  , `password_hash`
                  , `welcome_message`
+                 , `views`
+                 , `created`
               FROM `user`
              WHERE `username` = ?
                  ;
