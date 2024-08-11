@@ -58,21 +58,21 @@ class Photo
         $photo->setOriginal($original);
 
         $thumbnails = [];
-        $thumbnail300RootPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension();
+        $thumbnail400RootPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/photos/' . $photo->getPhotoId() . '/400.' . $photo->getExtension();
 
-        if (!file_exists($thumbnail300RootPath)) {
+        if (!file_exists($thumbnail400RootPath)) {
             $thumbnail = $this->createThumbnailService->create(
                 $original,
-                300,
-                $thumbnail300RootPath
+                400,
+                $thumbnail400RootPath
             );
         } else {
             $thumbnail = new ImageEntity\Image();
         }
         $thumbnail->setRootRelativeUrl(
-            '/uploads/photos/' . $photo->getPhotoId() . '/300.' . $photo->getExtension()
+            '/uploads/photos/' . $photo->getPhotoId() . '/400.' . $photo->getExtension()
         );
-        $thumbnails['300'] = $thumbnail;
+        $thumbnails['400'] = $thumbnail;
         $photo->setThumbnails($thumbnails);
 
         return $photo;
