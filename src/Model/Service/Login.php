@@ -78,8 +78,8 @@ class Login
             $userEntity->getUserId()
         );
         $this->userTokenTable->insert([
-            'login_token' => $loginHash,
             'user_id'     => $userId,
+            'login_token' => $loginHash,
             'expires'     => (new \DateTime())->modify('+30 days')->format('Y-m-d H:i:s'),
         ]);
 
