@@ -313,6 +313,9 @@ class Module
                 UserService\Password\Reset\Url::class => function ($sm) {
                     return new UserService\Password\Reset\Url();
                 },
+                UserService\Password\Valid::class => function ($sm) {
+                    return new UserService\Password\Valid();
+                },
                 UserService\Post::class => function ($sm) {
                     return new UserService\Post(
                         $sm->get(UserTable\Post::class)
