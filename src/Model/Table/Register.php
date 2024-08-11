@@ -16,7 +16,7 @@ class Register
     }
 
     public function insert(
-        $activationCode,
+        string $activationCode,
         $username,
         $email,
         $passwordHash,
@@ -64,7 +64,7 @@ class Register
 
     public function selectWhereRegisterIdAndActivationCode(
         int $registerId,
-        int $activationCode
+        string $activationCode
     ) {
         $sql = '
             SELECT `username`

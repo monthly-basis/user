@@ -318,6 +318,7 @@ class Module
                         $config,
                         $sm->get(FlashService\Flash::class),
                         $sm->get(SimpleEmailServiceService\Send\Conditionally::class),
+                        $sm->get(StringService\Random::class),
                         $sm->get(UserService\Register\Errors::class),
                         $sm->get(UserService\Register\FlashValues::class),
                         $sm->get(UserTable\Register::class),

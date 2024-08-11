@@ -1,6 +1,6 @@
 CREATE TABLE `register` (
     `register_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `activation_code` int(10) NOT NULL,
+    `activation_code` varchar(31) NOT NULL,
     `username` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
     `password_hash` varchar(255) NOT NULL,

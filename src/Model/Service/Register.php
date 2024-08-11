@@ -5,6 +5,7 @@ use DateTime;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Exception as UserException;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
@@ -15,14 +16,16 @@ class Register
         array $config,
         FlashService\Flash $flashService,
         SimpleEmailServiceService\Send\Conditionally $conditionallySendService,
+        StringService\Random $randomService,
         UserService\Register\Errors $errorsService,
         UserService\Register\FlashValues $flashValuesService,
         UserTable\Register $registerTable
     ) {
         $this->config                   = $config;
         $this->flashService             = $flashService;
-        $this->errorsService            = $errorsService;
         $this->conditionallySendService = $conditionallySendService;
+        $this->randomService            = $randomService;
+        $this->errorsService            = $errorsService;
         $this->flashValuesService       = $flashValuesService;
         $this->registerTable            = $registerTable;
     }
@@ -40,7 +43,7 @@ class Register
             throw new UserException('Invalid registration.');
         }
 
-        $activationCode = rand(1, 999999999);
+        $activationCode = $this->randomService->getRandomString(31);
         $passwordHash   = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $dateTime = DateTime::createFromFormat(
             'Y-m-d',

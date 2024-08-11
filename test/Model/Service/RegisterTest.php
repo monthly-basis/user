@@ -4,6 +4,7 @@ namespace MonthlyBasis\UserTest\Model\Service;
 use MonthlyBasis\Flash\Model\Service as FlashService;
 use MonthlyBasis\ReCaptcha\Model\Service as ReCaptchaService;
 use MonthlyBasis\SimpleEmailService\Model\Service as SimpleEmailServiceService;
+use MonthlyBasis\String\Model\Service as StringService;
 use MonthlyBasis\User\Model\Service as UserService;
 use MonthlyBasis\User\Model\Table as UserTable;
 use PHPUnit\Framework\TestCase;
@@ -28,6 +29,9 @@ class RegisterTest extends TestCase
         $this->conditionallySendServiceMock = $this->createMock(
             SimpleEmailServiceService\Send\Conditionally::class
         );
+        $this->randomServiceMock = $this->createMock(
+            StringService\Random::class
+        );
         $this->errorsServiceMock = $this->createMock(
             UserService\Register\Errors::class
         );
@@ -41,6 +45,7 @@ class RegisterTest extends TestCase
             $config,
             $this->flashServiceMock,
             $this->conditionallySendServiceMock,
+            $this->randomServiceMock,
             $this->errorsServiceMock,
             $this->flashValuesServiceMock,
             $this->registerTableMock,
@@ -68,6 +73,12 @@ class RegisterTest extends TestCase
              ->expects($this->once())
              ->method('getErrors')
              ->willReturn([])
+             ;
+        $this->randomServiceMock
+             ->expects($this->once())
+             ->method('getRandomString')
+             ->with(31)
+             ->willReturn('abcdefghijklmnopqrstuvwxzy123456')
              ;
 
         $this->registerService->register();
