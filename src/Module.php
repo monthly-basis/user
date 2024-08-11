@@ -151,6 +151,11 @@ class Module
                         $serviceManager->get('main')
                     );
                 },
+                UserTable\User\LoginIp::class => function ($serviceManager) {
+                    return new UserTable\User\LoginIp(
+                        $serviceManager->get('main')
+                    );
+                },
                 UserTable\UserEmail::class => function ($serviceManager) {
                     return new UserTable\UserEmail(
                         $serviceManager->get('main')
