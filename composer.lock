@@ -127,12 +127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/ReCaptcha.git",
-                "reference": "77a18c2a3638bf6745acad7ba2450d05af465fc6"
+                "reference": "38b9dc36637f68d2e7834ce3a15b984e0d61739f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/77a18c2a3638bf6745acad7ba2450d05af465fc6",
-                "reference": "77a18c2a3638bf6745acad7ba2450d05af465fc6",
+                "url": "https://api.github.com/repos/LeoGalleguillos/ReCaptcha/zipball/38b9dc36637f68d2e7834ce3a15b984e0d61739f",
+                "reference": "38b9dc36637f68d2e7834ce3a15b984e0d61739f",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-04-04T01:17:07+00:00"
+            "time": "2018-10-02T22:16:28+00:00"
         },
         {
             "name": "leo-galleguillos/string",
@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LeoGalleguillos/String.git",
-                "reference": "0214787c4101c64451c4a5f9f2a542d4d1d5430d"
+                "reference": "093832dbd4bf98d58fb276a9954c3011af4cfa78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/0214787c4101c64451c4a5f9f2a542d4d1d5430d",
-                "reference": "0214787c4101c64451c4a5f9f2a542d4d1d5430d",
+                "url": "https://api.github.com/repos/LeoGalleguillos/String/zipball/093832dbd4bf98d58fb276a9954c3011af4cfa78",
+                "reference": "093832dbd4bf98d58fb276a9954c3011af4cfa78",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2018-09-21T04:14:07+00:00"
+            "time": "2018-10-08T18:27:44+00:00"
         },
         {
             "name": "myclabs/deep-copy",
