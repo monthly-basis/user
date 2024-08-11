@@ -32,8 +32,8 @@ class User
      * @return int
      */
     public function insert(
-        $username,
-        $passwordHash
+        $username = null,
+        $passwordHash = null
     ) {
         $sql = '
             INSERT
