@@ -16,6 +16,11 @@ class SignUp extends AbstractActionController
         UserService\Register $registerService,
         UserService\Url $urlService
     ) {
+        // Disable for now.
+        header("HTTP/1.1 302 Found");
+        header("Location: https://askanewquestion.com");
+        exit();
+
         $this->flashService        = $flashService;
         $this->loggedInUserService = $loggedInUserService;
         $this->registerService     = $registerService;

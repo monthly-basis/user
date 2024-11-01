@@ -16,6 +16,11 @@ class ResetPassword extends AbstractActionController
         UserService\Password\Reset $resetService,
         UserService\Url $urlService
     ) {
+        // Disable for now.
+        header("HTTP/1.1 302 Found");
+        header("Location: https://askanewquestion.com");
+        exit();
+
         $this->flashService        = $flashService;
         $this->loggedInUserService = $loggedInUserService;
         $this->resetService        = $resetService;
